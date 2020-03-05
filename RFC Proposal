@@ -1,0 +1,282 @@
+
+Key Serialization Formats for Quantum Safe Algorithms
+ 
+# Abstract 
+This memo describes the requirements for a serializing various quantum safe keys. 
+These initial include CRYSTALS-Dilithium and CRYSTALS-Kyber, but will be expanded to include other schemes as appropriate.
+
+CRYSTALS-Dilithium is a quantum safe digital signature algorithm based on Module-LWE problems. 
+The algorithm specification [xxx] defines the public and secret key formats as a concatenation of parameters in bit format. 
+The algorithm specification also specifies the concept of compressed and non-compressed public keys. 
+This RFC specifies serialization and encoding formats for CRYSTALS-Dilithium keys such that are able to be managed and used in commonly used cryptographic standards such as ASN1 and TLV.  
+ 
+Status of This Memo
+This document is not an Internet Standards Track specification; it is published for informational purposes. 
+This document is a product of the Internet Engineering Task Force (IETF).It represents the consensus of the IETF community.  It has received public review and has been approved for publication by the Internet Engineering Steering Group (IESG).  Not all documents approved by the IESG are a candidate for any level of Internet Standard; see Section 2 of RFC 5741. 
+Information about the current status of this document, any errata, and how to provide feedback on it may be obtained at    http://www.rfc-editor.org/info/rfc6421.
+Copyright Notice
+Copyright (c) 2011 IETF Trust and the persons identified as the document authors.  All rights reserved.
+This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.
+ 
+This document may contain material from IETF Documents or IETF Contributions published or made publicly available before November 10, 2008.  The person(s) controlling the copyright in some of this material may not have granted the IETF Trust the right to allow modifications of such material outside the IETF Standards Process. Without obtaining an adequate license from the person(s) controlling the copyright in such materials, this document may not be modified outside the IETF Standards Process, and derivative works of it may not be created outside the IETF Standards Process, except to format it for publication as an RFC or to translate it into languages other than English.
+ 
+Table of Contents
+ 1  Introduction
+ 1.1  General
+ 2.1  CRYSTALS-Dilithium Key Definitions 
+ 2.1.1  PKCS#8 Private Key
+ 2.1.2  SPKI Public Key
+ 2.1.3  spki
+ 2.2  CRYSTALS-Kyber Key Definitions 
+ 2.2  FALCON-Kyber Key Definitions 
+ 2.2  SIKE Key Definitions 
+ 
+ 3  Acknowledgments
+ 4  References
+ 4.1  Normative References
+  
+# 1   Introduction
+## 1.1  General
+
+CRYSTALS-Dilithium is a digital signature algorithm designed by the CRSYTALS consortia [CRY XXX]. The algorithm has been submitted to NIST [NIST xx} as part of the PQC standardization process [NIST XX]. Dilithium is also being evaluated and adopted by a number of organizations. In order to promote :
+ 
+·      A smooth transition to a standardized version of the algorithm
+·      To allow interoperability testing between different implementations
+·      To prevent persistent artefacts generated when operating Dilithium from becoming useless due to a lack of reference to algorithm version or parameters when creating those artefacts.
+ 
+## 1.2.  Requirements Language
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC2119].
+ 
+# 2 Algorithm Identification 
+ 
+Algorithm identification is important for a number of reasons: 
+
+* to managing a smooth transition from early adoption algorithm versions to production versions where there is no  compatibility.
+* for example from NIST round 2 to round 3 to final
+* to identify different key serialization strategies 
+* compressed and non compressed keys
+
+ 
+NIST has focused the search for quantum-safe algorithms without the definition of ASN.1 structures for all involved components,. It has become common place for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation and change, allowing focus on finding the best-performing QSC algorithms. In terms of long-term support, this approach is unsuitable and this RFC has the goal to rectify this shortcoming for the Dilithium set of cryptographic material.
+For the purpose of temporarily supporting continued experimentation, e.g., in simple "classic key-emulating" test applications, such as TLS, this document documents a temporary but suboptimal key format in section 2.1, mainly to establish a base of reference for as long as experimentation is ongoing. This is referenced as the 'raw key material' representation.
+At the same time, this RFC documents in section 2.2. below a long-term key representation format useful to address the goals outlined in 1.1. 
+This RFC contains all information required to transition Dilithium key material from one representation to the other.
+ 
+ 
+## 2.1 CRYSTALS-Dilitium
+Dilithium is a digital signature scheme that is strongly secure under chosen message attacks based on the hardness of lattice problems over module lattices.  
+The project can be referenced here: https://pq-crystals.org/dilithium/index.shtml 
+
+
+### 2.1.1 Raw Key Material Object Identifiers
+ 
+IBM has created an set of OID's for algorithm identifications from its internal range of identifiers.
+
+OID Base
+	
+Algorithm Identifer
+	
+M-LWE Array Dimension X
+	
+M-LWE Array Dimension Y
+1.3.6.1.4.1.2.2.267
+	
+6
+	
+4
+	
+3
+ 
+	
+ 
+	
+5
+	
+4
+ 
+	
+ 
+	
+6
+	
+5
+ 
+ 
+2.1.1 Dilithium 2
+1.3.6.1.4.1.2.267.6.4.3
+ 
+2.1.2 Dilithium 3
+1.3.6.1.4.1.2.267.6.5.4
+ 
+2.1.3 Dilithium 4
+1.3.6.1.4.1.2.267.6.6.5
+ 
+2.1.4 Dilithium 5
+1.3.6.1.4.1.2.267.6.7.6
+ 
+ 
+2.2 Structured Object Identifiers
+'1 3 6 1 4 1 2 267 1 6 5'
+ 
+1361412267 1 6 5'
+ 
+## 2.2 CRYSTALS Kyber
+Kyber is an IND-CCA2-secure key encapsulation mechanism (KEM), whose security is based on the hardness of solving the learning-with-errors (LWE) problem over module lattices. 
+ 
+ 
+# 3 Key Definitions
+
+## 3.1 CRYSTALS-Dilithium
+
+Dilithium’s key generation algorithm generates a K × L matrix A, each of whose entries is a polynomial in the ring Rq = Zq [X ]/(X n + 1). 
+ 
+                  
+### 3.1.1   PKCS#8 Secret Key
+From the Dilithium specification, the secret key contains ρ, K, tr, s1, s2 and t0 
+ 
+DilithiumPrivateKey ::= SEQUENCE {
+  version INTEGER,     -- v0
+  rho BIT STRING,      -- nonce
+  key BIT STRING,      -- key/seed/D
+  tr  BIT STRING,      -- PRF bytes (CRH in spec)
+  s1  BIT STRING,      -- vector(L)
+  s2  BIT STRING,      -- vector(K)
+  t0  BIT STRING
+  t1 [0] IMPLICIT OPTIONAL {
+  t1  BIT STRING
+  }
+}
+ 
+ 
+ 
+### 3.1.2   SPKI Public Key 
+public key serialization
+·      rho     SEEDBYTES
+·      t1       K * low bits(vector)
+ 
+Components are individual BIT STRINGs, without unused bits, encoded with the exact size. There is no removal of leading zeroes
+ 
+DilithiumPublicKey := ...SEQ...
+  BIT STRING {
+    SEQUENCE {
+       rho BIT STRING,
+       t1 BIT STRING
+    }
+  }
+ 
+ 
+ 
+Example
+   0 5648: SEQUENCE {
+   4   1:   INTEGER 0
+   7  15:   SEQUENCE {
+   9  11:     OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 1 6 5'
+  22   0:     NULL
+         :    }
+  24 5624:  OCTET STRING, encapsulates {
+  28 5620:    SEQUENCE {
+  32   1:       INTEGER 0
+  35  33:       BIT STRING
+         :         59 3D BC 08 17 DB 66 9F 67 0D 61 1F DD 27 A5 46
+         :         88 D7 A3 B9 0D C7 82 CA F8 8A 8E 2F 1A 2A 5E 0B
+  70  33:       BIT STRING
+         :         75 DE 44 44 90 CE A4 FC 15 DD C8 9E 94 9C 38 58
+         :         30 BA E1 5D 2C D8 93 54 EE F8 79 E5 35 C8 6B 59
+ 105  49:       BIT STRING
+         :         48 63 04 4C 8B 3B C5 82 74 89 94 87 4A 0B 5F 0E
+         :         2C 37 FE 20 58 00 66 58 29 AC BB EF 0A FA 70 C3
+         :         C6 E5 CB 0E 74 92 A8 97 69 67 C0 7E 7B 8D 6A 23
+ 156 481:       BIT STRING
+         :         98 28 6C E5 24 39 2A 04 A1 6D 21 A2 41 2A 0E 92
+         :         91 45 62 59 8C 5E 16 67 48 C3 74 05 96 55 E4 92
+         :         54 0D 14 0B 2A 07 AA 70 91 50 81 CA 05 E1 3A 98
+         :         34 3C 06 15 8D C5 20 58 C0 53 A9 44 66 58 A5 29
+         :        B4 52 33 B1 52 0B 22 72 58 9C 56 9E C9 49 AA B5
+         :         39 03 A5 94 15 67 8C 43 53 6A C6 58 8D 6A 45 42
+         :         15 2B D9 92 90 4D B0 58 A4 54 32 C5 A9 D0 11 5D
+         :         1D 48 64 CB 29 D2 34 62 2E 8B A0 1C DB C0 8B DD
+         :                 [ Another 352 bytes skipped ]
+ 641 577:       BIT STRING
+         :         46 AB 74 6C 36 23 18 31 34 76 B6 01 46 42 8C 91
+         :         B0 4D 28 C5 AE 52 C9 16 E8 C0 92 05 11 51 99 57
+         :         B8 76 B6 80 B6 C2 48 36 B1 D6 29 A0 29 46 BB CD
+         :         B5 AB 64 40 00 54 E0 92 18 B3 48 B7 10 C9 C6 1E
+         :         36 81 31 87 16 A8 9D 0D 42 C2 A6 C4 A8 72 1D 31
+         :         48 80 B1 6A 69 30 AE 52 3A 02 B6 4A 4F 89 A1 A4
+         :         98 E6 8C 22 01 43 F4 A6 8D 94 28 AC A2 68 01 A1
+         :         A3 81 02 4B 4E 05 2B D3 A2 5D 84 76 0A D1 28 41
+         :                 [ Another 448 bytes skipped ]
+1222 2689:       BIT STRING
+         :         B2 68 F9 3E 7D 83 9B 4D 4E DD 3A 45 0F EC B8 72
+         :         DA A2 5C 54 83 69 FA 50 AE 3D 6E F6 39 0D 03 BE
+         :         29 21 DA EF 41 26 8E EB 5C EB B2 16 39 95 1C 4B
+         :         95 CD 47 83 31 D9 D6 01 0B 68 A2 35 FD EF DF 58
+         :         29 84 78 99 6E 24 55 65 97 34 5D 1F 48 EE B1 28
+         :         83 1A BF 63 11 79 04 BD 92 F7 1B 43 59 F4 06 A1
+         :         97 CD E5 42 A2 0B 6D D0 07 B5 F2 DB CB C8 2F F7
+         :         2C F5 96 D7 E9 32 A6 DF D7 3C 76 8F 47 24 4C 82
+         :                 [ Another 2560 bytes skipped ]
+3915 1733:       [0] {
+3919 1729:         BIT STRING
+         :           53 C7 B4 9C 2B 7B BB 92 F7 A4 EC 36 88 0B F1 EE
+         :           C7 7E C1 15 BB D8 F3 F8 30 DE CA 04 BD C4 A7 D8
+         :           08 2B 69 F8 29 D6 96 F0 86 7C D6 8C 73 B6 07 FF
+         :           3D 38 F4 84 18 C7 45 BB 7A CC 86 99 CC B1 79 20
+         :           2B 61 9F E2 9B 2D E5 22 90 BF 72 C5 3D 6A 73 BF
+         :           89 79 26 5A 6C FC 32 5D DD DC 1B 51 0C E0 A9 C8
+         :           46 2F 7D 42 04 A4 77 79 AC 5D 21 12 29 03 D8 3D
+         :           76 CF B5 D7 8A 0E 81 D5 90 03 66 73 EE BC 93 3C
+         :                   [ Another 1600 bytes skipped ]
+         :         }
+         :      }
+         :    }
+         :  }
+ 
+ 
+ 
+ 
+ 
+ 
+## 3.3   spki 
+   0 1794: SEQUENCE {
+   4  15:   SEQUENCE {
+   6  11:     OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 1 6 5'
+  19   0:     NULL
+         :    }
+  21 1773:  BIT STRING, encapsulates {
+  26 1768:    SEQUENCE {
+  30  33:       BIT STRING
+         :         59 3D BC 08 17 DB 66 9F 67 0D 61 1F DD 27 A5 46
+         :         88 D7 A3 B9 0D C7 82 CA F8 8A 8E 2F 1A 2A 5E 0B
+  65 1729:      BIT STRING
+         :         53 C7 B4 9C 2B 7B BB 92 F7 A4 EC 36 88 0B F1 EE
+         :         C7 7E C1 15 BB D8 F3 F8 30 DE CA 04 BD C4 A7 D8
+         :         08 2B 69 F8 29 D6 96 F0 86 7C D6 8C 73 B6 07 FF
+         :         3D 38 F4 84 18 C7 45 BB 7A CC 86 99 CC B1 79 20
+         :         2B 61 9F E2 9B 2D E5 22 90 BF 72 C5 3D 6A 73 BF
+         :         89 79 26 5A 6C FC 32 5D DD DC 1B 51 0C E0 A9 C8
+         :        46 2F 7D 42 04 A4 77 79 AC 5D 21 12 29 03 D8 3D
+         :         76 CF B5 D7 8A 0E 81 D5 90 03 66 73 EE BC 93 3C
+         :                 [ Another 1600 bytes skipped ]
+         :      }
+         :    }
+         :  }
+ 
+## 3.2 CRYSTALS-Kyber Key Definitions
+
+
+
+## 3.3. Falcon Key Definitions
+
+
+## 3.4 SIKE Key Definitions
+
+ 
+# 4   Acknowledgments
+ 
+Thanks to all the reviewers and contributors, including xxxx
+ 
+# 5   References
+ 
+5.1  Normative References[NIST-SP800-131A] Barker, E. and A. Roginsky, "Transitions: Recommendation for Transitioning the Use of Cryptographic Algorithms and Key Lengths", NIST SP-800-131A, January 2011.
+ 
