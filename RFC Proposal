@@ -125,7 +125,7 @@ Kyber is an IND-CCA2-secure key encapsulation mechanism (KEM), whose security is
 
 ## 2.3 NTRU Prime
 
-Streamlined NTRU Prime and NTRU LPRime are IND-CCA2-secure key encapsulation mechanisms (KEM), whose security is respectively based on the hardness of solving the Approximate Shortest Vector Problem (\gamma-SVP) over ideal lattices and the learning-with-errors (LWE) problem over ideal lattices. 
+Streamlined NTRU Prime and NTRU LPRime are IND-CCA2-secure key encapsulation mechanisms (KEM), whose security is respectively based on the hardness of solving the Approximate Shortest Vector Problem ($\gamma$-SVP) over ideal lattices and the learning-with-errors (LWE) problem over ideal lattices. 
 
 ### 2.3.1 Raw Key Material Object Identifiers
 
@@ -290,22 +290,52 @@ NTRU Prime’s key generation algorithm generates keys that are polynomials in t
 
 ### 3.3.1  Secret Key
 
-From the NTRU Prime specification, the secret key contains ρ, K, tr, s1, s2 and t0 
+From the NTRU Prime specification, the Streamlined NTRU Prime secret key contains f, 1/g (both polynomials in the ring Rq) and optionally an encoding parameter t1.
 
-DilithiumPrivateKey ::= SEQUENCE {
+NTRUPrimePrivateKey ::= SEQUENCE {
   version INTEGER,     -- v0
-  rho BIT STRING,      -- nonce
-  key BIT STRING,      -- key/seed/D
-  tr  BIT STRING,      -- PRF bytes (CRH in spec)
-  s1  BIT STRING,      -- vector(L)
-  s2  BIT STRING,      -- vector(K)
-  t0  BIT STRING
+  f  BIT STRING,      -- vector(p)
+  g1  BIT STRING,      -- vector(p) (of 1/g)
   t1 [0] IMPLICIT OPTIONAL {
-  t1  BIT STRING
+    t1  BOOL, 		-- tighter encoding option
   }
 }
 
- 
+From the NTRU Prime specification, the Streamlined NTRU LPRime secret key contains vector a
+
+NTRULPRimePrivateKey ::= SEQUENCE {
+  version INTEGER,  	-- v0
+  a BIT STRING,      -- vector(p)
+  t1 [0] IMPLICIT OPTIONAL {
+    t1  BOOL, 		-- tighter encoding option
+  }
+}
+
+### 3.1.2   SPKI Public Key 
+
+From the NTRU Prime specification, the Streamlined NTRU Prime public key contains h, optionally encoding of h can be reduced with optional parameter d (check that this is in the Round 2 spec)
+
+NTRUPrimePublicKey := ...SEQ...
+  BIT STRING {
+    SEQUENCE {
+       h BIT STRING,   -- vector(p)
+       d [0] IMPLICIT OPTIONAL {
+         d  BOOL, 		-- tighter encoding option
+       }
+    }
+  }
+
+From the NTRU Prime specification, the Streamlined NTRU LPRime public key contains A, S
+
+NTRULPRimePublicKey := ...SEQ...
+  BIT STRING {
+    SEQUENCE {
+       A BIT STRING,
+       S BIT STRING
+    }
+  }
+
+TODO: add examples
 
 ## 3.4 Falcon Key Definitions
 
