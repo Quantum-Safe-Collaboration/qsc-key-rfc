@@ -290,11 +290,16 @@ NTRU Prime’s key generation algorithms are split into two cases: NTRU Prime an
 
 ### 3.3.1  Secret Key Definitions
 
+TODO: Should there be a SEED somewhere? I think no?
+TODO: in the NTRU Prime specifications the pk is included in the sk, how to deal with that? I for now left it out.
+TODO: not sure how to include the option of replacing $\rho$ with a seed, I left it out for now, but probably should be the default option, since $\rho$ includes the encoding
+TODO: should encoding be optional? I don't think so (Optionally an encoding parameter $t_1$ (default $TRUE$) to apply a deterministic encoding algorithm to all keys/inputs/ciphertexts)
+
 From the NTRU Prime specification,  for NTRU Prime Core, we have a parameter space $(p,q,w)$, where $p$, $q$  are prime numbers and $w$ is a positive integer. All are subject to; $2p \geq 3w$, $q \geq 16w + 1$ and $x^p -x -1$ is irreducible in the polynomial ring $(\mathbb{Z}/q)[x]$. 
 
-Keys are then generated as polynomials in the ring $R_q = \mathbb{Z}_q [x]/(x^p - x- 1)$. The NTRU Prime Core secret key contains $f$ and $1/g$ (both polynomials in the ring $R_q$). Streamlined NTRU Prime adds a KEM construction and contains an extra uniform random $\rho$ used for implicit rejection. Optionally $\rho$ could be replaced by an RNG seed (TODO: not sure how to include this, I left it out for now, but probably should be the default option, since $\rho$ includes the encoding). (TODO: should encoding be optional? I don't think so.: Optionally an encoding parameter $t_1$ (default $TRUE$) to apply a deterministic encoding algorithm to all keys/inputs/ciphertexts).
+Keys are then generated as polynomials in the ring $R/q = (\mathbb{Z}/q) [x]/(x^p - x- 1)$. The NTRU Prime Core secret key contains $f$ and $1/g$ (both polynomials in the ring $R_q$). Streamlined NTRU Prime adds a KEM construction and contains an extra uniform random $\rho$ used for implicit rejection. Optionally $\rho$ could be replaced by an RNG seed. 
 
-Not that $k$ in the specification appends (encodings of) $f$, $v = 1/g$ and $\rho$.
+Note that $k$ in the specification appends (encodings of) $f$, $v = 1/g$ and $\rho$.
 
 NTRUPrimePrivateKey ::= SEQUENCE {
     version INTEGER,     -- v0
@@ -303,17 +308,17 @@ NTRUPrimePrivateKey ::= SEQUENCE {
     r BIT STRING,	-- implicit rejection rho
 }
 
-From the NTRU Prime specification, the Streamlined NTRU LPRime secret key contains vector a
+From the NTRU Prime specification,  for NTRU LPRime Core, we have a parameter space $(p,q,w,\delta,I)$, where $p$, $q$  are prime numbers and $w,\delta,I$ are a positive integers. All are subject to; $2p \geq 3w$, $I=8i$ for some integer $i>0$, $p \geq I$, $q \geq 16w  + 2\delta +3$ and $x^p -x -1$ is irreducible in the polynomial ring $(\mathbb{Z}/q)[x]$. An additional parameters $\tau = 16, \tau_0, \tau_1, \tau_2, \tau_3$ exist to defined the Top Bits functions.
+
+Keys are then generated as polynomials in the ring $R/q = (\mathbb{Z}/q) [x]/(x^p - x- 1)$. The NTRU LPRrime Core secret key consists of a (short) uniform  $a$ in the ring $R/q$). NTRU LPRrime adds a KEM construction and contains an extra uniform random $\rho$ used for implicit rejection. Optionally $\rho$ could be replaced by an RNG seed.
 
 NTRULPRimePrivateKey ::= SEQUENCE {
   version INTEGER,  	-- v0
   a BIT STRING,      -- vector(p)
-  t1 [0] IMPLICIT OPTIONAL {
-    t1  BOOL, 		-- tighter encoding option
-  }
+  r BIT STRING,	-- implicit rejection rho
 }
 
-#### 3.3.1.1   PKCS#8 Secret Key Example
+#### 3.3.1.1   PKCS#8 Streamlined NTRU Prime Secret Key Example
 
 TODO: replace object identifier, 
 TODO: what is the NULL value?, 
@@ -340,7 +345,7 @@ Example PKCS#8 Streamlined NTRU Prime secret key for $(p,q,w) = (761, 4591, 286)
          :         65 14 61 65 52 06 85 29 A1 54 21 52 45 41 55 A5
          :         55 55 45 55 85 64 44 95 19 51 15 55 A6 55 15 68
          :                 [ Another 63 bytes skipped ]
-  70  192:       BIT STRING
+  ?  192:       BIT STRING
          :         84 09 60 05 66 42 08 01 4A A5 54 21 26 2A 81 A6
          :         11 A1 52 68 05 58 29 05 69 85 6A 21 41 96 58 44
          :         96 A2 96 89 A1 56 16 64 89 81 05 20 61 6A 91 2A
@@ -350,7 +355,7 @@ Example PKCS#8 Streamlined NTRU Prime secret key for $(p,q,w) = (761, 4591, 286)
          :         48 22 2A 29 41 8A 02 50 8A 26 0A A6 24 80 86 20
          :         98 44 21 99 65 28 11 62 84 11 41 60 96 46 24 98
          :                 [ Another 63 bytes skipped ]
- 105  192:       BIT STRING
+ ?  192:       BIT STRING
          :         51 7B EA 81 9C 52 2F 18 B9 96 57 7D EC F9 DA 63
          :         C8 68 D6 F7 46 8A DB 29 E2 9B 60 68 21 6B C6 57
          :         C7 4B A0 92 B6 D6 34 67 3E 7C 46 DE C9 D9 B5 23
@@ -364,11 +369,43 @@ Example PKCS#8 Streamlined NTRU Prime secret key for $(p,q,w) = (761, 4591, 286)
          :    }
          :  }
 
+#### 3.3.1.2   PKCS#8 NTRU LPRime Secret Key Example
+
+TODO: Replace object identifier
+
+Example PKCS#8 NTRU LPRime secret key for $(p,q,w,\delta,I,\tau,\tau_0,\tau_1,\tau_2,\tau_3) = (761,4591,250,292,256,16,2156,114,2007,287)$ gives:
+
+   0 257: SEQUENCE {
+   4   1:   INTEGER 0
+   7  15:   SEQUENCE {
+   9  11:     OBJECT IDENTIFIER '1 2 3 4 5 6 7 267 8 9 1'
+  22   0:     NULL
+         :    }
+  24 233:  OCTET STRING, encapsulates {
+  28 229:    SEQUENCE {
+  32   1:       INTEGER 0
+  35  192:       BIT STRING
+         :         15 1A 55 55 55 58 25 65 A5 91 55 55 59 46 55 55
+         :         54 05 15 15 65 66 59 61 21 54 55 55 19 15 94 56
+         :         55 55 65 51 54 54 01 25 55 95 81 55 59 09 56 81
+         :         15 55 59 25 55 45 54 45 51 45 55 94 01 15 45 55
+         :         55 91 96 25 55 95 A9 55 65 56 59 56 56 56 65 45
+         :         18 54 96 45 15 05 56 55 10 00 51 85 51 55 55 95
+         :         56 45 15 15 81 55 65 46 51 51 95 49 55 11 45 55
+         :         24 81 91 65 65 51 98 61 56 54 54 66 54 55 59 5A
+         :                 [ Another 63 bytes skipped ]
+ ?  32:       BIT STRING
+         :         6B AC AC 7C D9 E8 A1 B9 3F 90 9B 78 42 56 0B B1
+         :         D7 32 77 E4 E3 AF 08 6D 66 51 CC CF F7 12 0B DF
+         :      }
+         :    }
+         :  }
+
 ### 3.3.2   SPKI Public Key 
 
 TODO: should the SPKI not include a version number?
 
-From the NTRU Prime specification, the Streamlined NTRU Prime public key contains h, optionally encoding of h can be reduced with optional parameter d (check that this is in the Round 2 spec)
+From the NTRU Prime specification, the Streamlined NTRU Prime public key contains $K$, optionally a hash of $K$ can be stored to speed up multiple encapsulations/decapsulations.
 
 NTRUPrimePublicKey := ...SEQ...
   BIT STRING {
@@ -380,17 +417,18 @@ NTRUPrimePublicKey := ...SEQ...
     }
   }
 
-From the NTRU Prime specification, the Streamlined NTRU LPRime public key contains A, S
+From the NTRU Prime specification, the NTRU LPRime public key contains the seed $S$ (RNG-generated) generator $G$, and corresponding public key $A = Round(aG)$. Optionally a hash of $K = (S, A)$ can be stored to speed up multiple encapsulations/decapsulations.
 
 NTRULPRimePublicKey := ...SEQ...
   BIT STRING {
     SEQUENCE {
-       A BIT STRING,
-       S BIT STRING
+       S BIT STRING,
+       A BIT STRING
+       c [0] IMPLICIT OPTIONAL {
+         c BIT STRING, 		-- cache of public key hash
+      }
     }
   }
-
-TODO: add examples
 
 #### 3.3.2.1   SPKI Public Key Example
 

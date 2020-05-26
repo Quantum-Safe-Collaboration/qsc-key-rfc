@@ -2,7 +2,7 @@
 
 import sys
 
-selection = 2
+selection = 3
 if len(sys.argv) >= 2:
   selection = int(sys.argv[1])
 
@@ -621,6 +621,21 @@ if lpr:
 
   def ZKeyGen():
     (S,A),a = XKeyGen()
+    print "S", len(fromstring(S))
+    list = ['{:02X}'.format(i) for i in fromstring(S)]
+    for i in range(floor(len(list)/16)):
+      print ("[{0}]".format(' '.join(map(str,list[i*16:(i+1)*16]))))
+    if not len(list)%16 == 0: print ("[{0}]".format(' '.join(map(str,list[-(len(list)%16):]))))
+    print "A", len(fromstring(Rounded_encode(A)))
+    list = ['{:02X}'.format(i) for i in fromstring(Rounded_encode(A))]
+    for i in range(floor(len(list)/16)):
+      print ("[{0}]".format(' '.join(map(str,list[i*16:(i+1)*16]))))
+    if not len(list)%16 == 0: print ("[{0}]".format(' '.join(map(str,list[-(len(list)%16):]))))
+    print "a", len(fromstring(Small_encode(a)))
+    list = ['{:02X}'.format(i) for i in fromstring(Small_encode(a))]
+    for i in range(floor(len(list)/16)):
+      print ("[{0}]".format(' '.join(map(str,list[i*16:(i+1)*16]))))
+    if not len(list)%16 == 0: print ("[{0}]".format(' '.join(map(str,list[-(len(list)%16):]))))
     return S+Rounded_encode(A),Small_encode(a)
 
   def ZEncrypt(r,pk):
