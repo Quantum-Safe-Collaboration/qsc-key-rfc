@@ -294,11 +294,13 @@ From the NTRU Prime specification,  for NTRU Prime Core, we have a parameter spa
 
 Keys are then generated as polynomials in the ring $R_q = \mathbb{Z}_q [x]/(x^p - x- 1)$. The NTRU Prime Core secret key contains $f$ and $1/g$ (both polynomials in the ring $R_q$). Streamlined NTRU Prime adds a KEM construction and contains an extra uniform random $\rho$ used for implicit rejection. Optionally $\rho$ could be replaced by an RNG seed (TODO: not sure how to include this, I left it out for now, but probably should be the default option, since $\rho$ includes the encoding). (TODO: should encoding be optional? I don't think so.: Optionally an encoding parameter $t_1$ (default $TRUE$) to apply a deterministic encoding algorithm to all keys/inputs/ciphertexts).
 
+Not that $k$ in the specification appends (encodings of) $f$, $v = 1/g$ and $\rho$.
+
 NTRUPrimePrivateKey ::= SEQUENCE {
     version INTEGER,     -- v0
     f  BIT STRING,      -- vector(p)
     g1  BIT STRING,      -- vector(p) (of 1/g)
-    r BIT STRING,	-- implicit rejection
+    r BIT STRING,	-- implicit rejection rho
 }
 
 From the NTRU Prime specification, the Streamlined NTRU LPRime secret key contains vector a
@@ -313,8 +315,11 @@ NTRULPRimePrivateKey ::= SEQUENCE {
 
 #### 3.3.1.1   PKCS#8 Secret Key Example
 
+TODO: replace object identifier, 
+TODO: what is the NULL value?, 
+TODO: I don't really get the counting; #bytes, sometimes +3, sometimes +5, 
+
 Example PKCS#8 Streamlined NTRU Prime secret key for $(p,q,w) = (761, 4591, 286)$ :
-(TODO: replace object identifier, TODO: what is the NULL value?, TODO: I don't really get the counting; #bytes, sometimes +3, sometimes +5)
 
    0 609: SEQUENCE {
    4   1:   INTEGER 0
@@ -368,9 +373,9 @@ From the NTRU Prime specification, the Streamlined NTRU Prime public key contain
 NTRUPrimePublicKey := ...SEQ...
   BIT STRING {
     SEQUENCE {
-       h BIT STRING,   -- vector(p)
-       d [0] IMPLICIT OPTIONAL {
-         d  BOOL, 		-- tighter encoding option
+       K BIT STRING,   -- vector(p)
+       c [0] IMPLICIT OPTIONAL {
+         c BIT STRING, 		-- cache of public key hash
        }
     }
   }
@@ -387,9 +392,37 @@ NTRULPRimePublicKey := ...SEQ...
 
 TODO: add examples
 
-### 
+#### 3.3.2.1   SPKI Public Key Example
 
+TODO: Check the number (mainly questionmarks)
 
+Example for the corresponding public key for Streamlined NTRU Prime (with secret key as above) for $(p,q,w) = (761, 4591, 286)$ :
+
+   0 1226: SEQUENCE {
+   4  15:   SEQUENCE {
+   6  11:     OBJECT IDENTIFIER '1 2 3 4 5 6 7 267 8 9 0'
+  19   0:     NULL
+         :    }
+  21 1205:  BIT STRING, encapsulates {
+  26 1200:    SEQUENCE {
+  30  1159:       BIT STRING
+         :         3B 7B EB 01 7E 5E 8A A2 9F 4A BF DA CD DC C0 E5
+         :         C5 51 9A 26 DE 19 05 BE 5E CC 9A 63 95 FC 87 B4
+         :         0C 3B FC 1D B9 4D 42 E0 28 2C D5 74 A0 AA B2 18
+         :         AD C2 CF 4C 8C CC D1 44 18 85 5D A6 57 80 99 C8
+         :         03 47 5F B1 07 1A C9 16 BE B9 D2 CD D6 79 2B 32
+         :         E0 79 62 32 BB 8F 3E FA 61 DA C6 7E 23 F3 01 E8
+         :         65 83 FB D8 60 2B 16 C9 6F 0E 86 7B A2 FF 3E 6C
+         :         A6 85 2A B8 19 A9 58 8A 37 FD 7E 4C A5 BB C0 14
+         :                 [ Another 1030 bytes skipped ]
+? 37:       [0] {
+? 33:         BIT STRING
+         :           70 DD 6F 25 55 5D BD B9 8D 6B 1B 96 DD DF 5E A2
+         :           E0 37 8C C6 E6 D9 44 6B D5 69 37 AF D0 52 49 31
+         :         }
+         :      }
+         :    }
+         :  }
 
 ## 3.4 Falcon Key Definitions
 
