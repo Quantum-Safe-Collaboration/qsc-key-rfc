@@ -371,8 +371,6 @@ Example PKCS#8 Streamlined NTRU Prime secret key for $(p,q,w) = (761, 4591, 286)
 
 #### 3.3.1.2   PKCS#8 NTRU LPRime Secret Key Example
 
-TODO: Replace object identifier
-
 Example PKCS#8 NTRU LPRime secret key for $(p,q,w,\delta,I,\tau,\tau_0,\tau_1,\tau_2,\tau_3) = (761,4591,250,292,256,16,2156,114,2007,287)$ gives:
 
    0 257: SEQUENCE {
@@ -430,9 +428,9 @@ NTRULPRimePublicKey := ...SEQ...
     }
   }
 
-#### 3.3.2.1   SPKI Public Key Example
+#### 3.3.2.1   SPKI Public Key Streamlined NTRU Prime Example
 
-TODO: Check the number (mainly questionmarks)
+TODO: Check the numbers (mainly questionmarks)
 
 Example for the corresponding public key for Streamlined NTRU Prime (with secret key as above) for $(p,q,w) = (761, 4591, 286)$ :
 
@@ -457,6 +455,41 @@ Example for the corresponding public key for Streamlined NTRU Prime (with secret
 ? 33:         BIT STRING
          :           70 DD 6F 25 55 5D BD B9 8D 6B 1B 96 DD DF 5E A2
          :           E0 37 8C C6 E6 D9 44 6B D5 69 37 AF D0 52 49 31
+         :         }
+         :      }
+         :    }
+         :  }
+
+#### 3.3.2.2   SPKI Public Key NTRU LPRime Example
+
+TODO: Check the number (mainly questionmarks)
+
+Example for the corresponding public key for Streamlined NTRU Prime (with secret key as above) for $(p,q,w) = (761, 4591, 286)$ :
+
+   0 1107: SEQUENCE {
+   4  15:   SEQUENCE {
+   6  11:     OBJECT IDENTIFIER '1 2 3 4 5 6 7 267 8 9 1'
+  19   0:     NULL
+         :    }
+  21 1086:  BIT STRING, encapsulates {
+  26 1081:    SEQUENCE {
+  30  33:       BIT STRING
+         :         0A 6A 85 EA A6 42 DA C8 35 42 4B 5D 7C 8D 63 7C
+         :         00 40 8C 7A 73 DA 67 2B 7F 49 85 21 42 0B 6D D3
+ ?  1008:       BIT STRING
+         :         7F 67 F9 C2 9B 4E 87 B7 B0 9E 34 01 C7 A0 F8 9A
+         :         67 A8 13 2D D0 B6 04 23 05 6B A5 1D EA 53 89 2F
+         :        1D D2 0A FA 3A E0 70 7D FD 8B EC 3D CC B2 90 A6
+         :         B7 CD 29 7F C5 C5 3B 67 20 B5 ED E2 9D DA 1E BF
+         :         F8 34 5B 39 B3 F1 D2 ED CA 50 BB 28 42 8C 8E 37
+         :         8D BB D2 6C 2B 2F 8F 1C 18 24 FA D2 0D 72 A0 69
+         :         0F B8 41 1A B8 0E F0 7A 7B A5 FF 82 87 48 85 DD
+         :         65 5F 8B BF 3D F9 78 90 1C D6 B2 40 45 0F 9D 48
+         :                 [ Another 879 bytes skipped ]
+? 37:       [0] {
+? 33:         BIT STRING
+         :           EC E3 47 CD EE 4A 24 45 17 F7 82 BE A6 5B CD 29
+         :           75 FD 8A F7 08 E1 FA EA FB 63 6F 1E 10 C4 02 9C
          :         }
          :      }
          :    }
