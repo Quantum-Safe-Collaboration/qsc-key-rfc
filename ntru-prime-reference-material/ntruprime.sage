@@ -2,7 +2,7 @@
 
 import sys
 
-selection = 0
+selection = 2
 if len(sys.argv) >= 2:
   selection = int(sys.argv[1])
 
@@ -579,6 +579,16 @@ if not lpr:
   
   def ZKeyGen():
     h,(f,v) = KeyGen()
+    print "f", len(fromstring(Small_encode(f)))
+    list = ['{:02X}'.format(i) for i in fromstring(Small_encode(f))]
+    for i in range(floor(len(list)/16)):
+      print ("[{0}]".format(' '.join(map(str,list[i*16:(i+1)*16]))))
+    if not len(list)%16 == 0: print ("[{0}]".format(' '.join(map(str,list[-(len(list)%16):]))))
+    print "1/g", len(fromstring(Small_encode(R_fromR3(v))))
+    list = ['{:02X}'.format(i) for i in fromstring(Small_encode(R_fromR3(v)))]
+    for i in range(floor(len(list)/16)):
+      print ("[{0}]".format(' '.join(map(str,list[i*16:(i+1)*16]))))
+    if not len(list)%16 == 0: print ("[{0}]".format(' '.join(map(str,list[-(len(list)%16):]))))
     return Rq_encode(h),Small_encode(f)+Small_encode(R_fromR3(v))
   
   def ZEncrypt(r,pk):
@@ -673,11 +683,26 @@ def HashSession(b,y,z):
 # KeyGen'' in NTRU LPRime spec
 def KEM_KeyGen():
   pk,sk = ZKeyGen()
+  print "pk", len(fromstring(pk))
+  list =['{:02X}'.format(i) for i in fromstring(pk)]
+  for i in range(floor(len(list)/16)):
+    print ("[{0}]".format(' '.join(map(str,list[i*16:(i+1)*16]))))
+  if not len(list)%16 == 0: print ("[{0}]".format(' '.join(map(str,list[-(len(list)%16):]))))
   sk += pk
   if not round1:
     rho = Inputs_randomenc()
+    print "rho", len(fromstring(rho))
+    list = ['{:02X}'.format(i) for i in fromstring(rho)]
+    for i in range(floor(len(list)/16)):
+      print ("[{0}]".format(' '.join(map(str,list[i*16:(i+1)*16]))))
+    if not len(list)%16 == 0: print ("[{0}]".format(' '.join(map(str,list[-(len(list)%16):]))))
     sk += rho
   if usecache: sk += Hash4(pk)
+  print "cache?", len(fromstring(Hash4(pk)))
+  list = ['{:02X}'.format(i) for i in fromstring(Hash4(pk))]
+  for i in range(floor(len(list)/16)):
+    print ("[{0}]".format(' '.join(map(str,list[i*16:(i+1)*16]))))
+  if not len(list)%16 == 0: print ("[{0}]".format(' '.join(map(str,list[-(len(list)%16):]))))
   return pk,sk
 
 def Hide(r,pk,cache=None):
@@ -729,30 +754,33 @@ def checksum_add(s):
 
 # ----- some tests
 
-print 'round1',round1
-print 'p',p
-print 'q',q
-print 'w',w
-print 'lpr',lpr
+print('round1',round1)
+print('p',p)
+print('q',q)
+print('w',w)
+print('lpr',lpr)
 if lpr:
-  print 'delta',delta
-  print 'tau0',tau0
-  print 'tau1',tau1
-  print 'tau2',tau2
-  print 'tau3',tau3
-if not lpr: print 'Rq_bytes',Rq_bytes
-print 'Rounded_bytes',Rounded_bytes
+  print('delta',delta)
+  print('tau0',tau0)
+  print('tau1',tau1)
+  print('tau2',tau2)
+  print('tau3',tau3)
+if not lpr: print('Rq_bytes',Rq_bytes)
+print('Rounded_bytes',Rounded_bytes)
 sys.stdout.flush()
 
 pk,sk = KEM_KeyGen()
+print "full key", len(fromstring(sk))
+list = ['{:02X}'.format(i) for i in fromstring(sk)]
 C,k = Encap(pk)
 assert Decap(C,sk) == k
-print 'secretkeybytes',len(sk)
-print 'publickeybytes',len(pk)
-print 'ciphertextbytes',len(C)
-print 'publickeybytes+ciphertextbytes',len(pk)+len(C)
-print 'sessionkeybytes',len(k)
+print('secretkeybytes',len(sk))
+print('publickeybytes',len(pk))
+print('ciphertextbytes',len(C))
+print('publickeybytes+ciphertextbytes',len(pk)+len(C))
+print('sessionkeybytes',len(k))
 sys.stdout.flush()
+os._exit(0)
 
 for testkey in range(10):
   pk,sk = KEM_KeyGen()
@@ -764,7 +792,7 @@ for testkey in range(10):
     checksum_add(k)
     assert Decap(C,sk) == k
 
-print 'checksum',checksum.encode('hex')
+print('checksum',checksum.encode('hex'))
 sys.stdout.flush()
 
 for testkey in range(10):
@@ -777,7 +805,7 @@ for testkey in range(10):
     checksum_add(c)
     assert ZDecrypt(c,sk) == r
 
-print 'checksum2',checksum.encode('hex')
+print('checksum2',checksum.encode('hex'))
 
 def modify(x):
   x = ord(x)
@@ -808,7 +836,7 @@ for modpos in range(len(C)):
   if kmod == False: kmod = 'False'
   checksum_add(kmod)
 
-print 'checksum3',checksum.encode('hex')
+print('checksum3',checksum.encode('hex'))
 
 C = tostring([255]*len(C))
 k = Decap(C,sk)
@@ -822,7 +850,7 @@ for testinput in range(100):
   checksum_add(C)
   checksum_add(k)
 
-print 'checksum4',checksum.encode('hex')
+print('checksum4',checksum.encode('hex'))
 
 for testkey in range(10):
   if not lpr:

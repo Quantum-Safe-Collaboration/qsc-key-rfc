@@ -257,7 +257,7 @@ Example
  
 
 
-## 3.3   spki 
+### 3.1.3   spki 
    0 1794: SEQUENCE {
    4  15:   SEQUENCE {
    6  11:     OBJECT IDENTIFIER '1 3 6 1 4 1 2 267 1 6 5'
@@ -286,19 +286,19 @@ Example
 
 ## 3.3 NTRU Prime Key Definitions
 
-NTRU Prime’s key generation algorithm generates keys that are polynomials in the ring Rq = Zq [X ]/(X^p - x- 1). 
+NTRU Prime’s key generation algorithms are split into two cases: NTRU Prime and NTRU LPRime. They respectively apply a Quotient- and Product-version of NTRU to a prime ring.
 
-### 3.3.1  Secret Key
+### 3.3.1  Secret Key Definitions
 
-From the NTRU Prime specification, the Streamlined NTRU Prime secret key contains f, 1/g (both polynomials in the ring Rq) and optionally an encoding parameter t1.
+From the NTRU Prime specification,  for NTRU Prime Core, we have a parameter space $(p,q,w)$, where $p$, $q$  are prime numbers and $w$ is a positive integer. All are subject to; $2p \geq 3w$, $q \geq 16w + 1$ and $x^p -x -1$ is irreducible in the polynomial ring $(\mathbb{Z}/q)[x]$. 
+
+Keys are then generated as polynomials in the ring $R_q = \mathbb{Z}_q [x]/(x^p - x- 1)$. The NTRU Prime Core secret key contains $f$ and $1/g$ (both polynomials in the ring $R_q$). Streamlined NTRU Prime adds a KEM construction and contains an extra uniform random $\rho$ used for implicit rejection. Optionally $\rho$ could be replaced by an RNG seed (TODO: not sure how to include this, I left it out for now, but probably should be the default option, since $\rho$ includes the encoding). (TODO: should encoding be optional? I don't think so.: Optionally an encoding parameter $t_1$ (default $TRUE$) to apply a deterministic encoding algorithm to all keys/inputs/ciphertexts).
 
 NTRUPrimePrivateKey ::= SEQUENCE {
-  version INTEGER,     -- v0
-  f  BIT STRING,      -- vector(p)
-  g1  BIT STRING,      -- vector(p) (of 1/g)
-  t1 [0] IMPLICIT OPTIONAL {
-    t1  BOOL, 		-- tighter encoding option
-  }
+    version INTEGER,     -- v0
+    f  BIT STRING,      -- vector(p)
+    g1  BIT STRING,      -- vector(p) (of 1/g)
+    r BIT STRING,	-- implicit rejection
 }
 
 From the NTRU Prime specification, the Streamlined NTRU LPRime secret key contains vector a
@@ -311,7 +311,57 @@ NTRULPRimePrivateKey ::= SEQUENCE {
   }
 }
 
-### 3.1.2   SPKI Public Key 
+#### 3.3.1.1   PKCS#8 Secret Key Example
+
+Example PKCS#8 Streamlined NTRU Prime secret key for $(p,q,w) = (761, 4591, 286)$ :
+(TODO: replace object identifier, TODO: what is the NULL value?, TODO: I don't really get the counting; #bytes, sometimes +3, sometimes +5)
+
+   0 609: SEQUENCE {
+   4   1:   INTEGER 0
+   7  15:   SEQUENCE {
+   9  11:     OBJECT IDENTIFIER '1 2 3 4 5 6 7 267 8 9 0'
+  22   0:     NULL
+         :    }
+  24 585:  OCTET STRING, encapsulates {
+  28 581:    SEQUENCE {
+  32   1:       INTEGER 0
+  35  192:       BIT STRING
+         :         66 54 55 51 01 A1 A4 1A 59 51 56 55 95 95 89 55
+         :         16 65 05 65 95 21 01 56 54 65 64 44 59 55 65 6A
+         :         66 61 A5 65 55 96 A6 51 85 55 56 56 59 21 54 04
+         :         65 A5 69 15 59 55 55 11 05 51 96 59 59 64 55 94
+         :         5A 21 24 65 41 16 04 45 64 95 91 55 52 54 56 84
+         :         65 94 55 11 66 41 81 55 55 09 41 5A 61 A4 56 05
+         :         65 14 61 65 52 06 85 29 A1 54 21 52 45 41 55 A5
+         :         55 55 45 55 85 64 44 95 19 51 15 55 A6 55 15 68
+         :                 [ Another 63 bytes skipped ]
+  70  192:       BIT STRING
+         :         84 09 60 05 66 42 08 01 4A A5 54 21 26 2A 81 A6
+         :         11 A1 52 68 05 58 29 05 69 85 6A 21 41 96 58 44
+         :         96 A2 96 89 A1 56 16 64 89 81 05 20 61 6A 91 2A
+         :         69 A6 A4 50 92 6A 51 08 21 AA 91 48 21 98 88 22
+         :         15 AA 14 26 6A 8A 92 46 54 A6 61 A8 A4 62 66 62
+         :         96 49 4A 19 84 8A 11 64 95 A1 99 10 66 62 85 88
+         :         48 22 2A 29 41 8A 02 50 8A 26 0A A6 24 80 86 20
+         :         98 44 21 99 65 28 11 62 84 11 41 60 96 46 24 98
+         :                 [ Another 63 bytes skipped ]
+ 105  192:       BIT STRING
+         :         51 7B EA 81 9C 52 2F 18 B9 96 57 7D EC F9 DA 63
+         :         C8 68 D6 F7 46 8A DB 29 E2 9B 60 68 21 6B C6 57
+         :         C7 4B A0 92 B6 D6 34 67 3E 7C 46 DE C9 D9 B5 23
+         :         6D 67 9D 42 C7 13 97 E0 D6 8C 2E 5D C2 0A 6E B9
+         :         2A EE A2 71 3F 68 6F 31 6F EB F3 AE 77 6F AB F3
+         :         38 42 9D 70 73 BA 38 A0 A0 87 77 9E BA 3A 5E B4
+         :         FD 98 C6 C2 E2 8E 9D B5 87 F4 A4 EA 7C 1A 08 96
+         :         53 2D BE C0 CC D9 81 68 13 AA 95 E6 32 DE 17 FF
+         :                 [ Another 63 bytes skipped ]
+         :      }
+         :    }
+         :  }
+
+### 3.3.2   SPKI Public Key 
+
+TODO: should the SPKI not include a version number?
 
 From the NTRU Prime specification, the Streamlined NTRU Prime public key contains h, optionally encoding of h can be reduced with optional parameter d (check that this is in the Round 2 spec)
 
@@ -336,6 +386,10 @@ NTRULPRimePublicKey := ...SEQ...
   }
 
 TODO: add examples
+
+### 
+
+
 
 ## 3.4 Falcon Key Definitions
 
