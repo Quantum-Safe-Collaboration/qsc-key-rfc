@@ -323,6 +323,7 @@ NTRULPRimePrivateKey ::= SEQUENCE {
 TODO: replace object identifier, 
 TODO: what is the NULL value?, 
 TODO: I don't really get the counting; #bytes, sometimes +3, sometimes +5, 
+TODO: Big/little Endian
 
 Example PKCS#8 Streamlined NTRU Prime secret key for $(p,q,w) = (761, 4591, 286)$ :
 
