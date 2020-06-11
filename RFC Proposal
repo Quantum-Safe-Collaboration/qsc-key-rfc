@@ -2,8 +2,14 @@
 Key Serialization Formats for Quantum Safe Algorithms
 
 # Abstract 
-This memo describes the requirements for a serializing various quantum safe keys. 
-These initial include CRYSTALS-Dilithium and CRYSTALS-Kyber, but will be expanded to include other schemes as appropriate.
+This memo describes the requirements for a serializing keys of various quantum safe keys candidates. 
+These initial selection includes :
+- CRYSTALS-Dilithium
+- CRYSTALS-Kyber
+- NTRU Prime
+- SIKE
+
+The selection will be expanded to include other schemes as appropriate. 
 
 CRYSTALS-Dilithium is a quantum safe digital signature algorithm based on Module-LWE problems. 
 The algorithm specification [xxx] defines the public and secret key formats as a concatenation of parameters in bit format. 
@@ -70,7 +76,7 @@ The project can be referenced here: https://pq-crystals.org/dilithium/index.shtm
 
 ### 2.1.1 Raw Key Material Object Identifiers
 
-IBM has created an set of OID's for algorithm identifications from its internal range of identifiers.
+IBM has created an set of OID's for algorithm identifications from its internal range of identifiers. 
 
 OID Base
 	
