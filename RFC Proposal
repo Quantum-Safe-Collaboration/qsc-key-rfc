@@ -62,7 +62,6 @@ Algorithm identification is important for a number of reasons:
 * to identify different key serialization strategies 
 * compressed and non compressed keys
 
-
 NIST has focused the search for quantum-safe algorithms without the definition of ASN.1 structures for all involved components,. It has become common place for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation and change, allowing focus on finding the best-performing QSC algorithms. In terms of long-term support, this approach is unsuitable and this RFC has the goal to rectify this shortcoming for the Dilithium set of cryptographic material.
 For the purpose of temporarily supporting continued experimentation, e.g., in simple "classic key-emulating" test applications, such as TLS, this document documents a temporary but suboptimal key format in section 2.1, mainly to establish a base of reference for as long as experimentation is ongoing. This is referenced as the 'raw key material' representation.
 At the same time, this RFC documents in section 2.2. below a long-term key representation format useful to address the goals outlined in 1.1. 
@@ -296,14 +295,13 @@ NTRU Prime’s key generation algorithms are split into two cases: NTRU Prime an
 
 ### 3.3.1  Secret Key Definitions
 
-TODO: Should there be a SEED somewhere? I think no?
-TODO: in the NTRU Prime specifications the pk is included in the sk, how to deal with that? I for now left it out.
-TODO: not sure how to include the option of replacing $\rho$ with a seed, I left it out for now, but probably should be the default option, since $\rho$ includes the encoding
-TODO: should encoding be optional? I don't think so (Optionally an encoding parameter $t_1$ (default $TRUE$) to apply a deterministic encoding algorithm to all keys/inputs/ciphertexts)
+TODO: not sure how to include the option of replacing $\rho$ with a seed, I left it out for now, but probably should be the default option, since $\rho$ includes the encoding.
+TODO: For the encoding, what I would like: an encoding parameter $t_1$ (default $TRUE$) to apply a deterministic encoding algorithm to all keys/inputs/ciphertexts. This could then also be applied to the above.
+TODO: should the above options be in the version number? Or boolean for both?
 
 From the NTRU Prime specification,  for NTRU Prime Core, we have a parameter space $(p,q,w)$, where $p$, $q$  are prime numbers and $w$ is a positive integer. All are subject to; $2p \geq 3w$, $q \geq 16w + 1$ and $x^p -x -1$ is irreducible in the polynomial ring $(\mathbb{Z}/q)[x]$. 
 
-Keys are then generated as polynomials in the ring $R/q = (\mathbb{Z}/q) [x]/(x^p - x- 1)$. The NTRU Prime Core secret key contains $f$ and $1/g$ (both polynomials in the ring $R_q$). Streamlined NTRU Prime adds a KEM construction and contains an extra uniform random $\rho$ used for implicit rejection. Optionally $\rho$ could be replaced by an RNG seed. 
+Keys are then generated as polynomials in the ring $R/q = (\mathbb{Z}/q) [x]/(x^p - x- 1)$. The NTRU Prime Core secret key contains $f$ and $1/g$ (both polynomials in the ring $R_q$). Streamlined NTRU Prime adds a KEM construction and contains an extra uniform random $\rho$ used for implicit rejection. Optionally $\rho$ could be replaced by an RNG seed. The NTRU Prime specification for both the NTRU Prime Core and NTRU LPRime Core states that with the secret key the public key should be stored. We choose here to not include it, but they can simply be stored by also storing the public key as specified in Section 3.3.2.
 
 Note that $k$ in the specification appends (encodings of) $f$, $v = 1/g$ and $\rho$.
 
@@ -327,9 +325,7 @@ NTRULPRimePrivateKey ::= SEQUENCE {
 #### 3.3.1.1   PKCS#8 Streamlined NTRU Prime Secret Key Example
 
 TODO: replace object identifier, 
-TODO: what is the NULL value?, 
 TODO: I don't really get the counting; #bytes, sometimes +3, sometimes +5, 
-TODO: Big/little Endian
 
 Example PKCS#8 Streamlined NTRU Prime secret key for $(p,q,w) = (761, 4591, 286)$ :
 
