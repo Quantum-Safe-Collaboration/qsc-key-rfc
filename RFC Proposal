@@ -2,19 +2,43 @@
 Key Serialization Formats for Quantum Safe Algorithms
 
 # Abstract 
-This memo describes the requirements for a serializing keys of various quantum safe keys candidates. 
-These initial selection includes :
+New key exchange and digital signature algorithms are being devloped that are secure against future quantum adversaries. 
+The US stanrdard institute NIST is running a process to evaluate potential candidates and select a small set to standardize. 
+This process started in 2016 and is expected to finish in 2023. 
+The NIST process thus far did not include any mechanims to standardize algorithm identifiers and key formats. 
+For example, keys in the NIST process are simple opaque objects. 
+Parallel to the NIST standardisation process, algorithm implementations are being developed. 
+Implementations necessarily evolve as the algorithms themselves evolve.
+At the same, organisations have started integrating algorithms and using algoririthms in early release product versions. 
+
+This situation is causing a number of problems :
+
+1. Difficulty in managing algorithm versions and the conpatibility of associated keys
+2. Difficulty in interoperability testing
+3. Difficulty in evaluating the impact of integrating algorithms with higher level standards
+4. Forcing the delay of many follow on activities for algorithm integration and adoption
+
+This appraoch causes unnecessary complexity and forces a sequential cascade of algorithm standardisation, integration and adoption activities. 
+Said another way, a current lack of definitions here will extended the time it will take for industry to adopt a new generation of quantum safe cryptography. 
+
+This goal of this memo is to create an initial set of specifications and formats that allow a more controlled evolution of quantum safe algorithms. 
+It is hoped that this memo can provide the technical basis for adoption of formats in other standards that need to evolve to become quantum safe. 
+
+This memo includes suggestions for 
+
+1. Algorithm identification  
+2. Key Serialisation formats
+
+This memo includes the following algorithms :
+
 - CRYSTALS-Dilithium
 - CRYSTALS-Kyber
 - NTRU Prime
 - SIKE
 
+
 The selection will be expanded to include other schemes as appropriate. 
 
-CRYSTALS-Dilithium is a quantum safe digital signature algorithm based on Module-LWE problems. 
-The algorithm specification [xxx] defines the public and secret key formats as a concatenation of parameters in bit format. 
-The algorithm specification also specifies the concept of compressed and non-compressed public keys. 
-This RFC specifies serialization and encoding formats for CRYSTALS-Dilithium keys such that are able to be managed and used in commonly used cryptographic standards such as ASN1 and TLV.  
 
 Status of This Memo
 This document is not an Internet Standards Track specification; it is published for informational purposes. 
@@ -501,6 +525,9 @@ Example for the corresponding public key for Streamlined NTRU Prime (with secret
 ## 3.4 Falcon Key Definitions
 
 ## 3.5 SIKE Key Definitions
+
+
+
 
 ##### 
 
