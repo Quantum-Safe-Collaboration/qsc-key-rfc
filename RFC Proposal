@@ -58,7 +58,7 @@ Table of Contents
  2.1.2  SPKI Public Key
  2.1.3  spki
  2.2  CRYSTALS-Kyber Key Definitions 
- 2.2  FALCON-Kyber Key Definitions 
+ 2.2  FALCON Key Definitions 
  2.2  SIKE Key Definitions 
 
  3  Acknowledgments
@@ -172,6 +172,20 @@ Streamlined NTRU Prime and NTRU LPRime are IND-CCA2-secure key encapsulation mec
 
 ### 2.3.2 Structured Object Identifiers
 
+## 2.4 FrodoKEM
+
+FrodoKEM is a family of key-encapsulation mechanisms that are designed to be *conservative* yet *practical* post-quantum constructions whose security derives from cautious parameterizations of the well-studied *learning with errors* problem, which in turn has close connections to conjectured-hard problems on *generic*, algebraically unstructured lattices.
+
+### 2.4.1 Raw Key Material Object Identifiers
+
+Concretely, FrodoKEM is designed for IND-CCA security at three levels: two variants of each level are provided.
+
+- FrodoKEM-640-AES
+- FrodoKEM-976-AES
+- FrodoKEM-1344-AES
+- FrodoKEM-640-SHAKE
+- FrodoKEM-976-SHAKE
+- FrodoKEM-1344-SHAKE
 
 # 3 Key Definitions
 
@@ -312,6 +326,8 @@ Example
          :  }
 
 ## 3.2 CRYSTALS-Kyber Key Definitions
+
+
 
 ## 3.3 NTRU Prime Key Definitions
 
@@ -522,9 +538,35 @@ Example for the corresponding public key for Streamlined NTRU Prime (with secret
          :    }
          :  }
 
-## 3.4 Falcon Key Definitions
 
-## 3.5 SIKE Key Definitions
+
+## 3.4 FrodoKEM Key Definitions
+
+The public key $\textbf{pk}\in \{0,1\}^{128+D\cdot n\cdot 8}$ is defined in terms of
+
+* $D$ an integer exponent which defines the modulus $q=2^D$ with $D\in\{15,16\}$
+* $n$ is an integer matrix dimension and $n\in\{640, 976, 1344\}$
+
+and consists of a seed $\textbf{seed}_A\in\{0,1\}^{128}$ used to generate a pseudo-random matrix $A\in\Z_q^{n\times n}$ and the packed version of the matrix $B\in\Z_q^{n\times 8}$ if $D\cdot 8\cdot n$ bits.
+
+
+
+The secret key $\textbf{sk}\in \{0,1\}^{\textrm{len}_s+128+D\cdot n\cdot 8}\times \Z_q^{8\times n}\times \{0,1\}^{\textrm{len}_{pkh}}$ is defined in terms of
+
+* The number of bits $\textrm{len}_s$ of the seed $s$
+* $D$ an integer exponent which defines the modulus $q=2^D$ with $D\in\{15,16\}$
+* $n$ is an integer matrix dimension and $n\in\{640, 976, 1344\}$
+* the bit length $\textrm{len}_{pkh}\in\{128,192,256\}$ 
+
+and consists of the seed $s\in \{0,1\}^{\textrm{len}_s}$  used for the pseudorandom shared secret generation in the event of decapsulation failure in the modified Fujisaki-Okamoto transform, the public key $\textbf{pk}\in \{0,1\}^{128+D\cdot n\cdot 8}$, the sample error matrix $\textbf{S}^\textrm{T}\in\Z_q^{8\times n}$, and the hash of the public key in the modified Fujisaki-Okamoto transform $pkh\in\{0,1\}^{\textrm{len}_{pkh}}$.
+
+
+
+## 
+
+## 3.5 Falcon Key Definitions
+
+## 3.6 SIKE Key Definitions
 
 
 
