@@ -220,16 +220,14 @@ please see http://xml.resource.org/authoring/README.html. -->
                     |         |enco |                                               |
                     |         |ding | ASN.1 and dot encoding                        |
                     |=========+=====+===============================================|
-                    | Classic McEliece                                              |
-                    | PQC KEM                                                       |
+                    | Classic McEliece (PQC KEM)                                    |
                     |=========+=====+===============================================|
-                    | qc-kem-mceliece                                               |
+                    | qc-kem-mceliece (PQC KEM)                                     |
                     |---------+-----+-----------------------------------------------|
                     |         |ASN.1| {..*..pqc-kem-mceliece .. }                   |
                     |         |dot  |                                               |
                     |=========+=====+===============================================|
-                    | Crystals-Kyber                                                |
-                    | PQC KEM                                                       |
+                    | Crystals-Kyber (PQC KEM)                                      |
                     |=========+=====+===============================================|
                     | kyber-512-r3                                                  |
                     |---------+-----+-----------------------------------------------|
@@ -261,8 +259,7 @@ please see http://xml.resource.org/authoring/README.html. -->
                     |         |ASN.1| {..*.. pqc-kem-kyber kyber-1024-90s-r3}       |
                     |         |dot  | 1.3.6.1.4.1.2.267.10.4.4                      |
                     |=========+=====+===============================================|
-                    | NTRU                                                          |
-                    | PQC KEM                                                       |
+                    | NTRU (PQC KEM)                                                |
                     |=========+=====+===============================================|
                     | ntruhps2048509-r3                                             |
                     |---------+-----+-----------------------------------------------|
@@ -284,16 +281,14 @@ please see http://xml.resource.org/authoring/README.html. -->
                     |         |ASN.1| { ..*.. pqc-kem-ntru ntruhrss701 }            |
                     |         |dot  |                                               |
                     |=========+=====+===============================================|
-                    | SABER                                                         |
-                    | PQC KEM                                                       |
+                    | SABER ((PQC KEM)                                              |
                     |=========+=====+===============================================|
                     | pqc-kem-saber                                                 |
                     |---------+-----+-----------------------------------------------|
                     |         |ASN.1| {..*.. pqc-kem-saber .. }                     |
                     |         |Dot  |                                               |
                     |=========+=====+===============================================|
-                    | Crystals-Dilithium                                            |
-                    | PQC Digital Signature                                         |
+                    | Crystals-Dilithium (PQC Digital Signature)                    |
                     |=========+=====+===============================================|
                     | dilithium-4x4-r3                                              |
                     |---------+-----+-----------------------------------------------|
@@ -325,8 +320,7 @@ please see http://xml.resource.org/authoring/README.html. -->
                     |         |ASN.1| {..*.. pqc-ds-dilithium dilithium-8x7-aes-r3} |
                     |         |dot. |                                               |
                     |=========+=====+===============================================|
-                    | FALCON                                                        |
-                    | PQC Digital Signature                                         |
+                    | FALCON (PQC Digital Signature)                                |
                     |=========+=====+===============================================|
                     | falcon512-r3                                                  |
                     |---------+-----+-----------------------------------------------|
@@ -338,8 +332,7 @@ please see http://xml.resource.org/authoring/README.html. -->
                     |         |ASN.1| {..*.. pqc-ds-falcon falcon1024-r3}           |
                     |         |Dot  |                                               |
                     |=========+=====+===============================================|
-                    | Rainbow                                                       |
-                    | PQC Digital Signature                                         |
+                    | Rainbow (PQC Digital Signature)                               |
                     |=========+=====+===============================================|
                     | pqc-ds-rainbow                                                |
                     |---------+-----+-----------------------------------------------|
@@ -382,6 +375,215 @@ please see http://xml.resource.org/authoring/README.html. -->
         </section>
         
         
+<section numbered="true" toc="default">
+<name>Classic McEliece</name>
+
+<t>Classic McEliece is an IND-CCA2-secure key encapsulation mechanism (KEM). The KEM is built conservatively from a PKE designed for OW-CPA security, namely Niederreiter's dual version of McEliece's PKE using binary Goppa codes.
+Project Website: https://classic.mceliece.org/index.html
+NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Classic-McEliece-Round3.zip
+</t>
+<section numbered="true" toc="default">
+    <name>Algorithm Parameter Identifiers</name>
+
+<t>Classic McEliece uses OIDs to identify parameters sets for different security strengths.</t>
+<figure anchor="MCLIECEOIDs">
+  <artwork align="left" name="" type="" alt=""><![CDATA[
+|=========================+=====================================|
+| mceliece348864-r3                                             |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece348864-r3}           |
+| NIST Level Security     | Level 1                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=12,n=3488,t=64                    |
+|                         | f(z)=z^{12} + z^3 + 1               |
+|                         | F(y)=y^{64} + y^3 + y + z           |
+|                         | (mu; nu)=(0; 0)                     |
+|                         | l = 256                             |
+|                         | k=n�mt=2720                         |
+|=========================+=====================================|
+| mceliece348864f-r3                                            |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece348864f-r3}          |
+| NIST Level Security     | Level 1                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=12,n=3488,t=64                    |
+|                         | f(z)=z^{12} + z^3 + 1               |
+|                         | F(y)=y^{64} + y^3 + y + z           |
+|                         | (mu; nu)=(32;64)                    |
+|                         | l = 256                             |
+|                         | k=n�mt=2720                         |
+|=========================+=====================================|
+| mceliece460896-r3                                             |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece460896-r3}           |
+| NIST Level Security     | Level 3                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=13,n=4608,t=96,                   |
+|                         | f(z)=z^{13} + z^4 + z^3 + z + 1     |
+|                         | F(y)=y^{96} + y^{10} + y^9 + y^6 + 1|
+|                         | (mu; nu)=(0; 0)                     |
+|                         | l = 256                             |
+|                         | k=n�mt=3360                         |
+|=========================+=====================================|
+| mceliece460896f-r3                                            |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece460896f-r3           |
+| NIST Level Security     | Level 3                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=13,n=4608,t=96,                   |
+|                         | f(z)=z^{13} + z^4 + z^3 + z + 1     |
+|                         | F(y)=y^{96} + y^{10} + y^9 + y^6 + 1|
+|                         | (mu; nu)=(32; 64)                   |
+|                         | l = 256                             |
+|                         | k=n�mt=3360                         |
+|=========================+=====================================|
+| mceliece6688128-r3                                            |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece6688128-r3}          |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=13,n=6688,t=128                   |
+|                         | f(z)=z^{13} + z^4 + z^3 + z + 1     |
+|                         | F(y)=y^{128} + y^7 + y^2 + y + 1    |
+|                         | (mu; nu)=(0; 0)                     |
+|                         | l = 256                             |
+|                         | k=n�mt=5024                         |
+|=========================+=====================================|
+| celiece6688128f-r3                                            |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece6688128f-r3}         |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=13,n=6688,t=128                   |
+|                         | f(z)=z^{13} + z^4 + z^3 + z + 1     |
+|                         | F(y)=y^{128} + y^7 + y^2 + y + 1    |
+|                         | (mu; nu)=(32; 64)                   |
+|                         | l = 256                             |
+|                         | k=n-mt=5024                         |
+|=========================+=====================================|
+| mceliece6960119-r3                                            |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece6960119-r3}          |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=13,n=6960,t=119                   |
+|                         | f(z)=z^{13} + z^4 + z^3 + z + 1     |
+|                         | F(y)=y^{119} + y^8 + 1              |
+|                         | (mu; nu)=(0; 0)                     |
+|                         | l = 256                             |
+|                         | k=n�mt=5413                         |
+|=========================+=====================================|
+| mceliece6960119f-r3                                           |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece6960119f-r3}         |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=13,n=6960,t=119                   |
+|                         | f(z)=z^{13} + z^4 + z^3 + z + 1     |
+|                         | F(y)=y^{119} + y^8 + 1              |
+|                         | (mu; nu)=(32; 64)                   |
+|                         | l = 256                             |
+|                         | k=n�mt=5413                         |
+|=========================+=====================================|
+| mceliece8192128-r3                                            |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece8192128-r3}          |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=13,n=8192,t=128                   |
+|                         | f(z)=z^{13} + z^4 + z^3 + z + 1     |
+|                         | F(y)=y^{128} + y^7 + y^2 + y + 1    |
+|                         | (mu; nu)=(0; 0)                     |
+|                         | l = 256                             |
+|                         | k=n�mt=6528                         |
+|=========================+=====================================|
+| mceliece8192128f-r3                                           |
+|=========================+=====================================|
+| Parameter OID           | {..*.. mceliece8192128f-r3}         |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameters              | m=13,n=8192,t=128                   |
+|                         | f(z)=z^{13} + z^4 + z^3 + z + 1     |
+|                         | F(y)=y^{128} + y^7 + y^2 + y + 1    |
+|                         | (mu; nu)=(32; 64)                   |
+|                         | l = 256                             |
+|                         | k=n�mt=6528                         |
+|=========================+=====================================|
+  ]]></artwork>
+</figure>
+
+
+</section>
+<section numbered="true" toc="default">
+    <name>Key Details</name>
+    
+<t>Public key. The public-key consists of 
+* T: mt x k matrix
+Each row of T is represented as a ceiling(k/8)-byte string, and the public key is represented as the mt*ceiling(k/8)-byte concatenation of these strings.
+Secret key. The secret key consists of five parameters:</t> 
+    <ul spacing="compact">
+        <li>delta: nonce</li>
+        <li>C    : column selections</li>
+        <li>g    : monic irreducible polynomial</li>
+        <li>alpha: field orderings</li>
+        <li>s    : uniform random n-bit string</li>
+    </ul>
+<t>The size necessary to hold all secret key elements accounts to ceiling(l / 8) + [ceiling(nu / 8) | 8] + ceiling(m / 8) + ceiling((2*m � 1) * 2*m � 4) + ceiling(n / 8) bytes.
+The resulting public key and private key sizes can be found in the table below.</t>
+<figure anchor="McElieceKeySizes">
+  <artwork align="left" name="" type="" alt=""><![CDATA[
+|=====================+=================+================|
+| Parameter Set.      | Size of the     | Size of the    |
+|                     | public key      | secret key     |
+|                     | in bytes.       | in bytes       |
+|=====================+=================+================|
+| mceliece348864-r3   |       261120    |       6492     |
+| mceliece348864f-r3  |       261120    |       6492     |
+| mceliece460896-r3   |       524160    |      13608     |
+| mceliece460896f-r3  |       524160    |      13608     |
+| mceliece6688128-r3  |      1044992    |      13932     |
+| mceliece6688128f-r3 |      1044992    |      13932     |
+| mceliece6960119-r3  |      1047319    |      13948     |
+| mceliece6960119f-r3 |      1047319    |      13948     |
+| mceliece8192128-r3  |      1357824    |      14120     |
+| mceliece8192128f-r  |      1357824    |      14120     |
+|=====================+=================+================|
+  ]]></artwork>
+</figure>
+
+</section>
+<section numbered="true" toc="default">
+    <name>Secret Key Full Encoding</name>
+    
+<t>Distributing a Classic McEliece private key with PKCS#8 involves including: 
+a. mceliece{n}{t}[f]-r3 in the algorithm field of  AlgorithmIdentifier 
+b. McEliecePrivateKey in the privateKey field, which is an OCTET STRING.
+When a Classic McEliece public key is included in the distributed PrivateKeyInfo, the PublicKey field in McEliecePrivateKey is used (see description of McEliecePublicKey below).
+ASN.1 Encoding for a Classic McEliece private key for fully populated:</t>
+ <artwork align="left" name="" type="" alt=""><![CDATA[
+McEliecePrivateKey ::= SEQUENCE {
+  Version    INTEGER {v0(0)} -- version (round 3)
+  delta      OCTET STRING,   -- nonce
+  C          OCTET STRING,   -- column selections
+  g          OCTET STRING,   -- monic irreducible polynomial
+  alpha      OCTET STRING,   -- field orderings
+  s          OCTET STRING,   -- random n-bit string
+  PublicKey  [0] IMPLICIT McEliecePublicKey OPTIONAL 
+                             -- see next section
+}
+ ]]></artwork>
+</section>
+<section numbered="true" toc="default">
+    <name>Public Key Full Encoding</name>
+ <artwork align="left" name="" type="" alt=""><![CDATA[
+Classic McEliece Public Key Format  
+McEliecePublicKey ::= SEQUENCE {
+  T       OCTET STRING    -- public key
+}
+ ]]></artwork>
+</section>
+</section>
+
         <section numbered="true" toc="default">
             <name>Kyber</name>
             <t>Kyber is an IND-CCA2-secure key encapsulation mechanism (KEM), whose security is based on the hardness of solving the learning-with-errors (LWE) problem over module lattices.
@@ -487,16 +689,20 @@ please see http://xml.resource.org/authoring/README.html. -->
             
             <section numbered="true" toc="default">
                 <name>Key Details</name>
-                <t>Public key. The public-key consists of two parameters:
-                    o t: encoded vector A*s+e, where A is a public matrix over a constant-sized polynomial ring, s and e are vectors over the same ring.
-                    o rho: public seed (32 bytes)
-                    The size necessary to hold all public key elements is 12*k*n/8+32 bytes.
+                <t>Public key. The public-key consists of two parameters:</t>
+                 <ul spacing="compact">
+                    <li>t: encoded vector A*s+e, where A is a public matrix over a constant-sized polynomial ring, s and e are vectors over the same ring.</li>
+                    <li>rho: public seed (32 bytes)</li>
+                    </ul>
+                    <t>The size necessary to hold all public key elements is 12*k*n/8+32 bytes.
                     
-                    Secret key. The secret key consists of 3 parameters:
-                    o s: encoded sample from a centered binomial distribution B_nu1 (12*k*n/8 bytes)
-                    o z: a nonce (32 bytes)
-                    o H(pk): hashed public key (32 bytes). Kyber uses SHA3-256 as H by default. The “90s” variants use SHA256 instead.
-                    If the secret key is fully populated, it consists of 3 parameters. The size necessary to hold all secret key elements accounts to 12*k*n/8+64 bytes, not counting the optional public key.
+                    Secret key. The secret key consists of 3 parameters:</t>
+                     <ul spacing="compact">
+                    <li>s: encoded sample from a centered binomial distribution B_nu1 (12*k*n/8 bytes)</li>
+                    <li>z: a nonce (32 bytes)</li>
+                    <li>H(pk): hashed public key (32 bytes). Kyber uses SHA3-256 as H by default. The “90s” variants use SHA256 instead.</li>
+                    </ul>
+                    <t>If the secret key is fully populated, it consists of 3 parameters. The size necessary to hold all secret key elements accounts to 12*k*n/8+64 bytes, not counting the optional public key.
                     The resulting public key and private key sizes are shown in the following table.</t>
                 <figure anchor="KyberKeyLengths">
                     <artwork align="left" name="" type="" alt=""><![CDATA[
@@ -522,10 +728,12 @@ please see http://xml.resource.org/authoring/README.html. -->
             <section numbered="true" toc="default">
                 <name>Secret Key Full Encoding</name>
                 
-                <t>Distributing a Kyber private key with PKCS#8 requires:
-                    o kyber-(n*k)-r3 in the algorithm field of  AlgorithmIdentifier
-                    o KyberPrivateKey in the privateKey field, which is an OCTET STRING.
-                    When a Kyber public key is included in the distributed PrivateKeyInfo, the PublicKey field in KyberPrivateKey is used (see description of KyberPublicKey below).
+                <t>Distributing a Kyber private key with PKCS#8 requires:</t>
+                 <ul spacing="compact">
+                    <li>kyber-(n*k)-r3 in the algorithm field of  AlgorithmIdentifier</li>
+                    <li>KyberPrivateKey in the privateKey field, which is an OCTET STRING.</li>
+                    </ul>
+                    <t>When a Kyber public key is included in the distributed PrivateKeyInfo, the PublicKey field in KyberPrivateKey is used (see description of KyberPublicKey below).
                     The ASN.1 encoding for a Kyber private key is defined as follows:</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 KyberPrivateKey ::= SEQUENCE {
@@ -644,16 +852,20 @@ KyberPublicKey ::= SEQUENCE {
                 <t>Public key. The public-key consists of a single parameter :
                     o a polynomial h that satisfies h?f=3?g in the ring Rq=Z[x]/(q, Phi1?Phin).
                     This means there are n - 1 coefficients of size at most q in the public key, and the size necessary to store the polynomial is therefore is ceil((n - 1)?log2(q)/8) bytes. The resulting sizes for the parameter sets can be found in the Table below.
-                    Secret key. The secret key consists of 4 parameters:
-                    o a polynomial f that is a ternary (coefficients fi are in {-1, 0, 1}) polynomial of degree n - 2, with the additional property that ∑_(i=0)^(n-3)  f_i?? f?_(i+1)≥0,
-                    o a polynomial fp that satisfies f?fp=1 in the ring Rq=Z[x]/(3, Phin),
-                    o a polynomial hq that satisfies h?hq=1 in the ring Rq=Z[x]/(q, Phin), and
-                    o a seed=fg_bits || prf_key=f_bits ||  g_bits || prf_key containing the randomness for the key sampling and the implicit rejection mechanism. Optionally implementers may expand this from a 32-byte seed.
-                    This means there are 2 polynomials, f and fp, having n - 1 coefficients with absolute value at most 1 in the secret key. For these polynomials, the packing algorithm in Section 1.8.7 of the Specification allows to pack 5 coefficients in a byte, so the storage requirement to store each is ceil((n - 1)/5) bytes. Additionally hq is part of the secret key, which requires the same storage size as that of the public key h, i.e. ceil((n - 1)?log2(q)/8) bytes. For the seed bytes, the specification recommends:
-                    o f_bits having n - 1 bytes,
-                    o g_bits having n - 1 bytes for ntruhrss701, ceil(30/8?(n-1)) bytes for the other parameter sets,
-                    o prf_key having 32 bytes.
-                    Implementers may choose to expand the seed from one 32-byte seed.
+                    Secret key. The secret key consists of 4 parameters:</t>
+                     <ul spacing="compact">
+                    <li>a polynomial f that is a ternary (coefficients fi are in {-1, 0, 1}) polynomial of degree n - 2, with the additional property that ∑_(i=0)^(n-3)  f_i?? f?_(i+1)≥0, </li>
+                    <li>a polynomial fp that satisfies f?fp=1 in the ring Rq=Z[x]/(3, Phin),</li>
+                    <li>a polynomial hq that satisfies h?hq=1 in the ring Rq=Z[x]/(q, Phin), and </li>
+                    <li>a seed=fg_bits || prf_key=f_bits ||  g_bits || prf_key containing the randomness for the key sampling and the implicit rejection mechanism. Optionally implementers may expand this from a 32-byte seed.</li>
+                    </ul>
+                    <t>This means there are 2 polynomials, f and fp, having n - 1 coefficients with absolute value at most 1 in the secret key. For these polynomials, the packing algorithm in Section 1.8.7 of the Specification allows to pack 5 coefficients in a byte, so the storage requirement to store each is ceil((n - 1)/5) bytes. Additionally hq is part of the secret key, which requires the same storage size as that of the public key h, i.e. ceil((n - 1)?log2(q)/8) bytes. For the seed bytes, the specification recommends:</t>
+                     <ul spacing="compact">
+                    <li>>f_bits having n - 1 bytes, </li>
+                    <li>>g_bits having n - 1 bytes for ntruhrss701, ceil(30/8?(n-1)) bytes for the other parameter sets, </li>
+                    <li>prf_key having 32 bytes.</li>
+                    </ul>
+                    <t>Implementers may choose to expand the seed from one 32-byte seed.
                     The resulting sizes for the parameter sets can be found in the Table below. Where the seed expansion is omitted, the 32-byte seed must be replaced by key_seed_bits=sample_key_bits+prf_key_bits. The impact of these options are indicated as 32-byte seed/expanded seed in the Table below.
                     Parameter Set    Size of the public key in bytes    Size of the secret key in bytes</t>
                 <figure anchor="NTRUOIDs">
@@ -696,10 +908,12 @@ KyberPublicKey ::= SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Secret Key Full Encoding</name>
                 
-                <t>An NTRU private key encoded according with PKCS#8 MUST include the following two fields:
-                    o ntruhps-(size)-r3 / ntruhrss701-r3 in the algorithm field of  AlgorithmIdentifier
-                    o NTRUPrivateKey in the privateKey field, which is an OCTET STRING.
-                    When a NTRU public key is included in the distributed PrivateKeyInfo, the PublicKey field in NTRUPrivateKey is used (see description of NTRUPublicKey below).
+                <t>An NTRU private key encoded according with PKCS#8 MUST include the following two fields:</t>
+                 <ul spacing="compact">
+                    <li>ntruhps-(size)-r3 / ntruhrss701-r3 in the algorithm field of  AlgorithmIdentifier</li>
+                    <li>NTRUPrivateKey in the privateKey field, which is an OCTET STRING.</li>
+                    </ul>
+                    <t>When a NTRU public key is included in the distributed PrivateKeyInfo, the PublicKey field in NTRUPrivateKey is used (see description of NTRUPublicKey below).
                     An NTRU secret key contains f, fp and hq, as well as a seed. The octet string format indicates the length of the string to follow, and indicates whether the seed or expanded seed is used.</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 NTRUPrivateKey ::= SEQUENCE {
@@ -778,16 +992,20 @@ NTRUPrivateKey ::= SEQUENCE {
             </section>
             <section numbered="true" toc="default">
                 <name>Key Details</name>
-                <t>Public key. The public-key consists of the following two parameters:
-                    o seed_A: public seed (32 bytes)
-                    o ? polynomials of degree 256 with 10-bit integer coefficients denoted by vector b.
-                    This means the size of the public key can be stored using ?*256*10+256 bits. The size of the public key as used in the three parameter sets can be found in the Table below.
-                    
-                    Secret key. The secret key s consists of:
-                    o a 256-bit uniform random value z
-                    o ? polynomials of degree 256 with 13-bit integer coefficients denoted by s
-                    o H(pk): hashed public key (32 bytes)
-                    This means the secret key can be stored using 512+?*256*13 bits. The size of the secret key as used in the three parameter sets can be found in the Table below.</t>
+                <t>Public key. The public-key consists of the following two parameters:</t>
+                 <ul spacing="compact">
+                    <li>>seed_A: public seed (32 bytes)</li>
+                    <li>polynomials of degree 256 with 10-bit integer coefficients denoted by vector b.</li>
+                 </ul>
+                    <t>This means the size of the public key can be stored using ?*256*10+256 bits. The size of the public key as used in the three parameter sets can be found in the Table below.</t>
+                
+                    <t>Secret key. The secret key s consists of three parameters:</t>
+                    <ul spacing="compact">
+                    <li>a 256-bit uniform random value z</li>
+                    <li> ? polynomials of degree 256 with 13-bit integer coefficients denoted by s</li>
+                    <li>H(pk): hashed public key (32 bytes)</li>
+                    </ul>
+                    <t>This means the secret key can be stored using 512+?*256*13 bits. The size of the secret key as used in the three parameter sets can be found in the Table below.</t>
                 <figure anchor="SABERKeySizes">
                     <artwork align="left" name="" type="" alt=""><![CDATA[
                         |==========================+=========+==========|
@@ -807,13 +1025,13 @@ NTRUPrivateKey ::= SEQUENCE {
                 <name>Secret Key Full Encoding</name>
                 
                 <t>A SABER private key encoded according with PKCS#8 MUST include the following two fields:</t>
-                <ul>
+                <ul spacing="compact">
                     <li>one of the three algorithm alternatives {LightSaber-r3, Saber-r3, FireSaber-r3} in the algorithm field of AlgorithmIdentifier </li>
                     <li>SABERPrivateKey in the privateKey field, which is an OCTET STRING.</li>
                 </ul>
                 <t>When a SABER public key is included in the distributed PrivateKeyInfo, the PublicKey field in SABERPrivateKey is used (see the description below).</t>
             <artwork name="" type="" align="left" alt=""><![CDATA[
-                SABERPrivateKey ::= SEQUENCE {
+SABERPrivateKey ::= SEQUENCE {
     version    INTEGER  {v0(0)}     -- version (round 3)
     z          OCTET STRING,        -- 32-byte random value z
     s          OCTET STRING,        -- short integer polynomial s
@@ -979,21 +1197,22 @@ SABERPublicKey := SEQUENCE {
             </section>
             <section numbered="true" toc="default">
                 <name>Key Details</name>
-                <t>Public key. The public-key consists of two parameters:
-                    o rho: nonce
-                    o t1:  a vector encoded in 320*k bytes
-                    
-                    The size necessary to hold all public key elements accounts to 32+320*k bytes.
-                    
-                    Secret key. The secret key consists of 6 parameters:
-                    o rho: nonce
-                    o K: a key/seed/D
-                    o tr: PRF bytes
-                    o s1: vector (L)
-                    o s2: vector (K)
-                    o t0: k polynomials
-                    If the secret key is fully populated, it consists of 6 parameters. The size necessary to hold all secret key elements accounts to 32+32+32+32*[(k+l)*ceiling(log(2*nu+1))+13*k] bytes.
-                    
+                <t>Public key. The public-key consists of two parameters:</t>
+                <ul spacing="compact">
+                    <li>rho: nonce</li>
+                    <li>t1:  a vector encoded in 320*k bytes</li>
+                </ul>
+                    <t>The size necessary to hold all public key elements accounts to 32+320*k bytes.</t>
+                    <t>Secret key. The secret key consists of 6 parameters:</t>
+                <ul spacing="compact">
+                    <li>rho: nonce </li>
+                    <li>K: a key/seed/D</li>
+                    <li>tr: PRF bytes</li>
+                    <li>s1: vector (L)</li>
+                    <li>s2: vector (K)</li>
+                    <li>t0: k polynomials</li>
+                    </ul>
+                    <t>If the secret key is fully populated, it consists of 6 parameters. The size necessary to hold all secret key elements accounts to 32+32+32+32*[(k+l)*ceiling(log(2*nu+1))+13*k] bytes.
                     The resulting public key and private key sizes can be found in the table below.</t>
                 <figure anchor="DilithiumKeySizes">
                     <artwork align="left" name="" type="" alt=""><![CDATA[
@@ -1015,13 +1234,14 @@ SABERPublicKey := SEQUENCE {
             </section>
             <section numbered="true" toc="default">
                 <name>Secret Key Full Encoding</name>
-                
-                <t>A Dilithium private key encoded according with PKCS#8 MUST include the following two fields:
-                    o dilithium-(kxl)-r3 in the algorithm field of AlgorithmIdentifier
-                    o DilithiumPrivateKey in the privateKey field, which is an OCTET STRING.
-                    Dilithium public key are optionally distributed in the PublicKey field of the PrivateKeyInfo structure.
-                    
-                    ASN.1 Encoding for a Dilithium private key for fully populated:</t>
+                <t>A Dilithium private key encoded according with PKCS#8 MUST include the following two fields:</t>
+                <ul spacing="compact">
+                    <li>dilithium-(kxl)-r3 in the algorithm field of AlgorithmIdentifier</li>
+                    <li>DilithiumPrivateKey in the privateKey field, which is an OCTET STRING.</li>
+                    </ul>
+                    <t>Dilithium public key are optionally distributed in the PublicKey field of the PrivateKeyInfo structure.</t>
+ 
+                    <t>ASN.1 Encoding for a Dilithium private key for fully populated:</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 DilithiumPrivateKey ::= SEQUENCE {
     version    INTEGER {v0(0)}     -- version (round 3)
@@ -1163,10 +1383,12 @@ DilithiumPublicKey ::= SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Secret Key Full Encoding</name>
                 
-                <t>Encoding a FALCON private key with PKCS#8 must include the following two fields:
-                    o falcon-(degree)-r3 in the algorithm field of AlgorithmIdentifier
-                    o FALCONPrivateKey in the privateKey field, which is an OCTET STRING.
-                    When a FALCON public key is included in the distributed PrivateKeyInfo, the PublicKey field in FALCONPrivateKey is used (see description of FALCONPublicKey below).
+                <t>Encoding a FALCON private key with PKCS#8 must include the following two fields: </t>
+                <ul spacing="compact">
+                    <li>falcon-(degree)-r3 in the algorithm field of AlgorithmIdentifier</li>
+                    <li>FALCONPrivateKey in the privateKey field, which is an OCTET STRING.</li>
+                    </ul>
+                   <t> When a FALCON public key is included in the distributed PrivateKeyInfo, the PublicKey field in FALCONPrivateKey is used (see description of FALCONPublicKey below).
                     ASN.1 Encoding for a FALCON private key:</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 FALCONPrivateKey ::= SEQUENCE {
@@ -1269,14 +1491,14 @@ FALCONPrivateKey ::= SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Key Details</name>
                 <t>Public key. The public-key consists of two parameters:</t>
-                    <ul spacing="normal">
+                    <ul spacing="compact">
                         <li>P: a mapping from F^{n} to F^{m}</li>
                         <li>ell: length of the used salt. Needs to be included to reach EUF- CMA security.</li>
                     </ul>
                     <t>This mapping can be expressed as m quadratic polynomials in the ring F[x1, … , xn], which means the public key consists of m*(n+1)*(n+2)/2 elements of F. With optimizations (see Rainbow specification), this can be reduced to m*n*(n+1)/2 elements of F. The size necessary to hold all public key elements accounts to m*n*(n+1)/16*f bytes, where f=4 for rainbowI and 8 for rainbowIII and rainbowV. For all parameter sets ell is 16 bytes.
                     
                     Secret key. The secret key consists of 4 parameters:</t>
-                <ul spacing="normal">
+                <ul spacing="compact">
                     <li>S: affine map from F^{m} to F^{m}</li>
                     <li>T: affine map from F^{n} to F^{n}</li>
                     <li>F: quadratic central map of F^{n} to F^{n}</li>
@@ -1290,7 +1512,7 @@ FALCONPrivateKey ::= SEQUENCE {
             
             Public key - CZ. The public-key of CZ-Rainbow consists of 3 parameters:</t>
         
-        <ul spacing="normal">
+        <ul spacing="compact">
             <li> 256-bit seed spub</li>
             <li> P: a partially stored mapping from Fn to Fm</li>
             <li> ell: length of the used salt. Needs to be included to reach EUF- CMA security</li>
@@ -1321,10 +1543,12 @@ FALCONPrivateKey ::= SEQUENCE {
     <section numbered="true" toc="default">
         <name>Secret Key Full Encoding</name>
         
-        <t>A Rainbow private key encoded according with PKCS#8 MUST include the following two fields:
-            o rainbow-{eclvl}-r3 in the algorithm field of  AlgorithmIdentifier
-            o RainbowPrivateKey in the privateKey field, which is an OCTET STRING.
-            When a Rainbow public key is included in the distributed PrivateKeyInfo, the PublicKey field in RainbowPrivateKey is used (see description of RainbowPublicKey below).
+        <t>A Rainbow private key encoded according with PKCS#8 MUST include the following two fields: </t>
+         <ul spacing="compact">
+            <li>rainbow-{eclvl}-r3 in the algorithm field of  AlgorithmIdentifier</li>
+            <li>RainbowPrivateKey in the privateKey field, which is an OCTET STRING.</li>
+            </ul>
+            <t> When a Rainbow public key is included in the distributed PrivateKeyInfo, the PublicKey field in RainbowPrivateKey is used (see description of RainbowPublicKey below).
             
             ASN.1 Encoding for a fully populated rainbow private key:</t>
             <artwork name="" type="" align="left" alt=""><![CDATA[
