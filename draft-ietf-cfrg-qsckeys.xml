@@ -201,24 +201,44 @@ please see http://xml.resource.org/authoring/README.html. -->
                     "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
                     document are to be interpreted as described in <xref target="RFC2119" format="default">RFC 2119</xref>.</t>
             </section>
-        </section>
+
         <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
         
-        
+            <section numbered="true" toc="default">
+                <name>Algorithm Identification</name>
+                <t>Algorithm identification is important for several reasons: </t>
+                <ul spacing="compact">
+                    <li>Managing a smooth transition from early adoption algorithm versions to production versions where there is no compatibility.</li>
+                    <li>Supporting different algorithm versions from different NIST rounds</li>
+                    <li>Identifying different key serialization strategies </li>
+                    <li>Identifying compressed and uncompressed keys</li>
+                </ul>
+                <t>The current standardization of quantum-safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
+                    For the purpose of temporarily supporting ongoing experimentation with opaque blobs, for example in simple "classic key-emulating" test applications, such as TLS, this document specifies a temporary but suboptimal key format in section 2.1, mainly to establish a base of reference for as long as experimentation is ongoing. This is referenced as the 'raw key material' representation.
+                    At the same time, this RFC documents in section 2.2 below, a long-term key representation format useful to address the goals outlined in 1.1. 
+                    This RFC contains all information required to document and transition from one version of key material representation to another.</t>
+            </section>
+
+            <section numbered="true" toc="default">
+                <name>Algorithm and Algorithm Parameter Object Identifier</name>
+                <t>Algorithm and algorithm parameter information shall have ASN.1 type AlgorithmIdentifier as given in <xref target="RFC5280" format="default"></xref> and shall be extended by an pqcAlgorithmParameterName type in the optional parameters field:</t>
+                <artwork align="left" name="" type="" alt=""><![CDATA[
+AlgorithmIdentifier  ::=  SEQUENCE  {
+algorithm  OBJECT IDENTIFIER, - OID: algorithm and algo parameter 
+parameters pqcAlgorithmParameterName OPTIONAL
+}
+pqcAlgorithmParameterName ::= PrintableString
+            ]]></artwork>
+
+            </section>
+        </section>
+
         <section numbered="true" toc="default">
             <name>Overview of PQC algorithm and parameter OIDs</name>
             <t>Each PQC algorithm has its own specific parameters. Different parameter sets provide different levels of security within one algorithm. This memo attributes a name and an OID to the different security level NIST round 3 parameter sets.  The following table gives an overview of the possible OIDs  in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier  type. Each name or OID represents a single parameter set of given security. Details can be found in the individual PQC algorithm chapters.</t>
             
             <figure anchor="PQCalgorithmOIDs">
                 <artwork align="left" name="" type="" alt=""><![CDATA[
-                    |=========+=====+===============================================|
-                    | pqcAlgorithm                                                  |
-                    | pqcType (KEM / Signature)                                     |
-                    |---------+-----+-----------------------------------------------|
-                    | ParameterName   in AlgorithmIdentifier                        |
-                    |---------+-----+-----------------------------------------------|
-                    |         |enco |                                               |
-                    |         |ding | ASN.1 and dot encoding                        |
                     |=========+=====+===============================================|
                     | Classic McEliece (PQC KEM)                                    |
                     |=========+=====+===============================================|
@@ -344,50 +364,53 @@ please see http://xml.resource.org/authoring/README.html. -->
             
             <section numbered="true" toc="default">
                 <name>Key Formats</name>
-                <t>The Secret Key Format defined is from PKCS#8 <xref target="RFC2119" format="default">RFC 5208</xref>.
-                    PKCS#8 PrivateKeyInfo is defined as:
-                    PrivateKeyInfo ::=  SEQUENCE {
-                    version               INTEGER             -- PKCS#8 syntax version
-                    privateKeyAlgorithm   AlgorithmIdentifier -- see chapter above
-                    privateKey            OCTET STRING,       -- see chapter below
-                    attributes            [0]  IMPLICIT Attributes OPTIONAL
-                    }</t>
-                <t>
-                    Distributing a PQC private key requires a PKCS#8 PrivateKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific private key object in the privateKey field of PrivateKeyInfo. Both objects are defined in the specific algorithm sections of this document. For an overview see tables above and below.</t>
+                <t>The Secret Key Format defined is from PKCS#8 <xref target="RFC5208" format="default"></xref>.
+                    PKCS#8 PrivateKeyInfo is defined as:</t>
+                    <artwork align="left" name="" type="" alt=""><![CDATA[
+PrivateKeyInfo ::=  SEQUENCE {
+    version               INTEGER             -- PKCS#8 syntax version
+    privateKeyAlgorithm   AlgorithmIdentifier -- see chapter above
+    privateKey            OCTET STRING,       -- see chapter below
+    attributes            [0]  IMPLICIT Attributes OPTIONAL
+}
+                ]]></artwork>
+                <t>Distributing a PQC private key requires a PKCS#8 PrivateKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific private key object in the privateKey field of PrivateKeyInfo. Both objects are defined in the specific algorithm sections of this document. For an overview see tables above and below.</t>
             </section>
             <section numbered="true" toc="default">
-                <name>Public Key Format based on <xref target="RFC2119" format="default">RFC 5480</xref></name>
+                <name>Public Key Format based on <xref target="RFC5480" format="default"></xref></name>
                 
-                <t>RFC5480 subjectPublicKeyInfo is defined in as:
-                    subjectPublicKeyInfo := SEQUENCE {
-                    algorithm          AlgorithmIdentifier  -- see chapter above
-                    subjectPublicKey   BIT STRING           -- see chapter below
-                    }</t>
-                <t>Distributing a PQC public key requires a <xref target="RFC2119" format="default">RFC 5480</xref> subjectPublicKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific public key object in the subjectPublicKey field of subjectPublicKeyInfo. Both objects are defined in the specific algorithm sections of this document. For an overview see tables above and below.</t>
+                <t>RFC5480 subjectPublicKeyInfo is defined in as:</t>
+                        <artwork align="left" name="" type="" alt=""><![CDATA[
+subjectPublicKeyInfo := SEQUENCE {
+    algorithm          AlgorithmIdentifier  -- see chapter above
+    subjectPublicKey   BIT STRING           -- see chapter below
+}
+                        ]]></artwork>
+                <t>Distributing a PQC public key requires a <xref target="RFC5480" format="default"></xref> subjectPublicKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific public key object in the subjectPublicKey field of subjectPublicKeyInfo. Both objects are defined in the specific algorithm sections of this document. For an overview see tables above and below.</t>
                 
             </section>
             <section numbered="true" toc="default">
                 <name>Overview of Memo Definitions - PQC Key Formats</name>
-                <t>The privateKey field in the PrivateKeyInfo type <xref target="RFC2119" format="default">RFC 5208</xref> is an OCTET STRING whose contents are the value of the private key.  The interpretation of the content differs from PQC algorithm to algorithm. The subjectPublicKey field in the subjectPublicKeyInfo type <xref target="RFC2119" format="default">RFC 5480</xref> is a BIT STRING whose contents are the value of the public key.  Here also the interpretation of the content differs from PQC algorithm to algorithm.</t>
+                <t>The privateKey field in the PrivateKeyInfo type <xref target="RFC5480" format="default"></xref> is an OCTET STRING whose contents are the value of the private key.  The interpretation of the content differs from PQC algorithm to algorithm. The subjectPublicKey field in the subjectPublicKeyInfo type <xref target="RFC2119" format="default">RFC 5480</xref> is a BIT STRING whose contents are the value of the public key.  Here also the interpretation of the content differs from PQC algorithm to algorithm.</t>
                 <t>For an NTRU private key, for example, the content needs to be interpreted according to the NTRUPrivateKey type and for an NTRU public key the content needs to be interpreted according to the NTRUPublicKey type; both are defined in the NTRU chapter below.</t>
             </section>
             
         </section>
         
         
-<section numbered="true" toc="default">
-<name>Classic McEliece</name>
+        <section numbered="true" toc="default">
+        <name>Classic McEliece</name>
 
-<t>Classic McEliece is an IND-CCA2-secure key encapsulation mechanism (KEM). The KEM is built conservatively from a PKE designed for OW-CPA security, namely Niederreiter's dual version of McEliece's PKE using binary Goppa codes.
-Project Website: https://classic.mceliece.org/index.html
-NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Classic-McEliece-Round3.zip
-</t>
-<section numbered="true" toc="default">
-    <name>Algorithm Parameter Identifiers</name>
+        <t>Classic McEliece is an IND-CCA2-secure key encapsulation mechanism (KEM). The KEM is built conservatively from a PKE designed for OW-CPA security, namely Niederreiter's dual version of McEliece's PKE using binary Goppa codes.
+        Project Website: https://classic.mceliece.org/index.html
+        NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Classic-McEliece-Round3.zip
+        </t>
+        <section numbered="true" toc="default">
+            <name>Algorithm Parameter Identifiers</name>
 
-<t>Classic McEliece uses OIDs to identify parameters sets for different security strengths.</t>
-<figure anchor="MCLIECEOIDs">
-  <artwork align="left" name="" type="" alt=""><![CDATA[
+            <t>Classic McEliece uses OIDs to identify parameters sets for different security strengths.</t>
+            <figure anchor="MCLIECEOIDs">
+            <artwork align="left" name="" type="" alt=""><![CDATA[
 |=========================+=====================================|
 | mceliece348864-r3                                             |
 |=========================+=====================================|
@@ -509,29 +532,29 @@ NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-
 |                         | l = 256                             |
 |                         | k=n�mt=6528                         |
 |=========================+=====================================|
-  ]]></artwork>
-</figure>
+            ]]></artwork>
+            </figure>
 
 
-</section>
-<section numbered="true" toc="default">
-    <name>Key Details</name>
-    
-<t>Public key. The public-key consists of 
-* T: mt x k matrix
-Each row of T is represented as a ceiling(k/8)-byte string, and the public key is represented as the mt*ceiling(k/8)-byte concatenation of these strings.
-Secret key. The secret key consists of five parameters:</t> 
-    <ul spacing="compact">
-        <li>delta: nonce</li>
-        <li>C    : column selections</li>
-        <li>g    : monic irreducible polynomial</li>
-        <li>alpha: field orderings</li>
-        <li>s    : uniform random n-bit string</li>
-    </ul>
-<t>The size necessary to hold all secret key elements accounts to ceiling(l / 8) + [ceiling(nu / 8) | 8] + ceiling(m / 8) + ceiling((2*m � 1) * 2*m � 4) + ceiling(n / 8) bytes.
-The resulting public key and private key sizes can be found in the table below.</t>
-<figure anchor="McElieceKeySizes">
-  <artwork align="left" name="" type="" alt=""><![CDATA[
+            </section>
+            <section numbered="true" toc="default">
+                <name>Key Details</name>
+                
+            <t>Public key. The public-key consists of 
+            * T: mt x k matrix
+            Each row of T is represented as a ceiling(k/8)-byte string, and the public key is represented as the mt*ceiling(k/8)-byte concatenation of these strings.
+            Secret key. The secret key consists of five parameters:</t> 
+                <ul spacing="compact">
+                    <li>delta: nonce</li>
+                    <li>C    : column selections</li>
+                    <li>g    : monic irreducible polynomial</li>
+                    <li>alpha: field orderings</li>
+                    <li>s    : uniform random n-bit string</li>
+                </ul>
+            <t>The size necessary to hold all secret key elements accounts to ceiling(l / 8) + [ceiling(nu / 8) | 8] + ceiling(m / 8) + ceiling((2*m � 1) * 2*m � 4) + ceiling(n / 8) bytes.
+            The resulting public key and private key sizes can be found in the table below.</t>
+            <figure anchor="McElieceKeySizes">
+            <artwork align="left" name="" type="" alt=""><![CDATA[
 |=====================+=================+================|
 | Parameter Set.      | Size of the     | Size of the    |
 |                     | public key      | secret key     |
@@ -548,41 +571,43 @@ The resulting public key and private key sizes can be found in the table below.<
 | mceliece8192128-r3  |      1357824    |      14120     |
 | mceliece8192128f-r  |      1357824    |      14120     |
 |=====================+=================+================|
-  ]]></artwork>
-</figure>
+            ]]></artwork>
+            </figure>
 
-</section>
-<section numbered="true" toc="default">
-    <name>Secret Key Full Encoding</name>
-    
-<t>Distributing a Classic McEliece private key with PKCS#8 involves including: 
-a. mceliece{n}{t}[f]-r3 in the algorithm field of  AlgorithmIdentifier 
-b. McEliecePrivateKey in the privateKey field, which is an OCTET STRING.
-When a Classic McEliece public key is included in the distributed PrivateKeyInfo, the PublicKey field in McEliecePrivateKey is used (see description of McEliecePublicKey below).
-ASN.1 Encoding for a Classic McEliece private key for fully populated:</t>
- <artwork align="left" name="" type="" alt=""><![CDATA[
+            </section>
+            <section numbered="true" toc="default">
+                <name>Secret Key Full Encoding</name>
+                
+            <t>Distributing a Classic McEliece private key with PKCS#8 involves including: </t>
+            <ul spacing="compact">
+            <li>mceliece{n}{t}[f]-r3 in the algorithm field of  AlgorithmIdentifier </li>
+            <li>McEliecePrivateKey in the privateKey field, which is an OCTET STRING.</li>
+            </ul>
+            <t>When a Classic McEliece public key is included in the distributed PrivateKeyInfo, the PublicKey field in McEliecePrivateKey is used (see description of McEliecePublicKey below).
+            ASN.1 Encoding for a Classic McEliece private key for fully populated:</t>
+            <artwork align="left" name="" type="" alt=""><![CDATA[
 McEliecePrivateKey ::= SEQUENCE {
-  Version    INTEGER {v0(0)} -- version (round 3)
-  delta      OCTET STRING,   -- nonce
-  C          OCTET STRING,   -- column selections
-  g          OCTET STRING,   -- monic irreducible polynomial
-  alpha      OCTET STRING,   -- field orderings
-  s          OCTET STRING,   -- random n-bit string
-  PublicKey  [0] IMPLICIT McEliecePublicKey OPTIONAL 
-                             -- see next section
+    Version    INTEGER {v0(0)} -- version (round 3)
+    delta      OCTET STRING,   -- nonce
+    C          OCTET STRING,   -- column selections
+    g          OCTET STRING,   -- monic irreducible polynomial
+    alpha      OCTET STRING,   -- field orderings
+    s          OCTET STRING,   -- random n-bit string
+    PublicKey  [0] IMPLICIT McEliecePublicKey OPTIONAL 
+                                -- see next section
 }
- ]]></artwork>
-</section>
-<section numbered="true" toc="default">
-    <name>Public Key Full Encoding</name>
- <artwork align="left" name="" type="" alt=""><![CDATA[
+                ]]></artwork>
+                </section>
+                <section numbered="true" toc="default">
+                    <name>Public Key Full Encoding</name>
+                <artwork align="left" name="" type="" alt=""><![CDATA[
 Classic McEliece Public Key Format  
-McEliecePublicKey ::= SEQUENCE {
-  T       OCTET STRING    -- public key
+    McEliecePublicKey ::= SEQUENCE {
+    T       OCTET STRING    -- public key
 }
- ]]></artwork>
-</section>
-</section>
+                ]]></artwork>
+            </section>
+        </section>
 
         <section numbered="true" toc="default">
             <name>Kyber</name>
@@ -737,12 +762,12 @@ McEliecePublicKey ::= SEQUENCE {
                     The ASN.1 encoding for a Kyber private key is defined as follows:</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 KyberPrivateKey ::= SEQUENCE {
-    Version    INTEGER {v0(0)}   -- version (round 3)
-    nonce      OCTET STRING,     -- z
-    s          OCTET STRING,     -- sample s
-    PublicKey  [0] IMPLICIT KyberPublicKey OPTIONAL,
-                                 -- see next section
-    hpk        OCTET STRING      -- H(pk)
+    Version     INTEGER {v0(0)}   -- version (round 3)
+    nonce       OCTET STRING,     -- z
+    s           OCTET STRING,     -- sample s
+    PublicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
+                                  -- see next section
+    hpk         OCTET STRING      -- H(pk)
 }
                     ]]></artwork>
             </section>
@@ -750,18 +775,19 @@ KyberPrivateKey ::= SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Secret Key Partial Encoding </name>
                 
-                <t>The partially populated parameter set uses of the fact that some parameters can be regenerated. In this case, only the initial seed d (nonce) is stored and used to regenerate the full key.
-                    Note: There are several alternative ways to encode a partially filled structure that include defining fields as optional and defining fields as EMPTY. As an example, partial RSA keys are encoded using EMPTY fields. It can be argued that defining fields as EMPTY significantly simplifies the implementation of parsing ASN.1 frames.
+                <t>The partially populated parameter set uses of the fact that some parameters can be regenerated. In this case, only the initial seed 'd' (nonce) is stored and used to regenerate the full key.  
+                    Partially encoded keys use the same ASN.1 structure as the fully polulated keys, simply with the regenerated fields set to EMPTY. 
+                    Compared to the approach of a single definition and setting the regenratable fields as OPTIONAL, this approach significantly simplifies the processing os ASN.1 frames and validation of the partial encoding.
                     The ASN.1 format for the partially populated versions is the same as for the fully populated version.
                     The ASN.1 encoding for this variant (z replaced by d) is defined as follows:</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 KyberPrivateKey ::= SEQUENCE {
-    version    INTEGER {v0(0)}   -- version (round 3)
-    nonce      OCTET STRING,     -- d
-    s          OCTET STRING,     -- EMPTY
-    PublicKey  [0] IMPLICIT KyberPublicKey OPTIONAL,
-                                 -- see next section
-    hpk   OCTET STRING           -- EMPTY
+    version     INTEGER {v0(0)}   -- version (round 3)
+    nonce       OCTET STRING,     -- d
+    s           OCTET STRING,     -- EMPTY
+    PublicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
+                                  -- see next section
+    hpk         OCTET STRING      -- EMPTY
 }
                     ]]></artwork>
             </section>
@@ -769,7 +795,7 @@ KyberPrivateKey ::= SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Public Key Full Encoding</name>
                 
-                <t>The vector t is encoded using the function Encode_12, defined as the inverse of Decode_12 as defined in Algorithm 3 of the Kyber round 3 specification. The size of t is 12*k*n/8 bytes. The seed tho is a 32 byte OCTET STRING.</t>
+                <t>The vector 't' is encoded using the function Encode_12, defined as the inverse of Decode_12 as defined in Algorithm 3 of the Kyber round 3 specification. The size of t is 12*k*n/8 bytes. The seed 'rho' is a 32 byte OCTET STRING.</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 KyberPublicKey ::= SEQUENCE {
     t           OCTET STRING,
@@ -849,9 +875,11 @@ KyberPublicKey ::= SEQUENCE {
             </section>
             <section numbered="true" toc="default">
                 <name>Key Details</name>
-                <t>Public key. The public-key consists of a single parameter :
-                    o a polynomial h that satisfies h?f=3?g in the ring Rq=Z[x]/(q, Phi1?Phin).
-                    This means there are n - 1 coefficients of size at most q in the public key, and the size necessary to store the polynomial is therefore is ceil((n - 1)?log2(q)/8) bytes. The resulting sizes for the parameter sets can be found in the Table below.
+                <t>Public key. The public-key consists of a single parameter :</t>
+                <ul spacing="compact">
+                    <li>a polynomial h that satisfies h?f=3?g in the ring Rq=Z[x]/(q, Phi1?Phin).</li>
+                    </ul>
+                    <t>This means there are n - 1 coefficients of size at most q in the public key, and the size necessary to store the polynomial is therefore is ceil((n - 1)?log2(q)/8) bytes. The resulting sizes for the parameter sets can be found in the Table below.
                     Secret key. The secret key consists of 4 parameters:</t>
                      <ul spacing="compact">
                     <li>a polynomial f that is a ternary (coefficients fi are in {-1, 0, 1}) polynomial of degree n - 2, with the additional property that ∑_(i=0)^(n-3)  f_i?? f?_(i+1)≥0, </li>
@@ -1032,12 +1060,12 @@ NTRUPrivateKey ::= SEQUENCE {
                 <t>When a SABER public key is included in the distributed PrivateKeyInfo, the PublicKey field in SABERPrivateKey is used (see the description below).</t>
             <artwork name="" type="" align="left" alt=""><![CDATA[
 SABERPrivateKey ::= SEQUENCE {
-    version    INTEGER  {v0(0)}     -- version (round 3)
-    z          OCTET STRING,        -- 32-byte random value z
-    s          OCTET STRING,        -- short integer polynomial s
-    PublicKey  [0] IMPLICIT SABERPublicKey OPTIONAL,
+    version     INTEGER  {v0(0)}    -- version (round 3)
+    z           OCTET STRING,       -- 32-byte random value z
+    s           OCTET STRING,       -- short integer polynomial s
+    PublicKey   [0] IMPLICIT SABERPublicKey OPTIONAL,
                                     -- see next section
-    hpk        OCTET STRING         -- H(pk)
+    hpk         OCTET STRING        -- H(pk)
 }
                     ]]></artwork>
                 
@@ -1047,8 +1075,8 @@ SABERPrivateKey ::= SEQUENCE {
                 
                 <artwork name="" type="" align="left" alt=""><![CDATA[
 SABERPublicKey := SEQUENCE {
-    seed_A     OCTET STRING,        -- 32-byte seed
-    b          OCTET STRING         -- short integer polynomial b
+    seed_A      OCTET STRING,        -- 32-byte seed
+    b           OCTET STRING         -- short integer polynomial b
 }
                 ]]></artwork>
             </section>
@@ -1244,15 +1272,15 @@ SABERPublicKey := SEQUENCE {
                     <t>ASN.1 Encoding for a Dilithium private key for fully populated:</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 DilithiumPrivateKey ::= SEQUENCE {
-    version    INTEGER {v0(0)}     -- version (round 3)
-    nonce      BIT STRING,         -- rho
-    key        BIT STRING,         -- key/seed/D
-    tr         BIT STRING,         -- PRF bytes (CRH in spec)
-    s1         BIT STRING,         -- vector(L)
-    s2         BIT STRING,         -- vector(K)
-    t0         BIT STRING,
-    PublicKey [0] IMPLICIT DilithiumPublicKey OPTIONAL
-                                   -- see next section
+    version     INTEGER {v0(0)}     -- version (round 3)
+    nonce       BIT STRING,         -- rho
+    key         BIT STRING,         -- key/seed/D
+    tr          BIT STRING,         -- PRF bytes (CRH in spec)
+    s1          BIT STRING,         -- vector(L)
+    s2          BIT STRING,         -- vector(K)
+    t0          BIT STRING,
+    PublicKey  [0] IMPLICIT DilithiumPublicKey OPTIONAL
+                                    -- see next section
 }
                     ]]></artwork>
                 
@@ -1266,15 +1294,15 @@ DilithiumPrivateKey ::= SEQUENCE {
                     The ASN.1 encoding for the first variant (rho and seed) is defined as follows:</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 DilithiumPrivateKey ::= SEQUENCE {
-    version    INTEGER {v0(0)}     -- version (round 3)
-    nonce      BIT STRING,         -- rho
-    key        BIT STRING,         -- key/seed/D
-    tr         BIT STRING,         -- EMPTY
-    s1         BIT STRING,         -- EMPTY
-    s2         BIT STRING,         -- EMPTY
-    t0         BIT STRING,         -- EMPTY
-    PublicKey  [0] IMPLICIT DilithiumPublicKey OPTIONAL
-                                   -- see next section
+    version     INTEGER {v0(0)}     -- version (round 3)
+    nonce       BIT STRING,         -- rho
+    key         BIT STRING,         -- key/seed/D
+    tr          BIT STRING,         -- EMPTY
+    s1          BIT STRING,         -- EMPTY
+    s2          BIT STRING,         -- EMPTY
+    t0          BIT STRING,         -- EMPTY
+    PublicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
+                                    -- see next section
 }
                     ]]></artwork>
             </section>
@@ -1285,15 +1313,15 @@ DilithiumPrivateKey ::= SEQUENCE {
                     The ASN.1 encoding for this is defined as follows:</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 DilithiumPrivateKey ::= SEQUENCE {
-    version    INTEGER {v0(0)}     -- version (round 3)
-    nonce      BIT STRING,         -- zeta
-    key        BIT STRING,         -- EMPTY
-    tr         BIT STRING,         -- EMPTY
-    s1         BIT STRING,         -- EMPTY
-    s2         BIT STRING,         -- EMPTY
-    t0         BIT STRING,         -- EMPTY
-    PublicKey  [0] IMPLICIT DilithiumPublicKey OPTIONAL
-                               -- see next section
+    version     INTEGER {v0(0)}     -- version (round 3)
+    nonce       BIT STRING,         -- zeta
+    key         BIT STRING,         -- EMPTY
+    tr          BIT STRING,         -- EMPTY
+    s1          BIT STRING,         -- EMPTY
+    s2          BIT STRING,         -- EMPTY
+    t0          BIT STRING,         -- EMPTY
+    PublicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
+                                   -- see next section
 }
                     ]]></artwork>
                 
@@ -1304,8 +1332,8 @@ DilithiumPrivateKey ::= SEQUENCE {
                 <t>Components are individual OCTET STRINGs, without unused bits, encoded with the exact size. There is no removal of leading zeroes.</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 DilithiumPublicKey ::= SEQUENCE {
-    rho        OCTET STRING,
-    t1         OCTET STRING
+    rho         OCTET STRING,
+    t1          OCTET STRING
 }
                     ]]></artwork>
             </section>
@@ -1392,12 +1420,12 @@ DilithiumPublicKey ::= SEQUENCE {
                     ASN.1 Encoding for a FALCON private key:</t>
                     <artwork name="" type="" align="left" alt=""><![CDATA[
 FALCONPrivateKey ::= SEQUENCE {
-    version    INTEGER {v2(1)}   -- syntax version 2 (round 3)
-    f          OCTET STRING,      -- short integer polynomial f
-    g          OCTET STRING,      -- short integer polynomial g
-    F          OCTET STRING,      -- short integer polynomial F
-    PublicKey  [0] IMPLICIT FALCONPublicKey  OPTIONAL
-    -- see next section
+    version     INTEGER {v2(1)}    -- syntax version 2 (round 3)
+    f           OCTET STRING,      -- short integer polynomial f
+    g           OCTET STRING,      -- short integer polynomial g
+    F           OCTET STRING,      -- short integer polynomial F
+    PublicKey   [0] IMPLICIT FALCONPublicKey  OPTIONAL
+                                   -- see next section
 }
                     ]]></artwork>
                 
@@ -1419,10 +1447,12 @@ FALCONPrivateKey ::= SEQUENCE {
                     ]]></artwork>
                 </figure>
                 
-                <t>FALCONPublicKey := SEQUENCE {
-                    h          OCTET STRING  -- integer polynomial h
-                    }</t>
-                
+                <artwork align="left" name="" type="" alt=""><![CDATA[
+FALCONPublicKey := SEQUENCE {
+    h           OCTET STRING       -- integer polynomial h
+}
+                     ]]></artwork>
+                 
             </section>
             
         </section>
@@ -1707,19 +1737,6 @@ RainbowPublicKey ::= SEQUENCE {
                  </front>
              </reference>
  
-            
-            
-            <reference anchor="min_ref">
-                <!-- the following is the minimum to make xml2rfc happy -->
-                
-                <front>
-                    <title>Minimal Reference</title>
-                    <author initials="authInitials" surname="authSurName">
-                        <organization/>
-                    </author>
-                    <date year="2006"/>
-                </front>
-            </reference>
         </references>
         <references>
             <name>Informative References</name>
