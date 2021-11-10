@@ -1,7 +1,7 @@
-all: draft-ietf-cfrg-qsckeys.txt draft-ietf-cfrg-qsckeys.html
+all: draft-uni-qsckeys.txt draft-uni-qsckeys.html
 
-draft-ietf-cfrg-qsckeys.txt: draft-ietf-cfrg-qsckeys.xml
-	xml2rfc --text draft-ietf-cfrg-qsckeys.xml
+draft-uni-qsckeys.txt: draft-uni-qsckeys.xml
+	xml2rfc --text draft-uni-qsckeys.xml
 
-draft-ietf-cfrg-qsckeys.html: draft-ietf-cfrg-qsckeys.xml
-	xml2rfc --html draft-ietf-cfrg-qsckeys.xml
+draft-uni-qsckeys.html: draft-uni-qsckeys.xml
+	xml2rfc --html draft-uni-qsckeys.xml
