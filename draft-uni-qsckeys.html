@@ -6,9 +6,9 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>Quantum Safe Cryptography Key Information</title>
 <meta content="Christine van Vredendaal" name="author">
-<meta content="Silvio Dragione" name="author">
+<meta content="Silvio Dragone" name="author">
 <meta content="Basil Hess" name="author">
-<meta content="Tamas Visgrady" name="author">
+<meta content="Tamas Visegrady" name="author">
 <meta content="Michael Osborne" name="author">
 <meta content="Dieter Bong" name="author">
 <meta content="Joppe Bos" name="author">
@@ -19,23 +19,23 @@
     " name="description">
 <meta content="xml2rfc 3.9.1" name="generator">
 <meta content="template" name="keyword">
-<meta content="draft-uni-qsckeys-00" name="ietf.draft">
+<meta content="draft-uni-qsckeys-01" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.9.1
-    Python 3.9.7
+    Python 3.9.10
     appdirs 1.4.4
-    ConfigArgParse 1.5.1
+    ConfigArgParse 1.5.2
     google-i18n-address 2.5.0
     html5lib 1.1
     intervaltree 3.1.0
-    Jinja2 2.11.3
+    Jinja2 2.11.2
     kitchen 1.2.6
     lxml 4.6.3
     pycountry 20.7.3
     pyflakes 2.3.1
-    PyYAML 5.4.1
+    PyYAML 5.4
     requests 2.26.0
-    setuptools 57.4.0
+    setuptools 60.5.0
     six 1.16.0
 -->
 <link href="draft-uni-qsckeys.xml" rel="alternate" type="application/rfc+xml">
@@ -1187,11 +1187,11 @@ li > p:last-of-type {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">QSC Cryptography Key Information</td>
-<td class="right">November 2021</td>
+<td class="right">March 2022</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Vredendaal, et al.</td>
-<td class="center">Expires 13 May 2022</td>
+<td class="center">Expires 22 September 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1201,15 +1201,15 @@ li > p:last-of-type {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Internet Engineering Task Force</dd>
 <dt class="label-individual-draft">Individual-Draft:</dt>
-<dd class="individual-draft">draft-uni-qsckeys-00</dd>
+<dd class="individual-draft">draft-uni-qsckeys-01</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-11-09" class="published">9 November 2021</time>
+<time datetime="2022-03-21" class="published">21 March 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-05-13">13 May 2022</time></dd>
+<dd class="expires"><time datetime="2022-09-22">22 September 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1276,7 +1276,7 @@ li > p:last-of-type {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 September 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1285,7 +1285,7 @@ li > p:last-of-type {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2021 IETF Trust and the persons identified as the
+            Copyright (c) 2022 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1304,191 +1304,191 @@ li > p:last-of-type {
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="ulEmpty compact ulBare toc">
+<li class="ulEmpty compact ulBare toc" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.1.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.1.2.1">
                 <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-requirements-language" class="xref">Requirements Language</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.1.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.1.2.2">
                 <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-algorithm-identification" class="xref">Algorithm Identification</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.1.2.3">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.1.2.3">
                 <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="xref">1.3</a>.  <a href="#name-algorithm-and-algorithm-par" class="xref">Algorithm and Algorithm Parameter Object Identifier</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.2">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-overview-of-pqc-algorithm-a" class="xref">Overview of PQC algorithm and parameter OIDs</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.2.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.2.2.1">
                 <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-key-formats" class="xref">Key Formats</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.2.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.2.2.2">
                 <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-public-key-format-based-on" class="xref">Public Key Format based on
-                    RFC5480</a></p>
+                    RFC5280</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.2.2.3">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.2.2.3">
                 <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-overview-of-memo-definition" class="xref">Overview of Memo Definitions - PQC Key Formats</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-classic-mceliece" class="xref">Classic McEliece</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.3.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-algorithm-parameter-identif" class="xref">Algorithm Parameter Identifiers</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.3.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-key-details" class="xref">Key Details</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-secret-key-full-encoding" class="xref">Secret Key Full Encoding</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-private-key-full-encoding" class="xref">Private key Full Encoding</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.3.2.4">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.3.2.4">
                 <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="xref">3.4</a>.  <a href="#name-public-key-full-encoding" class="xref">Public Key Full Encoding</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.4">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-kyber" class="xref">Kyber</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.4.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-algorithm-parameter-identifi" class="xref">Algorithm Parameter Identifiers</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.4.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-key-details-2" class="xref">Key Details</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-secret-key-full-encoding-2" class="xref">Secret Key Full Encoding</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-private-key-full-encoding-2" class="xref">Private key Full Encoding</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.4.2.4">
-                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-secret-key-partial-encoding" class="xref">Secret Key Partial Encoding</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-private-key-partial-encodin" class="xref">Private key Partial Encoding</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.4.2.5">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.4.2.5">
                 <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="xref">4.5</a>.  <a href="#name-public-key-full-encoding-2" class="xref">Public Key Full Encoding</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.5">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-ntru" class="xref">NTRU</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.5.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.5.2.1">
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-algorithm-parameter-identifie" class="xref">Algorithm Parameter Identifiers</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.5.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.5.2.2">
                 <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-key-details-3" class="xref">Key Details</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-secret-key-full-encoding-3" class="xref">Secret Key Full Encoding</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-private-key-full-encoding-3" class="xref">Private key Full Encoding</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.5.2.4">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.5.2.4">
                 <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="xref">5.4</a>.  <a href="#name-public-key-full-encoding-3" class="xref">Public Key Full Encoding</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-saber" class="xref">SABER</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.6.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.6.2.1">
                 <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-algorithm-parameter-identifier" class="xref">Algorithm Parameter Identifiers</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.6.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.6.2.2">
                 <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-key-details-4" class="xref">Key Details</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-secret-key-full-encoding-4" class="xref">Secret Key Full Encoding</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-private-key-full-encoding-4" class="xref">Private key Full Encoding</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.6.2.4">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.6.2.4">
                 <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="xref">6.4</a>.  <a href="#name-public-key-full-encoding-4" class="xref">Public Key Full Encoding</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.7">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-crystals-dilithium" class="xref">CRYSTALS-DILITHIUM</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.7.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.7.2.1">
                 <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-algorithm-parameter-identifiers" class="xref">Algorithm Parameter Identifiers</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.7.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.7.2.2">
                 <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-key-details-5" class="xref">Key Details</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.7.2.3">
-                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-secret-key-full-encoding-5" class="xref">Secret Key Full Encoding</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-private-key-full-encoding-5" class="xref">Private key Full Encoding</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.7.2.4">
-                <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="xref">7.4</a>.  <a href="#name-secret-key-partial-encoding-" class="xref">Secret Key Partial Encoding Option 1</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.7.2.4">
+                <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="xref">7.4</a>.  <a href="#name-private-key-partial-encoding" class="xref">Private key Partial Encoding Option 1</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.7.2.5">
-                <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="xref">7.5</a>.  <a href="#name-secret-key-partial-encoding-o" class="xref">Secret Key Partial Encoding Option 2</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.7.2.5">
+                <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="xref">7.5</a>.  <a href="#name-private-key-partial-encoding-" class="xref">Private key Partial Encoding Option 2</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.7.2.6">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.7.2.6">
                 <p id="section-toc.1-1.7.2.6.1"><a href="#section-7.6" class="xref">7.6</a>.  <a href="#name-public-key-full-encoding-5" class="xref">Public Key Full Encoding</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-falcon" class="xref">FALCON</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.8.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.8.2.1">
                 <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-algorithm-parameter-identifiers-2" class="xref">Algorithm Parameter Identifiers</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.8.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.8.2.2">
                 <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-key-details-6" class="xref">Key Details</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.8.2.3">
-                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-secret-key-full-encoding-6" class="xref">Secret Key Full Encoding</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-private-key-full-encoding-6" class="xref">Private key Full Encoding</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.8.2.4">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.8.2.4">
                 <p id="section-toc.1-1.8.2.4.1"><a href="#section-8.4" class="xref">8.4</a>.  <a href="#name-public-key-full-encoding-6" class="xref">Public Key Full Encoding</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-rainbow" class="xref">Rainbow</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.9.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.9.2.1">
                 <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-algorithm-parameter-identifiers-3" class="xref">Algorithm Parameter Identifiers</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.9.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.9.2.2">
                 <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-key-details-7" class="xref">Key Details</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.9.2.3">
-                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="xref">9.3</a>.  <a href="#name-secret-key-full-encoding-7" class="xref">Secret Key Full Encoding</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="xref">9.3</a>.  <a href="#name-private-key-full-encoding-7" class="xref">Private key Full Encoding</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.9.2.4">
-                <p id="section-toc.1-1.9.2.4.1"><a href="#section-9.4" class="xref">9.4</a>.  <a href="#name-secret-key-partial-encoding-2" class="xref">Secret Key Partial Encoding</a></p>
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.9.2.4">
+                <p id="section-toc.1-1.9.2.4.1"><a href="#section-9.4" class="xref">9.4</a>.  <a href="#name-private-key-partial-encoding-2" class="xref">Private key Partial Encoding</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.9.2.5">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.9.2.5">
                 <p id="section-toc.1-1.9.2.5.1"><a href="#section-9.5" class="xref">9.5</a>.  <a href="#name-public-key-full-encoding-7" class="xref">Public Key Full Encoding</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.10">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.11">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.12">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.12">
             <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.13">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.13">
             <p id="section-toc.1-1.13.1"><a href="#section-13" class="xref">13</a>. <a href="#name-references" class="xref">References</a></p>
-<ul class="compact ulBare ulEmpty toc">
-<li class="compact ulBare ulEmpty toc" id="section-toc.1-1.13.2.1">
+<ul class="ulBare ulEmpty compact toc">
+<li class="ulBare ulEmpty compact toc" id="section-toc.1-1.13.2.1">
                 <p id="section-toc.1-1.13.2.1.1"><a href="#section-13.1" class="xref">13.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-              <li class="compact ulBare ulEmpty toc" id="section-toc.1-1.13.2.2">
+              <li class="ulBare ulEmpty compact toc" id="section-toc.1-1.13.2.2">
                 <p id="section-toc.1-1.13.2.2.1"><a href="#section-13.2" class="xref">13.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.14">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.14">
             <p id="section-toc.1-1.14.1"><a href="#appendix-A" class="xref">Appendix A</a>.  <a href="#name-additional-stuff" class="xref">Additional Stuff</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.15">
+          <li class="ulEmpty compact ulBare toc" id="section-toc.1-1.15">
             <p id="section-toc.1-1.15.1"><a href="#appendix-B" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
@@ -1542,9 +1542,9 @@ li > p:last-of-type {
 <div class="artwork art-text alignLeft" id="section-1.3-2">
 <pre>
 
-AlgorithmIdentifier  ::=  SEQUENCE  {
-algorithm  OBJECT IDENTIFIER, - OID: algorithm and algo parameter
-parameters pqcAlgorithmParameterName OPTIONAL
+AlgorithmIdentifier ::=  SEQUENCE {
+    algorithm  OBJECT IDENTIFIER, - OID: algorithm and algo parameter
+    parameters pqcAlgorithmParameterName OPTIONAL
 }
 pqcAlgorithmParameterName ::= PrintableString
 
@@ -1575,32 +1575,32 @@ pqcAlgorithmParameterName ::= PrintableString
 | kyber-512-r3                                                  |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-512-r3 }           |
-|         |dot. | 1.3.6.1.4.1.2.267.8.2.2                       |
+|         |dot. |                                               |
 |---------+-----+-----------------------------------------------|
 | kyber-512-90s-r3                                              |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-512-90s-r3}        |
-|         |dot  | 1.3.6.1.4.1.2.267.10.2.2                      |
+|         |dot  |                                               |
 |---------------+-----+-----------------------------------------|
 | kyber-768-r3                                                  |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-768-r3 }           |
-|         |dot  | 1.3.6.1.4.1.2.267.8.3.3                       |
+|         |dot  |                                               |
 |---------------+-----+-----------------------------------------|
 | kyber-768-90s-r3                                              |
 |---------------+-----+-----------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-768-90s-r3 }       |
-|         |dot  | 1.3.6.1.4.1.2.267.10.3.3                      |
+|         |dot  |                                               |
 |---------+-----+-----------------------------------------------|
 | kyber-1024-r3                                                 |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-1024-r3 }          |
-|         |dot  | 1.3.6.1.4.1.2.267.8.4.4                       |
+|         |dot  |                                               |
 |---------+-----+-----------------------------------------------|
 | kyber-1024-90s-r3                                             |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-1024-90s-r3}       |
-|         |dot  | 1.3.6.1.4.1.2.267.10.4.4                      |
+|         |dot  |                                               |
 |=========+=====+===============================================|
 | NTRU (PQC KEM)                                                |
 |=========+=====+===============================================|
@@ -1636,7 +1636,7 @@ pqcAlgorithmParameterName ::= PrintableString
 | dilithium-4x4-r3                                              |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1|{..*.. pqc-ds-dilithium dilithium-4x4-r3}      |
-|         |dot  | 1.3.6.1.4.1.2.267.7.4.4                       |
+|         |dot  |                                               |
 |---------------+-----+-----------------------------------------|
 | dilithium-4x4-aes-r3                                          |
 |---------+-----+-----------------------------------------------|
@@ -1646,7 +1646,7 @@ pqcAlgorithmParameterName ::= PrintableString
 | dilithium-6x5-r3                                              |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-ds-dilithium dilithium-6x5-r3}     |
-|         | Dot | 1.3.6.1.4.1.2.267.7.6.5                       |
+|         | Dot |                                               |
 |---------+-----+-----------------------------------------------|
 | dilithium-6x5-aes-r3                                          |
 |---------+-----+-----------------------------------------------|
@@ -1656,7 +1656,7 @@ pqcAlgorithmParameterName ::= PrintableString
 | dilithium-8x7-r3                                              |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-ds-dilithium dilithium-8x7-r3}     |
-|         |Dot  | 1.3.6.1.4.1.2.267.7.8.7                       |
+|         |Dot  |                                               |
 |---------+-----+-----------------------------------------------|
 | dilithium-8x7-aes-r3                                          |
 |---------+-----+-----------------------------------------------|
@@ -1692,7 +1692,7 @@ pqcAlgorithmParameterName ::= PrintableString
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-key-formats" class="section-name selfRef">Key Formats</a>
         </h3>
 <p id="section-2.1-1">
-                    The Secret Key Format defined is from PKCS#8
+                    The private key format defined is from PKCS#8
                     <span>[<a href="#RFC5208" class="xref">RFC5208</a>]</span>
                     .
                     PKCS#8 PrivateKeyInfo is defined as:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
@@ -1713,13 +1713,13 @@ PrivateKeyInfo ::=  SEQUENCE {
 <section id="section-2.2">
         <h3 id="name-public-key-format-based-on">
 <a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-public-key-format-based-on" class="section-name selfRef">Public Key Format based on
-                    <em class="xref">[RFC5480]</em></a>
+                    <em class="xref">[RFC5280]</em></a>
         </h3>
-<p id="section-2.2-1">RFC5480 subjectPublicKeyInfo is defined in as:<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2-1">RFC5280 subjectPublicKeyInfo is defined in as:<a href="#section-2.2-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-2.2-2">
 <pre>
 
-subjectPublicKeyInfo := SEQUENCE {
+SubjectPublicKeyInfo := SEQUENCE {
     algorithm          AlgorithmIdentifier  -- see chapter above
     subjectPublicKey   BIT STRING           -- see chapter below
 }
@@ -1892,32 +1892,35 @@ subjectPublicKeyInfo := SEQUENCE {
         <h3 id="name-key-details">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-key-details" class="section-name selfRef">Key Details</a>
         </h3>
-<p id="section-3.2-1">Public key. The public-key consists of 
-            * T: mt x k matrix
-            Each row of T is represented as a ceiling(k/8)-byte string, and the public key is represented as the mt*ceiling(k/8)-byte concatenation of these strings.
-            Secret key. The secret key consists of five parameters:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-1">Public key. The public-key consists of<a href="#section-3.2-1" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-3.2-2.1">delta: nonce<a href="#section-3.2-2.1" class="pilcrow">¶</a>
-</li>
-          <li class="compact" id="section-3.2-2.2">C    : column selections<a href="#section-3.2-2.2" class="pilcrow">¶</a>
-</li>
-          <li class="compact" id="section-3.2-2.3">g    : monic irreducible polynomial<a href="#section-3.2-2.3" class="pilcrow">¶</a>
-</li>
-          <li class="compact" id="section-3.2-2.4">alpha: field orderings<a href="#section-3.2-2.4" class="pilcrow">¶</a>
-</li>
-          <li class="compact" id="section-3.2-2.5">s    : uniform random n-bit string<a href="#section-3.2-2.5" class="pilcrow">¶</a>
+<li class="compact" id="section-3.2-2.1">T: mt x k matrix<a href="#section-3.2-2.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-3.2-3">The size necessary to hold all secret key elements accounts to ceiling(l / 8) + [ceiling(nu / 8) | 8] + ceiling(m / 8) + ceiling((2*m - 1) * 2*m - 4) + ceiling(n / 8) bytes.
-            The resulting public key and private key sizes can be found in the table below.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Each row of T is represented as a ceiling(k/8)-byte string, and the public key is represented as the mt*ceiling(k/8)-byte concatenation of these strings.
+            Private key. The private key consists of five parameters:<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-3.2-4.1">delta: nonce<a href="#section-3.2-4.1" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.2-4.2">C    : column selections<a href="#section-3.2-4.2" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.2-4.3">g    : monic irreducible polynomial<a href="#section-3.2-4.3" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.2-4.4">alpha: field orderings<a href="#section-3.2-4.4" class="pilcrow">¶</a>
+</li>
+          <li class="compact" id="section-3.2-4.5">s    : uniform random n-bit string<a href="#section-3.2-4.5" class="pilcrow">¶</a>
+</li>
+        </ul>
+<p id="section-3.2-5">The size necessary to hold all private key elements accounts to ceiling(l / 8) + [ceiling(nu / 8) | 8] + ceiling(m / 8) + ceiling((2*m - 1) * 2*m - 4) + ceiling(n / 8) bytes.
+            The resulting public key and private key sizes can be found in the table below.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
 <div id="McElieceKeySizes">
 <figure id="figure-3">
-          <div class="artwork art-text alignLeft" id="section-3.2-4.1">
+          <div class="artwork art-text alignLeft" id="section-3.2-6.1">
 <pre>
 
 |=====================+=================+================|
 | Parameter Set.      | Size of the     | Size of the    |
-|                     | public key      | secret key     |
+|                     | public key      | private key    |
 |                     | in bytes.       | in bytes       |
 |=====================+=================+================|
 | mceliece348864-r3   |       261120    |       6492     |
@@ -1938,8 +1941,8 @@ subjectPublicKeyInfo := SEQUENCE {
 </div>
 </section>
 <section id="section-3.3">
-        <h3 id="name-secret-key-full-encoding">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-secret-key-full-encoding" class="section-name selfRef">Secret Key Full Encoding</a>
+        <h3 id="name-private-key-full-encoding">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-private-key-full-encoding" class="section-name selfRef">Private key Full Encoding</a>
         </h3>
 <p id="section-3.3-1">Distributing a Classic McEliece private key with PKCS#8 involves including:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <ul class="compact">
@@ -1954,13 +1957,13 @@ subjectPublicKeyInfo := SEQUENCE {
 <pre>
 
 McEliecePrivateKey ::= SEQUENCE {
-    Version    INTEGER {v0(0)} -- version (round 3)
+    version    INTEGER {v0(0)} -- version (round 3)
     delta      OCTET STRING,   -- nonce
     C          OCTET STRING,   -- column selections
     g          OCTET STRING,   -- monic irreducible polynomial
     alpha      OCTET STRING,   -- field orderings
     s          OCTET STRING,   -- random n-bit string
-    PublicKey  [0] IMPLICIT McEliecePublicKey OPTIONAL
+    publicKey  [0] IMPLICIT McEliecePublicKey OPTIONAL
                                 -- see next section
 }
 
@@ -1974,8 +1977,7 @@ McEliecePrivateKey ::= SEQUENCE {
 <div class="artwork art-text alignLeft" id="section-3.4-1">
 <pre>
 
-Classic McEliece Public Key Format
-    McEliecePublicKey ::= SEQUENCE {
+McEliecePublicKey ::= SEQUENCE {
     T       OCTET STRING    -- public key
 }
 
@@ -2010,8 +2012,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=2                                 |
 |                         | q=3329                              |
-|                         | nu_1=3                              |
-|                         | nu_2=2                              |
+|                         | eta_1=3                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(10, 4)                  |
 |                         | delta=2^{-139}                      |
 |=========================+=====================================|
@@ -2024,8 +2026,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=2                                 |
 |                         | q=3329                              |
-|                         | nu_1=3                              |
-|                         | nu_2=2                              |
+|                         | eta_1=3                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(10, 4)                  |
 |                         | delta=2^{-139}                      |
 |=========================+=====================================|
@@ -2038,8 +2040,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=3                                 |
 |                         | q=3329                              |
-|                         | nu_1=2                              |
-|                         | nu_2=2                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(10, 4)                  |
 |                         | delta=2^{-164}                      |
 |=========================+=====================================|
@@ -2052,8 +2054,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=3                                 |
 |                         | q=3329                              |
-|                         | nu_1=2                              |
-|                         | nu_2=2                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(10, 4)                  |
 |                         | delta=2^{-164}                      |
 |=========================+=====================================|
@@ -2066,8 +2068,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=4                                 |
 |                         | q=3329                              |
-|                         | nu_1=2                              |
-|                         | nu_2=2                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(11, 5)                  |
 |                         | delta=2^{-174}                      |
 |=========================+=====================================|
@@ -2080,8 +2082,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=4                                 |
 |                         | q=3329                              |
-|                         | nu_1=2                              |
-|                         | nu_2=2                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(11, 5)                  |
 |                         | delta=2^{-174}                      |
 |=========================+=====================================|
@@ -2106,36 +2108,36 @@ Classic McEliece Public Key Format
         </ul>
 <p id="section-4.2-3">The size necessary to hold all public key elements is 12*k*n/8+32 bytes.
                     
-                    Secret key. The secret key consists of 3 parameters:<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+                    Private key. The private key consists of 3 parameters:<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-4.2-4.1">s: encoded sample from a centered binomial distribution B_nu1 (12*k*n/8 bytes)<a href="#section-4.2-4.1" class="pilcrow">¶</a>
+<li class="compact" id="section-4.2-4.1">s: encoded sample from a centered binomial distribution B_{eta_1} (12*k*n/8 bytes)<a href="#section-4.2-4.1" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-4.2-4.2">z: a nonce (32 bytes)<a href="#section-4.2-4.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.2-4.2">H(pk): hashed public key (32 bytes). Kyber uses SHA3-256 as H by default. The '90s' variants use SHA256 instead.<a href="#section-4.2-4.2" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-4.2-4.3">H(pk): hashed public key (32 bytes). Kyber uses SHA3-256 as H by default. The '90s' variants use SHA256 instead.<a href="#section-4.2-4.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-4.2-4.3">z: a nonce (32 bytes)<a href="#section-4.2-4.3" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-4.2-5">If the secret key is fully populated, it consists of 3 parameters. The size necessary to hold all secret key elements accounts to 12*k*n/8+64 bytes, not counting the optional public key.
+<p id="section-4.2-5">If the private key is fully populated, it consists of 3 parameters. The size necessary to hold all private key elements accounts to 12*k*n/8+64 bytes, not counting the optional public key.
                     The resulting public key and private key sizes are shown in the following table.<a href="#section-4.2-5" class="pilcrow">¶</a></p>
 <div id="KyberKeyLengths">
 <figure id="figure-5">
           <div class="artwork art-text alignLeft" id="section-4.2-6.1">
 <pre>
 
-|==========================+=========+==========+=========|
-| Algorithm OID            | Public  |   Secret |  Secret |
-|                          | Key     |   Key    |  Key    |
-|                          |         |          |(partial)|
-|==========================+=========+==========+=========|
-| kyber512-r3 /            |   800   |   832    |    32   |
-| kyber512-90s-r3          |         |          |         |
-|--------------------------|---------|----------|---------|
-| kyber768-r3 /            |  1184   |   1216   |    32   |
-| kyber768-90s-r3          |         |          |         |
-|--------------------------|--------------------|---------|
-| kyber1024-r3 /           |  1568   |   1600   |    32   |
-| kyber1024-90s-r3         |         |          |         |
-|==========================+=========+==========+=========|
+|==========================+=========+==========+===========|
+| Algorithm OID            | Public  |   Private |  Private |
+|                          | Key     |   Key    |  Key      |
+|                          |         |          |(partial)  |
+|==========================+=========+==========+===========|
+| kyber512-r3 /            |   800   |   832    |    32     |
+| kyber512-90s-r3          |         |          |           |
+|--------------------------|---------|----------|-----------|
+| kyber768-r3 /            |  1184   |   1216   |    32     |
+| kyber768-90s-r3          |         |          |           |
+|--------------------------|--------------------|-----------|
+| kyber1024-r3 /           |  1568   |   1600   |    32     |
+| kyber1024-90s-r3         |         |          |           |
+|==========================+=========+==========+===========|
 
 </pre>
 </div>
@@ -2143,8 +2145,8 @@ Classic McEliece Public Key Format
 </div>
 </section>
 <section id="section-4.3">
-        <h3 id="name-secret-key-full-encoding-2">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-secret-key-full-encoding-2" class="section-name selfRef">Secret Key Full Encoding</a>
+        <h3 id="name-private-key-full-encoding-2">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-private-key-full-encoding-2" class="section-name selfRef">Private key Full Encoding</a>
         </h3>
 <p id="section-4.3-1">Distributing a Kyber private key with PKCS#8 requires:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <ul class="compact">
@@ -2159,20 +2161,20 @@ Classic McEliece Public Key Format
 <pre>
 
 KyberPrivateKey ::= SEQUENCE {
-    Version     INTEGER {v0(0)}   -- version (round 3)
-    nonce       OCTET STRING,     -- z
+    version     INTEGER {v0(0)}   -- version (round 3)
     s           OCTET STRING,     -- sample s
-    PublicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
+    publicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
                                   -- see next section
     hpk         OCTET STRING      -- H(pk)
+    nonce       OCTET STRING,     -- z
 }
 
 </pre><a href="#section-4.3-4" class="pilcrow">¶</a>
 </div>
 </section>
 <section id="section-4.4">
-        <h3 id="name-secret-key-partial-encoding">
-<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-secret-key-partial-encoding" class="section-name selfRef">Secret Key Partial Encoding</a>
+        <h3 id="name-private-key-partial-encodin">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-private-key-partial-encodin" class="section-name selfRef">Private key Partial Encoding</a>
         </h3>
 <p id="section-4.4-1">The partially populated parameter set uses of the fact that some parameters can be regenerated. In this case, only the initial seed 'd' (nonce) is stored and used to regenerate the full key.  
                     Partially encoded keys use the same ASN.1 structure as the fully polulated keys, simply with the regenerated fields set to EMPTY. 
@@ -2184,11 +2186,11 @@ KyberPrivateKey ::= SEQUENCE {
 
 KyberPrivateKey ::= SEQUENCE {
     version     INTEGER {v0(0)}   -- version (round 3)
-    nonce       OCTET STRING,     -- d
     s           OCTET STRING,     -- EMPTY
-    PublicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
+    publicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
                                   -- see next section
     hpk         OCTET STRING      -- EMPTY
+    nonce       OCTET STRING,     -- d
 }
 
 </pre><a href="#section-4.4-2" class="pilcrow">¶</a>
@@ -2236,10 +2238,10 @@ KyberPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n= 509             |
-|                         | Polynomial  Phin= (xn - 1)/(x-1     |
+|                         | Polynomial  Phin=(x^n - 1)/(x-1)    |
 |                         | Polynomial  Phi1=(x-1)              |
 |                         | Modulus p=3                         |
-|                         | Modulus q= 2048                     |
+|                         | Modulus q=2048                      |
 |=========================+=====================================|
 | ntruhps2048677-r3                                             |
 |=========================+=====================================|
@@ -2247,11 +2249,11 @@ KyberPublicKey ::= SEQUENCE {
 |                         | &lt;.  &gt;                               |
 | NIST Level Security     | Level 3 (1) see spec.               |
 |-------------------------|-------------------------------------|
-| Parameters              | Dimension/Degree n= 677             |
-|                         | Polynomial  Phin= (xn - 1)/(x-1)    |
+| Parameters              | Dimension/Degree n=677              |
+|                         | Polynomial  Phin=(x^n - 1)/(x-1)    |
 |                         | Polynomial  Phi1=(x-1)              |
 |                         | Modulus p=3                         |
-|                         | Modulus q= 2048                     |
+|                         | Modulus q=2048                      |
 |=========================+=====================================|
 | ntruhps4096821-r3                                             |
 |=========================+=====================================|
@@ -2260,7 +2262,7 @@ KyberPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 3 (1) see spec.               |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n= 821             |
-|                         | Polynomial  Phin= (xn - 1)/(x-1)    |
+|                         | Polynomial  Phin=(x^n - 1)/(x-1)    |
 |                         | Polynomial  Phi1=(x-1)              |
 |                         | Modulus p=3                         |
 |                         | Modulus q= 4096                     |
@@ -2272,10 +2274,10 @@ KyberPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 5 (3)  see spec.              |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n= 701             |
-|                         | Polynomial  Phin= (xn - 1)/(x-1)    |
+|                         | Polynomial  Phin= (x^n - 1)/(x-1)   |
 |                         | Polynomial  Phi1=(x-1)              |
 |                         | Modulus p=3                         |
-|                         | Modulus q= 8192                     |
+|                         | Modulus q=8192                      |
 |=========================+=====================================|
 
 </pre>
@@ -2290,33 +2292,33 @@ KyberPublicKey ::= SEQUENCE {
         </h3>
 <p id="section-5.2-1">Public key. The public-key consists of a single parameter :<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-5.2-2.1">a polynomial h that satisfies h?f=3?g in the ring Rq=Z[x]/(q, Phi1?Phin).<a href="#section-5.2-2.1" class="pilcrow">¶</a>
+<li class="compact" id="section-5.2-2.1">a polynomial h that satisfies h*f=3*g in the ring Rq=Z[x]/(q, Phi_1*Phi_n).<a href="#section-5.2-2.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-5.2-3">This means there are n - 1 coefficients of size at most q in the public key, and the size necessary to store the polynomial is therefore is ceiling((n - 1)?log2(q)/8) bytes. The resulting sizes for the parameter sets can be found in the Table below.
-                    Secret key. The secret key consists of 4 parameters:<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">This means there are n - 1 coefficients of size at most q in the public key, and the size necessary to store the polynomial is therefore is ceiling((n - 1)*log2(q)/8) bytes. The resulting sizes for the parameter sets can be found in the Table below.
+                    Private key. The private key consists of 4 parameters:<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 <ul class="compact">
-<li class="compact" id="section-5.2-4.1">a polynomial f that is a ternary (coefficients fi are in {-1, 0, 1}) polynomial of degree n - 2, with the additional property that &amp;#8721;_(i=0)^(n-3)  f_i?? f?_(i+1)&amp;#8805;0,<a href="#section-5.2-4.1" class="pilcrow">¶</a>
+<li class="compact" id="section-5.2-4.1">a polynomial f that is a ternary (coefficients fi are in {-1, 0, 1}) polynomial of degree n - 2, with the additional property that &amp;#8721;_(i=0)^{n-3}  f_i*f_{i+1}&amp;#8805;0,<a href="#section-5.2-4.1" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-5.2-4.2">a polynomial fp that satisfies f?fp=1 in the ring Rq=Z[x]/(3, Phin),<a href="#section-5.2-4.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-5.2-4.2">a polynomial f_p that satisfies f*f_p=1 in the ring Rq=Z[x]/(3, Phi_n),<a href="#section-5.2-4.2" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-5.2-4.3">a polynomial hq that satisfies h?hq=1 in the ring Rq=Z[x]/(q, Phin), and<a href="#section-5.2-4.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-5.2-4.3">a polynomial h_q that satisfies h*h_q=1 in the ring Rq=Z[x]/(q, Phi_n), and<a href="#section-5.2-4.3" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-5.2-4.4">a seed=fg_bits || prf_key=f_bits ||  g_bits || prf_key containing the randomness for the key sampling and the implicit rejection mechanism. Optionally implementers may expand this from a 32-byte seed.<a href="#section-5.2-4.4" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-5.2-5">This means there are 2 polynomials, f and fp, having n - 1 coefficients with absolute value at most 1 in the secret key. For these polynomials, the packing algorithm in Section 1.8.7 of the Specification allows to pack 5 coefficients in a byte, so the storage requirement to store each is ceiling((n - 1)/5) bytes. Additionally hq is part of the secret key, which requires the same storage size as that of the public key h, i.e. ceiling((n - 1)?log2(q)/8) bytes. For the seed bytes, the specification recommends:<a href="#section-5.2-5" class="pilcrow">¶</a></p>
+<p id="section-5.2-5">This means there are 2 polynomials, f and fp, having n - 1 coefficients with absolute value at most 1 in the private key. For these polynomials, the packing algorithm in Section 1.8.7 of the Specification allows to pack 5 coefficients in a byte, so the storage requirement to store each is ceiling((n - 1)/5) bytes. Additionally hq is part of the private key, which requires the same storage size as that of the public key h, i.e. ceiling((n - 1)*log2(q)/8) bytes. For the seed bytes, the specification recommends:<a href="#section-5.2-5" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-5.2-6.1">&gt;f_bits having n - 1 bytes,<a href="#section-5.2-6.1" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-5.2-6.2">&gt;g_bits having n - 1 bytes for ntruhrss701, ceiling(30/8?(n-1)) bytes for the other parameter sets,<a href="#section-5.2-6.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-5.2-6.2">&gt;g_bits having n - 1 bytes for ntruhrss701, ceiling(30/8*(n-1)) bytes for the other parameter sets,<a href="#section-5.2-6.2" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-5.2-6.3">prf_key having 32 bytes.<a href="#section-5.2-6.3" class="pilcrow">¶</a>
 </li>
         </ul>
 <p id="section-5.2-7">Implementers may choose to expand the seed from one 32-byte seed.
                     The resulting sizes for the parameter sets can be found in the Table below. Where the seed expansion is omitted, the 32-byte seed must be replaced by key_seed_bits=sample_key_bits+prf_key_bits. The impact of these options are indicated as 32-byte seed/expanded seed in the Table below.
-                    Parameter Set    Size of the public key in bytes    Size of the secret key in bytes<a href="#section-5.2-7" class="pilcrow">¶</a></p>
+                    Parameter Set    Size of the public key in bytes    Size of the private key in bytes<a href="#section-5.2-7" class="pilcrow">¶</a></p>
 <div id="NTRUOIDs">
 <figure id="figure-7">
           <div class="artwork art-text alignLeft" id="section-5.2-8.1">
@@ -2327,31 +2329,31 @@ KyberPublicKey ::= SEQUENCE {
 |---------------------|------------------------------|
 | Public Key (Bytes)  | 699                          |
 | seed/expanded seed  | 935 / 3348                   |
-| f,fp,hq,seed        | 102,102,699,32/2445          |
+| f,f_p,h_q,seed      | 102,102,699,32/2445          |
 |=====================+==============================|
 | ntruhps2048677-r3                                  |
 |---------------------|------------------------------|
 | Public Key (Bytes)  | 699                          |
 | seed/expanded seed  | 935 / 3348                   |
-| f,fp,hq,seed        | 102,102,699,32/2445          |
+| f,f_p,h_q,seed      | 102,102,699,32/2445          |
 |=====================+==============================|
 | ntruhps2048677-r3                                  |
 |---------------------|------------------------------|
-| Public Key (Bytes)  |    930                          |
+| Public Key (Bytes)  |    930                       |
 | seed/expanded seed  | 1234 / 4445                  |
-| (f,fp,hq,seed)      | 136,136,930,32/3243          |
+| (f,f_p,h_q,seed)    | 136,136,930,32/3243          |
 |=====================+==============================|
 | ntruhps4096821-r3                                  |
 |---------------------|------------------------------|
 | Public Key (Bytes)  | 1230                         |
 | seed/expanded seed  | 1590 / 5485                  |
-| (f,fp,hq,seed)      | 164,164,1230,32/3927         |
+| (f,f_p,h_q,seed)    | 164,164,1230,32/3927         |
 |=====================+==============================|
 | ntruhrss701-r3                                     |
 |---------------------|------------------------------|
 | Public Key (Bytes)  | 1138                         |
 | seed/expanded seed  | 1450 / 2850                  |
-| (f,fp,hq,seed)      | 140,140,1138,32/1432         |
+| (f,f_p,h_q,seed)    | 140,140,1138,32/1432         |
 |=====================+==============================|
 
 </pre>
@@ -2360,8 +2362,8 @@ KyberPublicKey ::= SEQUENCE {
 </div>
 </section>
 <section id="section-5.3">
-        <h3 id="name-secret-key-full-encoding-3">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-secret-key-full-encoding-3" class="section-name selfRef">Secret Key Full Encoding</a>
+        <h3 id="name-private-key-full-encoding-3">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-private-key-full-encoding-3" class="section-name selfRef">Private key Full Encoding</a>
         </h3>
 <p id="section-5.3-1">An NTRU private key encoded according with PKCS#8 MUST include the following two fields:<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <ul class="compact">
@@ -2371,7 +2373,7 @@ KyberPublicKey ::= SEQUENCE {
 </li>
         </ul>
 <p id="section-5.3-3">When a NTRU public key is included in the distributed PrivateKeyInfo, the PublicKey field in NTRUPrivateKey is used (see description of NTRUPublicKey below).
-                    An NTRU secret key contains f, fp and hq, as well as a seed. The octet string format indicates the length of the string to follow, and indicates whether the seed or expanded seed is used.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
+                    An NTRU private key contains f, f_p and h_q, as well as a seed. The octet string format indicates the length of the string to follow, and indicates whether the seed or expanded seed is used.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-5.3-4">
 <pre>
 
@@ -2381,7 +2383,7 @@ NTRUPrivateKey ::= SEQUENCE {
     fp         OCTET STRING,      -- short integer polynomial gp
     hq         OCTET STRING,      -- mod q integer polynomial hq
     seed       OCTET STRING,      -- fg_bits/prf_bits (or their seed)
-    PublicKey [0] IMPLICIT NTRUPublicKey OPTIONAL -- see next section
+    publicKey [0] IMPLICIT NTRUPublicKey OPTIONAL -- see next section
 }
 
 </pre><a href="#section-5.3-4" class="pilcrow">¶</a>
@@ -2391,7 +2393,7 @@ NTRUPrivateKey ::= SEQUENCE {
         <h3 id="name-public-key-full-encoding-3">
 <a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-public-key-full-encoding-3" class="section-name selfRef">Public Key Full Encoding</a>
         </h3>
-<p id="section-5.4-1">From the NTRU specification, the public key contains h. Each coefficient of h is encoded as an ? bit sequence, where ?=ceiling((n - 1)?log2(q)). Coefficients are then concatenated (two's complement, big endian convention). The final bit string is zero padded to fit into a byte sequence.
+<p id="section-5.4-1">From the NTRU specification, the public key contains h. Each coefficient of h is encoded as an l bit sequence, where l=ceiling((n - 1)*log2(q)). Coefficients are then concatenated (two's complement, big endian convention). The final bit string is zero padded to fit into a byte sequence.
                     NTRUPublicKey := SEQUENCE {
                     h          OCTET STRING  -- integer polynomial h
                     }<a href="#section-5.4-1" class="pilcrow">¶</a></p>
@@ -2422,7 +2424,7 @@ NTRUPrivateKey ::= SEQUENCE {
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Degree n= 256                       |
-|                         | rank of the module ?= 2             |
+|                         | rank of the module l=2              |
 |                         | binomial distribution with u=10     |
 |                         | Modulus q=2^{13} and p=2^{10}       |
 |=========================+=====================================|
@@ -2433,7 +2435,7 @@ NTRUPrivateKey ::= SEQUENCE {
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Degree n= 256                       |
-|                         | rank of the module ?= 3             |
+|                         | rank of the module l=3              |
 |                         | binomial distribution with u=8      |
 |                         | Modulus q=2^{13} and p=2^{10}       |
 |=========================+=====================================|
@@ -2444,7 +2446,7 @@ NTRUPrivateKey ::= SEQUENCE {
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Degree n= 256                       |
-|                         | rank of the module ?= 4             |
+|                         | rank of the module l=4              |
 |                         | binomial distribution with u=6      |
 |                         | Modulus q=2^{13} and p=2^{10}       |
 |=========================+=====================================|
@@ -2453,7 +2455,7 @@ NTRUPrivateKey ::= SEQUENCE {
 </div>
 <figcaption><a href="#figure-8" class="selfRef">Figure 8</a></figcaption></figure>
 </div>
-<p id="section-6.1-3">The rank of the module is denoted ? and differs per parameter set.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.1-3">The rank of the module is denoted l and differs per parameter set.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 </section>
 <section id="section-6.2">
         <h3 id="name-key-details-4">
@@ -2466,31 +2468,31 @@ NTRUPrivateKey ::= SEQUENCE {
           <li class="compact" id="section-6.2-2.2">polynomials of degree 256 with 10-bit integer coefficients denoted by vector b.<a href="#section-6.2-2.2" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-6.2-3">This means the size of the public key can be stored using ?*256*10+256 bits. The size of the public key as used in the three parameter sets can be found in the Table below.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
-<p id="section-6.2-4">Secret key. The secret key s consists of three parameters:<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2-3">This means the size of the public key can be stored using l*256*10+256 bits. The size of the public key as used in the three parameter sets can be found in the Table below.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2-4">Private key. The private key s consists of three parameters:<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-6.2-5.1">a 256-bit uniform random value z<a href="#section-6.2-5.1" class="pilcrow">¶</a>
 </li>
-          <li class="compact" id="section-6.2-5.2"> ? polynomials of degree 256 with 13-bit integer coefficients denoted by s<a href="#section-6.2-5.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-6.2-5.2">l polynomials of degree 256 with 13-bit integer coefficients denoted by s<a href="#section-6.2-5.2" class="pilcrow">¶</a>
 </li>
           <li class="compact" id="section-6.2-5.3">H(pk): hashed public key (32 bytes)<a href="#section-6.2-5.3" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-6.2-6">This means the secret key can be stored using 512+?*256*13 bits. The size of the secret key as used in the three parameter sets can be found in the Table below.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.2-6">This means the private key can be stored using 512+l*256*13 bits. The size of the private key as used in the three parameter sets can be found in the Table below.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
 <div id="SABERKeySizes">
 <figure id="figure-9">
           <div class="artwork art-text alignLeft" id="section-6.2-7.1">
 <pre>
 
-|==========================+=========+==========|
-| Algorithm                | Public  |   Secret |
-|                          | Key     |   Key    |
-|                          | Length  |   Length |
-|==========================+=========+==========+
-| LightSaber-r3            |    672  |    896   |
-| Saber-r3                 |    992  |   1312   |
-| FireSaber-r3             |   1312  |   1728   |
-|==========================+=========+==========|
+|==========================+=========+===========|
+| Algorithm                | Public  |   Private |
+|                          | Key     |   Key     |
+|                          | Length  |   Length  |
+|==========================+=========+===========+
+| LightSaber-r3            |    672  |    896    |
+| Saber-r3                 |    992  |   1312    |
+| FireSaber-r3             |   1312  |   1728    |
+|==========================+=========+===========|
 
 </pre>
 </div>
@@ -2498,8 +2500,8 @@ NTRUPrivateKey ::= SEQUENCE {
 </div>
 </section>
 <section id="section-6.3">
-        <h3 id="name-secret-key-full-encoding-4">
-<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-secret-key-full-encoding-4" class="section-name selfRef">Secret Key Full Encoding</a>
+        <h3 id="name-private-key-full-encoding-4">
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-private-key-full-encoding-4" class="section-name selfRef">Private key Full Encoding</a>
         </h3>
 <p id="section-6.3-1">A SABER private key encoded according with PKCS#8 MUST include the following two fields:<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 <ul class="compact">
@@ -2516,7 +2518,7 @@ SABERPrivateKey ::= SEQUENCE {
     version     INTEGER  {v0(0)}    -- version (round 3)
     z           OCTET STRING,       -- 32-byte random value z
     s           OCTET STRING,       -- short integer polynomial s
-    PublicKey   [0] IMPLICIT SABERPublicKey OPTIONAL,
+    publicKey   [0] IMPLICIT SABERPublicKey OPTIONAL,
                                     -- see next section
     hpk         OCTET STRING        -- H(pk)
 }
@@ -2545,8 +2547,8 @@ SABERPublicKey := SEQUENCE {
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-crystals-dilithium" class="section-name selfRef">CRYSTALS-DILITHIUM</a>
       </h2>
 <p id="section-7-1">Dilithium is a digital signature scheme that is based on the hardness of lattice problems over module lattices.
-                Project Website:    https://pq-crystals.org/dilithium/index.shtml
-                NIST Round 3 Submission (version 3.1):    https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Dilithium-Round3.zip
+                Project Website: https://pq-crystals.org/dilithium/index.shtml
+                NIST Round 3 Submission (version 3.1): https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Dilithium-Round3.zip
                 https://pq-crystals.org/dilithium/data/dilithium-specification-round3-20210208.pdf<a href="#section-7-1" class="pilcrow">¶</a></p>
 <section id="section-7.1">
         <h3 id="name-algorithm-parameter-identifiers">
@@ -2565,8 +2567,8 @@ SABERPublicKey := SEQUENCE {
 |                         | 1.3.6.1.4.1.2.267.7.4.4             |
 | NIST Level Security     | Level 2                             |
 |-------------------------|-------------------------------------|
-| Parameters              | Polynomial Ring Zq[x]/( x^n +1)     |
-|                         | Dimension/Degree n= 256             |
+| Parameters              | Polynomial Ring Zq[x]/( x^n+1 )     |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=39             |
@@ -2574,7 +2576,7 @@ SABERPublicKey := SEQUENCE {
 |                         | gamma coefficient range: gamma1=2^17|
 |                         | low-order rounding range: gamma2=(q-|
 |                         | 1)/88                               |
-|                         | Secret Key Range (nu)=2             |
+|                         | Private key Range eta=2             |
 |                         | Dimensions of A: (k,l)=(4,4)        |
 |                         | Max # of 1's in the hint h: w=80    |
 |                         | Repetitions=4.25                    |
@@ -2586,7 +2588,7 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 2                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=39             |
@@ -2594,7 +2596,7 @@ SABERPublicKey := SEQUENCE {
 |                         | y coefficient range: gamma1=2^17    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/88                              |
-|                         | Secret Key Range (nu)=2             |
+|                         | Private key Range eta=2             |
 |                         | Dimensions of A: (k,l)=(4,4)        |
 |                         | Max # of 1's in the hint h: w=80    |
 |                         | Repetitions=4.25                    |
@@ -2606,15 +2608,15 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
-|                         | # of +-1's in c: ?=49               |
+|                         | # of +-1's in c: tau=49             |
 |                         | challenge entropy=225               |
 |                         | y coefficient range: gamma1=2^19    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/32                              |
-|                         | Secret Key Range (nu)=4             |
+|                         | Private key Range eta=4             |
 |                         | Dimensions of A: (k,l)=(6,5)        |
 |                         | Max # of 1's in the hint h: w=55    |
 |                         | Repetitions=5.1                     |
@@ -2626,7 +2628,7 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n +1 )    |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=49             |
@@ -2634,7 +2636,7 @@ SABERPublicKey := SEQUENCE {
 |                         | y coefficient range: gamma1=2^19    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/32                              |
-|                         | Secret Key Range (nu)=4             |
+|                         | Private key Range eta=4             |
 |                         | Dimensions of A: (k,l)=(6,5)        |
 |                         | Max # of 1's in the hint h: w=55    |
 |                         | Repetitions=5.1                     |
@@ -2646,15 +2648,15 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=60             |
 |                         | challenge entropy=257               |
-|                         | y coefficient range: ?1=2^19        |
+|                         | y coefficient range: gamma1=2^19    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/32                              |
-|                         | Secret Key Range (nu)=2             |
+|                         | Private key Range eta=2             |
 |                         | Dimensions of A: (k,l)=(8,7)        |
 |                         | Max # of 1's in the hint h: w=75    |
 |                         | Repetitions=3.85                    |
@@ -2666,7 +2668,7 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=60             |
@@ -2674,7 +2676,7 @@ SABERPublicKey := SEQUENCE {
 |                         | y coefficient range: gamma1=2^19    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/32                              |
-|                         | Secret Key Range (nu)=2             |
+|                         | Private key Range eta=2             |
 |                         | Dimensions of A: (k,l)=(8,7)        |
 |                         | Max # of 1's in the hint h: w=75    |
 |                         | Repetitions=3.85                    |
@@ -2698,7 +2700,7 @@ SABERPublicKey := SEQUENCE {
 </li>
         </ul>
 <p id="section-7.2-3">The size necessary to hold all public key elements accounts to 32+320*k bytes.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
-<p id="section-7.2-4">Secret key. The secret key consists of 6 parameters:<a href="#section-7.2-4" class="pilcrow">¶</a></p>
+<p id="section-7.2-4">Private key. The private key consists of 6 parameters:<a href="#section-7.2-4" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-7.2-5.1">rho: nonce<a href="#section-7.2-5.1" class="pilcrow">¶</a>
 </li>
@@ -2713,25 +2715,25 @@ SABERPublicKey := SEQUENCE {
           <li class="compact" id="section-7.2-5.6">t0: k polynomials<a href="#section-7.2-5.6" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-7.2-6">If the secret key is fully populated, it consists of 6 parameters. The size necessary to hold all secret key elements accounts to 32+32+32+32*[(k+l)*ceiling(log(2*nu+1))+13*k] bytes.
+<p id="section-7.2-6">If the private key is fully populated, it consists of 6 parameters. The size necessary to hold all private key elements accounts to 32+32+32+32*[(k+l)*ceiling(log(2*eta+1))+13*k] bytes.
                     The resulting public key and private key sizes can be found in the table below.<a href="#section-7.2-6" class="pilcrow">¶</a></p>
 <div id="DilithiumKeySizes">
 <figure id="figure-11">
           <div class="artwork art-text alignLeft" id="section-7.2-7.1">
 <pre>
 
-|=========================+========+========+=========+=========|
-| Algorithm               | Public | Secret | Partial | Partial |
-|                         | Key    | Key SK | SK (V1) | SK (V2) |
-|                         | Length | Length | Length  | Length  |
-|=========================+========+========+=========+=========+
-| dilithium-4x4-r3        | 1312   | 2528   |   64    |    32   |
-| dilithium-4x4-aes-r3    | 1312   | 2528   |   64    |    32   |
-| dilithium-6x5-r3        | 1952   | 4000   |   64    |    32   |
-| dilithium-6x5-aes-r3    | 1952   | 4000   |   64    |    32   |
-| dilithium-8x7-r3        | 2596   | 4864   |   64    |    32   |
-| dilithium-8x7-aes-r3    | 2592   | 4864   |   64    |    32   |
-|=========================+========+========+=========+=========|
+|=========================+========+=========+=========+=========|
+| Algorithm               | Public | Private | Partial | Partial |
+|                         | Key    | Key SK  | SK (V1) | SK (V2) |
+|                         | Length | Length  | Length  | Length  |
+|=========================+========+=========+=========+=========+
+| dilithium-4x4-r3        | 1312   | 2528    |   64    |    32   |
+| dilithium-4x4-aes-r3    | 1312   | 2528    |   64    |    32   |
+| dilithium-6x5-r3        | 1952   | 4000    |   64    |    32   |
+| dilithium-6x5-aes-r3    | 1952   | 4000    |   64    |    32   |
+| dilithium-8x7-r3        | 2592   | 4864    |   64    |    32   |
+| dilithium-8x7-aes-r3    | 2592   | 4864    |   64    |    32   |
+|=========================+========+=========+=========+=========|
 
 </pre>
 </div>
@@ -2739,8 +2741,8 @@ SABERPublicKey := SEQUENCE {
 </div>
 </section>
 <section id="section-7.3">
-        <h3 id="name-secret-key-full-encoding-5">
-<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-secret-key-full-encoding-5" class="section-name selfRef">Secret Key Full Encoding</a>
+        <h3 id="name-private-key-full-encoding-5">
+<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-private-key-full-encoding-5" class="section-name selfRef">Private key Full Encoding</a>
         </h3>
 <p id="section-7.3-1">A Dilithium private key encoded according with PKCS#8 MUST include the following two fields:<a href="#section-7.3-1" class="pilcrow">¶</a></p>
 <ul class="compact">
@@ -2762,7 +2764,7 @@ DilithiumPrivateKey ::= SEQUENCE {
     s1          BIT STRING,         -- vector(L)
     s2          BIT STRING,         -- vector(K)
     t0          BIT STRING,
-    PublicKey  [0] IMPLICIT DilithiumPublicKey OPTIONAL
+    publicKey  [0] IMPLICIT DilithiumPublicKey OPTIONAL
                                     -- see next section
 }
 
@@ -2770,8 +2772,8 @@ DilithiumPrivateKey ::= SEQUENCE {
 </div>
 </section>
 <section id="section-7.4">
-        <h3 id="name-secret-key-partial-encoding-">
-<a href="#section-7.4" class="section-number selfRef">7.4. </a><a href="#name-secret-key-partial-encoding-" class="section-name selfRef">Secret Key Partial Encoding Option 1</a>
+        <h3 id="name-private-key-partial-encoding">
+<a href="#section-7.4" class="section-number selfRef">7.4. </a><a href="#name-private-key-partial-encoding" class="section-name selfRef">Private key Partial Encoding Option 1</a>
         </h3>
 <p id="section-7.4-1">In option 1 of Dilithium partial encoding the rho (nonce) and the seed (key) are used to regenerate the full key.
                     Note: There are a number of alternative ways to encode a partially filled structure that include defining fields as optional and defining fields as 'EMPTY'. As an example partial RSA keys are encoded using EMPTY fields. It can be argued that defining fields as EMPTY significantly simplifies the implementation of parsing ASN.1 frames.
@@ -2788,7 +2790,7 @@ DilithiumPrivateKey ::= SEQUENCE {
     s1          BIT STRING,         -- EMPTY
     s2          BIT STRING,         -- EMPTY
     t0          BIT STRING,         -- EMPTY
-    PublicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
+    publicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
                                     -- see next section
 }
 
@@ -2796,8 +2798,8 @@ DilithiumPrivateKey ::= SEQUENCE {
 </div>
 </section>
 <section id="section-7.5">
-        <h3 id="name-secret-key-partial-encoding-o">
-<a href="#section-7.5" class="section-number selfRef">7.5. </a><a href="#name-secret-key-partial-encoding-o" class="section-name selfRef">Secret Key Partial Encoding Option 2</a>
+        <h3 id="name-private-key-partial-encoding-">
+<a href="#section-7.5" class="section-number selfRef">7.5. </a><a href="#name-private-key-partial-encoding-" class="section-name selfRef">Private key Partial Encoding Option 2</a>
         </h3>
 <p id="section-7.5-1">In option 2 of Dilithium partial encoding only zeta (nonce) is used to regenerate the full key.
                     The ASN.1 encoding for this is defined as follows:<a href="#section-7.5-1" class="pilcrow">¶</a></p>
@@ -2812,7 +2814,7 @@ DilithiumPrivateKey ::= SEQUENCE {
     s1          BIT STRING,         -- EMPTY
     s2          BIT STRING,         -- EMPTY
     t0          BIT STRING,         -- EMPTY
-    PublicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
+    publicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
                                    -- see next section
 }
 
@@ -2860,13 +2862,13 @@ DilithiumPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n = 512            |
-|                         | Polynomial Phi = 1+X{n}             |
+|                         | Polynomial Phi = 1+x^n              |
 |                         | Modulus q = 12289                   |
 |                         | Max. signature square norm          |
-|                         | floor (beta2) = 34034726            |
+|                         | floor (beta^2) = 34034726           |
 |                         | Standard deviation = 165.736617183  |
-|                         | sigmamax = 1.8205                   |
-|                         | sigmamin = 1.27783369               |
+|                         | sigma_{max} = 1.8205                |
+|                         | sigma_{min} = 1.27783369            |
 |=========================+=====================================|
 | falcon1024-r3                                                 |
 |=========================+=====================================|
@@ -2875,13 +2877,13 @@ DilithiumPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n = 1024           |
-|                         | Polynomial Phi = 1+X{n}             |
+|                         | Polynomial Phi = 1+x^n              |
 |                         | Modulus q = 12289                   |
 |                         | Max. signature square norm          |
-|                         | floor (beta2) = 34034726            |
+|                         | floor (beta^2) = 34034726           |
 |                         | Standard deviation = 168.388571447  |
-|                         | sigmamax = 1.8205                   |
-|                         | sigmamin = 1.298280334              |
+|                         | sigma_{max} = 1.8205                |
+|                         | sigma_{min} = 1.298280334           |
 |=========================+=====================================|
 
 </pre>
@@ -2893,26 +2895,26 @@ DilithiumPublicKey ::= SEQUENCE {
         <h3 id="name-key-details-6">
 <a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-key-details-6" class="section-name selfRef">Key Details</a>
         </h3>
-<p id="section-8.2-1">The FALCON secret key contains the key components f, g and F.
-                    Each coefficient of f and g is encoded over a fixed number of bits, which depends on the degree of f and g: 6 bits each for degree 512 (parameter name = falcon512-r3) and 5 bits each for degree 1024 (parameter name = falcon1024-r3). Coefficients of F use 8 bits each, regardless of its degree. Each coefficient uses signed encoding, with two's complement for negative values. Moreover, the minimal value is forbidden, e.g. when using degree 512, the valid range for a coefficient of f or g is ?31 to +31; ?32 is not allowed.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
-<div id="FALCONSecretKeySizes">
+<p id="section-8.2-1">The FALCON private key contains the key components f, g and F.
+                    Each coefficient of f and g is encoded over a fixed number of bits, which depends on the degree of f and g: 6 bits each for degree 512 (parameter name = falcon512-r3) and 5 bits each for degree 1024 (parameter name = falcon1024-r3). Coefficients of F use 8 bits each, regardless of its degree. Each coefficient uses signed encoding, with two's complement for negative values. Moreover, the minimal value is forbidden, e.g. when using degree 512, the valid range for a coefficient of f or g is -31 to +31; -32 is not allowed.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
+<div id="FALCONPrivateKeySizes">
 <figure id="figure-13">
           <div class="artwork art-text alignLeft" id="section-8.2-2.1">
 <pre>
 
-|==========================+=========+==========|
-| Algorithm OID            | Params  |   Secret |
-|                          |         |   Key    |
-|                          |         |   Length |
-|==========================+=========+==========+
-| falcon512-r3             | f=384   | 1280     |
-|                          | g=384   |          |
-|                          | F=512   |          |
-|--------------------------+---------+----------|
-| falcon1024-r3            | f=640   | 2304     |
-|                          | g=640   |          |
-|                          | F=1024  |          |
-|==========================+=========+==========+
+|==========================+=========+===========|
+| Algorithm OID            | Params  |   Private |
+|                          |         |   Key     |
+|                          |         |   Length  |
+|==========================+=========+===========+
+| falcon512-r3             | f=384   | 1280      |
+|                          | g=384   |           |
+|                          | F=512   |           |
+|--------------------------+---------+-----------|
+| falcon1024-r3            | f=640   | 2304      |
+|                          | g=640   |           |
+|                          | F=1024  |           |
+|==========================+=========+===========+
 
 </pre>
 </div>
@@ -2920,8 +2922,8 @@ DilithiumPublicKey ::= SEQUENCE {
 </div>
 </section>
 <section id="section-8.3">
-        <h3 id="name-secret-key-full-encoding-6">
-<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-secret-key-full-encoding-6" class="section-name selfRef">Secret Key Full Encoding</a>
+        <h3 id="name-private-key-full-encoding-6">
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-private-key-full-encoding-6" class="section-name selfRef">Private key Full Encoding</a>
         </h3>
 <p id="section-8.3-1">Encoding a FALCON private key with PKCS#8 must include the following two fields:<a href="#section-8.3-1" class="pilcrow">¶</a></p>
 <ul class="compact">
@@ -2939,8 +2941,8 @@ FALCONPrivateKey ::= SEQUENCE {
     version     INTEGER {v2(1)}    -- syntax version 2 (round 3)
     f           OCTET STRING,      -- short integer polynomial f
     g           OCTET STRING,      -- short integer polynomial g
-    F           OCTET STRING,      -- short integer polynomial F
-    PublicKey   [0] IMPLICIT FALCONPublicKey  OPTIONAL
+    f           OCTET STRING,      -- short integer polynomial F
+    publicKey   [0] IMPLICIT FALCONPublicKey  OPTIONAL
                                    -- see next section
 }
 
@@ -3061,7 +3063,7 @@ FALCONPublicKey := SEQUENCE {
         </ul>
 <p id="section-9.2-3">This mapping can be expressed as m quadratic polynomials in the ring F[x1, ... , xn], which means the public key consists of m*(n+1)*(n+2)/2 elements of F. With optimizations (see Rainbow specification), this can be reduced to m*n*(n+1)/2 elements of F. The size necessary to hold all public key elements accounts to m*n*(n+1)/16*f bytes, where f=4 for rainbowI and 8 for rainbowIII and rainbowV. For all parameter sets ell is 16 bytes.
                     
-                    Secret key. The secret key consists of 4 parameters:<a href="#section-9.2-3" class="pilcrow">¶</a></p>
+                    Private key. The private key consists of 4 parameters:<a href="#section-9.2-3" class="pilcrow">¶</a></p>
 <ul class="compact">
 <li class="compact" id="section-9.2-4.1">S: affine map from F^{m} to F^{m}<a href="#section-9.2-4.1" class="pilcrow">¶</a>
 </li>
@@ -3088,7 +3090,7 @@ FALCONPublicKey := SEQUENCE {
         </ul>
 <p id="section-9.2-9">The partial public key now consists of 5 submatrices totaling o1*o2*v1 + o1*o1*(o1+1)/2 +o1*o2*o1 + o1*o2*(o2+1)/2 + o2*o2*(o2+1)/2 elements of F. 
                     Additionally the seed spub is 32 bytes.
-                    The secret key can also be stored as the seeds of the key generation process spriv (32 bytes) and spub (32 bytes). 
+                    The private key can also be stored as the seeds of the key generation process spriv (32 bytes) and spub (32 bytes). 
                     This is denoted as the compressed key and has a size of total 64 bytes. 
                     The resulting public key and private key sizes can be found in the table below.<a href="#section-9.2-9" class="pilcrow">¶</a></p>
 <div id="RainbowKeySizes">
@@ -3097,7 +3099,7 @@ FALCONPublicKey := SEQUENCE {
 <pre>
 
 |=========================+==========+=========|
-| Algorithm               | Public   | Secret  |
+| Algorithm               | Public   | Private |
 |                         | Key      | Key     |
 |                         | Length   | Length  |
 |=========================+==========+=========+
@@ -3115,8 +3117,8 @@ FALCONPublicKey := SEQUENCE {
 </div>
 </section>
 <section id="section-9.3">
-        <h3 id="name-secret-key-full-encoding-7">
-<a href="#section-9.3" class="section-number selfRef">9.3. </a><a href="#name-secret-key-full-encoding-7" class="section-name selfRef">Secret Key Full Encoding</a>
+        <h3 id="name-private-key-full-encoding-7">
+<a href="#section-9.3" class="section-number selfRef">9.3. </a><a href="#name-private-key-full-encoding-7" class="section-name selfRef">Private key Full Encoding</a>
         </h3>
 <p id="section-9.3-1">A Rainbow private key encoded according with PKCS#8 MUST include the following two fields:<a href="#section-9.3-1" class="pilcrow">¶</a></p>
 <ul class="compact">
@@ -3133,11 +3135,11 @@ FALCONPublicKey := SEQUENCE {
 
 RainbowPrivateKey ::= SEQUENCE {
     version    INTEGER {v0(0)}       -- version (round 3)
-    S          OCTET STRING,         -- map S
-    T          OCTET STRING,         -- map T
-    F          OCTET STRING,         -- map F
+    s          OCTET STRING,         -- map S
+    t          OCTET STRING,         -- map T
+    f          OCTET STRING,         -- map F
     ell        OCTET STRING,
-    PublicKey  [0] IMPLICIT RainbowPublicKey OPTIONAL
+    publicKey  [0] IMPLICIT RainbowPublicKey OPTIONAL
     -- see next section
 }
 
@@ -3145,8 +3147,8 @@ RainbowPrivateKey ::= SEQUENCE {
 </div>
 </section>
 <section id="section-9.4">
-        <h3 id="name-secret-key-partial-encoding-2">
-<a href="#section-9.4" class="section-number selfRef">9.4. </a><a href="#name-secret-key-partial-encoding-2" class="section-name selfRef">Secret Key Partial Encoding</a>
+        <h3 id="name-private-key-partial-encoding-2">
+<a href="#section-9.4" class="section-number selfRef">9.4. </a><a href="#name-private-key-partial-encoding-2" class="section-name selfRef">Private key Partial Encoding</a>
         </h3>
 <p id="section-9.4-1">A partially populated private key is used when Compressed Rainbow is used. 
                     In this case, spriv and spub are used to regenerate the full key.
@@ -3159,7 +3161,7 @@ RainbowPrivateKey ::= SEQUENCE {
     s_priv     OCTET STRING,    -- seed for private key
     s_pub      OCTET STRING,    -- seed for public key
     ell        OCTET STRING,
-    PublicKey  [0] IMPLICIT RainbowPublicKey OPTIONAL
+    publicKey  [0] IMPLICIT RainbowPublicKey OPTIONAL
                                 -- see next section
 }
 
@@ -3178,7 +3180,7 @@ RainbowPrivateKey ::= SEQUENCE {
 
 RainbowPublicKey ::= SEQUENCE {
     s_pub      OCTET STRING      -- (EMPTY)
-    P          OCTET STRING,
+    p          OCTET STRING,
     ell        OCTET STRING
 }
 
@@ -3291,7 +3293,7 @@ RainbowPublicKey ::= SEQUENCE {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Silvio Dragione (<span class="role">editor</span>)</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Silvio Dragone (<span class="role">editor</span>)</span></div>
 <div dir="auto" class="left"><span class="org">IBM Research GmbH</span></div>
 <div dir="auto" class="left"><span class="street-address">Saeumerstrasse 4</span></div>
 <div dir="auto" class="left">CH-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
@@ -3299,7 +3301,7 @@ RainbowPublicKey ::= SEQUENCE {
 <div dir="auto" class="left"><span class="country-name">Switzerland</span></div>
 <div class="email">
 <span>Email:</span>
-<a href="mailto:sdi@zurich.ibm.com" class="email">sdi@zurich.ibm.com</a>
+<a href="mailto:sid@zurich.ibm.com" class="email">sid@zurich.ibm.com</a>
 </div>
 </address>
 <address class="vcard">
@@ -3315,7 +3317,7 @@ RainbowPublicKey ::= SEQUENCE {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Tamas Visgrady (<span class="role">editor</span>)</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Tamas Visegrady (<span class="role">editor</span>)</span></div>
 <div dir="auto" class="left"><span class="org">IBM Research GmbH</span></div>
 <div dir="auto" class="left"><span class="street-address">Saeumerstrasse 4</span></div>
 <div dir="auto" class="left">CH-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
