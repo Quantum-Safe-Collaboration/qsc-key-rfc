@@ -598,7 +598,7 @@ SubjectPublicKeyInfo := SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Private key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>Distributing a Classic McEliece private key with PKCS#8 involves including: </t>
                 <ul spacing="compact">
@@ -780,7 +780,7 @@ McEliecePublicKey ::= SEQUENCE {
             </section>
 
             <section numbered="true" toc="default">
-                <name>Private key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>Distributing a Kyber private key with PKCS#8 requires:</t>
                 <ul spacing="compact">
@@ -973,7 +973,7 @@ KyberPublicKey ::= SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Private key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>An NTRU private key encoded according with PKCS#8 MUST include the following two fields:</t>
                 <ul spacing="compact">
@@ -1095,7 +1095,7 @@ NTRUPrivateKey ::= SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Private key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>A SABER private key encoded according with PKCS#8 MUST include the following two fields:</t>
                 <ul spacing="compact">
@@ -1314,7 +1314,7 @@ SABERPublicKey := SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Private key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
                 <t>A Dilithium private key encoded according with PKCS#8 MUST include the following two fields:</t>
                 <ul spacing="compact">
                     <li>dilithium-(kxl)-r3 in the algorithm field of AlgorithmIdentifier</li>
@@ -1474,7 +1474,7 @@ DilithiumPublicKey ::= SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Private key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>Encoding a FALCON private key with PKCS#8 must include the following two fields: </t>
                 <ul spacing="compact">
@@ -1644,7 +1644,7 @@ FALCONPublicKey := SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Private key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>A Rainbow private key encoded according with PKCS#8 MUST include the following two fields: </t>
                 <ul spacing="compact">
