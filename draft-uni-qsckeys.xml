@@ -6,7 +6,7 @@ which is available here: http://xml.resource.org. -->
 <!-- used by XSLT processors --> 
 <!-- For a complete list and description of processing instructions (PIs), 
 please see http://xml.resource.org/authoring/README.html. -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info" docName="draft-uni-qsckeys-00" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info" docName="draft-uni-qsckeys-01" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
     <!-- xml2rfc v2v3 conversion 2.38.1 -->
     <!-- category values: std, bcp, info, exp, and historic
     ipr values: trust200902, noModificationTrust200902, noDerivativesTrust200902,
@@ -21,7 +21,7 @@ please see http://xml.resource.org/authoring/README.html. -->
         full title is longer than 39 characters -->
 
         <title abbrev="QSC Cryptography Key Information"> Quantum Safe Cryptography Key Information</title>
-        <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-00" />
+        <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-01" />
         <!-- add 'role="editor"' below for the editors if appropriate -->
 
         <author fullname="Christine van Vredendaal" initials="C.v.V." role="editor" surname="Vredendaal">
@@ -42,7 +42,7 @@ please see http://xml.resource.org/authoring/README.html. -->
         </author>
         <!-- Another author who claims to be an editor -->
 
-        <author fullname="Silvio Dragione " initials="S.D." role="editor" surname="Dragone">
+        <author fullname="Silvio Dragone" initials="S.D." role="editor" surname="Dragone">
             <organization>IBM Research GmbH</organization>
             <address>
                 <postal>
@@ -54,7 +54,7 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <code>8803</code>
                     <country>CH</country>
                 </postal>
-                <email>sdi@zurich.ibm.com</email>
+                <email>sid@zurich.ibm.com</email>
                 <!-- uri and facsimile elements may also be added -->
             </address>
         </author>
@@ -76,7 +76,7 @@ please see http://xml.resource.org/authoring/README.html. -->
             </address>
         </author>
 
-        <author fullname="Tamas Visgrady" initials="T.V." role="editor" surname="Visegrady">
+        <author fullname="Tamas Visegrady" initials="T.V." role="editor" surname="Visegrady">
             <organization>IBM Research GmbH</organization>
             <address>
                 <postal>
@@ -146,7 +146,7 @@ please see http://xml.resource.org/authoring/README.html. -->
         </author>
 
 
-        <date year="2021" />
+        <date year="2022" />
         <!-- If the month and year are both specified and are the current ones, xml2rfc will fill
         in the current day for you. If only the current year is specified, xml2rfc will fill
         in the current day and month for you. If the year is not the current one, it is
@@ -216,9 +216,9 @@ please see http://xml.resource.org/authoring/README.html. -->
                 </t>
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
-AlgorithmIdentifier  ::=  SEQUENCE  {
-algorithm  OBJECT IDENTIFIER, - OID: algorithm and algo parameter 
-parameters pqcAlgorithmParameterName OPTIONAL
+AlgorithmIdentifier ::=  SEQUENCE {
+    algorithm  OBJECT IDENTIFIER, - OID: algorithm and algo parameter 
+    parameters pqcAlgorithmParameterName OPTIONAL
 }
 pqcAlgorithmParameterName ::= PrintableString
 ]]>
@@ -247,32 +247,32 @@ pqcAlgorithmParameterName ::= PrintableString
 | kyber-512-r3                                                  |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-512-r3 }           |
-|         |dot. | 1.3.6.1.4.1.2.267.8.2.2                       |
+|         |dot. |                                               |
 |---------+-----+-----------------------------------------------|
 | kyber-512-90s-r3                                              |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-512-90s-r3}        |
-|         |dot  | 1.3.6.1.4.1.2.267.10.2.2                      |
+|         |dot  |                                               |
 |---------------+-----+-----------------------------------------|
 | kyber-768-r3                                                  |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-768-r3 }           |
-|         |dot  | 1.3.6.1.4.1.2.267.8.3.3                       |
+|         |dot  |                                               |
 |---------------+-----+-----------------------------------------|
 | kyber-768-90s-r3                                              |
 |---------------+-----+-----------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-768-90s-r3 }       |
-|         |dot  | 1.3.6.1.4.1.2.267.10.3.3                      |
+|         |dot  |                                               |
 |---------+-----+-----------------------------------------------|
 | kyber-1024-r3                                                 |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-1024-r3 }          |
-|         |dot  | 1.3.6.1.4.1.2.267.8.4.4                       |
+|         |dot  |                                               |
 |---------+-----+-----------------------------------------------|
 | kyber-1024-90s-r3                                             |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-kem-kyber kyber-1024-90s-r3}       |
-|         |dot  | 1.3.6.1.4.1.2.267.10.4.4                      |
+|         |dot  |                                               |
 |=========+=====+===============================================|
 | NTRU (PQC KEM)                                                |
 |=========+=====+===============================================|
@@ -308,7 +308,7 @@ pqcAlgorithmParameterName ::= PrintableString
 | dilithium-4x4-r3                                              |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1|{..*.. pqc-ds-dilithium dilithium-4x4-r3}      |
-|         |dot  | 1.3.6.1.4.1.2.267.7.4.4                       |
+|         |dot  |                                               |
 |---------------+-----+-----------------------------------------|
 | dilithium-4x4-aes-r3                                          |
 |---------+-----+-----------------------------------------------|
@@ -318,7 +318,7 @@ pqcAlgorithmParameterName ::= PrintableString
 | dilithium-6x5-r3                                              |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-ds-dilithium dilithium-6x5-r3}     |
-|         | Dot | 1.3.6.1.4.1.2.267.7.6.5                       |
+|         | Dot |                                               |
 |---------+-----+-----------------------------------------------|
 | dilithium-6x5-aes-r3                                          |
 |---------+-----+-----------------------------------------------|
@@ -328,7 +328,7 @@ pqcAlgorithmParameterName ::= PrintableString
 | dilithium-8x7-r3                                              |
 |---------+-----+-----------------------------------------------|
 |         |ASN.1| {..*.. pqc-ds-dilithium dilithium-8x7-r3}     |
-|         |Dot  | 1.3.6.1.4.1.2.267.7.8.7                       |
+|         |Dot  |                                               |
 |---------+-----+-----------------------------------------------|
 | dilithium-8x7-aes-r3                                          |
 |---------+-----+-----------------------------------------------|
@@ -361,7 +361,7 @@ pqcAlgorithmParameterName ::= PrintableString
             <section numbered="true" toc="default">
                 <name>Key Formats</name>
                 <t>
-                    The Secret Key Format defined is from PKCS#8
+                    The private key format defined is from PKCS#8
                     <xref target="RFC5208" format="default"></xref>
                     .
                     PKCS#8 PrivateKeyInfo is defined as:
@@ -381,13 +381,13 @@ PrivateKeyInfo ::=  SEQUENCE {
             <section numbered="true" toc="default">
                 <name>
                     Public Key Format based on
-                    <xref target="RFC5480" format="default"></xref>
+                    <xref target="RFC5280" format="default"></xref>
                 </name>
 
-                <t>RFC5480 subjectPublicKeyInfo is defined in as:</t>
+                <t>RFC5280 subjectPublicKeyInfo is defined in as:</t>
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
-subjectPublicKeyInfo := SEQUENCE {
+SubjectPublicKeyInfo := SEQUENCE {
     algorithm          AlgorithmIdentifier  -- see chapter above
     subjectPublicKey   BIT STRING           -- see chapter below
 }
@@ -558,10 +558,12 @@ subjectPublicKeyInfo := SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Key Details</name>
 
-                <t>Public key. The public-key consists of 
-            * T: mt x k matrix
-            Each row of T is represented as a ceiling(k/8)-byte string, and the public key is represented as the mt*ceiling(k/8)-byte concatenation of these strings.
-            Secret key. The secret key consists of five parameters:</t>
+                <t>Public key. The public-key consists of</t>
+                    <ul spacing="compact">
+                        <li>T: mt x k matrix</li>
+                    </ul>
+            <t>Each row of T is represented as a ceiling(k/8)-byte string, and the public key is represented as the mt*ceiling(k/8)-byte concatenation of these strings.
+            Private key. The private key consists of five parameters:</t>
                 <ul spacing="compact">
                     <li>delta: nonce</li>
                     <li>C    : column selections</li>
@@ -569,14 +571,14 @@ subjectPublicKeyInfo := SEQUENCE {
                     <li>alpha: field orderings</li>
                     <li>s    : uniform random n-bit string</li>
                 </ul>
-                <t>The size necessary to hold all secret key elements accounts to ceiling(l / 8) + [ceiling(nu / 8) | 8] + ceiling(m / 8) + ceiling((2*m - 1) * 2*m - 4) + ceiling(n / 8) bytes.
+                <t>The size necessary to hold all private key elements accounts to ceiling(l / 8) + [ceiling(nu / 8) | 8] + ceiling(m / 8) + ceiling((2*m - 1) * 2*m - 4) + ceiling(n / 8) bytes.
             The resulting public key and private key sizes can be found in the table below.</t>
                 <figure anchor="McElieceKeySizes">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
 |=====================+=================+================|
 | Parameter Set.      | Size of the     | Size of the    |
-|                     | public key      | secret key     |
+|                     | public key      | private key    |
 |                     | in bytes.       | in bytes       |
 |=====================+=================+================|
 | mceliece348864-r3   |       261120    |       6492     |
@@ -596,7 +598,7 @@ subjectPublicKeyInfo := SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Secret Key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>Distributing a Classic McEliece private key with PKCS#8 involves including: </t>
                 <ul spacing="compact">
@@ -608,13 +610,13 @@ subjectPublicKeyInfo := SEQUENCE {
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
 McEliecePrivateKey ::= SEQUENCE {
-    Version    INTEGER {v0(0)} -- version (round 3)
+    version    INTEGER {v0(0)} -- version (round 3)
     delta      OCTET STRING,   -- nonce
     C          OCTET STRING,   -- column selections
     g          OCTET STRING,   -- monic irreducible polynomial
     alpha      OCTET STRING,   -- field orderings
     s          OCTET STRING,   -- random n-bit string
-    PublicKey  [0] IMPLICIT McEliecePublicKey OPTIONAL 
+    publicKey  [0] IMPLICIT McEliecePublicKey OPTIONAL 
                                 -- see next section
 }
 ]]>
@@ -624,8 +626,7 @@ McEliecePrivateKey ::= SEQUENCE {
                 <name>Public Key Full Encoding</name>
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
-Classic McEliece Public Key Format  
-    McEliecePublicKey ::= SEQUENCE {
+McEliecePublicKey ::= SEQUENCE {
     T       OCTET STRING    -- public key
 }
 ]]>
@@ -656,8 +657,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=2                                 |
 |                         | q=3329                              |
-|                         | nu_1=3                              |
-|                         | nu_2=2                              |
+|                         | eta_1=3                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(10, 4)                  |
 |                         | delta=2^{-139}                      |
 |=========================+=====================================|
@@ -670,8 +671,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=2                                 |
 |                         | q=3329                              |
-|                         | nu_1=3                              |
-|                         | nu_2=2                              |
+|                         | eta_1=3                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(10, 4)                  |
 |                         | delta=2^{-139}                      |
 |=========================+=====================================|
@@ -684,8 +685,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=3                                 |
 |                         | q=3329                              |
-|                         | nu_1=2                              |
-|                         | nu_2=2                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(10, 4)                  |
 |                         | delta=2^{-164}                      |
 |=========================+=====================================|
@@ -698,8 +699,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=3                                 |
 |                         | q=3329                              |
-|                         | nu_1=2                              |
-|                         | nu_2=2                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(10, 4)                  |
 |                         | delta=2^{-164}                      |
 |=========================+=====================================|
@@ -712,8 +713,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=4                                 |
 |                         | q=3329                              |
-|                         | nu_1=2                              |
-|                         | nu_2=2                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(11, 5)                  |
 |                         | delta=2^{-174}                      |
 |=========================+=====================================|
@@ -726,8 +727,8 @@ Classic McEliece Public Key Format
 | Parameters              | n= 256,                             |
 |                         | k=4                                 |
 |                         | q=3329                              |
-|                         | nu_1=2                              |
-|                         | nu_2=2                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
 |                         | (d_u, d_v)=(11, 5)                  |
 |                         | delta=2^{-174}                      |
 |=========================+=====================================|
@@ -747,31 +748,31 @@ Classic McEliece Public Key Format
                 </ul>
                 <t>The size necessary to hold all public key elements is 12*k*n/8+32 bytes.
                     
-                    Secret key. The secret key consists of 3 parameters:</t>
+                    Private key. The private key consists of 3 parameters:</t>
                 <ul spacing="compact">
-                    <li>s: encoded sample from a centered binomial distribution B_nu1 (12*k*n/8 bytes)</li>
-                    <li>z: a nonce (32 bytes)</li>
+                    <li>s: encoded sample from a centered binomial distribution B_{eta_1} (12*k*n/8 bytes)</li>
                     <li>H(pk): hashed public key (32 bytes). Kyber uses SHA3-256 as H by default. The '90s' variants use SHA256 instead.</li>
+                    <li>z: a nonce (32 bytes)</li>
                 </ul>
-                <t>If the secret key is fully populated, it consists of 3 parameters. The size necessary to hold all secret key elements accounts to 12*k*n/8+64 bytes, not counting the optional public key.
+                <t>If the private key is fully populated, it consists of 3 parameters. The size necessary to hold all private key elements accounts to 12*k*n/8+64 bytes, not counting the optional public key.
                     The resulting public key and private key sizes are shown in the following table.</t>
                 <figure anchor="KyberKeyLengths">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
-|==========================+=========+==========+=========|
-| Algorithm OID            | Public  |   Secret |  Secret |
-|                          | Key     |   Key    |  Key    |
-|                          |         |          |(partial)|
-|==========================+=========+==========+=========|
-| kyber512-r3 /            |   800   |   832    |    32   |
-| kyber512-90s-r3          |         |          |         |
-|--------------------------|---------|----------|---------|
-| kyber768-r3 /            |  1184   |   1216   |    32   |
-| kyber768-90s-r3          |         |          |         |
-|--------------------------|--------------------|---------|
-| kyber1024-r3 /           |  1568   |   1600   |    32   |
-| kyber1024-90s-r3         |         |          |         |
-|==========================+=========+==========+=========|
+|==========================+=========+==========+===========|
+| Algorithm OID            | Public  |   Private |  Private |
+|                          | Key     |   Key    |  Key      |
+|                          |         |          |(partial)  |
+|==========================+=========+==========+===========|
+| kyber512-r3 /            |   800   |   832    |    32     |
+| kyber512-90s-r3          |         |          |           |
+|--------------------------|---------|----------|-----------|
+| kyber768-r3 /            |  1184   |   1216   |    32     |
+| kyber768-90s-r3          |         |          |           |
+|--------------------------|--------------------|-----------|
+| kyber1024-r3 /           |  1568   |   1600   |    32     |
+| kyber1024-90s-r3         |         |          |           |
+|==========================+=========+==========+===========|
 ]]>
                     </artwork>
                 </figure>
@@ -779,7 +780,7 @@ Classic McEliece Public Key Format
             </section>
 
             <section numbered="true" toc="default">
-                <name>Secret Key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>Distributing a Kyber private key with PKCS#8 requires:</t>
                 <ul spacing="compact">
@@ -791,19 +792,19 @@ Classic McEliece Public Key Format
                 <artwork name="" type="" align="left" alt="">
                     <![CDATA[
 KyberPrivateKey ::= SEQUENCE {
-    Version     INTEGER {v0(0)}   -- version (round 3)
-    nonce       OCTET STRING,     -- z
+    version     INTEGER {v0(0)}   -- version (round 3)
     s           OCTET STRING,     -- sample s
-    PublicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
+    publicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
                                   -- see next section
     hpk         OCTET STRING      -- H(pk)
+    nonce       OCTET STRING,     -- z
 }
 ]]>
                 </artwork>
             </section>
 
             <section numbered="true" toc="default">
-                <name>Secret Key Partial Encoding </name>
+                <name>Private key Partial Encoding</name>
 
                 <t>The partially populated parameter set uses of the fact that some parameters can be regenerated. In this case, only the initial seed 'd' (nonce) is stored and used to regenerate the full key.  
                     Partially encoded keys use the same ASN.1 structure as the fully polulated keys, simply with the regenerated fields set to EMPTY. 
@@ -814,11 +815,11 @@ KyberPrivateKey ::= SEQUENCE {
                     <![CDATA[
 KyberPrivateKey ::= SEQUENCE {
     version     INTEGER {v0(0)}   -- version (round 3)
-    nonce       OCTET STRING,     -- d
     s           OCTET STRING,     -- EMPTY
-    PublicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
+    publicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
                                   -- see next section
     hpk         OCTET STRING      -- EMPTY
+    nonce       OCTET STRING,     -- d
 }
 ]]>
                 </artwork>
@@ -862,10 +863,10 @@ KyberPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n= 509             |
-|                         | Polynomial  Phin= (xn - 1)/(x-1     |
+|                         | Polynomial  Phin=(x^n - 1)/(x-1)    |
 |                         | Polynomial  Phi1=(x-1)              |
 |                         | Modulus p=3                         |
-|                         | Modulus q= 2048                     |
+|                         | Modulus q=2048                      |
 |=========================+=====================================|
 | ntruhps2048677-r3                                             |
 |=========================+=====================================|
@@ -873,11 +874,11 @@ KyberPublicKey ::= SEQUENCE {
 |                         | <.  >                               |
 | NIST Level Security     | Level 3 (1) see spec.               |
 |-------------------------|-------------------------------------|
-| Parameters              | Dimension/Degree n= 677             |
-|                         | Polynomial  Phin= (xn - 1)/(x-1)    |
+| Parameters              | Dimension/Degree n=677              |
+|                         | Polynomial  Phin=(x^n - 1)/(x-1)    |
 |                         | Polynomial  Phi1=(x-1)              |
 |                         | Modulus p=3                         |
-|                         | Modulus q= 2048                     |
+|                         | Modulus q=2048                      |
 |=========================+=====================================|
 | ntruhps4096821-r3                                             |
 |=========================+=====================================|
@@ -886,7 +887,7 @@ KyberPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 3 (1) see spec.               |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n= 821             |
-|                         | Polynomial  Phin= (xn - 1)/(x-1)    |
+|                         | Polynomial  Phin=(x^n - 1)/(x-1)    |
 |                         | Polynomial  Phi1=(x-1)              |
 |                         | Modulus p=3                         |
 |                         | Modulus q= 4096                     |
@@ -898,10 +899,10 @@ KyberPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 5 (3)  see spec.              |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n= 701             |
-|                         | Polynomial  Phin= (xn - 1)/(x-1)    |
+|                         | Polynomial  Phin= (x^n - 1)/(x-1)   |
 |                         | Polynomial  Phi1=(x-1)              |
 |                         | Modulus p=3                         |
-|                         | Modulus q= 8192                     |
+|                         | Modulus q=8192                      |
 |=========================+=====================================|
 ]]>
                     </artwork>
@@ -913,25 +914,25 @@ KyberPublicKey ::= SEQUENCE {
                 <name>Key Details</name>
                 <t>Public key. The public-key consists of a single parameter :</t>
                 <ul spacing="compact">
-                    <li>a polynomial h that satisfies h?f=3?g in the ring Rq=Z[x]/(q, Phi1?Phin).</li>
+                    <li>a polynomial h that satisfies h*f=3*g in the ring Rq=Z[x]/(q, Phi_1*Phi_n).</li>
                 </ul>
-                <t>This means there are n - 1 coefficients of size at most q in the public key, and the size necessary to store the polynomial is therefore is ceiling((n - 1)?log2(q)/8) bytes. The resulting sizes for the parameter sets can be found in the Table below.
-                    Secret key. The secret key consists of 4 parameters:</t>
+                <t>This means there are n - 1 coefficients of size at most q in the public key, and the size necessary to store the polynomial is therefore is ceiling((n - 1)*log2(q)/8) bytes. The resulting sizes for the parameter sets can be found in the Table below.
+                    Private key. The private key consists of 4 parameters:</t>
                 <ul spacing="compact">
-                    <li>a polynomial f that is a ternary (coefficients fi are in {-1, 0, 1}) polynomial of degree n - 2, with the additional property that ∑_(i=0)^(n-3)  f_i?? f?_(i+1)≥0, </li>
-                    <li>a polynomial fp that satisfies f?fp=1 in the ring Rq=Z[x]/(3, Phin),</li>
-                    <li>a polynomial hq that satisfies h?hq=1 in the ring Rq=Z[x]/(q, Phin), and </li>
+                    <li>a polynomial f that is a ternary (coefficients fi are in {-1, 0, 1}) polynomial of degree n - 2, with the additional property that ∑_(i=0)^{n-3}  f_i*f_{i+1}≥0, </li>
+                    <li>a polynomial f_p that satisfies f*f_p=1 in the ring Rq=Z[x]/(3, Phi_n),</li>
+                    <li>a polynomial h_q that satisfies h*h_q=1 in the ring Rq=Z[x]/(q, Phi_n), and </li>
                     <li>a seed=fg_bits || prf_key=f_bits ||  g_bits || prf_key containing the randomness for the key sampling and the implicit rejection mechanism. Optionally implementers may expand this from a 32-byte seed.</li>
                 </ul>
-                <t>This means there are 2 polynomials, f and fp, having n - 1 coefficients with absolute value at most 1 in the secret key. For these polynomials, the packing algorithm in Section 1.8.7 of the Specification allows to pack 5 coefficients in a byte, so the storage requirement to store each is ceiling((n - 1)/5) bytes. Additionally hq is part of the secret key, which requires the same storage size as that of the public key h, i.e. ceiling((n - 1)?log2(q)/8) bytes. For the seed bytes, the specification recommends:</t>
+                <t>This means there are 2 polynomials, f and fp, having n - 1 coefficients with absolute value at most 1 in the private key. For these polynomials, the packing algorithm in Section 1.8.7 of the Specification allows to pack 5 coefficients in a byte, so the storage requirement to store each is ceiling((n - 1)/5) bytes. Additionally hq is part of the private key, which requires the same storage size as that of the public key h, i.e. ceiling((n - 1)*log2(q)/8) bytes. For the seed bytes, the specification recommends:</t>
                 <ul spacing="compact">
                     <li>>f_bits having n - 1 bytes, </li>
-                    <li>>g_bits having n - 1 bytes for ntruhrss701, ceiling(30/8?(n-1)) bytes for the other parameter sets, </li>
+                    <li>>g_bits having n - 1 bytes for ntruhrss701, ceiling(30/8*(n-1)) bytes for the other parameter sets, </li>
                     <li>prf_key having 32 bytes.</li>
                 </ul>
                 <t>Implementers may choose to expand the seed from one 32-byte seed.
                     The resulting sizes for the parameter sets can be found in the Table below. Where the seed expansion is omitted, the 32-byte seed must be replaced by key_seed_bits=sample_key_bits+prf_key_bits. The impact of these options are indicated as 32-byte seed/expanded seed in the Table below.
-                    Parameter Set    Size of the public key in bytes    Size of the secret key in bytes</t>
+                    Parameter Set    Size of the public key in bytes    Size of the private key in bytes</t>
                 <figure anchor="NTRUOIDs">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
@@ -940,31 +941,31 @@ KyberPublicKey ::= SEQUENCE {
 |---------------------|------------------------------|
 | Public Key (Bytes)  | 699                          |
 | seed/expanded seed  | 935 / 3348                   |
-| f,fp,hq,seed        | 102,102,699,32/2445          |
+| f,f_p,h_q,seed      | 102,102,699,32/2445          |
 |=====================+==============================|
 | ntruhps2048677-r3                                  |
 |---------------------|------------------------------|
 | Public Key (Bytes)  | 699                          |
 | seed/expanded seed  | 935 / 3348                   |
-| f,fp,hq,seed        | 102,102,699,32/2445          |
+| f,f_p,h_q,seed      | 102,102,699,32/2445          |
 |=====================+==============================|
 | ntruhps2048677-r3                                  |
 |---------------------|------------------------------|
-| Public Key (Bytes)  |    930                          |
+| Public Key (Bytes)  |    930                       |
 | seed/expanded seed  | 1234 / 4445                  |
-| (f,fp,hq,seed)      | 136,136,930,32/3243          |
+| (f,f_p,h_q,seed)    | 136,136,930,32/3243          |
 |=====================+==============================|
 | ntruhps4096821-r3                                  |
 |---------------------|------------------------------|
 | Public Key (Bytes)  | 1230                         |
 | seed/expanded seed  | 1590 / 5485                  |
-| (f,fp,hq,seed)      | 164,164,1230,32/3927         |
+| (f,f_p,h_q,seed)    | 164,164,1230,32/3927         |
 |=====================+==============================|
 | ntruhrss701-r3                                     |
 |---------------------|------------------------------|
 | Public Key (Bytes)  | 1138                         |
 | seed/expanded seed  | 1450 / 2850                  |
-| (f,fp,hq,seed)      | 140,140,1138,32/1432         |
+| (f,f_p,h_q,seed)    | 140,140,1138,32/1432         |
 |=====================+==============================|
 ]]>
                     </artwork>
@@ -972,7 +973,7 @@ KyberPublicKey ::= SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Secret Key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>An NTRU private key encoded according with PKCS#8 MUST include the following two fields:</t>
                 <ul spacing="compact">
@@ -980,7 +981,7 @@ KyberPublicKey ::= SEQUENCE {
                     <li>NTRUPrivateKey in the privateKey field, which is an OCTET STRING.</li>
                 </ul>
                 <t>When a NTRU public key is included in the distributed PrivateKeyInfo, the PublicKey field in NTRUPrivateKey is used (see description of NTRUPublicKey below).
-                    An NTRU secret key contains f, fp and hq, as well as a seed. The octet string format indicates the length of the string to follow, and indicates whether the seed or expanded seed is used.</t>
+                    An NTRU private key contains f, f_p and h_q, as well as a seed. The octet string format indicates the length of the string to follow, and indicates whether the seed or expanded seed is used.</t>
                 <artwork name="" type="" align="left" alt="">
                     <![CDATA[
 NTRUPrivateKey ::= SEQUENCE {
@@ -989,7 +990,7 @@ NTRUPrivateKey ::= SEQUENCE {
     fp         OCTET STRING,      -- short integer polynomial gp
     hq         OCTET STRING,      -- mod q integer polynomial hq
     seed       OCTET STRING,      -- fg_bits/prf_bits (or their seed)
-    PublicKey [0] IMPLICIT NTRUPublicKey OPTIONAL -- see next section
+    publicKey [0] IMPLICIT NTRUPublicKey OPTIONAL -- see next section
 }
 ]]>
                 </artwork>
@@ -998,7 +999,7 @@ NTRUPrivateKey ::= SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Public Key Full Encoding</name>
 
-                <t>From the NTRU specification, the public key contains h. Each coefficient of h is encoded as an ? bit sequence, where ?=ceiling((n - 1)?log2(q)). Coefficients are then concatenated (two's complement, big endian convention). The final bit string is zero padded to fit into a byte sequence.
+                <t>From the NTRU specification, the public key contains h. Each coefficient of h is encoded as an l bit sequence, where l=ceiling((n - 1)*log2(q)). Coefficients are then concatenated (two's complement, big endian convention). The final bit string is zero padded to fit into a byte sequence.
                     NTRUPublicKey := SEQUENCE {
                     h          OCTET STRING  -- integer polynomial h
                     }</t>
@@ -1027,7 +1028,7 @@ NTRUPrivateKey ::= SEQUENCE {
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Degree n= 256                       |
-|                         | rank of the module ?= 2             |
+|                         | rank of the module l=2              |
 |                         | binomial distribution with u=10     |
 |                         | Modulus q=2^{13} and p=2^{10}       |
 |=========================+=====================================|
@@ -1038,7 +1039,7 @@ NTRUPrivateKey ::= SEQUENCE {
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Degree n= 256                       |
-|                         | rank of the module ?= 3             |
+|                         | rank of the module l=3              |
 |                         | binomial distribution with u=8      |
 |                         | Modulus q=2^{13} and p=2^{10}       |
 |=========================+=====================================|
@@ -1049,7 +1050,7 @@ NTRUPrivateKey ::= SEQUENCE {
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Degree n= 256                       |
-|                         | rank of the module ?= 4             |
+|                         | rank of the module l=4              |
 |                         | binomial distribution with u=6      |
 |                         | Modulus q=2^{13} and p=2^{10}       |
 |=========================+=====================================|
@@ -1057,7 +1058,7 @@ NTRUPrivateKey ::= SEQUENCE {
                     </artwork>
                 </figure>
 
-                <t>The rank of the module is denoted ? and differs per parameter set.</t>
+                <t>The rank of the module is denoted l and differs per parameter set.</t>
 
             </section>
             <section numbered="true" toc="default">
@@ -1067,34 +1068,34 @@ NTRUPrivateKey ::= SEQUENCE {
                     <li>>seed_A: public seed (32 bytes)</li>
                     <li>polynomials of degree 256 with 10-bit integer coefficients denoted by vector b.</li>
                 </ul>
-                <t>This means the size of the public key can be stored using ?*256*10+256 bits. The size of the public key as used in the three parameter sets can be found in the Table below.</t>
+                <t>This means the size of the public key can be stored using l*256*10+256 bits. The size of the public key as used in the three parameter sets can be found in the Table below.</t>
 
-                <t>Secret key. The secret key s consists of three parameters:</t>
+                <t>Private key. The private key s consists of three parameters:</t>
                 <ul spacing="compact">
                     <li>a 256-bit uniform random value z</li>
-                    <li> ? polynomials of degree 256 with 13-bit integer coefficients denoted by s</li>
+                    <li>l polynomials of degree 256 with 13-bit integer coefficients denoted by s</li>
                     <li>H(pk): hashed public key (32 bytes)</li>
                 </ul>
-                <t>This means the secret key can be stored using 512+?*256*13 bits. The size of the secret key as used in the three parameter sets can be found in the Table below.</t>
+                <t>This means the private key can be stored using 512+l*256*13 bits. The size of the private key as used in the three parameter sets can be found in the Table below.</t>
                 <figure anchor="SABERKeySizes">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
-|==========================+=========+==========|
-| Algorithm                | Public  |   Secret |
-|                          | Key     |   Key    |
-|                          | Length  |   Length |
-|==========================+=========+==========+
-| LightSaber-r3            |    672  |    896   |
-| Saber-r3                 |    992  |   1312   |
-| FireSaber-r3             |   1312  |   1728   |
-|==========================+=========+==========|
+|==========================+=========+===========|
+| Algorithm                | Public  |   Private |
+|                          | Key     |   Key     |
+|                          | Length  |   Length  |
+|==========================+=========+===========+
+| LightSaber-r3            |    672  |    896    |
+| Saber-r3                 |    992  |   1312    |
+| FireSaber-r3             |   1312  |   1728    |
+|==========================+=========+===========|
 ]]>
                     </artwork>
                 </figure>
 
             </section>
             <section numbered="true" toc="default">
-                <name>Secret Key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>A SABER private key encoded according with PKCS#8 MUST include the following two fields:</t>
                 <ul spacing="compact">
@@ -1108,7 +1109,7 @@ SABERPrivateKey ::= SEQUENCE {
     version     INTEGER  {v0(0)}    -- version (round 3)
     z           OCTET STRING,       -- 32-byte random value z
     s           OCTET STRING,       -- short integer polynomial s
-    PublicKey   [0] IMPLICIT SABERPublicKey OPTIONAL,
+    publicKey   [0] IMPLICIT SABERPublicKey OPTIONAL,
                                     -- see next section
     hpk         OCTET STRING        -- H(pk)
 }
@@ -1134,8 +1135,8 @@ SABERPublicKey := SEQUENCE {
             <name>CRYSTALS-DILITHIUM</name>
 
             <t>Dilithium is a digital signature scheme that is based on the hardness of lattice problems over module lattices.
-                Project Website:    https://pq-crystals.org/dilithium/index.shtml
-                NIST Round 3 Submission (version 3.1):    https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Dilithium-Round3.zip
+                Project Website: https://pq-crystals.org/dilithium/index.shtml
+                NIST Round 3 Submission (version 3.1): https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Dilithium-Round3.zip
                 https://pq-crystals.org/dilithium/data/dilithium-specification-round3-20210208.pdf</t>
 
             <section numbered="true" toc="default">
@@ -1152,8 +1153,8 @@ SABERPublicKey := SEQUENCE {
 |                         | 1.3.6.1.4.1.2.267.7.4.4             |
 | NIST Level Security     | Level 2                             |
 |-------------------------|-------------------------------------|
-| Parameters              | Polynomial Ring Zq[x]/( x^n +1)     |
-|                         | Dimension/Degree n= 256             |
+| Parameters              | Polynomial Ring Zq[x]/( x^n+1 )     |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=39             |
@@ -1161,7 +1162,7 @@ SABERPublicKey := SEQUENCE {
 |                         | gamma coefficient range: gamma1=2^17|
 |                         | low-order rounding range: gamma2=(q-|
 |                         | 1)/88                               |
-|                         | Secret Key Range (nu)=2             |
+|                         | Private key Range eta=2             |
 |                         | Dimensions of A: (k,l)=(4,4)        |
 |                         | Max # of 1's in the hint h: w=80    |
 |                         | Repetitions=4.25                    |
@@ -1173,7 +1174,7 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 2                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=39             |
@@ -1181,7 +1182,7 @@ SABERPublicKey := SEQUENCE {
 |                         | y coefficient range: gamma1=2^17    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/88                              |
-|                         | Secret Key Range (nu)=2             |
+|                         | Private key Range eta=2             |
 |                         | Dimensions of A: (k,l)=(4,4)        |
 |                         | Max # of 1's in the hint h: w=80    |
 |                         | Repetitions=4.25                    |
@@ -1193,15 +1194,15 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
-|                         | # of +-1's in c: ?=49               |
+|                         | # of +-1's in c: tau=49             |
 |                         | challenge entropy=225               |
 |                         | y coefficient range: gamma1=2^19    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/32                              |
-|                         | Secret Key Range (nu)=4             |
+|                         | Private key Range eta=4             |
 |                         | Dimensions of A: (k,l)=(6,5)        |
 |                         | Max # of 1's in the hint h: w=55    |
 |                         | Repetitions=5.1                     |
@@ -1213,7 +1214,7 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n +1 )    |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=49             |
@@ -1221,7 +1222,7 @@ SABERPublicKey := SEQUENCE {
 |                         | y coefficient range: gamma1=2^19    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/32                              |
-|                         | Secret Key Range (nu)=4             |
+|                         | Private key Range eta=4             |
 |                         | Dimensions of A: (k,l)=(6,5)        |
 |                         | Max # of 1's in the hint h: w=55    |
 |                         | Repetitions=5.1                     |
@@ -1233,15 +1234,15 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=60             |
 |                         | challenge entropy=257               |
-|                         | y coefficient range: ?1=2^19        |
+|                         | y coefficient range: gamma1=2^19    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/32                              |
-|                         | Secret Key Range (nu)=2             |
+|                         | Private key Range eta=2             |
 |                         | Dimensions of A: (k,l)=(8,7)        |
 |                         | Max # of 1's in the hint h: w=75    |
 |                         | Repetitions=3.85                    |
@@ -1253,7 +1254,7 @@ SABERPublicKey := SEQUENCE {
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n= 256             |
+|                         | Dimension/Degree n=256              |
 |                         | Modulus q=8380417                   |
 |                         | Dropped bits from t: d=13           |
 |                         | # of +-1's in c: tau=60             |
@@ -1261,7 +1262,7 @@ SABERPublicKey := SEQUENCE {
 |                         | y coefficient range: gamma1=2^19    |
 |                         | low-order rounding range:gamma2=(q- |
 |                         | -1)/32                              |
-|                         | Secret Key Range (nu)=2             |
+|                         | Private key Range eta=2             |
 |                         | Dimensions of A: (k,l)=(8,7)        |
 |                         | Max # of 1's in the hint h: w=75    |
 |                         | Repetitions=3.85                    |
@@ -1281,7 +1282,7 @@ SABERPublicKey := SEQUENCE {
                     <li>t1:  a vector encoded in 320*k bytes</li>
                 </ul>
                 <t>The size necessary to hold all public key elements accounts to 32+320*k bytes.</t>
-                <t>Secret key. The secret key consists of 6 parameters:</t>
+                <t>Private key. The private key consists of 6 parameters:</t>
                 <ul spacing="compact">
                     <li>rho: nonce </li>
                     <li>K: a key/seed/D</li>
@@ -1290,30 +1291,30 @@ SABERPublicKey := SEQUENCE {
                     <li>s2: vector (K)</li>
                     <li>t0: k polynomials</li>
                 </ul>
-                <t>If the secret key is fully populated, it consists of 6 parameters. The size necessary to hold all secret key elements accounts to 32+32+32+32*[(k+l)*ceiling(log(2*nu+1))+13*k] bytes.
+                <t>If the private key is fully populated, it consists of 6 parameters. The size necessary to hold all private key elements accounts to 32+32+32+32*[(k+l)*ceiling(log(2*eta+1))+13*k] bytes.
                     The resulting public key and private key sizes can be found in the table below.</t>
                 <figure anchor="DilithiumKeySizes">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
-|=========================+========+========+=========+=========|
-| Algorithm               | Public | Secret | Partial | Partial |
-|                         | Key    | Key SK | SK (V1) | SK (V2) |
-|                         | Length | Length | Length  | Length  |
-|=========================+========+========+=========+=========+
-| dilithium-4x4-r3        | 1312   | 2528   |   64    |    32   |
-| dilithium-4x4-aes-r3    | 1312   | 2528   |   64    |    32   |
-| dilithium-6x5-r3        | 1952   | 4000   |   64    |    32   |
-| dilithium-6x5-aes-r3    | 1952   | 4000   |   64    |    32   |
-| dilithium-8x7-r3        | 2596   | 4864   |   64    |    32   |
-| dilithium-8x7-aes-r3    | 2592   | 4864   |   64    |    32   |
-|=========================+========+========+=========+=========|
+|=========================+========+=========+=========+=========|
+| Algorithm               | Public | Private | Partial | Partial |
+|                         | Key    | Key SK  | SK (V1) | SK (V2) |
+|                         | Length | Length  | Length  | Length  |
+|=========================+========+=========+=========+=========+
+| dilithium-4x4-r3        | 1312   | 2528    |   64    |    32   |
+| dilithium-4x4-aes-r3    | 1312   | 2528    |   64    |    32   |
+| dilithium-6x5-r3        | 1952   | 4000    |   64    |    32   |
+| dilithium-6x5-aes-r3    | 1952   | 4000    |   64    |    32   |
+| dilithium-8x7-r3        | 2592   | 4864    |   64    |    32   |
+| dilithium-8x7-aes-r3    | 2592   | 4864    |   64    |    32   |
+|=========================+========+=========+=========+=========|
 ]]>
                     </artwork>
                 </figure>
 
             </section>
             <section numbered="true" toc="default">
-                <name>Secret Key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
                 <t>A Dilithium private key encoded according with PKCS#8 MUST include the following two fields:</t>
                 <ul spacing="compact">
                     <li>dilithium-(kxl)-r3 in the algorithm field of AlgorithmIdentifier</li>
@@ -1332,7 +1333,7 @@ DilithiumPrivateKey ::= SEQUENCE {
     s1          BIT STRING,         -- vector(L)
     s2          BIT STRING,         -- vector(K)
     t0          BIT STRING,
-    PublicKey  [0] IMPLICIT DilithiumPublicKey OPTIONAL
+    publicKey  [0] IMPLICIT DilithiumPublicKey OPTIONAL
                                     -- see next section
 }
 ]]>
@@ -1340,7 +1341,7 @@ DilithiumPrivateKey ::= SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Secret Key Partial Encoding Option 1</name>
+                <name>Private key Partial Encoding Option 1</name>
 
                 <t>In option 1 of Dilithium partial encoding the rho (nonce) and the seed (key) are used to regenerate the full key.
                     Note: There are a number of alternative ways to encode a partially filled structure that include defining fields as optional and defining fields as 'EMPTY'. As an example partial RSA keys are encoded using EMPTY fields. It can be argued that defining fields as EMPTY significantly simplifies the implementation of parsing ASN.1 frames.
@@ -1356,14 +1357,14 @@ DilithiumPrivateKey ::= SEQUENCE {
     s1          BIT STRING,         -- EMPTY
     s2          BIT STRING,         -- EMPTY
     t0          BIT STRING,         -- EMPTY
-    PublicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
+    publicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
                                     -- see next section
 }
 ]]>
                 </artwork>
             </section>
             <section numbered="true" toc="default">
-                <name>Secret Key Partial Encoding Option 2</name>
+                <name>Private key Partial Encoding Option 2</name>
 
                 <t>In option 2 of Dilithium partial encoding only zeta (nonce) is used to regenerate the full key.
                     The ASN.1 encoding for this is defined as follows:</t>
@@ -1377,7 +1378,7 @@ DilithiumPrivateKey ::= SEQUENCE {
     s1          BIT STRING,         -- EMPTY
     s2          BIT STRING,         -- EMPTY
     t0          BIT STRING,         -- EMPTY
-    PublicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
+    publicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
                                    -- see next section
 }
 ]]>
@@ -1418,13 +1419,13 @@ DilithiumPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n = 512            |
-|                         | Polynomial Phi = 1+X{n}             |
+|                         | Polynomial Phi = 1+x^n              |
 |                         | Modulus q = 12289                   |
 |                         | Max. signature square norm          |
-|                         | floor (beta2) = 34034726            |
+|                         | floor (beta^2) = 34034726           |
 |                         | Standard deviation = 165.736617183  |
-|                         | sigmamax = 1.8205                   |
-|                         | sigmamin = 1.27783369               |
+|                         | sigma_{max} = 1.8205                |
+|                         | sigma_{min} = 1.27783369            |
 |=========================+=====================================|
 | falcon1024-r3                                                 |
 |=========================+=====================================|
@@ -1433,13 +1434,13 @@ DilithiumPublicKey ::= SEQUENCE {
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Dimension/Degree n = 1024           |
-|                         | Polynomial Phi = 1+X{n}             |
+|                         | Polynomial Phi = 1+x^n              |
 |                         | Modulus q = 12289                   |
 |                         | Max. signature square norm          |
-|                         | floor (beta2) = 34034726            |
+|                         | floor (beta^2) = 34034726           |
 |                         | Standard deviation = 168.388571447  |
-|                         | sigmamax = 1.8205                   |
-|                         | sigmamin = 1.298280334              |
+|                         | sigma_{max} = 1.8205                |
+|                         | sigma_{min} = 1.298280334           |
 |=========================+=====================================|
 ]]>
                     </artwork>
@@ -1449,31 +1450,31 @@ DilithiumPublicKey ::= SEQUENCE {
             </section>
             <section numbered="true" toc="default">
                 <name>Key Details</name>
-                <t>The FALCON secret key contains the key components f, g and F.
-                    Each coefficient of f and g is encoded over a fixed number of bits, which depends on the degree of f and g: 6 bits each for degree 512 (parameter name = falcon512-r3) and 5 bits each for degree 1024 (parameter name = falcon1024-r3). Coefficients of F use 8 bits each, regardless of its degree. Each coefficient uses signed encoding, with two's complement for negative values. Moreover, the minimal value is forbidden, e.g. when using degree 512, the valid range for a coefficient of f or g is ?31 to +31; ?32 is not allowed.</t>
-                <figure anchor="FALCONSecretKeySizes">
+                <t>The FALCON private key contains the key components f, g and F.
+                    Each coefficient of f and g is encoded over a fixed number of bits, which depends on the degree of f and g: 6 bits each for degree 512 (parameter name = falcon512-r3) and 5 bits each for degree 1024 (parameter name = falcon1024-r3). Coefficients of F use 8 bits each, regardless of its degree. Each coefficient uses signed encoding, with two's complement for negative values. Moreover, the minimal value is forbidden, e.g. when using degree 512, the valid range for a coefficient of f or g is -31 to +31; -32 is not allowed.</t>
+                <figure anchor="FALCONPrivateKeySizes">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
-|==========================+=========+==========|
-| Algorithm OID            | Params  |   Secret |
-|                          |         |   Key    |
-|                          |         |   Length |
-|==========================+=========+==========+
-| falcon512-r3             | f=384   | 1280     |
-|                          | g=384   |          |
-|                          | F=512   |          |
-|--------------------------+---------+----------|
-| falcon1024-r3            | f=640   | 2304     |
-|                          | g=640   |          |
-|                          | F=1024  |          |
-|==========================+=========+==========+
+|==========================+=========+===========|
+| Algorithm OID            | Params  |   Private |
+|                          |         |   Key     |
+|                          |         |   Length  |
+|==========================+=========+===========+
+| falcon512-r3             | f=384   | 1280      |
+|                          | g=384   |           |
+|                          | F=512   |           |
+|--------------------------+---------+-----------|
+| falcon1024-r3            | f=640   | 2304      |
+|                          | g=640   |           |
+|                          | F=1024  |           |
+|==========================+=========+===========+
 ]]>
                     </artwork>
                 </figure>
 
             </section>
             <section numbered="true" toc="default">
-                <name>Secret Key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>Encoding a FALCON private key with PKCS#8 must include the following two fields: </t>
                 <ul spacing="compact">
@@ -1488,8 +1489,8 @@ FALCONPrivateKey ::= SEQUENCE {
     version     INTEGER {v2(1)}    -- syntax version 2 (round 3)
     f           OCTET STRING,      -- short integer polynomial f
     g           OCTET STRING,      -- short integer polynomial g
-    F           OCTET STRING,      -- short integer polynomial F
-    PublicKey   [0] IMPLICIT FALCONPublicKey  OPTIONAL
+    f           OCTET STRING,      -- short integer polynomial F
+    publicKey   [0] IMPLICIT FALCONPublicKey  OPTIONAL
                                    -- see next section
 }
 ]]>
@@ -1595,7 +1596,7 @@ FALCONPublicKey := SEQUENCE {
                 </ul>
                 <t>This mapping can be expressed as m quadratic polynomials in the ring F[x1, … , xn], which means the public key consists of m*(n+1)*(n+2)/2 elements of F. With optimizations (see Rainbow specification), this can be reduced to m*n*(n+1)/2 elements of F. The size necessary to hold all public key elements accounts to m*n*(n+1)/16*f bytes, where f=4 for rainbowI and 8 for rainbowIII and rainbowV. For all parameter sets ell is 16 bytes.
                     
-                    Secret key. The secret key consists of 4 parameters:</t>
+                    Private key. The private key consists of 4 parameters:</t>
                 <ul spacing="compact">
                     <li>S: affine map from F^{m} to F^{m}</li>
                     <li>T: affine map from F^{n} to F^{n}</li>
@@ -1618,7 +1619,7 @@ FALCONPublicKey := SEQUENCE {
 
                 <t>The partial public key now consists of 5 submatrices totaling o1*o2*v1 + o1*o1*(o1+1)/2 +o1*o2*o1 + o1*o2*(o2+1)/2 + o2*o2*(o2+1)/2 elements of F. 
                     Additionally the seed spub is 32 bytes.
-                    The secret key can also be stored as the seeds of the key generation process spriv (32 bytes) and spub (32 bytes). 
+                    The private key can also be stored as the seeds of the key generation process spriv (32 bytes) and spub (32 bytes). 
                     This is denoted as the compressed key and has a size of total 64 bytes. 
                     The resulting public key and private key sizes can be found in the table below. </t>
 
@@ -1626,7 +1627,7 @@ FALCONPublicKey := SEQUENCE {
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
 |=========================+==========+=========|
-| Algorithm               | Public   | Secret  |
+| Algorithm               | Public   | Private |
 |                         | Key      | Key     |
 |                         | Length   | Length  |
 |=========================+==========+=========+
@@ -1643,7 +1644,7 @@ FALCONPublicKey := SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Secret Key Full Encoding</name>
+                <name>Private Key Full Encoding</name>
 
                 <t>A Rainbow private key encoded according with PKCS#8 MUST include the following two fields: </t>
                 <ul spacing="compact">
@@ -1657,11 +1658,11 @@ FALCONPublicKey := SEQUENCE {
                     <![CDATA[
 RainbowPrivateKey ::= SEQUENCE {
     version    INTEGER {v0(0)}       -- version (round 3)
-    S          OCTET STRING,         -- map S
-    T          OCTET STRING,         -- map T
-    F          OCTET STRING,         -- map F
+    s          OCTET STRING,         -- map S
+    t          OCTET STRING,         -- map T
+    f          OCTET STRING,         -- map F
     ell        OCTET STRING,
-    PublicKey  [0] IMPLICIT RainbowPublicKey OPTIONAL
+    publicKey  [0] IMPLICIT RainbowPublicKey OPTIONAL
     -- see next section
 }
 ]]>
@@ -1669,7 +1670,7 @@ RainbowPrivateKey ::= SEQUENCE {
 
             </section>
             <section numbered="true" toc="default">
-                <name>Secret Key Partial Encoding</name>
+                <name>Private key Partial Encoding</name>
                 <t>A partially populated private key is used when Compressed Rainbow is used. 
                     In this case, spriv and spub are used to regenerate the full key.
                    The ASN.1 encoding is then defined as follows:</t>
@@ -1680,7 +1681,7 @@ RainbowPrivateKey ::= SEQUENCE {
     s_priv     OCTET STRING,    -- seed for private key
     s_pub      OCTET STRING,    -- seed for public key
     ell        OCTET STRING,
-    PublicKey  [0] IMPLICIT RainbowPublicKey OPTIONAL
+    publicKey  [0] IMPLICIT RainbowPublicKey OPTIONAL
                                 -- see next section
 }
 ]]>
@@ -1696,7 +1697,7 @@ RainbowPrivateKey ::= SEQUENCE {
                     <![CDATA[
 RainbowPublicKey ::= SEQUENCE {
     s_pub      OCTET STRING      -- (EMPTY)
-    P          OCTET STRING,
+    p          OCTET STRING,
     ell        OCTET STRING
 }
 ]]>
