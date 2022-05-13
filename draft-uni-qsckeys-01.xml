@@ -21,7 +21,7 @@ please see http://xml.resource.org/authoring/README.html. -->
         full title is longer than 39 characters -->
 
         <title abbrev="QSC Cryptography Key Information"> Quantum Safe Cryptography Key Information</title>
-        <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-2" />
+        <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-01" />
         <!-- add 'role="editor"' below for the editors if appropriate -->
 
         <author fullname="Christine van Vredendaal" initials="C.v.V." role="editor" surname="Vredendaal">
@@ -652,8 +652,8 @@ McEliecePublicKey ::= SEQUENCE {
 |=========================+=====================================|
 | kyber-512-r3                                                  |
 |=========================+=====================================|
-| Parameter OID           | {..*.. kyber-512-90s-r3}            |
-|                         | 1.3.6.1.4.1.2.267.8.2.2             |
+| Parameter OID           | {..*.. kyber-512-r3}                |
+|                         | <.>                                 |
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
 | Parameters              | n= 256,                             |
@@ -667,7 +667,7 @@ McEliecePublicKey ::= SEQUENCE {
 | kyber-512-90s-r3                                              |
 |=========================+=====================================|
 | Parameter OID           | {..*.. kyber-512-90s-r3}            |
-|                         | 1.3.6.1.4.1.2.267.10.2.2            |
+|                         | <.>                                 |
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
 | Parameters              | n= 256,                             |
@@ -681,7 +681,7 @@ McEliecePublicKey ::= SEQUENCE {
 | kyber-768-r3                                                  |
 |=========================+=====================================|
 | Parameter OID           | {..*.. kyber-768-r3}                |
-|                         | 1.3.6.1.4.1.2.267.8.3               |
+|                         | <.>                                 |
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
 | Parameters              | n= 256,                             |
@@ -695,7 +695,7 @@ McEliecePublicKey ::= SEQUENCE {
 | kyber-768-90s-r3                                              |
 |=========================+=====================================|
 | Parameter OID           | {..*.. kyber-768-90s-r3}            |
-|                         | 1.3.6.1.4.1.2.267.10.3.3            |
+|                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | n= 256,                             |
@@ -709,7 +709,7 @@ McEliecePublicKey ::= SEQUENCE {
 | kyber-1024-r3                                                 |
 |=========================+=====================================|
 | Parameter OID           | {..*.. kyber-1024-r3}               |
-|                         | 11.3.6.1.4.1.2.267.8.4.4            |
+|                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | n= 256,                             |
@@ -723,7 +723,7 @@ McEliecePublicKey ::= SEQUENCE {
 | kyber-1024-90s-r3                                             |
 |=========================+=====================================|
 | Parameter OID           | {..*.. kyber-1024-90s-r3}           |
-|                         | 1.3.6.1.4.1.2.267.10.4.4            |
+|                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | n= 256,                             |
@@ -1152,7 +1152,7 @@ SABERPublicKey := SEQUENCE {
 | dilithium-4x4-r3                                              |
 |=========================+=====================================|
 | Parameter OID           | {..*.. dilithium-4x4-r3}            |
-|                         | 1.3.6.1.4.1.2.267.7.4.4             |
+|                         | <.>                                 |
 | NIST Level Security     | Level 2                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n+1 )     |
@@ -1192,7 +1192,7 @@ SABERPublicKey := SEQUENCE {
 | dilithium-6x5-r3                                              |
 |=========================+=====================================|
 | Parameter OID           | {..*.. dilithium-6x5-r3}            |
-|                         | 1.3.6.1.4.1.2.267.7.6.5             |
+|                         | <.>                                 |
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
@@ -1232,7 +1232,7 @@ SABERPublicKey := SEQUENCE {
 | dilithium-8x7-r3                                              |
 |=========================+=====================================|
 | Parameter OID           | {..*.. dilithium-8x7-r3}            |
-|                         | 1.3.6.1.4.1.2.267.7.8.7             |
+|                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
 | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |

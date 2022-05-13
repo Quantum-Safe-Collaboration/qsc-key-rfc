@@ -5,7 +5,7 @@
 Internet Engineering Task Force                   C.v.V. Vredendaal, Ed.
 Internet-Draft                                        NXP Semiconductors
 Intended status: Informational                         S.D. Dragone, Ed.
-Expires: 11 November 2022                                 B.H. Hess, Ed.
+Expires: 13 November 2022                                 B.H. Hess, Ed.
                                                      T.V. Visegrady, Ed.
                                                        M.O. Osborne, Ed.
                                                        IBM Research GmbH
@@ -13,7 +13,7 @@ Expires: 11 November 2022                                 B.H. Hess, Ed.
                                                          Utimaco IS GmbH
                                                            J.B. Bos, Ed.
                                                       NXP Semiconductors
-                                                             10 May 2022
+                                                             12 May 2022
 
 
                Quantum Safe Cryptography Key Information
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 November 2022.
+   This Internet-Draft will expire on 13 November 2022.
 
 
 
 
 
-Vredendaal, et al.      Expires 11 November 2022                [Page 1]
+Vredendaal, et al.      Expires 13 November 2022                [Page 1]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -91,16 +91,16 @@ Table of Contents
      4.1.  Algorithm Parameter Identifiers . . . . . . . . . . . . .  13
      4.2.  Key Details . . . . . . . . . . . . . . . . . . . . . . .  16
      4.3.  Private Key Full Encoding . . . . . . . . . . . . . . . .  17
-     4.4.  Private key Partial Encoding  . . . . . . . . . . . . . .  17
+     4.4.  Private key Partial Encoding  . . . . . . . . . . . . . .  18
      4.5.  Public Key Full Encoding  . . . . . . . . . . . . . . . .  18
    5.  NTRU  . . . . . . . . . . . . . . . . . . . . . . . . . . . .  18
-     5.1.  Algorithm Parameter Identifiers . . . . . . . . . . . . .  18
-     5.2.  Key Details . . . . . . . . . . . . . . . . . . . . . . .  19
-     5.3.  Private Key Full Encoding . . . . . . . . . . . . . . . .  21
+     5.1.  Algorithm Parameter Identifiers . . . . . . . . . . . . .  19
+     5.2.  Key Details . . . . . . . . . . . . . . . . . . . . . . .  20
+     5.3.  Private Key Full Encoding . . . . . . . . . . . . . . . .  22
      5.4.  Public Key Full Encoding  . . . . . . . . . . . . . . . .  22
    6.  SABER . . . . . . . . . . . . . . . . . . . . . . . . . . . .  22
-     6.1.  Algorithm Parameter Identifiers . . . . . . . . . . . . .  22
-     6.2.  Key Details . . . . . . . . . . . . . . . . . . . . . . .  23
+     6.1.  Algorithm Parameter Identifiers . . . . . . . . . . . . .  23
+     6.2.  Key Details . . . . . . . . . . . . . . . . . . . . . . .  24
      6.3.  Private Key Full Encoding . . . . . . . . . . . . . . . .  24
      6.4.  Public Key Full Encoding  . . . . . . . . . . . . . . . .  25
    7.  CRYSTALS-DILITHIUM  . . . . . . . . . . . . . . . . . . . . .  25
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Vredendaal, et al.      Expires 11 November 2022                [Page 2]
+Vredendaal, et al.      Expires 13 November 2022                [Page 2]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -165,7 +165,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022                [Page 3]
+Vredendaal, et al.      Expires 13 November 2022                [Page 3]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -221,7 +221,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022                [Page 4]
+Vredendaal, et al.      Expires 13 November 2022                [Page 4]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -277,7 +277,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022                [Page 5]
+Vredendaal, et al.      Expires 13 November 2022                [Page 5]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -333,7 +333,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022                [Page 6]
+Vredendaal, et al.      Expires 13 November 2022                [Page 6]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -389,7 +389,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022                [Page 7]
+Vredendaal, et al.      Expires 13 November 2022                [Page 7]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -445,7 +445,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022                [Page 8]
+Vredendaal, et al.      Expires 13 November 2022                [Page 8]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -501,7 +501,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022                [Page 9]
+Vredendaal, et al.      Expires 13 November 2022                [Page 9]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -557,7 +557,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 10]
+Vredendaal, et al.      Expires 13 November 2022               [Page 10]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -613,7 +613,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 11]
+Vredendaal, et al.      Expires 13 November 2022               [Page 11]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -669,7 +669,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 12]
+Vredendaal, et al.      Expires 13 November 2022               [Page 12]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -725,7 +725,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 13]
+Vredendaal, et al.      Expires 13 November 2022               [Page 13]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -733,8 +733,8 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    |=========================+=====================================|
    | kyber-512-r3                                                  |
    |=========================+=====================================|
-   | Parameter OID           | {..*.. kyber-512-90s-r3}            |
-   |                         | 1.3.6.1.4.1.2.267.8.2.2             |
+   | Parameter OID           | {..*.. kyber-512-r3}                |
+   |                         | <.>                                 |
    | NIST Level Security     | Level 1                             |
    |-------------------------|-------------------------------------|
    | Parameters              | n= 256,                             |
@@ -748,7 +748,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    | kyber-512-90s-r3                                              |
    |=========================+=====================================|
    | Parameter OID           | {..*.. kyber-512-90s-r3}            |
-   |                         | 1.3.6.1.4.1.2.267.10.2.2            |
+   |                         | <.>                                 |
    | NIST Level Security     | Level 1                             |
    |-------------------------|-------------------------------------|
    | Parameters              | n= 256,                             |
@@ -762,7 +762,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    | kyber-768-r3                                                  |
    |=========================+=====================================|
    | Parameter OID           | {..*.. kyber-768-r3}                |
-   |                         | 1.3.6.1.4.1.2.267.8.3               |
+   |                         | <.>                                 |
    | NIST Level Security     | Level 3                             |
    |-------------------------|-------------------------------------|
    | Parameters              | n= 256,                             |
@@ -776,12 +776,12 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    | kyber-768-90s-r3                                              |
    |=========================+=====================================|
    | Parameter OID           | {..*.. kyber-768-90s-r3}            |
-   |                         | 1.3.6.1.4.1.2.267.10.3.3            |
+   |                         | <.>                                 |
    | NIST Level Security     | Level 5                             |
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 14]
+Vredendaal, et al.      Expires 13 November 2022               [Page 14]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -798,7 +798,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    | kyber-1024-r3                                                 |
    |=========================+=====================================|
    | Parameter OID           | {..*.. kyber-1024-r3}               |
-   |                         | 11.3.6.1.4.1.2.267.8.4.4            |
+   |                         | <.>                                 |
    | NIST Level Security     | Level 5                             |
    |-------------------------|-------------------------------------|
    | Parameters              | n= 256,                             |
@@ -812,7 +812,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    | kyber-1024-90s-r3                                             |
    |=========================+=====================================|
    | Parameter OID           | {..*.. kyber-1024-90s-r3}           |
-   |                         | 1.3.6.1.4.1.2.267.10.4.4            |
+   |                         | <.>                                 |
    | NIST Level Security     | Level 5                             |
    |-------------------------|-------------------------------------|
    | Parameters              | n= 256,                             |
@@ -827,21 +827,27 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
                                   Figure 4
 
+
+
+
+
+
+
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 15]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    The '90s' variants listed above differ in the symmetric primitives
    that are used internally.  By default, Kyber uses SHAKE-128 as XOF,
    SHA3 for hashing and SHAKE-256 for PRF and KDF.  The '90s' variants
    use AES256CTR to construct a XOF and a PRF, SHA2 for hashing and
    SHAKE-256 as KDF.  The main advantage of the '90s' variants is that
    they benefit from the ready availability of hardware AES and SHA2 co-
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 15]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
-
    processors.  While the parameters listed in the table are the same,
    the key-pairs will not be compatible with the '90s' variants.
 
@@ -870,6 +876,28 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    table.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 16]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    |==========================+=========+==========+===========|
    | Algorithm OID            | Public  |   Private |  Private |
    |                          | Key     |   Key    |  Key      |
@@ -887,16 +915,6 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
                                   Figure 5
-
-
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 16]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
 
 4.3.  Private Key Full Encoding
 
@@ -919,6 +937,21 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
        hpk         OCTET STRING      -- H(pk)
        nonce       OCTET STRING,     -- z
    }
+
+
+
+
+
+
+
+
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 17]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 4.4.  Private key Partial Encoding
@@ -946,14 +979,6 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    }
 
 
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 17]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
-
 4.5.  Public Key Full Encoding
 
    The vector 't' is encoded using the function Encode_12, defined as
@@ -975,6 +1000,15 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    lattices.  Project Website: https://ntru.org/ NIST Round 3
    Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-
    cryptography/documents/round-3/submissions/NTRU-Round3.zip
+
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 18]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
 
 5.1.  Algorithm Parameter Identifiers
 
@@ -1002,14 +1036,6 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    |                         | <.  >                               |
    | NIST Level Security     | Level 3 (1) see spec.               |
    |-------------------------|-------------------------------------|
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 18]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
-
    | Parameters              | Dimension/Degree n=677              |
    |                         | Polynomial  Phin=(x^n - 1)/(x-1)    |
    |                         | Polynomial  Phi1=(x-1)              |
@@ -1032,6 +1058,14 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    |=========================+=====================================|
    | Parameter OID           | {..*.. ntruhrss701-r3}              |
    |                         | <.>                                 |
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 19]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    | NIST Level Security     | Level 5 (3)  see spec.              |
    |-------------------------|-------------------------------------|
    | Parameters              | Dimension/Degree n= 701             |
@@ -1057,15 +1091,6 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    This means there are n - 1 coefficients of size at most q in the
    public key, and the size necessary to store the polynomial is
    therefore is ceiling((n - 1)*log2(q)/8) bytes.  The resulting sizes
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 19]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
-
    for the parameter sets can be found in the Table below.  Private key.
    The private key consists of 4 parameters:
 
@@ -1090,6 +1115,13 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    as that of the public key h, i.e. ceiling((n - 1)*log2(q)/8) bytes.
    For the seed bytes, the specification recommends:
 
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 20]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    *  >f_bits having n - 1 bytes,
    *  >g_bits having n - 1 bytes for ntruhrss701, ceiling(30/8*(n-1))
       bytes for the other parameter sets,
@@ -1102,24 +1134,6 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    impact of these options are indicated as 32-byte seed/expanded seed
    in the Table below.  Parameter Set Size of the public key in bytes
    Size of the private key in bytes
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 20]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
    |=====================+==============================|
@@ -1157,6 +1171,13 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
                                   Figure 7
 
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 21]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
 5.3.  Private Key Full Encoding
 
    An NTRU private key encoded according with PKCS#8 MUST include the
@@ -1170,14 +1191,6 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    the PublicKey field in NTRUPrivateKey is used (see description of
    NTRUPublicKey below).  An NTRU private key contains f, f_p and h_q,
    as well as a seed.  The octet string format indicates the length of
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 21]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
-
    the string to follow, and indicates whether the seed or expanded seed
    is used.
 
@@ -1210,28 +1223,20 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    post-quantum-cryptography/documents/round-3/submissions/SABER-
    Round3.zip
 
+
+
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 22]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
 6.1.  Algorithm Parameter Identifiers
 
    Saber has three parameter sets shown in the table below
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 22]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
    |=========================+=====================================|
@@ -1274,6 +1279,17 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
    The rank of the module is denoted l and differs per parameter set.
 
+
+
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 23]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
 6.2.  Key Details
 
    Public key.  The public-key consists of the following two parameters:
@@ -1281,14 +1297,6 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    *  >seed_A: public seed (32 bytes)
    *  polynomials of degree 256 with 10-bit integer coefficients denoted
       by vector b.
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 23]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
 
    This means the size of the public key can be stored using
    l*256*10+256 bits.  The size of the public key as used in the three
@@ -1328,22 +1336,19 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
       FireSaber-r3} in the algorithm field of AlgorithmIdentifier
    *  SABERPrivateKey in the privateKey field, which is an OCTET STRING.
 
+
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 24]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    When a SABER public key is included in the distributed
    PrivateKeyInfo, the PublicKey field in SABERPrivateKey is used (see
    the description below).
-
-
-
-
-
-
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 24]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
    SABERPrivateKey ::= SEQUENCE {
@@ -1385,23 +1390,23 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    | dilithium-4x4-r3                                              |
    |=========================+=====================================|
    | Parameter OID           | {..*.. dilithium-4x4-r3}            |
-   |                         | 1.3.6.1.4.1.2.267.7.4.4             |
+   |                         | <.>                                 |
    | NIST Level Security     | Level 2                             |
    |-------------------------|-------------------------------------|
    | Parameters              | Polynomial Ring Zq[x]/( x^n+1 )     |
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 25]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    |                         | Dimension/Degree n=256              |
    |                         | Modulus q=8380417                   |
    |                         | Dropped bits from t: d=13           |
    |                         | # of +-1's in c: tau=39             |
    |                         | challenge entropy=192               |
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 25]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
-
    |                         | gamma coefficient range: gamma1=2^17|
    |                         | low-order rounding range: gamma2=(q-|
    |                         | 1)/88                               |
@@ -1433,7 +1438,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    | dilithium-6x5-r3                                              |
    |=========================+=====================================|
    | Parameter OID           | {..*.. dilithium-6x5-r3}            |
-   |                         | 1.3.6.1.4.1.2.267.7.6.5             |
+   |                         | <.>                                 |
    | NIST Level Security     | Level 3                             |
    |-------------------------|-------------------------------------|
    | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
@@ -1445,19 +1450,19 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    |                         | y coefficient range: gamma1=2^19    |
    |                         | low-order rounding range:gamma2=(q- |
    |                         | -1)/32                              |
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 26]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    |                         | Private key Range eta=4             |
    |                         | Dimensions of A: (k,l)=(6,5)        |
    |                         | Max # of 1's in the hint h: w=55    |
    |                         | Repetitions=5.1                     |
    |=========================+=====================================|
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 26]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
-
    | dilithium-6x5-aes-r3                                          |
    |=========================+=====================================|
    | Parameter OID           | {..*.. dilithium-6x5-aes-r3}        |
@@ -1481,7 +1486,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    | dilithium-8x7-r3                                              |
    |=========================+=====================================|
    | Parameter OID           | {..*.. dilithium-8x7-r3}            |
-   |                         | 1.3.6.1.4.1.2.267.7.8.7             |
+   |                         | <.>                                 |
    | NIST Level Security     | Level 5                             |
    |-------------------------|-------------------------------------|
    | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
@@ -1501,19 +1506,19 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    | dilithium-8x7-aes-r3                                          |
    |=========================+=====================================|
    | Parameter OID           | {..*.. dilithium-8x7-aes-r3}        |
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 27]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    |                         | <.>                                 |
    | NIST Level Security     | Level 5                             |
    |-------------------------|-------------------------------------|
    | Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
    |                         | Dimension/Degree n=256              |
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 27]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
-
-
    |                         | Modulus q=8380417                   |
    |                         | Dropped bits from t: d=13           |
    |                         | # of +-1's in c: tau=60             |
@@ -1555,19 +1560,20 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    *  s2: vector (K)
    *  t0: k polynomials
 
+
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 28]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    If the private key is fully populated, it consists of 6 parameters.
    The size necessary to hold all private key elements accounts to
    32+32+32+32*[(k+l)*ceiling(log(2*eta+1))+13*k] bytes.  The resulting
    public key and private key sizes can be found in the table below.
-
-
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 28]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
    |=========================+========+=========+=========+=========|
@@ -1601,6 +1607,25 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    ASN.1 Encoding for a Dilithium private key for fully populated:
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 29]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    DilithiumPrivateKey ::= SEQUENCE {
        version     INTEGER {v0(0)}     -- version (round 3)
        nonce       BIT STRING,         -- rho
@@ -1612,18 +1637,6 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
        publicKey  [0] IMPLICIT DilithiumPublicKey OPTIONAL
                                        -- see next section
    }
-
-
-
-
-
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 29]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 7.4.  Private key Partial Encoding Option 1
@@ -1660,6 +1673,15 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
    as follows:
 
 
+
+
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 30]
+
+Internet-Draft      QSC Cryptography Key Information            May 2022
+
+
    DilithiumPrivateKey ::= SEQUENCE {
        version     INTEGER {v0(0)}     -- version (round 3)
        nonce       BIT STRING,         -- zeta
@@ -1671,15 +1693,6 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
        publicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
                                       -- see next section
    }
-
-
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 30]
-
-Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 7.6.  Public Key Full Encoding
@@ -1720,20 +1733,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 31]
+Vredendaal, et al.      Expires 13 November 2022               [Page 31]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -1789,7 +1789,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 32]
+Vredendaal, et al.      Expires 13 November 2022               [Page 32]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -1845,7 +1845,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 33]
+Vredendaal, et al.      Expires 13 November 2022               [Page 33]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -1901,7 +1901,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 34]
+Vredendaal, et al.      Expires 13 November 2022               [Page 34]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -1957,7 +1957,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 35]
+Vredendaal, et al.      Expires 13 November 2022               [Page 35]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -2013,7 +2013,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 36]
+Vredendaal, et al.      Expires 13 November 2022               [Page 36]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -2069,7 +2069,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 37]
+Vredendaal, et al.      Expires 13 November 2022               [Page 37]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -2125,7 +2125,7 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 38]
+Vredendaal, et al.      Expires 13 November 2022               [Page 38]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
@@ -2175,17 +2175,19 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
               DOI 10.17487/RFC3552, July 2003,
               <https://www.rfc-editor.org/info/rfc3552>.
 
-   [RFC5226]  Narten, T. and H. Alvestrand, "Guidelines for Writing an
-              IANA Considerations Section in RFCs", RFC 5226,
 
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 39]
+
+
+Vredendaal, et al.      Expires 13 November 2022               [Page 39]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
+   [RFC5226]  Narten, T. and H. Alvestrand, "Guidelines for Writing an
+              IANA Considerations Section in RFCs", RFC 5226,
               DOI 10.17487/RFC5226, May 2008,
               <https://www.rfc-editor.org/info/rfc5226>.
 
@@ -2232,16 +2234,16 @@ Authors' Addresses
    Email: tvi@zurich.ibm.com
 
 
-   Michael Osborne (editor)
-   IBM Research GmbH
 
 
 
-Vredendaal, et al.      Expires 11 November 2022               [Page 40]
+Vredendaal, et al.      Expires 13 November 2022               [Page 40]
 
 Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
+   Michael Osborne (editor)
+   IBM Research GmbH
    Saeumerstrasse 4
    CH-8803 Rueschlikon
    Switzerland
@@ -2291,6 +2293,4 @@ Internet-Draft      QSC Cryptography Key Information            May 2022
 
 
 
-
-
-Vredendaal, et al.      Expires 11 November 2022               [Page 41]
+Vredendaal, et al.      Expires 13 November 2022               [Page 41]
