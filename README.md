@@ -1,8 +1,34 @@
 # qsc-key-rfc
 collborative environment for developing a QS key serialization document / RFC
 
-The pre-standardisation phase of quantum safe cryptography is a wild west in terms key serialisation formats. Key persistence was not a requirement of the NIST process and as such formats were not specified. 
+Use the Makfefile to build the documents
 
-This complicates interoperability testing, hampers a managed migration through evolving versions of the algorithms and complicates the analysis of the impact that complicated QS keys have on systems and protocols.
+Pre-requisites:  xml2rfc
 
-This document is an open effort to address this situation
+
+draft-uni-qsckeys-kyber-01.txt: draft-uni-qsckeys-kyber-01.xml
+	xml2rfc --text draft-uni-qsckeys-kyber-01.xml
+
+draft-uni-qsckeys-kyber-01.html: draft-uni-qsckeys-kyber-01.xml
+	xml2rfc --html draft-uni-qsckeys-kyber-01.xml
+
+
+draft-uni-qsckeys-dilithium-01.txt: draft-uni-qsckeys-dilithium-01.xml
+	xml2rfc --text draft-uni-qsckeys-dilithium-01.xml
+
+draft-uni-qsckeys-dilithium-01.html: draft-uni-qsckeys-dilithium-01.xml
+	xml2rfc --html draft-uni-qsckeys-dilithium-01.xml
+
+
+draft-uni-qsckeys-falcon-01.txt: draft-uni-qsckeys-falcon-01.xml
+	xml2rfc --text draft-uni-qsckeys-falcon-01.xml
+
+draft-uni-qsckeys-falcon-01.html: draft-uni-qsckeys-falcon-01.xml
+	xml2rfc --html draft-uni-qsckeys-falcon-01.xml
+
+
+draft-uni-qsckeys-sphincsplus-01.txt: draft-uni-qsckeys-sphincsplus-01.xml
+	xml2rfc --text draft-uni-qsckeys-sphincsplus-01.xml
+
+draft-uni-qsckeys-sphincsplus-01.html: draft-uni-qsckeys-sphincsplus-01.xml
+	xml2rfc --html draft-uni-qsckeys-sphincsplus-01.xml
