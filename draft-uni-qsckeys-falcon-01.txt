@@ -16,7 +16,7 @@ Expires: 9 February 2023                                  B.H. Hess, Ed.
                                                            8 August 2022
 
 
-               Quantum Safe Cryptography Key Information
+                      Quantum Safe keys for FALCON
                           draft-uni-qsckeys-01
 
 Abstract
@@ -55,7 +55,7 @@ Status of This Memo
 
 Vredendaal, et al.       Expires 9 February 2023                [Page 1]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
 Copyright Notice
@@ -111,7 +111,7 @@ Table of Contents
 
 Vredendaal, et al.       Expires 9 February 2023                [Page 2]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
    management.  Here it is important to define and standardize key
@@ -167,7 +167,7 @@ Internet-Draft      QSC Cryptography Key Information         August 2022
 
 Vredendaal, et al.       Expires 9 February 2023                [Page 3]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
 1.3.  Algorithm and Algorithm Parameter Object Identifier
@@ -223,7 +223,7 @@ Internet-Draft      QSC Cryptography Key Information         August 2022
 
 Vredendaal, et al.       Expires 9 February 2023                [Page 4]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
    PrivateKeyInfo ::=  SEQUENCE {
@@ -279,7 +279,7 @@ Internet-Draft      QSC Cryptography Key Information         August 2022
 
 Vredendaal, et al.       Expires 9 February 2023                [Page 5]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
 3.  FALCON
@@ -335,7 +335,7 @@ Internet-Draft      QSC Cryptography Key Information         August 2022
 
 Vredendaal, et al.       Expires 9 February 2023                [Page 6]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
 3.2.  Key Details
@@ -391,7 +391,7 @@ Internet-Draft      QSC Cryptography Key Information         August 2022
 
 Vredendaal, et al.       Expires 9 February 2023                [Page 7]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
    FALCONPrivateKey ::= SEQUENCE {
@@ -447,7 +447,7 @@ Internet-Draft      QSC Cryptography Key Information         August 2022
 
 Vredendaal, et al.       Expires 9 February 2023                [Page 8]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
 6.  Security Considerations
@@ -503,7 +503,7 @@ Internet-Draft      QSC Cryptography Key Information         August 2022
 
 Vredendaal, et al.       Expires 9 February 2023                [Page 9]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
               DOI 10.17487/RFC5226, May 2008,
@@ -559,7 +559,7 @@ Authors' Addresses
 
 Vredendaal, et al.       Expires 9 February 2023               [Page 10]
 
-Internet-Draft      QSC Cryptography Key Information         August 2022
+Internet-Draft             QSC Keys for FALCON               August 2022
 
 
    Saeumerstrasse 4
