@@ -1,0 +1,743 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- This template is for creating an Internet Draft using xml2rfc,
+which is available here: http://xml.resource.org. -->
+<!DOCTYPE rfc SYSTEM "rfc2629-xhtml.ent">
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt'?>
+<!-- used by XSLT processors --> 
+<!-- For a complete list and description of processing instructions (PIs), 
+please see http://xml.resource.org/authoring/README.html. -->
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info" docName="draft-uni-qsckeys-kyber-01" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+    <!-- xml2rfc v2v3 conversion 2.38.1 -->
+    <!-- category values: std, bcp, info, exp, and historic
+    ipr values: trust200902, noModificationTrust200902, noDerivativesTrust200902,
+    or pre5378Trust200902
+    you can add the attributes updates="NNNN" and obsoletes="NNNN"
+    they will automatically be output with "(if approved)" -->
+
+    <!-- ***** FRONT MATTER ***** -->
+
+    <front>
+        <!-- The abbreviated title is used in the page header - it is only necessary if the
+        full title is longer than 39 characters -->
+
+        <title abbrev="QSC Cryptography Key Information"> Quantum Safe Cryptography Key Information</title>
+        <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-kyber-2" />
+        <!-- add 'role="editor"' below for the editors if appropriate -->
+
+        <author fullname="Christine van Vredendaal" initials="C.v.V." role="editor" surname="Vredendaal">
+            <organization>NXP Semiconductors</organization>
+            <address>
+                <postal>
+                    <street>High Tech Campus 60</street>
+                    <!-- Reorder these if your country does things differently -->
+                    <city>AE Eindhoven</city>
+                    <region />
+                    <code>5656</code>
+                    <country>NL</country>
+                </postal>
+                <phone>+44 7889 488 335</phone>
+                <email>cvvrede@gmail.com</email>
+                <!-- uri and facsimile elements may also be added -->
+            </address>
+        </author>
+        <!-- Another author who claims to be an editor -->
+
+        <author fullname="Silvio Dragone" initials="S.D." role="editor" surname="Dragone">
+            <organization>IBM Research GmbH</organization>
+            <address>
+                <postal>
+                    <street>Saeumerstrasse 4 </street>
+                    <!-- Reorder these if your country does things differently -->
+
+                    <city>Rueschlikon</city>
+                    <region />
+                    <code>8803</code>
+                    <country>CH</country>
+                </postal>
+                <email>sid@zurich.ibm.com</email>
+                <!-- uri and facsimile elements may also be added -->
+            </address>
+        </author>
+
+        <author fullname="Basil Hess" initials="B.H." role="editor" surname="Hess">
+            <organization>IBM Research GmbH</organization>
+            <address>
+                <postal>
+                    <street>Saeumerstrasse 4 </street>
+                    <!-- Reorder these if your country does things differently -->
+
+                    <city>Rueschlikon</city>
+                    <region />
+                    <code>8803</code>
+                    <country>CH</country>
+                </postal>
+                <email>bhe@zurich.ibm.com</email>
+                <!-- uri and facsimile elements may also be added -->
+            </address>
+        </author>
+
+        <author fullname="Tamas Visegrady" initials="T.V." role="editor" surname="Visegrady">
+            <organization>IBM Research GmbH</organization>
+            <address>
+                <postal>
+                    <street>Saeumerstrasse 4 </street>
+                    <!-- Reorder these if your country does things differently -->
+
+                    <city>Rueschlikon</city>
+                    <region />
+                    <code>8803</code>
+                    <country>CH</country>
+                </postal>
+                <email>tvi@zurich.ibm.com</email>
+                <!-- uri and facsimile elements may also be added -->
+            </address>
+        </author>
+
+        <author fullname="Michael Osborne" initials="M.O." role="editor" surname="Osborne">
+            <organization>IBM Research GmbH</organization>
+            <address>
+                <postal>
+                    <street>Saeumerstrasse 4 </street>
+                    <!-- Reorder these if your country does things differently -->
+
+                    <city>Rueschlikon</city>
+                    <region />
+                    <code>8803</code>
+                    <country>CH</country>
+                </postal>
+                <email>osb@zurich.ibm.com</email>
+                <!-- uri and facsimile elements may also be added -->
+            </address>
+        </author>
+
+        <author fullname="Dieter Bong" initials="D.B." role="editor" surname="Bong">
+            <organization>Utimaco IS GmbH</organization>
+            <address>
+                <postal>
+                    <street>Germanusstrasse 4 </street>
+                    <!-- Reorder these if your country does things differently -->
+
+                    <city>Aachen</city>
+                    <region />
+                    <code>52080</code>
+                    <country>DE</country>
+                </postal>
+                <email>dieter.bong@utimaco.com</email>
+                <!-- uri and facsimile elements may also be added -->
+            </address>
+        </author>
+
+
+        <author fullname="Joppe Bos" initials="J.B" role="editor    " surname="Bos">
+            <organization>NXP Semiconductors</organization>
+            <address>
+                <postal>
+                    <street>High Tech Campus 60</street>
+                    <!-- Reorder these if your country does things differently -->
+                    <city>AE Eindhoven</city>
+                    <region />
+                    <code>5656</code>
+                    <country>NL</country>
+                </postal>
+                <phone>+44 7889 488 335</phone>
+                <email>joppe.bos@nxp.com</email>
+                <!-- uri and facsimile elements may also be added -->
+            </address>
+        </author>
+
+
+        <date year="2022" />
+        <!-- If the month and year are both specified and are the current ones, xml2rfc will fill
+        in the current day for you. If only the current year is specified, xml2rfc will fill
+        in the current day and month for you. If the year is not the current one, it is
+        necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the
+        purpose of calculating the expiry date).  With drafts it is normally sufficient to
+        specify just the year. -->
+
+        <!-- Meta-data Declarations -->
+
+        <area>General</area>
+        <workgroup>Internet Engineering Task Force</workgroup>
+        <!-- WG name at the upperleft corner of the doc,
+        IETF is fine for individual submissions.
+        If this element is not present, the default is "Network Working Group",
+        which is used by the RFC Editor as a nod to the history of the IETF. -->
+
+        <keyword>template</keyword>
+        <!-- Keywords will be incorporated into HTML output
+        files in a meta tag but they have no effect on text or nroff
+        output. If you submit your draft to the RFC Editor, the
+        keywords will be used for the search engine. -->
+
+        <abstract>
+            <t>This proposal defines key management approaches for Quantum Safe Cryptographic (QSC) algorithms 
+            currently under evaluation in the NIST Post Quantum Cryptography (PQC) process.   
+            This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that 
+            the adoption of quantum-safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
+            Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards. </t>
+        </abstract>
+    </front>
+    <middle>
+        <section numbered="true" toc="default">
+            <name>Introduction</name>
+            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected.  The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects.  This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification, key serialization, and key compression for NIST PQC candidates.</t>
+            <section numbered="true" toc="default">
+                <name>Requirements Language</name>
+                <t>
+                    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+                    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+                    document are to be interpreted as described in
+                    <xref target="RFC2119" format="default">RFC 2119</xref>
+                    .
+                </t>
+            </section>
+
+            <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
+
+            <section numbered="true" toc="default">
+                <name>Algorithm Identification</name>
+                <t>Algorithm identification is important for several reasons: </t>
+                <ul spacing="compact">
+                    <li>Managing a smooth transition from early adoption algorithm versions to production versions where there is no compatibility.</li>
+                    <li>Supporting different algorithm versions from different NIST rounds</li>
+                    <li>Identifying different key serialization strategies </li>
+                    <li>Identifying compressed and uncompressed keys</li>
+                </ul>
+                <t>The current standardization of quantum-safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
+                    For the purpose of temporarily supporting ongoing experimentation with opaque blobs, for example in simple "classic key-emulating" test applications, such as TLS, this document specifies a temporary but suboptimal key format in section 2.1, mainly to establish a base of reference for as long as experimentation is ongoing. This is referenced as the 'raw key material' representation.
+                    At the same time, this proposal documents in section 2.2 below, a long-term key representation format useful to address the goals outlined in 1.1. 
+                    This proposal contains all information required to document and transition from one version of key material representation to another.</t>
+            </section>
+
+            <section numbered="true" toc="default">
+                <name>Algorithm and Algorithm Parameter Object Identifier</name>
+                <t>
+                    Algorithm and algorithm parameter information shall have ASN.1 type AlgorithmIdentifier as given in
+                    <xref target="RFC5280" format="default"></xref>
+                    and shall be extended by an pqcAlgorithmParameterName type in the optional parameters field:
+                </t>
+                <artwork align="left" name="" type="" alt="">
+                    <![CDATA[
+AlgorithmIdentifier ::=  SEQUENCE {
+    algorithm  OBJECT IDENTIFIER, - OID: algorithm and algo parameter 
+    parameters pqcAlgorithmParameterName OPTIONAL
+}
+pqcAlgorithmParameterName ::= PrintableString
+]]>
+                </artwork>
+
+            </section>
+        </section>
+
+        <section numbered="true" toc="default">
+            <name>Overview of PQC algorithm and parameter OIDs</name>
+            <t>Each PQC algorithm has its own specific parameters. Different parameter sets provide different levels of security within one algorithm. This memo attributes a name and an OID to the different security level NIST round 3 parameter sets.  The following table gives an overview of the possible OIDs  in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier  type. Each name or OID represents a single parameter set of given security. Details can be found in the individual PQC algorithm chapters.</t>
+
+            <figure anchor="PQCalgorithmOIDs">
+                <artwork align="left" name="" type="" alt="">
+                    <![CDATA[
+|=========+=====+===============================================|
+| Crystals-Kyber (PQC KEM)                                      |
+|=========+=====+===============================================|
+| kyber-512-r3                                                  |
+|---------+-----+-----------------------------------------------|
+|         |ASN.1| {..*.. pqc-kem-kyber kyber-512-r3 }           |
+|         |dot. |                                               |
+|---------+-----+-----------------------------------------------|
+| kyber-512-90s-r3                                              |
+|---------+-----+-----------------------------------------------|
+|         |ASN.1| {..*.. pqc-kem-kyber kyber-512-90s-r3}        |
+|         |dot  |                                               |
+|---------------+-----+-----------------------------------------|
+| kyber-768-r3                                                  |
+|---------+-----+-----------------------------------------------|
+|         |ASN.1| {..*.. pqc-kem-kyber kyber-768-r3 }           |
+|         |dot  |                                               |
+|---------------+-----+-----------------------------------------|
+| kyber-768-90s-r3                                              |
+|---------------+-----+-----------------------------------------|
+|         |ASN.1| {..*.. pqc-kem-kyber kyber-768-90s-r3 }       |
+|         |dot  |                                               |
+|---------+-----+-----------------------------------------------|
+| kyber-1024-r3                                                 |
+|---------+-----+-----------------------------------------------|
+|         |ASN.1| {..*.. pqc-kem-kyber kyber-1024-r3 }          |
+|         |dot  |                                               |
+|---------+-----+-----------------------------------------------|
+| kyber-1024-90s-r3                                             |
+|---------+-----+-----------------------------------------------|
+|         |ASN.1| {..*.. pqc-kem-kyber kyber-1024-90s-r3}       |
+|         |dot  |                                               |
+|=========+=====+===============================================|
+]]>
+                </artwork>
+            </figure>
+
+            <section numbered="true" toc="default">
+                <name>Key Formats</name>
+                <t>
+                    The private key format defined is from PKCS#8
+                    <xref target="RFC5208" format="default"></xref>
+                    .
+                    PKCS#8 PrivateKeyInfo is defined as:
+                </t>
+                <artwork align="left" name="" type="" alt="">
+                    <![CDATA[
+PrivateKeyInfo ::=  SEQUENCE {
+    version               INTEGER             -- PKCS#8 syntax ver
+    privateKeyAlgorithm   AlgorithmIdentifier -- see chapter above
+    privateKey            OCTET STRING,       -- see chapter below
+    attributes            [0]  IMPLICIT Attributes OPTIONAL
+}
+]]>
+                </artwork>
+                <t>Distributing a PQC private key requires a PKCS#8 PrivateKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific private key object in the privateKey field of PrivateKeyInfo. Both objects are defined in the specific algorithm sections of this document. For an overview see tables above and below.</t>
+            </section>
+            <section numbered="true" toc="default">
+                <name>
+                    Public Key Format based on
+                    <xref target="RFC5280" format="default"></xref>
+                </name>
+
+                <t>RFC5280 subjectPublicKeyInfo is defined in as:</t>
+                <artwork align="left" name="" type="" alt="">
+                    <![CDATA[
+SubjectPublicKeyInfo := SEQUENCE {
+    algorithm          AlgorithmIdentifier  -- see chapter above
+    subjectPublicKey   BIT STRING           -- see chapter below
+}
+]]>
+                </artwork>
+                <t>
+                    Distributing a PQC public key requires a
+                    <xref target="RFC5480" format="default"></xref>
+                    subjectPublicKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific public key object in the subjectPublicKey field of subjectPublicKeyInfo. Both objects are defined in the specific algorithm sections of this document. For an overview see tables above and below.
+                </t>
+
+            </section>
+            <section numbered="true" toc="default">
+                <name>Overview of Memo Definitions - PQC Key Formats</name>
+                <t>
+                    The privateKey field in the PrivateKeyInfo type
+                    <xref target="RFC5480" format="default"></xref>
+                    is an OCTET STRING whose contents are the value of the private key.  The interpretation of the content differs from PQC algorithm to algorithm. The subjectPublicKey field in the subjectPublicKeyInfo type
+                    <xref target="RFC5480" format="default">RFC 5480</xref>
+                    is a BIT STRING whose contents are the value of the public key.  Here also the interpretation of the content differs from PQC algorithm to algorithm.
+                </t>
+                <t>For an NTRU private key, for example, the content needs to be interpreted according to the NTRUPrivateKey type and for an NTRU public key the content needs to be interpreted according to the NTRUPublicKey type; both are defined in the NTRU chapter below.</t>
+            </section>
+
+        </section>
+
+
+
+
+        <section numbered="true" toc="default">
+            <name>Kyber</name>
+            <t>Kyber is an IND-CCA2-secure key encapsulation mechanism (KEM), whose security is based on the hardness of solving the learning-with-errors (LWE) problem over module lattices.
+                Project Website: https://pq-crystals.org/kyber/index.shtml
+                NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Kyber-Round3.zip</t>
+
+            <section numbered="true" toc="default">
+                <name>Algorithm Parameter Identifiers</name>
+
+                <t>Kyber uses OIDs to identify parameters sets for different security strengths.</t>
+                <figure anchor="KyberOIDs">
+                    <artwork align="left" name="" type="" alt="">
+                        <![CDATA[
+|=========================+=====================================|
+| kyber-512-r3                                                  |
+|=========================+=====================================|
+| Parameter OID           | {..*.. kyber-512-90s-r3}            |
+|                         | 1.3.6.1.4.1.2.267.8.2.2             |
+| NIST Level Security     | Level 1                             |
+|-------------------------|-------------------------------------|
+| Parameters              | n= 256,                             |
+|                         | k=2                                 |
+|                         | q=3329                              |
+|                         | eta_1=3                             |
+|                         | eta_2=2                             |
+|                         | (d_u, d_v)=(10, 4)                  |
+|                         | delta=2^{-139}                      |
+|=========================+=====================================|
+| kyber-512-90s-r3                                              |
+|=========================+=====================================|
+| Parameter OID           | {..*.. kyber-512-90s-r3}            |
+|                         | 1.3.6.1.4.1.2.267.10.2.2            |
+| NIST Level Security     | Level 1                             |
+|-------------------------|-------------------------------------|
+| Parameters              | n= 256,                             |
+|                         | k=2                                 |
+|                         | q=3329                              |
+|                         | eta_1=3                             |
+|                         | eta_2=2                             |
+|                         | (d_u, d_v)=(10, 4)                  |
+|                         | delta=2^{-139}                      |
+|=========================+=====================================|
+| kyber-768-r3                                                  |
+|=========================+=====================================|
+| Parameter OID           | {..*.. kyber-768-r3}                |
+|                         | 1.3.6.1.4.1.2.267.8.3               |
+| NIST Level Security     | Level 3                             |
+|-------------------------|-------------------------------------|
+| Parameters              | n= 256,                             |
+|                         | k=3                                 |
+|                         | q=3329                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
+|                         | (d_u, d_v)=(10, 4)                  |
+|                         | delta=2^{-164}                      |
+|=========================+=====================================|
+| kyber-768-90s-r3                                              |
+|=========================+=====================================|
+| Parameter OID           | {..*.. kyber-768-90s-r3}            |
+|                         | 1.3.6.1.4.1.2.267.10.3.3            |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameters              | n= 256,                             |
+|                         | k=3                                 |
+|                         | q=3329                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
+|                         | (d_u, d_v)=(10, 4)                  |
+|                         | delta=2^{-164}                      |
+|=========================+=====================================|
+| kyber-1024-r3                                                 |
+|=========================+=====================================|
+| Parameter OID           | {..*.. kyber-1024-r3}               |
+|                         | 11.3.6.1.4.1.2.267.8.4.4            |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameters              | n= 256,                             |
+|                         | k=4                                 |
+|                         | q=3329                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
+|                         | (d_u, d_v)=(11, 5)                  |
+|                         | delta=2^{-174}                      |
+|=========================+=====================================|
+| kyber-1024-90s-r3                                             |
+|=========================+=====================================|
+| Parameter OID           | {..*.. kyber-1024-90s-r3}           |
+|                         | 1.3.6.1.4.1.2.267.10.4.4            |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameters              | n= 256,                             |
+|                         | k=4                                 |
+|                         | q=3329                              |
+|                         | eta_1=2                             |
+|                         | eta_2=2                             |
+|                         | (d_u, d_v)=(11, 5)                  |
+|                         | delta=2^{-174}                      |
+|=========================+=====================================|
+]]>
+                    </artwork>
+                </figure>
+                <t>The '90s' variants listed above differ in the symmetric primitives that are used internally. By default, Kyber uses SHAKE-128 as XOF, SHA3 for hashing and SHAKE-256 for PRF and KDF. The '90s' variants use AES256CTR to construct a XOF and a PRF, SHA2 for hashing and SHAKE-256 as KDF. The main advantage of the '90s' variants is that they benefit from the ready availability of hardware AES and SHA2 co-processors.
+                    While the parameters listed in the table are the same, the key-pairs will not be compatible with the '90s' variants.</t>
+            </section>
+
+            <section numbered="true" toc="default">
+                <name>Key Details</name>
+                <t>Public key. The public-key consists of two parameters:</t>
+                <ul spacing="compact">
+                    <li>t: encoded vector A*s+e, where A is a public matrix over a constant-sized polynomial ring, s and e are vectors over the same ring.</li>
+                    <li>rho: public seed (32 bytes)</li>
+                </ul>
+                <t>The size necessary to hold all public key elements is 12*k*n/8+32 bytes.
+                    
+                    Private key. The private key consists of 3 parameters:</t>
+                <ul spacing="compact">
+                    <li>s: encoded sample from a centered binomial distribution B_{eta_1} (12*k*n/8 bytes)</li>
+                    <li>H(pk): hashed public key (32 bytes). Kyber uses SHA3-256 as H by default. The '90s' variants use SHA256 instead.</li>
+                    <li>z: a nonce (32 bytes)</li>
+                </ul>
+                <t>If the private key is fully populated, it consists of 3 parameters. The size necessary to hold all private key elements accounts to 12*k*n/8+64 bytes, not counting the optional public key.
+                    The resulting public key and private key sizes are shown in the following table.</t>
+                <figure anchor="KyberKeyLengths">
+                    <artwork align="left" name="" type="" alt="">
+                        <![CDATA[
+|==========================+=========+==========+===========|
+| Algorithm OID            | Public  |   Private |  Private |
+|                          | Key     |   Key    |  Key      |
+|                          |         |          |(partial)  |
+|==========================+=========+==========+===========|
+| kyber512-r3 /            |   800   |   832    |    32     |
+| kyber512-90s-r3          |         |          |           |
+|--------------------------|---------|----------|-----------|
+| kyber768-r3 /            |  1184   |   1216   |    32     |
+| kyber768-90s-r3          |         |          |           |
+|--------------------------|--------------------|-----------|
+| kyber1024-r3 /           |  1568   |   1600   |    32     |
+| kyber1024-90s-r3         |         |          |           |
+|==========================+=========+==========+===========|
+]]>
+                    </artwork>
+                </figure>
+
+            </section>
+
+            <section numbered="true" toc="default">
+                <name>Private Key Full Encoding</name>
+
+                <t>Distributing a Kyber private key with PKCS#8 requires:</t>
+                <ul spacing="compact">
+                    <li>kyber-(n*k)-r3 in the algorithm field of  AlgorithmIdentifier</li>
+                    <li>KyberPrivateKey in the privateKey field, which is an OCTET STRING.</li>
+                </ul>
+                <t>When a Kyber public key is included in the distributed PrivateKeyInfo, the PublicKey field in KyberPrivateKey is used (see description of KyberPublicKey below).
+                    The ASN.1 encoding for a Kyber private key is defined as follows:</t>
+                <artwork name="" type="" align="left" alt="">
+                    <![CDATA[
+KyberPrivateKey ::= SEQUENCE {
+    version     INTEGER {v0(0)}   -- version (round 3)
+    s           OCTET STRING,     -- sample s
+    publicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
+                                  -- see next section
+    hpk         OCTET STRING      -- H(pk)
+    nonce       OCTET STRING,     -- z
+}
+]]>
+                </artwork>
+            </section>
+
+            <section numbered="true" toc="default">
+                <name>Private key Partial Encoding</name>
+
+                <t>The partially populated parameter set uses of the fact that some parameters can be regenerated. In this case, only the initial seed 'd' (nonce) is stored and used to regenerate the full key.  
+                    Partially encoded keys use the same ASN.1 structure as the fully polulated keys, simply with the regenerated fields set to EMPTY. 
+                    Compared to the approach of a single definition and setting the regenratable fields as OPTIONAL, this approach significantly simplifies the processing os ASN.1 frames and validation of the partial encoding.
+                    The ASN.1 format for the partially populated versions is the same as for the fully populated version.
+                    The ASN.1 encoding for this variant (z replaced by d) is defined as follows:</t>
+                <artwork name="" type="" align="left" alt="">
+                    <![CDATA[
+KyberPrivateKey ::= SEQUENCE {
+    version     INTEGER {v0(0)}   -- version (round 3)
+    s           OCTET STRING,     -- EMPTY
+    publicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
+                                  -- see next section
+    hpk         OCTET STRING      -- EMPTY
+    nonce       OCTET STRING,     -- d
+}
+]]>
+                </artwork>
+            </section>
+
+            <section numbered="true" toc="default">
+                <name>Public Key Full Encoding</name>
+
+                <t>The vector 't' is encoded using the function Encode_12, defined as the inverse of Decode_12 as defined in Algorithm 3 of the Kyber round 3 specification. The size of t is 12*k*n/8 bytes. The seed 'rho' is a 32 byte OCTET STRING.</t>
+                <artwork name="" type="" align="left" alt="">
+                    <![CDATA[
+KyberPublicKey ::= SEQUENCE {
+    t           OCTET STRING,
+    rho         OCTET STRING
+}
+]]>
+                </artwork>
+            </section>
+        </section>
+
+
+        <section anchor="Acknowledgements" numbered="true" toc="default">
+            <name>Acknowledgements</name>
+            <t>This template was derived from an initial version written by Pekka
+        Savola and contributed by him to the xml2rfc project.</t>
+            <t>This document is part of a plan to make xml2rfc indispensable.</t>
+        </section>
+        <!-- Possibly a 'Contributors' section ... -->
+
+        <section anchor="IANA" numbered="true" toc="default">
+            <name>IANA Considerations</name>
+            <t>This memo includes no request to IANA.</t>
+        </section>
+        <section anchor="Security" numbered="true" toc="default">
+            <name>Security Considerations</name>
+            <t>Any processing of the ASN.1 private key structures, such as base64 en/decoding shall be performed in "constant-time", meaning without secret-dependent control flow and table lookups.
+        The ASN.1 structures in this document are defined with fixed tag-lengths. The purpose is to prevent side-channel leakage of variable lengths during DER parsing. Any DER parsing of the private key ASN.1 key structures shall be performed with these fixed lengths.</t>
+        </section>
+    </middle>
+    <!--  *****BACK MATTER ***** -->
+
+    <back>
+        <!-- References split into informative and normative -->
+
+        <!-- There are 2 ways to insert reference entries from the citation libraries:
+    1. define an ENTITY at the top, and use "ampersand character"RFC2629; here (as shown)
+    2. simply use a PI "less than character"?rfc include="reference.RFC.2119.xml"?> here
+    (for I-Ds: include="reference.I-D.narten-iana-considerations-rfc2434bis.xml")
+    
+    Both are cited textually in the same manner: by using xref elements.
+    If you use the PI option, xml2rfc will, by default, try to find included files in the same
+    directory as the including file. You can also define the XML_LIBRARY environment variable
+    with a value containing a set of directories to search.  These can be either in the local
+    filing system or remote ones accessed by http (http://domain/dir/... ).-->
+
+        <references>
+            <name>References</name>
+            <references>
+                <name>Normative References</name>
+
+                <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?-->
+                <reference anchor="RFC2119" target="https://www.rfc-editor.org/info/rfc2119" xml:base="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+                    <front>
+                        <title>Key words for use in RFCs to Indicate Requirement Levels</title>
+                        <seriesInfo name="DOI" value="10.17487/RFC2119" />
+                        <seriesInfo name="RFC" value="2119" />
+                        <seriesInfo name="BCP" value="14" />
+                        <author initials="S." surname="Bradner" fullname="S. Bradner">
+                            <organization />
+                        </author>
+                        <date year="1997" month="March" />
+                        <abstract>
+                            <t>In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized. This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t>
+                        </abstract>
+                    </front>
+                </reference>
+
+
+                <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.5208.xml"?-->
+                <reference anchor="RFC5208" target="hhttps://www.rfc-editor.org/info/rfc5208" xml:base="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5208.xml">
+                    <front>
+                        <title>Public-Key Cryptography Standards (PKCS) #8: Private-Key Information Syntax Specification Version 1.2</title>
+                        <seriesInfo name="DOI" value="10.17487/RFC5208" />
+                        <seriesInfo name="RFC" value="5208" />
+                        <seriesInfo name="BCP" value="14" />
+                        <author initials="B." surname="Kaliski" fullname="B. Kaliski">
+                            <organization />
+                        </author>
+                        <date year="2008" month="May" />
+                        <abstract>
+                            <t></t>
+                        </abstract>
+                    </front>
+                </reference>
+
+                <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.RFC5280.xml"?-->
+                <reference anchor="RFC5280" target="hhttps://www.rfc-editor.org/info/rfcRFC5280" xml:base="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.RFC5280.xml">
+                    <front>
+                        <title>Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</title>
+                        <seriesInfo name="DOI" value="10.17487/RFC5280" />
+                        <seriesInfo name="RFC" value="RFC5280" />
+                        <seriesInfo name="BCP" value="14" />
+                        <author initials="D." surname="Cooper" fullname="D. Cooper">
+                            <organization />
+                        </author>
+                        <date year="2008" month="May" />
+                        <abstract>
+                            <t></t>
+                        </abstract>
+                    </front>
+                </reference>
+
+
+                <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.RFC5480.xml"?-->
+                <reference anchor="RFC5480" target="hhttps://www.rfc-editor.org/info/rfc5480" xml:base="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.RFC5480.xml">
+                    <front>
+                        <title>Elliptic Curve Cryptography Subject Public Key Information</title>
+                        <seriesInfo name="DOI" value="10.17487/RFC5480" />
+                        <seriesInfo name="RFC" value="RFC5480" />
+                        <seriesInfo name="BCP" value="14" />
+                        <author initials="S." surname="Turner" fullname="S. Turner">
+                            <organization />
+                        </author>
+                        <date year="2009" month="May" />
+                        <abstract>
+                            <t></t>
+                        </abstract>
+                    </front>
+                </reference>
+
+            </references>
+            <references>
+                <name>Informative References</name>
+                <!-- Here we use entities that we defined at the beginning. -->
+
+                <reference anchor="RFC2629" target="https://www.rfc-editor.org/info/rfc2629" xml:base="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2629.xml">
+                    <front>
+                        <title>Writing I-Ds and RFCs using XML</title>
+                        <seriesInfo name="DOI" value="10.17487/RFC2629" />
+                        <seriesInfo name="RFC" value="2629" />
+                        <author initials="M." surname="Rose" fullname="M. Rose">
+                            <organization />
+                        </author>
+                        <date year="1999" month="June" />
+                        <abstract>
+                            <t>This memo presents a technique for using XML (Extensible Markup Language) as a source format for documents in the Internet-Drafts (I-Ds) and Request for Comments (RFC) series.  This memo provides information for the Internet community.</t>
+                        </abstract>
+                    </front>
+                </reference>
+                <reference anchor="RFC3552" target="https://www.rfc-editor.org/info/rfc3552" xml:base="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3552.xml">
+                    <front>
+                        <title>Guidelines for Writing RFC Text on Security Considerations</title>
+                        <seriesInfo name="DOI" value="10.17487/RFC3552" />
+                        <seriesInfo name="RFC" value="3552" />
+                        <seriesInfo name="BCP" value="72" />
+                        <author initials="E." surname="Rescorla" fullname="E. Rescorla">
+                            <organization />
+                        </author>
+                        <author initials="B." surname="Korver" fullname="B. Korver">
+                            <organization />
+                        </author>
+                        <date year="2003" month="July" />
+                        <abstract>
+                            <t>All RFCs are required to have a Security Considerations section. Historically, such sections have been relatively weak.  This document provides guidelines to RFC authors on how to write a good Security Considerations section.   This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t>
+                        </abstract>
+                    </front>
+                </reference>
+                <reference anchor="RFC5226" target="https://www.rfc-editor.org/info/rfc5226" xml:base="https://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5226.xml">
+                    <front>
+                        <title>Guidelines for Writing an IANA Considerations Section in RFCs</title>
+                        <seriesInfo name="DOI" value="10.17487/RFC5226" />
+                        <seriesInfo name="RFC" value="5226" />
+
+                        <author initials="T." surname="Narten" fullname="T. Narten">
+                            <organization />
+                        </author>
+
+                        <author initials="H." surname="Alvestrand" fullname="H. Alvestrand">
+                            <organization />
+                        </author>
+
+                        <date year="2008" month="May" />
+                        <abstract>
+                            <t>This RFC addresses key identification, key serialization, and key compression for the set of quantum safe algorithms currently under evaluation in the NIST PQC process. The aim of this RFC is to facilitate the management of key material as these algorithms evolve through standardization phases into production. Early definition of key material is expected to expedite the adoption of new quantum safe algorithms at the same time as improving interoperability and preventing diverging standards. </t>
+
+                        </abstract>
+                    </front>
+                </reference>
+                <!-- A reference written by by an organization not a person. -->
+
+
+            </references>
+        </references>
+
+
+        <section anchor="app-additional" numbered="true" toc="default">
+            <name>Additional Stuff</name>
+            <t>This becomes an Appendix.</t>
+        </section>
+        <!-- Change Log
+    
+    v00 2006-03-15  EBD   Initial version
+    
+    v01 2006-04-03  EBD   Moved PI location back to position 1 -
+    v3.1 of XMLmind is better with them at this location.
+    v02 2007-03-07  AH    removed extraneous nested_list attribute,
+    other minor corrections
+    v03 2007-03-09  EBD   Added comments on null IANA sections and fixed heading capitalization.
+    Modified comments around figure to reflect non-implementation of
+    figure indent control.  Put in reference using anchor="DOMINATION".
+    Fixed up the date specification comments to reflect current truth.
+    v04 2007-03-09 AH     Major changes: shortened discussion of PIs,
+    added discussion of rfc include.
+    v05 2007-03-10 EBD    Added preamble to C program example to tell about ABNF and alternative
+    images. Removed meta-characters from comments (causes problems).
+    
+    v06 2010-04-01 TT     Changed ipr attribute values to latest ones. Changed date to
+    year only, to be consistent with the comments. Updated the
+    IANA guidelines reference from the I-D to the finished RFC.
+    v07 2020-01-21 HL    Converted the template to use XML schema version 3.
+    -->
+    </back>
+</rfc>
