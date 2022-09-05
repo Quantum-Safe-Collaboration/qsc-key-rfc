@@ -1,6 +1,6 @@
 #all: draft-uni-qsckeys.txt draft-uni-qsckeys.html
-all: 	draft-uni-qsckeys-kyber-01.txt \
- 	draft-uni-qsckeys-kyber-01.html \
+all: 	draft-uni-qsckeys-kyber-00.txt \
+ 	draft-uni-qsckeys-kyber-00.html \
 	draft-uni-qsckeys-dilithium-01.txt \
 	draft-uni-qsckeys-dilithium-01.html \
 	draft-uni-qsckeys-falcon-01.txt \
@@ -16,11 +16,11 @@ all: 	draft-uni-qsckeys-kyber-01.txt \
 #	xml2rfc --html draft-uni-qsckeys.xml
 
 
-draft-uni-qsckeys-kyber-01.txt: draft-uni-qsckeys-kyber-01.xml
-	xml2rfc --text draft-uni-qsckeys-kyber-01.xml
+draft-uni-qsckeys-kyber-00.txt: draft-uni-qsckeys-kyber-00.xml
+	xml2rfc --text draft-uni-qsckeys-kyber-00.xml
 
-draft-uni-qsckeys-kyber-01.html: draft-uni-qsckeys-kyber-01.xml
-	xml2rfc --html draft-uni-qsckeys-kyber-01.xml
+draft-uni-qsckeys-kyber-00.html: draft-uni-qsckeys-kyber-00.xml
+	xml2rfc --html draft-uni-qsckeys-kyber-00.xml
 
 
 draft-uni-qsckeys-dilithium-01.txt: draft-uni-qsckeys-dilithium-01.xml
