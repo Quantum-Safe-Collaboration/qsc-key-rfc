@@ -6,7 +6,7 @@ which is available here: http://xml.resource.org. -->
 <!-- used by XSLT processors --> 
 <!-- For a complete list and description of processing instructions (PIs), 
 please see http://xml.resource.org/authoring/README.html. -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info" docName="draft-uni-qsckeys-kyber-00" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info" docName="draft-uni-qsckeys-sphincsplus-00" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
     <!-- xml2rfc v2v3 conversion 2.38.1 -->
     <!-- category values: std, bcp, info, exp, and historic
     ipr values: trust200902, noModificationTrust200902, noDerivativesTrust200902,
@@ -20,8 +20,8 @@ please see http://xml.resource.org/authoring/README.html. -->
         <!-- The abbreviated title is used in the page header - it is only necessary if the
         full title is longer than 39 characters -->
 
-        <title abbrev="QSC Cryptography Key Information"> Quantum Safe Cryptography Key Information</title>
-        <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-kyber-00" />
+        <title abbrev="QSC Keys for SPHINCS-PLUS"> QSC Keys for SPHINCS-PLUS</title>
+        <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-sphincsplus-00" />
         <!-- add 'role="editor"' below for the editors if appropriate -->
 
         <author fullname="Christine van Vredendaal" surname="Vredendaal">
@@ -151,7 +151,7 @@ please see http://xml.resource.org/authoring/README.html. -->
         in the current day for you. If only the current year is specified, xml2rfc will fill
         in the current day and month for you. If the year is not the current one, it is
         necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the
-        purpose of calculating the expiry date). With drafts it is normally sufficient to
+        purpose of calculating the expiry date).  With drafts it is normally sufficient to
         specify just the year. -->
 
         <!-- Meta-data Declarations -->
@@ -170,8 +170,7 @@ please see http://xml.resource.org/authoring/README.html. -->
         keywords will be used for the search engine. -->
 
         <abstract>
-            <t>This proposal defines key management approaches for the Quantum Safe Cryptographic (QSC) algorithm CRYSTALS-Kyber 
-            which has been selected for standardization by the NIST Post Quantum Cryptography (PQC) process.
+            <t>This proposal defines key management approaches for the Quantum Safe Cryptographic (QSC) algorithm SPHINCS+ (or SPHINCS-PLUS) which has been selected for standardization by the NIST Post Quantum Cryptography (PQC) process.
             This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that 
             the adoption of quantum-safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
             Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards. </t>
@@ -180,7 +179,7 @@ please see http://xml.resource.org/authoring/README.html. -->
     <middle>
         <section numbered="true" toc="default">
             <name>Introduction</name>
-            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected. The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects. This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification, key serialization, and key compression for the selected NIST PQC standard CRYSTALS-Kyber.</t>
+            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations.  Keys are neither easily identifiable nor compatible across rounds.  It is also expected that algorithms will evolve after final candidates have been selected.  The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material.  Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management.  Here it is important to define and standardize key serialization and encoding formats.  Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects.  This makes it important to define and standardize key compression formats.  This proposal addresses aspects of key identification, key serialization, and key compression for the selected NIST PQC standard SPHINCS-PLUS.</t>
             <section numbered="true" toc="default">
                 <name>Requirements Language</name>
                 <t>
@@ -225,49 +224,109 @@ pqcAlgorithmParameterName ::= PrintableString
                 </artwork>
 
             </section>
+	    
         </section>
 
         <section numbered="true" toc="default">
-            <name>Overview of CRYSTALS-Kyber and parameter OIDs</name>
-            <t>CRYSTALS-Kyber consists of six different parameter sets. This memo attributes a name and a placeholder for an OID to the different parameter sets of CRYSTALS-Kyber. The following table gives an overview of the possible OIDs in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier type. Each name or OID represents a single parameter set of given security. Details can be found in the next section.</t>
-
-            <figure anchor="PQCalgorithmOIDs">
+            <name>Overview of PQC algorithm and parameter OIDs</name>
+	    <t>SPHINCS-PLUS consists of six different parameter sets. This memo attributes a name and a placeholder for an OID to the different parameter sets of SPHINCS-PLUS. The following table gives an overview of the possible OIDs in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier type. Each name or OID represents a single parameter set of given security. Details can be found in the next section.</t>
+	    <figure anchor="PQCalgorithmOIDs">
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
-|=========+=====+===============================================|
-| CRYSTALS-Kyber (PQC KEM)                                      |
-|=========+=====+===============================================|
-| kyber-512-r3                                                  |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-kem-kyber kyber-512-r3 }           |
-|         |dot. |                                               |
-|---------+-----+-----------------------------------------------|
-| kyber-512-90s-r3                                              |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-kem-kyber kyber-512-90s-r3}        |
-|         |dot  |                                               |
-|---------------+-----+-----------------------------------------|
-| kyber-768-r3                                                  |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-kem-kyber kyber-768-r3 }           |
-|         |dot  |                                               |
-|---------------+-----+-----------------------------------------|
-| kyber-768-90s-r3                                              |
-|---------------+-----+-----------------------------------------|
-|         |ASN.1| {..*.. pqc-kem-kyber kyber-768-90s-r3 }       |
-|         |dot  |                                               |
-|---------+-----+-----------------------------------------------|
-| kyber-1024-r3                                                 |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-kem-kyber kyber-1024-r3 }          |
-|         |dot  |                                               |
-|---------+-----+-----------------------------------------------|
-| kyber-1024-90s-r3                                             |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-kem-kyber kyber-1024-90s-r3}       |
-|         |dot  |                                               |
-|=========+=====+===============================================|
-]]>
+|=========+=====+======================================================|
+| SPHINCS-PLUS (PQC Digital Signature)                                 |
+|=========+=====+======================================================|
+| sphincsplus-sha-128s-r3                                              |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-128s-r3}   |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-shake-128s-r3                                            |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-shake-128s-r3} |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-haraka-128s-r3                                           |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-128s-r3}|
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-sha-128f-r3                                              |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-128f-r3}   |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-shake-128f-r3                                            |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-shake-128f-r3} |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-haraka-128f-r3                                           |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-128f-r3}|
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-sha-192s-r3                                              |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-192s-r3}   |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-shake-192s-r3                                            |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-shake-192s-r3} |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-haraka-192s-r3                                           |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-192s-r3}|
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-sha-192f-r3                                              |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-192f-r3}   |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-shake-192f-r3                                            |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-shake-192f-r3} |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-haraka-192f-r3                                           |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-192f-r3}|
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-sha-256s-r3                                              |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-256s-r3}   |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-shake-256s-r3                                            |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-shake-256s-r3} |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-haraka-256s-r3                                           |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-256s-r3}|
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-sha-256f-r3                                              |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-256f-r3}   |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-shake-256f-r3                                            |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-shake-256f-r3} |
+|         |dot. |                                                      |
+|---------+-----+------------------------------------------------------|
+| sphincsplus-haraka-256f-r3                                           |
+|---------+-----+------------------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-256f-r3}|
+|         |dot. |                                                      |
+|=========+=====+======================================================|
+		    ]]>
                 </artwork>
             </figure>
 
@@ -281,17 +340,17 @@ pqcAlgorithmParameterName ::= PrintableString
                 </t>
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
-PrivateKeyInfo ::=  SEQUENCE {
-    version               INTEGER             -- PKCS#8 syntax ver
-    privateKeyAlgorithm   AlgorithmIdentifier -- see chapter above
-    privateKey            OCTET STRING,       -- see chapter below
-    attributes            [0]  IMPLICIT Attributes OPTIONAL
-}
-]]>
+   PrivateKeyInfo ::=  SEQUENCE {
+       version               INTEGER             -- PKCS#8 syntax ver
+       privateKeyAlgorithm   AlgorithmIdentifier -- see chapter above
+       privateKey            OCTET STRING,       -- see chapter below
+       attributes            [0]  IMPLICIT Attributes OPTIONAL
+   }
+		    ]]>
                 </artwork>
-                <t>Distributing a PQC private key requires a PKCS#8 PrivateKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific private key object in the privateKey field of PrivateKeyInfo. Both objects are defined in the specific algorithm sections of this document. For an overview see tables above and below.</t>
-            </section>
-            <section numbered="true" toc="default">
+		<t>Distributing a PQC private key requires a PKCS#8 PrivateKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific private key object in the privateKey field of PrivateKeyInfo.  Both objects are defined in the specific algorithm sections of this document.  For an overview see tables above and below.</t>
+	    </section>
+	    <section numbered="true" toc="default">
                 <name>
                     Public Key Format based on
                     <xref target="RFC5280" format="default"></xref>
@@ -300,237 +359,282 @@ PrivateKeyInfo ::=  SEQUENCE {
                 <t>RFC5280 subjectPublicKeyInfo is defined in as:</t>
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
-SubjectPublicKeyInfo := SEQUENCE {
-    algorithm          AlgorithmIdentifier  -- see chapter above
-    subjectPublicKey   BIT STRING           -- see chapter below
-}
-]]>
+   SubjectPublicKeyInfo := SEQUENCE {
+       algorithm          AlgorithmIdentifier  -- see chapter above
+       subjectPublicKey   BIT STRING           -- see chapter below
+   }
+		    ]]>
                 </artwork>
-                <t>
-                    Distributing a PQC public key requires a
-                    <xref target="RFC5480" format="default"></xref>
-                    subjectPublicKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific public key object in the subjectPublicKey field of subjectPublicKeyInfo. Both objects are defined in the specific algorithm sections of this document. For an overview see tables above and below.
-                </t>
-
-            </section>
-            <section numbered="true" toc="default">
+                <t>Distributing a PQC public key requires a
+		<xref target="RFC5480" format="default"></xref>
+		subjectPublicKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific public key object in the subjectPublicKey field of subjectPublicKeyInfo.  Both objects are defined in the specific algorithm sections of this document.  For an overview see tables above and below.</t>
+	    </section>
+	    <section numbered="true" toc="default">
                 <name>Overview of Memo Definitions - PQC Key Formats</name>
                 <t>
-                    The privateKey field in the PrivateKeyInfo type
-                    <xref target="RFC5480" format="default"></xref>
-                    is an OCTET STRING whose contents are the value of the private key. The interpretation of the content differs from PQC algorithm to algorithm. The subjectPublicKey field in the subjectPublicKeyInfo type
-                    <xref target="RFC5480" format="default">RFC 5480</xref>
-                    is a BIT STRING whose contents are the value of the public key. Here also the interpretation of the content differs from PQC algorithm to algorithm.
-                </t>
-                <t>For an NTRU private key, for example, the content needs to be interpreted according to the NTRUPrivateKey type and for an NTRU public key the content needs to be interpreted according to the NTRUPublicKey type; both are defined in the NTRU chapter below.</t>
-            </section>
+		  The privateKey field in the PrivateKeyInfo type
+                  <xref target="RFC5480" format="default"></xref>
+		    is an OCTET STRING whose contents are the value of the private key.  The interpretation of the content differs from PQC algorithm to algorithm.  The subjectPublicKey field in the subjectPublicKeyInfo type
+		    <xref target="RFC5480" format="default">RFC 5480</xref>
+		    is a BIT STRING whose contents are the value of the public key.  Here also the interpretation of the content differs from PQC algorithm to algorithm.
+		</t>
+		<t>For an NTRU private key, for example, the content needs to be interpreted according to the NTRUPrivateKey type and for an NTRU public key the content needs to be interpreted according to the NTRUPublicKey type; both are defined in the NTRU chapter below.</t>
+	    </section>
 
-        </section>
+	</section>
 
+	
+	<section numbered="true" toc="default">
+            <name>SPHINCS-PLUS</name>
 
+            <t>SPHINCS-PLUS is a hash-based signature scheme. The algoritm is based on the hardness assumptions of its underlying hash functions, which can be chosen from the set Haraka, SHA-256 or SHAKE256.</t>
+	    
+	    <t>Project Website https://sphincs.org
+	    NIST Round 3 Submission https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/SPHINCS-Round3.zip</t>
 
+	    <section numbered="true" toc="default">
+                <name>SPHINCS-PLUS Algorithm Parameter Identifiers</name>
 
-        <section numbered="true" toc="default">
-            <name>CRYSTALS-Kyber</name>
-            <t>Kyber is an IND-CCA2-secure key encapsulation mechanism (KEM), whose security is based on the hardness of solving the learning-with-errors (LWE) problem over module lattices.
-                Project Website: https://pq-crystals.org/kyber/index.shtml
-                NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Kyber-Round3.zip</t>
-
-            <section numbered="true" toc="default">
-                <name>Algorithm Parameter Identifiers</name>
-
-                <t>Kyber uses OIDs to identify parameters sets for different security strengths.</t>
-                <figure anchor="KyberOIDs">
+                <t>Since the underlying hash function can be chosen, for each parameter set identified in the SPHINCS-PLUS specification in fact three parameter OIDs exist. The parameters are the same across the three parameter OIDs.</t>
+                <figure anchor="SPHINCSPLUSOIDs">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
 |=========================+=====================================|
-| kyber-512-r3                                                  |
+| SPHINCS-PLUS-128s                                                 |
 |=========================+=====================================|
-| Parameter OID           | {..*.. kyber-512-r3}                |
+| Parameter OID           | {..*.. sphincsplus-sha-128s-r3}     | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
-| Parameters              | n= 256,                             |
-|                         | k=2                                 |
-|                         | q=3329                              |
-|                         | eta_1=3                             |
-|                         | eta_2=2                             |
-|                         | (d_u, d_v)=(10, 4)                  |
-|                         | delta=2^{-139}                      |
-|=========================+=====================================|
-| kyber-512-90s-r3                                              |
-|=========================+=====================================|
-| Parameter OID           | {..*.. kyber-512-90s-r3}            |
+| Parameter OID           | {..*.. sphincsplus-shake-128s-r3}   | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
-| Parameters              | n= 256,                             |
-|                         | k=2                                 |
-|                         | q=3329                              |
-|                         | eta_1=3                             |
-|                         | eta_2=2                             |
-|                         | (d_u, d_v)=(10, 4)                  |
-|                         | delta=2^{-139}                      |
+| Parameter OID           | {..*.. sphincsplus-haraka-128s-r3}  | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 1                             |
+|-------------------------|-------------------------------------|
+| Parameters              | Security parameter n = 16           |
+|                         | Hypertree height h = 63             |
+|                         | Hypertree layers d = 7              |
+|                         | FORS tree leaves log(t) = 12        |
+|                         | Number of FORS trees k = 14         |
+|                         | Winternitz parameter w = 16         |
 |=========================+=====================================|
-| kyber-768-r3                                                  |
+| SPHINCS-PLUS-128f                                                 |
 |=========================+=====================================|
-| Parameter OID           | {..*.. kyber-768-r3}                |
+| Parameter OID           | {..*.. sphincsplus-sha-128f-r3}     | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 1                             |
+|-------------------------|-------------------------------------|
+| Parameter OID           | {..*.. sphincsplus-shake-128f-r3}   | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 1                             |
+|-------------------------|-------------------------------------|
+| Parameter OID           | {..*.. sphincsplus-haraka-128f-r3}  | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 1                             |
+|-------------------------|-------------------------------------|
+| Parameters              | Security parameter n = 16           |
+|                         | Hypertree height h = 66             |
+|                         | Hypertree layers d = 22             |
+|                         | FORS tree leaves log(t) = 6         |
+|                         | Number of FORS trees k = 33         |
+|                         | Winternitz parameter w = 16         |
+|=========================+=====================================|
+| SPHINCS-PLUS-192s                                                 |
+|=========================+=====================================|
+| Parameter OID           | {..*.. sphincsplus-sha-192s-r3}     | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
-| Parameters              | n= 256,                             |
-|                         | k=3                                 |
-|                         | q=3329                              |
-|                         | eta_1=2                             |
-|                         | eta_2=2                             |
-|                         | (d_u, d_v)=(10, 4)                  |
-|                         | delta=2^{-164}                      |
+| Parameter OID           | {..*.. sphincsplus-shake-192s-r3}   | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 3                             |
+|-------------------------|-------------------------------------|
+| Parameter OID           | {..*.. sphincsplus-haraka-192s-r3}  | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 2                             |
+|-------------------------|-------------------------------------|
+| Parameters              | Security parameter n = 24           |
+|                         | Hypertree height h = 63             |
+|                         | Hypertree layers d = 7              |
+|                         | FORS tree leaves log(t) = 14        |
+|                         | Number of FORS trees k = 17         |
+|                         | Winternitz parameter w = 16         |
 |=========================+=====================================|
-| kyber-768-90s-r3                                              |
+| SPHINCS-PLUS-192f                                                  |
 |=========================+=====================================|
-| Parameter OID           | {..*.. kyber-768-90s-r3}            |
+| Parameter OID           | {..*.. sphincsplus-sha-192f-r3}     | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 3                             |
+|-------------------------|-------------------------------------|
+| Parameter OID           | {..*.. sphincsplus-shake-192f-r3}   | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 3                             |
+|-------------------------|-------------------------------------|
+| Parameter OID           | {..*.. sphincsplus-haraka-192f-r3}  | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 2                             |
+|-------------------------|-------------------------------------|
+| Parameters              | Security parameter n = 24           |
+|                         | Hypertree height h = 66             |
+|                         | Hypertree layers d = 22             |
+|                         | FORS tree leaves log(t) = 8         |
+|                         | Number of FORS trees k = 33         |
+|                         | Winternitz parameter w = 16         |
+|=========================+=====================================|
+| SPHINCS-PLUS-256s                                                  |
+|=========================+=====================================|
+| Parameter OID           | {..*.. sphincsplus-sha-256s-r3}     | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
-| Parameters              | n= 256,                             |
-|                         | k=3                                 |
-|                         | q=3329                              |
-|                         | eta_1=2                             |
-|                         | eta_2=2                             |
-|                         | (d_u, d_v)=(10, 4)                  |
-|                         | delta=2^{-164}                      |
-|=========================+=====================================|
-| kyber-1024-r3                                                 |
-|=========================+=====================================|
-| Parameter OID           | {..*.. kyber-1024-r3}               |
+| Parameter OID           | {..*.. sphincsplus-shake-256s-r3}   | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
-| Parameters              | n= 256,                             |
-|                         | k=4                                 |
-|                         | q=3329                              |
-|                         | eta_1=2                             |
-|                         | eta_2=2                             |
-|                         | (d_u, d_v)=(11, 5)                  |
-|                         | delta=2^{-174}                      |
+| Parameter OID           | {..*.. sphincsplus-haraka-256s-r3}  | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 2                             |
+|-------------------------|-------------------------------------|
+| Parameters              | Security parameter n = 32           |
+|                         | Hypertree height h = 64             |
+|                         | Hypertree layers d = 8              |
+|                         | FORS tree leaves log(t) = 14        |
+|                         | Number of FORS trees k = 22         |
+|                         | Winternitz parameter w = 16         |
 |=========================+=====================================|
-| kyber-1024-90s-r3                                             |
+| SPHINCS-PLUS-256f                                                 |
 |=========================+=====================================|
-| Parameter OID           | {..*.. kyber-1024-90s-r3}           |
+| Parameter OID           | {..*.. sphincsplus-sha-256f-r3}     | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
-| Parameters              | n= 256,                             |
-|                         | k=4                                 |
-|                         | q=3329                              |
-|                         | eta_1=2                             |
-|                         | eta_2=2                             |
-|                         | (d_u, d_v)=(11, 5)                  |
-|                         | delta=2^{-174}                      |
+| Parameter OID           | {..*.. sphincsplus-shake-256f-r3}   | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 5                             |
+|-------------------------|-------------------------------------|
+| Parameter OID           | {..*.. sphincsplus-haraka-256f-r3}  | 
+|                         | <.>                                 |
+| NIST Level Security     | Level 2                             |
+|-------------------------|-------------------------------------|
+| Parameters              | Security parameter n = 32           |
+|                         | Hypertree height h = 68             |
+|                         | Hypertree layers d = 17             |
+|                         | FORS tree leaves log(t) = 9         |
+|                         | Number of FORS trees k = 35         |
+|                         | Winternitz parameter w = 16         |
 |=========================+=====================================|
-]]>
+			]]>
                     </artwork>
                 </figure>
-                <t>The '90s' variants listed above differ in the symmetric primitives that are used internally. By default, CRYSTALS-Kyber uses SHAKE-128 as XOF, SHA3 for hashing and SHAKE-256 for PRF and KDF. The '90s' variants use AES256CTR to construct a XOF and a PRF, SHA2 for hashing and SHAKE-256 as KDF. The main advantage of the '90s' variants is that they benefit from the ready availability of hardware AES and SHA2 co-processors.
-                    While the parameters listed in the table are the same, the key-pairs will not be compatible with the '90s' variants.</t>
-            </section>
 
+            </section>
             <section numbered="true" toc="default">
-                <name>Key Details</name>
-                <t>Public key. The public-key consists of two parameters:</t>
-                <ul spacing="compact">
-                    <li>t: encoded vector A*s+e, where A is a public matrix over a constant-sized polynomial ring, s and e are vectors over the same ring.</li>
-                    <li>rho: public seed (32 bytes)</li>
-                </ul>
-                <t>The size necessary to hold all public key elements is 12*k*n/8+32 bytes.
-                    
-                    Private key. The private key consists of 3 parameters:</t>
-                <ul spacing="compact">
-                    <li>s: encoded sample from a centered binomial distribution B_{eta_1} (12*k*n/8 bytes)</li>
-                    <li>H(pk): hashed public key (32 bytes). CRYSTALS-Kyber uses SHA3-256 as H by default. The '90s' variants use SHA256 instead.</li>
-                    <li>z: a nonce (32 bytes)</li>
-                </ul>
-                <t>If the private key is fully populated, it consists of 3 parameters. The size necessary to hold all private key elements accounts to 12*k*n/8+64 bytes, not counting the optional public key.
-                    The resulting public key and private key sizes are shown in the following table.</t>
-                <figure anchor="KyberKeyLengths">
+                <name>SPHINCS-PLUS Key Details</name>
+                <t>The SPHINCS-PLUS secret key contains 4 n-byte components SK.seed, SK.prf, PK.seed and PK.root. The latter 2 components are equivalent to the SPHINCS-PLUS public key.</t>
+
+		<figure anchor="SPHINCSPLUSPrivatKeySizes">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
-|==========================+=========+==========+===========|
-| Algorithm OID            | Public  |   Private |  Private |
-|                          | Key     |   Key    |  Key      |
-|                          |         |          |(partial)  |
-|==========================+=========+==========+===========|
-| kyber512-r3 /            |   800   |   832    |    32     |
-| kyber512-90s-r3          |         |          |           |
-|--------------------------|---------|----------|-----------|
-| kyber768-r3 /            |  1184   |   1216   |    32     |
-| kyber768-90s-r3          |         |          |           |
-|--------------------------|--------------------|-----------|
-| kyber1024-r3 /           |  1568   |   1600   |    32     |
-| kyber1024-90s-r3         |         |          |           |
-|==========================+=========+==========+===========|
+|============================+=========+==========|
+| Algorithm OID              | Params  |   Secret |
+|                            |         |   Key    |
+|                            |         |   Length |
+|============================+=========+==========+
+| sphincsplus-sha-128s-r3    |  n=16   |    64    |
+| sphincsplus-sha-128f-r3    |         |          |
+| sphincsplus-shake-128s-r3  |         |          |
+| sphincsplus-shake-128f-r3  |         |          |
+| sphincsplus-haraka-128s-r3 |         |          |
+| sphincsplus-haraka-128f-r3 |         |          |
+|============================+=========+==========+
+| sphincsplus-sha-192s-r3    |  n=24   |    96    |
+| sphincsplus-sha-192f-r3    |         |          |
+| sphincsplus-shake-192s-r3  |         |          |
+| sphincsplus-shake-192f-r3  |         |          |
+| sphincsplus-haraka-192s-r3 |         |          |
+| sphincsplus-haraka-192f-r3 |         |          |
+|============================+=========+==========+
+| sphincsplus-sha-256s-r3    |  n=32   |    128   |
+| sphincsplus-sha-256f-r3    |         |          |
+| sphincsplus-shake-256s-r3  |         |          |
+| sphincsplus-shake-256f-r3  |         |          |
+| sphincsplus-haraka-256s-r3 |         |          |
+| sphincsplus-haraka-256f-r3 |         |          |
+|============================+=========+==========+
+			]]>
+                    </artwork>
+                </figure>
+	    </section>
+
+	    <section numbered="true" toc="default">
+                <name>SPHINCS-PLUS Secret Key Full Encoding</name>
+                <t>Encoding a SPHINCS-PLUS private key with PKCS#8 must include the following two fields:</t>
+                <ul spacing="compact">
+                    <li>sphincsplus-(hash)-(params)-r3 in the algorithm field of AlgorithmIdentifier</li>
+		    <li>SPHINCSPLUSPrivateKey in the privateKey field, which is an OCTET STRING.</li>
+		</ul>
+		<t>For a signing operation of SPHINCS-PLUS the PK.seed of the Public Key is required. Therefore the SPHINCS-PLUS public key is included in the distributed PrivateKeyInfo, and the PublicKey field in SPHINCSPLUSPrivateKey is used (see description of SPHINCSPLUSPublicKey below).</t>
+
+		<t>ASN.1 Encoding for a SPHINCS-PLUS secret key:</t>
+		                <artwork name="" type="" align="left" alt="">
+                    <![CDATA[
+  SPHINCSPLUSPrivateKey ::= SEQUENCE {
+    version          INTEGER {v2(1)}     --syntax version 2 (round 3)
+    skseed          OCTET STRING,        --n-byte private key seed
+    skprf           OCTET STRING,        --n-byte private key seed 
+    PublicKey       SPHINCSPLUSPublicKey --public key
+  }
+		    ]]>
+                </artwork>
+
+            </section>
+            <section numbered="true" toc="default">
+                <name>SPHINCS-PLUS Public Key Full Encoding</name>
+
+                <t>The SPHINCS-PLUS public key contains 2 n-byte components PK.seed and PK.root.</t>
+		
+		<figure anchor="DilithiumKeyPublicSizes">
+                    <artwork align="left" name="" type="" alt="">
+                        <![CDATA[
+|============================+=========+==========|
+| Algorithm OID              | Params  |   Secret |
+|                            |         |   Key    |
+|                            |         |   Length |
+|============================+=========+==========+
+| sphincsplus-sha-128s-r3    |  n=16   |    32    |
+| sphincsplus-sha-128f-r3    |         |          |
+| sphincsplus-shake-128s-r3  |         |          |
+| sphincsplus-shake-128f-r3  |         |          |
+| sphincsplus-haraka-128s-r3 |         |          |
+| sphincsplus-haraka-128f-r3 |         |          |
+|============================+=========+==========+
+| sphincsplus-sha-192s-r3    |  n=24   |    48    |
+| sphincsplus-sha-192f-r3    |         |          |
+| sphincsplus-shake-192s-r3  |         |          |
+| sphincsplus-shake-192f-r3  |         |          |
+| sphincsplus-haraka-192s-r3 |         |          |
+| sphincsplus-haraka-192f-r3 |         |          |
+|============================+=========+==========+
+| sphincsplus-sha-256s-r3    |  n=32   |    64    |
+| sphincsplus-sha-256f-r3    |         |          |
+| sphincsplus-shake-256s-r3  |         |          |
+| sphincsplus-shake-256f-r3  |         |          |
+| sphincsplus-haraka-256s-r3 |         |          |
+| sphincsplus-haraka-256f-r3 |         |          |
+|============================+=========+==========+
 ]]>
                     </artwork>
                 </figure>
 
-            </section>
-
-            <section numbered="true" toc="default">
-                <name>Private Key Full Encoding</name>
-
-                <t>Distributing a CRYSTALS-Kyber private key with PKCS#8 requires:</t>
-                <ul spacing="compact">
-                    <li>kyber-(n*k)-r3 in the algorithm field of  AlgorithmIdentifier</li>
-                    <li>KyberPrivateKey in the privateKey field, which is an OCTET STRING.</li>
-                </ul>
-                <t>When a CRYSTALS-Kyber public key is included in the distributed PrivateKeyInfo, the PublicKey field in KyberPrivateKey is used (see description of KyberPublicKey below).
-                    The ASN.1 encoding for a CRYSTALS-Kyber private key is defined as follows:</t>
-                <artwork name="" type="" align="left" alt="">
+		<artwork name="" type="" align="left" alt="">
                     <![CDATA[
-KyberPrivateKey ::= SEQUENCE {
-    version     INTEGER {v0(0)}   -- version (round 3)
-    s           OCTET STRING,     -- sample s
-    publicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
-                                  -- see next section
-    hpk         OCTET STRING      -- H(pk)
-    nonce       OCTET STRING,     -- z
-}
-]]>
-                </artwork>
-            </section>
-
-            <section numbered="true" toc="default">
-                <name>Private key Partial Encoding</name>
-
-                <t>The partially populated parameter set uses of the fact that some parameters can be regenerated. In this case, only the initial seed 'd' (nonce) is stored and used to regenerate the full key. 
-                    Partially encoded keys use the same ASN.1 structure as the fully polulated keys, simply with the regenerated fields set to EMPTY. 
-                    Compared to the approach of a single definition and setting the regenratable fields as OPTIONAL, this approach significantly simplifies the processing os ASN.1 frames and validation of the partial encoding.
-                    The ASN.1 format for the partially populated versions is the same as for the fully populated version.
-                    The ASN.1 encoding for this variant (z replaced by d) is defined as follows:</t>
-                <artwork name="" type="" align="left" alt="">
-                    <![CDATA[
-KyberPrivateKey ::= SEQUENCE {
-    version     INTEGER {v0(0)}   -- version (round 3)
-    s           OCTET STRING,     -- EMPTY
-    publicKey   [0] IMPLICIT KyberPublicKey OPTIONAL,
-                                  -- see next section
-    hpk         OCTET STRING      -- EMPTY
-    nonce       OCTET STRING,     -- d
-}
-]]>
-                </artwork>
-            </section>
-
-            <section numbered="true" toc="default">
-                <name>Public Key Full Encoding</name>
-
-                <t>The vector 't' is encoded using the function Encode_12, defined as the inverse of Decode_12 as defined in Algorithm 3 of the CRYSTALS-Kyber round 3 specification. The size of t is 12*k*n/8 bytes. The seed 'rho' is a 32 byte OCTET STRING.</t>
-                <artwork name="" type="" align="left" alt="">
-                    <![CDATA[
-KyberPublicKey ::= SEQUENCE {
-    t           OCTET STRING,
-    rho         OCTET STRING
-}
+  SPHINCSPPLUSPublicKey := SEQUENCE {
+    pkseed          OCTET STRING,     --n-byte public key seed
+    pkroot          OCTET STRING      --n-byte public hypertree root
+  }
 ]]>
                 </artwork>
             </section>
@@ -568,7 +672,7 @@ KyberPublicKey ::= SEQUENCE {
     Both are cited textually in the same manner: by using xref elements.
     If you use the PI option, xml2rfc will, by default, try to find included files in the same
     directory as the including file. You can also define the XML_LIBRARY environment variable
-    with a value containing a set of directories to search. These can be either in the local
+    with a value containing a set of directories to search.  These can be either in the local
     filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
         <references>
@@ -588,7 +692,7 @@ KyberPublicKey ::= SEQUENCE {
                         </author>
                         <date year="1997" month="March" />
                         <abstract>
-                            <t>In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t>
+                            <t>In many standards track documents several words are used to signify the requirements in the specification.  These words are often capitalized. This document defines these words as they should be interpreted in IETF documents.  This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t>
                         </abstract>
                     </front>
                 </reference>
@@ -661,7 +765,7 @@ KyberPublicKey ::= SEQUENCE {
                         </author>
                         <date year="1999" month="June" />
                         <abstract>
-                            <t>This memo presents a technique for using XML (Extensible Markup Language) as a source format for documents in the Internet-Drafts (I-Ds) and Request for Comments (RFC) series. This memo provides information for the Internet community.</t>
+                            <t>This memo presents a technique for using XML (Extensible Markup Language) as a source format for documents in the Internet-Drafts (I-Ds) and Request for Comments (RFC) series.  This memo provides information for the Internet community.</t>
                         </abstract>
                     </front>
                 </reference>
@@ -679,7 +783,7 @@ KyberPublicKey ::= SEQUENCE {
                         </author>
                         <date year="2003" month="July" />
                         <abstract>
-                            <t>All RFCs are required to have a Security Considerations section. Historically, such sections have been relatively weak. This document provides guidelines to RFC authors on how to write a good Security Considerations section. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t>
+                            <t>All RFCs are required to have a Security Considerations section. Historically, such sections have been relatively weak.  This document provides guidelines to RFC authors on how to write a good Security Considerations section.   This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.</t>
                         </abstract>
                     </front>
                 </reference>
@@ -725,7 +829,7 @@ KyberPublicKey ::= SEQUENCE {
     other minor corrections
     v03 2007-03-09  EBD   Added comments on null IANA sections and fixed heading capitalization.
     Modified comments around figure to reflect non-implementation of
-    figure indent control. Put in reference using anchor="DOMINATION".
+    figure indent control.  Put in reference using anchor="DOMINATION".
     Fixed up the date specification comments to reflect current truth.
     v04 2007-03-09 AH     Major changes: shortened discussion of PIs,
     added discussion of rfc include.
