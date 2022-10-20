@@ -16,7 +16,7 @@ Expires: 23 April 2023                                           B. Hess
                                                          20 October 2022
 
 
-                      QSC Keys for CRYSTALS-Kyber
+      Quantum Safe Cryptography Key Information for CRYSTALS-Kyber
                        draft-uni-qsckeys-kyber-00
 
 Abstract
@@ -55,7 +55,7 @@ Status of This Memo
 
 Vredendaal, et al.        Expires 23 April 2023                 [Page 1]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
 Copyright Notice
@@ -86,7 +86,7 @@ Table of Contents
      3.1.  Algorithm Parameter Identifiers . . . . . . . . . . . . .   7
      3.2.  Key Details . . . . . . . . . . . . . . . . . . . . . . .   9
      3.3.  Private Key Full Encoding . . . . . . . . . . . . . . . .  10
-     3.4.  Private key Partial Encoding  . . . . . . . . . . . . . .  11
+     3.4.  Private Key Partial Encoding  . . . . . . . . . . . . . .  11
      3.5.  Public Key Full Encoding  . . . . . . . . . . . . . . . .  11
    4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  11
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  12
@@ -111,7 +111,7 @@ Table of Contents
 
 Vredendaal, et al.        Expires 23 April 2023                 [Page 2]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
    the impact of adopting new PQC algorithms, in particular key
@@ -121,12 +121,12 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
    amount of memory or space available for key objects.  This makes it
    important to define and standardize key compression formats.  This
    proposal addresses aspects of key identification, key serialization,
-   and key compression for the future NIST PQC KEM standard, CRYSTALS-
-   Kyber.  For the other schemes, see draft-uni-qsckeys-dilithium,
-   draft-uni-qsckeys-falcon, draft-uni-qsckeys-sphincsplus and the
-   previous Internet-Draft [draft-uni-qsckeys-01].  This proposal will
-   be updated when the final NIST standard for CRYSTALS-Kyber becomes
-   available.
+   and key compression for the future primary NIST PQC KEM standard,
+   CRYSTALS-Kyber.  For the other schemes, see draft-uni-qsckeys-
+   dilithium, draft-uni-qsckeys-falcon, draft-uni-qsckeys-sphincsplus
+   and the previous Internet-Draft [draft-uni-qsckeys-01].  This
+   proposal will be updated when the final NIST standard for CRYSTALS-
+   Kyber becomes available.
 
 1.1.  Requirements Language
 
@@ -154,7 +154,7 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
    algorithms.  In terms of longer-term support where algorithm versions
    change this is a problem.  This proposal defines in section 2 a long-
    term structured key representation format useful to address the goals
-   outlined in 1.2.
+   outlined above.
 
 1.3.  Algorithm and Algorithm Parameter Object Identifier
 
@@ -167,7 +167,7 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 Vredendaal, et al.        Expires 23 April 2023                 [Page 3]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
    AlgorithmIdentifier ::=  SEQUENCE {
@@ -179,14 +179,14 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 2.  Overview of CRYSTALS-Kyber and parameter OIDs
 
-   CRYSTALS-Kyber consists of six different parameter sets.  This memo
-   attributes a name and a placeholder for an OID to the different
-   parameter sets of CRYSTALS-Kyber.  The following table gives an
-   overview of the possible OIDs in the algorithm field and possible
-   parameters set names in the parameters field of the
-   AlgorithmIdentifier type.  Each name or OID represents a single
-   parameter set of given security.  Details can be found in the next
-   section.
+   CRYSTALS-Kyber consists of six parameter sets.  This memo attributes
+   a name and a placeholder for an OID to the different parameter sets
+   of CRYSTALS-Kyber.  The following table gives an overview of the
+   possible OIDs in the algorithm field and possible parameters set
+   names in the parameters field of the AlgorithmIdentifier type.  Each
+   name or OID represents a single parameter set of given security.
+   Details can be found in the next section.
+
 
 
 
@@ -223,7 +223,7 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 Vredendaal, et al.        Expires 23 April 2023                 [Page 4]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
    |=========+=====+===============================================|
@@ -279,7 +279,7 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 Vredendaal, et al.        Expires 23 April 2023                 [Page 5]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
   PrivateKeyInfo ::=  SEQUENCE {
@@ -335,7 +335,7 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 Vredendaal, et al.        Expires 23 April 2023                 [Page 6]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
 3.  CRYSTALS-Kyber
@@ -351,8 +351,7 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 3.1.  Algorithm Parameter Identifiers
 
-   Kyber uses OIDs to identify parameters sets for different security
-   strengths.
+   CRYSTALS-Kyber uses OIDs to identify parameters sets.
 
 
    |=========================+=====================================|
@@ -386,15 +385,15 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
    |=========================+=====================================|
    | kyber-768-r3                                                  |
    |=========================+=====================================|
+   | Parameter OID           | {..*.. kyber-768-r3}                |
 
 
 
 Vredendaal, et al.        Expires 23 April 2023                 [Page 7]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
-   | Parameter OID           | {..*.. kyber-768-r3}                |
    |                         | <.>                                 |
    | NIST Level Security     | Level 3                             |
    |-------------------------|-------------------------------------|
@@ -442,15 +441,15 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
    |-------------------------|-------------------------------------|
    | Parameters              | n= 256,                             |
    |                         | k=4                                 |
+   |                         | q=3329                              |
 
 
 
 Vredendaal, et al.        Expires 23 April 2023                 [Page 8]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
-   |                         | q=3329                              |
    |                         | eta_1=2                             |
    |                         | eta_2=2                             |
    |                         | (d_u, d_v)=(11, 5)                  |
@@ -501,9 +500,10 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
 
+
 Vredendaal, et al.        Expires 23 April 2023                 [Page 9]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
    |==========================+=========+==========+===========|
@@ -526,7 +526,8 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 3.3.  Private Key Full Encoding
 
-   Distributing a CRYSTALS-Kyber private key with PKCS#8 requires:
+   Encoding a CRYSTALS-Kyber private key with PKCS#8 must include the
+   following two fields:
 
    *  kyber-(n*k)-r3 in the algorithm field of AlgorithmIdentifier
    *  KyberPrivateKey in the privateKey field, which is an OCTET STRING.
@@ -556,13 +557,12 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
 
-
 Vredendaal, et al.        Expires 23 April 2023                [Page 10]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
-3.4.  Private key Partial Encoding
+3.4.  Private Key Partial Encoding
 
    The partially populated parameter set uses of the fact that some
    parameters can be regenerated.  In this case, only the initial seed
@@ -615,7 +615,7 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 Vredendaal, et al.        Expires 23 April 2023                [Page 11]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
 5.  IANA Considerations
@@ -671,7 +671,7 @@ Internet-Draft      QSC Cryptography Key Information        October 2022
 
 Vredendaal, et al.        Expires 23 April 2023                [Page 12]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
    [RFC2629]  Rose, M., "Writing I-Ds and RFCs using XML", RFC 2629,
@@ -727,7 +727,7 @@ Authors' Addresses
 
 Vredendaal, et al.        Expires 23 April 2023                [Page 13]
 
-Internet-Draft      QSC Cryptography Key Information        October 2022
+Internet-Draft         QSC Keys for CRYSTALS-Kyber          October 2022
 
 
    Tamas Visegrady

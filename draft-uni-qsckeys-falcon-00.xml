@@ -6,7 +6,7 @@ which is available here: http://xml.resource.org. -->
 <!-- used by XSLT processors --> 
 <!-- For a complete list and description of processing instructions (PIs), 
 please see http://xml.resource.org/authoring/README.html. -->
-<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info" docName="draft-uni-qsckeys-01" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude" category="info" docName="draft-uni-qsckeys-falcon-00" ipr="trust200902" obsoletes="" updates="" submissionType="IETF" xml:lang="en" tocInclude="true" tocDepth="4" symRefs="true" sortRefs="true" version="3">
     <!-- xml2rfc v2v3 conversion 2.38.1 -->
     <!-- category values: std, bcp, info, exp, and historic
     ipr values: trust200902, noModificationTrust200902, noDerivativesTrust200902,
@@ -20,11 +20,11 @@ please see http://xml.resource.org/authoring/README.html. -->
         <!-- The abbreviated title is used in the page header - it is only necessary if the
         full title is longer than 39 characters -->
 
-        <title abbrev="QSC Cryptography Key Information"> Quantum Safe Cryptography Key Information</title>
-        <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-01" />
+        <title abbrev="QSC Keys for FALCON">Quantum Safe Cryptography Key Information for FALCON</title>
+        <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-falcon-00" />
         <!-- add 'role="editor"' below for the editors if appropriate -->
 
-        <author fullname="Christine van Vredendaal" initials="C.v.V." role="editor" surname="Vredendaal">
+        <author fullname="Christine van Vredendaal" surname="Vredendaal">
             <organization>NXP Semiconductors</organization>
             <address>
                 <postal>
@@ -35,14 +35,13 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <code>5656</code>
                     <country>NL</country>
                 </postal>
-                <phone>+44 7889 488 335</phone>
                 <email>cvvrede@gmail.com</email>
                 <!-- uri and facsimile elements may also be added -->
             </address>
         </author>
         <!-- Another author who claims to be an editor -->
 
-        <author fullname="Silvio Dragone" initials="S.D." role="editor" surname="Dragone">
+        <author fullname="Silvio Dragone" surname="Dragone">
             <organization>IBM Research GmbH</organization>
             <address>
                 <postal>
@@ -59,7 +58,7 @@ please see http://xml.resource.org/authoring/README.html. -->
             </address>
         </author>
 
-        <author fullname="Basil Hess" initials="B.H." role="editor" surname="Hess">
+        <author fullname="Basil Hess" surname="Hess">
             <organization>IBM Research GmbH</organization>
             <address>
                 <postal>
@@ -76,7 +75,7 @@ please see http://xml.resource.org/authoring/README.html. -->
             </address>
         </author>
 
-        <author fullname="Tamas Visegrady" initials="T.V." role="editor" surname="Visegrady">
+        <author fullname="Tamas Visegrady" surname="Visegrady">
             <organization>IBM Research GmbH</organization>
             <address>
                 <postal>
@@ -93,7 +92,7 @@ please see http://xml.resource.org/authoring/README.html. -->
             </address>
         </author>
 
-        <author fullname="Michael Osborne" initials="M.O." role="editor" surname="Osborne">
+        <author fullname="Michael Osborne" surname="Osborne">
             <organization>IBM Research GmbH</organization>
             <address>
                 <postal>
@@ -110,7 +109,7 @@ please see http://xml.resource.org/authoring/README.html. -->
             </address>
         </author>
 
-        <author fullname="Dieter Bong" initials="D.B." role="editor" surname="Bong">
+        <author fullname="Dieter Bong" surname="Bong">
             <organization>Utimaco IS GmbH</organization>
             <address>
                 <postal>
@@ -128,7 +127,7 @@ please see http://xml.resource.org/authoring/README.html. -->
         </author>
 
 
-        <author fullname="Joppe Bos" initials="J.B" role="editor    " surname="Bos">
+        <author fullname="Joppe Bos" surname="Bos">
             <organization>NXP Semiconductors</organization>
             <address>
                 <postal>
@@ -139,7 +138,6 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <code>5656</code>
                     <country>NL</country>
                 </postal>
-                <phone>+44 7889 488 335</phone>
                 <email>joppe.bos@nxp.com</email>
                 <!-- uri and facsimile elements may also be added -->
             </address>
@@ -170,17 +168,17 @@ please see http://xml.resource.org/authoring/README.html. -->
         keywords will be used for the search engine. -->
 
         <abstract>
-            <t>This proposal defines key management approaches for Quantum Safe Cryptographic (QSC) algorithms 
-            currently under evaluation in the NIST Post Quantum Cryptography (PQC) process.   
-            This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that 
-            the adoption of quantum-safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
-            Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards. </t>
+            <t>This proposal defines key management approaches for the Quantum Safe Cryptographic (QSC) algorithm FALCON 
+            which has been selected for standardization by the NIST Post Quantum Cryptography (PQC) process.
+            This includes key identification and key serialization. The purpose is to provide guidance such that 
+            the adoption of quantum safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
+            Early definition of key material standards will help expedite the adoption of new quantum safe algorithms and at the same time as improving interoperability between implementations and minimizing divergence across standards. </t>
         </abstract>
     </front>
     <middle>
         <section numbered="true" toc="default">
             <name>Introduction</name>
-            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected.  The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects.  This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification, key serialization, and key compression for NIST PQC candidates.</t>
+            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected.  The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects.  This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification and key serialization for the future NIST Digital Signature standard, FALCON. For the other schemes, see draft-uni-qsckeys-kyber, draft-uni-qsckeys-falcon, draft-uni-qsckeys-dilithium and the previous Internet-Draft <xref target="draft-uni-qsckeys-01" format="default"></xref>. This proposal will be updated when the final NIST standard for CRYSTALS-Kyber becomes available.</t>
             <section numbered="true" toc="default">
                 <name>Requirements Language</name>
                 <t>
@@ -203,10 +201,8 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <li>Identifying different key serialization strategies </li>
                     <li>Identifying compressed and uncompressed keys</li>
                 </ul>
-                <t>The current standardization of quantum-safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
-                    For the purpose of temporarily supporting ongoing experimentation with opaque blobs, for example in simple "classic key-emulating" test applications, such as TLS, this document specifies a temporary but suboptimal key format in section 2.1, mainly to establish a base of reference for as long as experimentation is ongoing. This is referenced as the 'raw key material' representation.
-                    At the same time, this proposal documents in section 2.2 below, a long-term key representation format useful to address the goals outlined in 1.1. 
-                    This proposal contains all information required to document and transition from one version of key material representation to another.</t>
+                <t>The current standardization of quantum safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
+                This proposal defines in section 2 a long-term structured key representation format useful to address the goals outlined above.</t>
             </section>
 
             <section numbered="true" toc="default">
@@ -230,44 +226,24 @@ pqcAlgorithmParameterName ::= PrintableString
         </section>
 
         <section numbered="true" toc="default">
-            <name>Overview of PQC algorithm and parameter OIDs</name>
-            <t>Each PQC algorithm has its own specific parameters. Different parameter sets provide different levels of security within one algorithm. This memo attributes a name and an OID to the different security level NIST round 3 parameter sets.  The following table gives an overview of the possible OIDs  in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier  type. Each name or OID represents a single parameter set of given security. Details can be found in the individual PQC algorithm chapters.</t>
+            <name>Overview of FALCON and parameter OIDs</name>
+            <t>FALCON consists of two different parameter sets. This memo attributes a name and a placeholder for an OID to the different parameter sets of FALCON. The following table gives an overview of the possible OIDs in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier type. Each name or OID represents a single parameter set of given security. Details can be found in the next section.</t>
 
             <figure anchor="PQCalgorithmOIDs">
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
 |=========+=====+===============================================|
-| Crystals-Dilithium (PQC Digital Signature)                    |
+| FALCON (PQC Digital Signature)                                |
 |=========+=====+===============================================|
-| dilithium-4x4-r3                                              |
+| falcon512-r3                                                  |
 |---------+-----+-----------------------------------------------|
-|         |ASN.1|{..*.. pqc-ds-dilithium dilithium-4x4-r3}      |
-|         |dot  |                                               |
-|---------------+-----+-----------------------------------------|
-| dilithium-4x4-aes-r3                                          |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-dilithium dilithium-4x4-aes-r3} |
-|         | dot |                                               |
-|---------+-----+-----------------------------------------------|
-| dilithium-6x5-r3                                              |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-dilithium dilithium-6x5-r3}     |
-|         | Dot |                                               |
-|---------+-----+-----------------------------------------------|
-| dilithium-6x5-aes-r3                                          |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-dilithium dilithium-6x5-aes-r3} |
-|         | Dot |                                               |
-|---------+-----+-----------------------------------------------|
-| dilithium-8x7-r3                                              |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-dilithium dilithium-8x7-r3}     |
-|         |Dot  |                                               |
-|---------+-----+-----------------------------------------------|
-| dilithium-8x7-aes-r3                                          |
-|---------+-----+-----------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-dilithium dilithium-8x7-aes-r3} |
+|         |ASN.1| {..*.. pqc-ds-falcon falcon512-r3}            |
 |         |dot. |                                               |
+|---------+-----+-----------------------------------------------|
+| falcon1024-r3                                                 |
+|---------+-----+-----------------------------------------------|
+|         |ASN.1| {..*.. pqc-ds-falcon falcon1024-r3}           |
+|         |Dot  |                                               |
 |=========+=====+===============================================|
 ]]>
                 </artwork>
@@ -321,10 +297,9 @@ SubjectPublicKeyInfo := SEQUENCE {
                     The privateKey field in the PrivateKeyInfo type
                     <xref target="RFC5480" format="default"></xref>
                     is an OCTET STRING whose contents are the value of the private key.  The interpretation of the content differs from PQC algorithm to algorithm. The subjectPublicKey field in the subjectPublicKeyInfo type
-                    <xref target="RFC5480" format="default">RFC 5480</xref>
+                    <xref target="RFC5480" format="default"></xref>
                     is a BIT STRING whose contents are the value of the public key.  Here also the interpretation of the content differs from PQC algorithm to algorithm.
                 </t>
-                <t>For an NTRU private key, for example, the content needs to be interpreted according to the NTRUPrivateKey type and for an NTRU public key the content needs to be interpreted according to the NTRUPublicKey type; both are defined in the NTRU chapter below.</t>
             </section>
 
         </section>
@@ -332,182 +307,77 @@ SubjectPublicKeyInfo := SEQUENCE {
 
 
         <section numbered="true" toc="default">
-            <name>CRYSTALS-DILITHIUM</name>
-
-            <t>Dilithium is a digital signature scheme that is based on the hardness of lattice problems over module lattices.
-                Project Website: https://pq-crystals.org/dilithium/index.shtml
-                NIST Round 3 Submission (version 3.1): https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Dilithium-Round3.zip
-                https://pq-crystals.org/dilithium/data/dilithium-specification-round3-20210208.pdf</t>
+            <name>FALCON</name>
+            <t>FALCON is a lattice-based signature scheme that uses the short integer solution problem (SIS) over NTRU lattices as its underlying hard problem.</t>
+            <ul spacing="compact">
+                <li>Project Website: https://falcon-sign.info/</li>
+                <li>NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Falcon-Round3.zip</li>
+            </ul>
 
             <section numbered="true" toc="default">
                 <name>Algorithm Parameter Identifiers</name>
 
-                <t>Dilithium uses OIDs to identify parameters sets for different security strengths.</t>
-                <figure anchor="DILITHIUMOIDs">
+                <t>FALCON uses OIDs to identify parameters sets.</t>
+                <figure anchor="FALCONOIDs">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
 |=========================+=====================================|
-| dilithium-4x4-r3                                              |
+| falcon512-r3                                                  |
 |=========================+=====================================|
-| Parameter OID           | {..*.. dilithium-4x4-r3}            |
+| Parameter OID           | {..*.. falcon512-r3}                |
 |                         | <.>                                 |
-| NIST Level Security     | Level 2                             |
+| NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
-| Parameters              | Polynomial Ring Zq[x]/( x^n+1 )     |
-|                         | Dimension/Degree n=256              |
-|                         | Modulus q=8380417                   |
-|                         | Dropped bits from t: d=13           |
-|                         | # of +-1's in c: tau=39             |
-|                         | challenge entropy=192               |
-|                         | gamma coefficient range: gamma1=2^17|
-|                         | low-order rounding range: gamma2=(q-|
-|                         | 1)/88                               |
-|                         | Private key Range eta=2             |
-|                         | Dimensions of A: (k,l)=(4,4)        |
-|                         | Max # of 1's in the hint h: w=80    |
-|                         | Repetitions=4.25                    |
+| Parameters              | Dimension/Degree n = 512            |
+|                         | Polynomial Phi = 1+x^n              |
+|                         | Modulus q = 12289                   |
+|                         | Max. signature square norm          |
+|                         | floor (beta^2) = 34034726           |
+|                         | Standard deviation = 165.736617183  |
+|                         | sigma_{max} = 1.8205                |
+|                         | sigma_{min} = 1.27783369            |
 |=========================+=====================================|
-| dilithium-4x4-aes-r3                                          |
+| falcon1024-r3                                                 |
 |=========================+=====================================|
-| Parameter OID           | {..*.. dilithium-4x4-aes-r3}        |
-|                         | <.>                                 |
-| NIST Level Security     | Level 2                             |
-|-------------------------|-------------------------------------|
-| Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n=256              |
-|                         | Modulus q=8380417                   |
-|                         | Dropped bits from t: d=13           |
-|                         | # of +-1's in c: tau=39             |
-|                         | challenge entropy=192               |
-|                         | y coefficient range: gamma1=2^17    |
-|                         | low-order rounding range:gamma2=(q- |
-|                         | -1)/88                              |
-|                         | Private key Range eta=2             |
-|                         | Dimensions of A: (k,l)=(4,4)        |
-|                         | Max # of 1's in the hint h: w=80    |
-|                         | Repetitions=4.25                    |
-|=========================+=====================================|
-| dilithium-6x5-r3                                              |
-|=========================+=====================================|
-| Parameter OID           | {..*.. dilithium-6x5-r3}            |
-|                         | <.>                                 |
-| NIST Level Security     | Level 3                             |
-|-------------------------|-------------------------------------|
-| Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n=256              |
-|                         | Modulus q=8380417                   |
-|                         | Dropped bits from t: d=13           |
-|                         | # of +-1's in c: tau=49             |
-|                         | challenge entropy=225               |
-|                         | y coefficient range: gamma1=2^19    |
-|                         | low-order rounding range:gamma2=(q- |
-|                         | -1)/32                              |
-|                         | Private key Range eta=4             |
-|                         | Dimensions of A: (k,l)=(6,5)        |
-|                         | Max # of 1's in the hint h: w=55    |
-|                         | Repetitions=5.1                     |
-|=========================+=====================================|
-| dilithium-6x5-aes-r3                                          |
-|=========================+=====================================|
-| Parameter OID           | {..*.. dilithium-6x5-aes-r3}        |
-|                         | <.>                                 |
-| NIST Level Security     | Level 3                             |
-|-------------------------|-------------------------------------|
-| Parameters              | Polynomial Ring Zq[x]/( x^n +1 )    |
-|                         | Dimension/Degree n=256              |
-|                         | Modulus q=8380417                   |
-|                         | Dropped bits from t: d=13           |
-|                         | # of +-1's in c: tau=49             |
-|                         | challenge entropy=225               |
-|                         | y coefficient range: gamma1=2^19    |
-|                         | low-order rounding range:gamma2=(q- |
-|                         | -1)/32                              |
-|                         | Private key Range eta=4             |
-|                         | Dimensions of A: (k,l)=(6,5)        |
-|                         | Max # of 1's in the hint h: w=55    |
-|                         | Repetitions=5.1                     |
-|=========================+=====================================|
-| dilithium-8x7-r3                                              |
-|=========================+=====================================|
-| Parameter OID           | {..*.. dilithium-8x7-r3}            |
+| Parameter OID           | {..*.. falcon1024-r3}               |
 |                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
-| Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n=256              |
-|                         | Modulus q=8380417                   |
-|                         | Dropped bits from t: d=13           |
-|                         | # of +-1's in c: tau=60             |
-|                         | challenge entropy=257               |
-|                         | y coefficient range: gamma1=2^19    |
-|                         | low-order rounding range:gamma2=(q- |
-|                         | -1)/32                              |
-|                         | Private key Range eta=2             |
-|                         | Dimensions of A: (k,l)=(8,7)        |
-|                         | Max # of 1's in the hint h: w=75    |
-|                         | Repetitions=3.85                    |
+| Parameters              | Dimension/Degree n = 1024           |
+|                         | Polynomial Phi = 1+x^n              |
+|                         | Modulus q = 12289                   |
+|                         | Max. signature square norm          |
+|                         | floor (beta^2) = 34034726           |
+|                         | Standard deviation = 168.388571447  |
+|                         | sigma_{max} = 1.8205                |
+|                         | sigma_{min} = 1.298280334           |
 |=========================+=====================================|
-| dilithium-8x7-aes-r3                                          |
-|=========================+=====================================|
-| Parameter OID           | {..*.. dilithium-8x7-aes-r3}        |
-|                         | <.>                                 |
-| NIST Level Security     | Level 5                             |
-|-------------------------|-------------------------------------|
-| Parameters              | Polynomial Ring Zq[x]/( x^n + 1 )   |
-|                         | Dimension/Degree n=256              |
-|                         | Modulus q=8380417                   |
-|                         | Dropped bits from t: d=13           |
-|                         | # of +-1's in c: tau=60             |
-|                         | challenge entropy=257               |
-|                         | y coefficient range: gamma1=2^19    |
-|                         | low-order rounding range:gamma2=(q- |
-|                         | -1)/32                              |
-|                         | Private key Range eta=2             |
-|                         | Dimensions of A: (k,l)=(8,7)        |
-|                         | Max # of 1's in the hint h: w=75    |
-|                         | Repetitions=3.85                    |
-|=========================+=====================================|
-                    ]]>
+]]>
                     </artwork>
                 </figure>
 
-                <t>The aes variants listed above differ from the other variants in that they use AES, rather than SHAKE internally to expand the key parameters from an initial seed. While the parameters listed in the table are the same, the key-pairs will not be compatible with the 'aes' variants.</t>
 
             </section>
             <section numbered="true" toc="default">
                 <name>Key Details</name>
-                <t>Public key. The public-key consists of two parameters:</t>
-                <ul spacing="compact">
-                    <li>rho: nonce</li>
-                    <li>t1:  a vector encoded in 320*k bytes</li>
-                </ul>
-                <t>The size necessary to hold all public key elements accounts to 32+320*k bytes.</t>
-                <t>Private key. The private key consists of 6 parameters:</t>
-                <ul spacing="compact">
-                    <li>rho: nonce </li>
-                    <li>K: a key/seed/D</li>
-                    <li>tr: PRF bytes</li>
-                    <li>s1: vector (L)</li>
-                    <li>s2: vector (K)</li>
-                    <li>t0: k polynomials</li>
-                </ul>
-                <t>If the private key is fully populated, it consists of 6 parameters. The size necessary to hold all private key elements accounts to 32+32+32+32*[(k+l)*ceiling(log(2*eta+1))+13*k] bytes.
-                    The resulting public key and private key sizes can be found in the table below.</t>
-                <figure anchor="DilithiumKeySizes">
+                <t>The FALCON private key contains the key components f, g and F.
+                    Each coefficient of f and g is encoded over a fixed number of bits, which depends on the degree of f and g: 6 bits each for degree 512 (parameter name = falcon512-r3) and 5 bits each for degree 1024 (parameter name = falcon1024-r3). Coefficients of F use 8 bits each, regardless of its degree. Each coefficient uses signed encoding, with two's complement for negative values. Moreover, the minimal value is forbidden, e.g. when using degree 512, the valid range for a coefficient of f or g is -31 to +31; -32 is not allowed.</t>
+                <figure anchor="FALCONPrivateKeySizes">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
-|=========================+========+=========+=========+=========|
-| Algorithm               | Public | Private | Partial | Partial |
-|                         | Key    | Key SK  | SK (V1) | SK (V2) |
-|                         | Length | Length  | Length  | Length  |
-|=========================+========+=========+=========+=========+
-| dilithium-4x4-r3        | 1312   | 2528    |   64    |    32   |
-| dilithium-4x4-aes-r3    | 1312   | 2528    |   64    |    32   |
-| dilithium-6x5-r3        | 1952   | 4000    |   64    |    32   |
-| dilithium-6x5-aes-r3    | 1952   | 4000    |   64    |    32   |
-| dilithium-8x7-r3        | 2592   | 4864    |   64    |    32   |
-| dilithium-8x7-aes-r3    | 2592   | 4864    |   64    |    32   |
-|=========================+========+=========+=========+=========|
+|==========================+=========+===========|
+| Algorithm OID            | Params  |   Private |
+|                          |         |   Key     |
+|                          |         |   Length  |
+|==========================+=========+===========+
+| falcon512-r3             | f=384   | 1280      |
+|                          | g=384   |           |
+|                          | F=512   |           |
+|--------------------------+---------+-----------|
+| falcon1024-r3            | f=640   | 2304      |
+|                          | g=640   |           |
+|                          | F=1024  |           |
+|==========================+=========+===========+
 ]]>
                     </artwork>
                 </figure>
@@ -515,70 +385,22 @@ SubjectPublicKeyInfo := SEQUENCE {
             </section>
             <section numbered="true" toc="default">
                 <name>Private Key Full Encoding</name>
-                <t>A Dilithium private key encoded according with PKCS#8 MUST include the following two fields:</t>
+
+                <t>Encoding a FALCON private key with PKCS#8 must include the following two fields: </t>
                 <ul spacing="compact">
-                    <li>dilithium-(kxl)-r3 in the algorithm field of AlgorithmIdentifier</li>
-                    <li>DilithiumPrivateKey in the privateKey field, which is an OCTET STRING.</li>
+                    <li>falcon-(degree)-r3 in the algorithm field of AlgorithmIdentifier</li>
+                    <li>FALCONPrivateKey in the privateKey field, which is an OCTET STRING.</li>
                 </ul>
-                <t>Dilithium public key are optionally distributed in the PublicKey field of the PrivateKeyInfo structure.</t>
-
-                <t>ASN.1 Encoding for a Dilithium private key for fully populated:</t>
+                <t> When a FALCON public key is included in the distributed PrivateKeyInfo, the PublicKey field in FALCONPrivateKey is used (see description of FALCONPublicKey below).
+                    ASN.1 Encoding for a FALCON private key:</t>
                 <artwork name="" type="" align="left" alt="">
                     <![CDATA[
-DilithiumPrivateKey ::= SEQUENCE {
-    version     INTEGER {v0(0)}     -- version (round 3)
-    nonce       BIT STRING,         -- rho
-    key         BIT STRING,         -- key/seed/D
-    tr          BIT STRING,         -- PRF bytes (CRH in spec)
-    s1          BIT STRING,         -- vector(L)
-    s2          BIT STRING,         -- vector(K)
-    t0          BIT STRING,
-    publicKey  [0] IMPLICIT DilithiumPublicKey OPTIONAL
-                                    -- see next section
-}
-]]>
-                </artwork>
-
-            </section>
-            <section numbered="true" toc="default">
-                <name>Private key Partial Encoding Option 1</name>
-
-                <t>In option 1 of Dilithium partial encoding the rho (nonce) and the seed (key) are used to regenerate the full key.
-                    Note: There are a number of alternative ways to encode a partially filled structure that include defining fields as optional and defining fields as 'EMPTY'. As an example partial RSA keys are encoded using EMPTY fields. It can be argued that defining fields as EMPTY significantly simplifies the implementation of parsing ASN.1 frames.
-                    The ASN.1 format for the partially populated versions is the same as for the fully populated version.
-                    The ASN.1 encoding for the first variant (rho and seed) is defined as follows:</t>
-                <artwork name="" type="" align="left" alt="">
-                    <![CDATA[
-DilithiumPrivateKey ::= SEQUENCE {
-    version     INTEGER {v0(0)}     -- version (round 3)
-    nonce       BIT STRING,         -- rho
-    key         BIT STRING,         -- key/seed/D
-    tr          BIT STRING,         -- EMPTY
-    s1          BIT STRING,         -- EMPTY
-    s2          BIT STRING,         -- EMPTY
-    t0          BIT STRING,         -- EMPTY
-    publicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
-                                    -- see next section
-}
-]]>
-                </artwork>
-            </section>
-            <section numbered="true" toc="default">
-                <name>Private key Partial Encoding Option 2</name>
-
-                <t>In option 2 of Dilithium partial encoding only zeta (nonce) is used to regenerate the full key.
-                    The ASN.1 encoding for this is defined as follows:</t>
-                <artwork name="" type="" align="left" alt="">
-                    <![CDATA[
-DilithiumPrivateKey ::= SEQUENCE {
-    version     INTEGER {v0(0)}     -- version (round 3)
-    nonce       BIT STRING,         -- zeta
-    key         BIT STRING,         -- EMPTY
-    tr          BIT STRING,         -- EMPTY
-    s1          BIT STRING,         -- EMPTY
-    s2          BIT STRING,         -- EMPTY
-    t0          BIT STRING,         -- EMPTY
-    publicKey   [0] IMPLICIT DilithiumPublicKey OPTIONAL
+FALCONPrivateKey ::= SEQUENCE {
+    version     INTEGER {v2(1)}    -- syntax version 2 (round 3)
+    f           OCTET STRING,      -- short integer polynomial f
+    g           OCTET STRING,      -- short integer polynomial g
+    f           OCTET STRING,      -- short integer polynomial F
+    publicKey   [0] IMPLICIT FALCONPublicKey  OPTIONAL
                                    -- see next section
 }
 ]]>
@@ -588,12 +410,26 @@ DilithiumPrivateKey ::= SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Public Key Full Encoding</name>
 
-                <t>Components are individual OCTET STRINGs, without unused bits, encoded with the exact size. There is no removal of leading zeroes.</t>
-                <artwork name="" type="" align="left" alt="">
+                <t>The FALCON public key contains a series of coefficients encoded into parameter h.
+                    Each coefficient of h is encoded as a 14 bit sequence (since q = 12289, 14 bits per coefficient are used). Coefficients are then concatenated. The final bit string is zero padded to fit into a byte sequence.</t>
+                <figure anchor="FALCONPublicKeySizes">
+                    <artwork align="left" name="" type="" alt="">
+                        <![CDATA[
+|==========================+=========+==========|
+| Algorithm                | Public Key Length  |
+|==========================+====================+
+| falcon512-r3             | 896                |
+|--------------------------+--------------------|
+| falcon1024-r3            | 1792               |
+|==========================+====================|
+]]>
+                    </artwork>
+                </figure>
+
+                <artwork align="left" name="" type="" alt="">
                     <![CDATA[
-DilithiumPublicKey ::= SEQUENCE {
-    rho         OCTET STRING,
-    t1          OCTET STRING
+FALCONPublicKey := SEQUENCE {
+    h           OCTET STRING       -- integer polynomial h
 }
 ]]>
                 </artwork>
@@ -768,9 +604,38 @@ DilithiumPublicKey ::= SEQUENCE {
                         </abstract>
                     </front>
                 </reference>
+                <reference anchor="draft-uni-qsckeys-01" target="https://www.ietf.org/archive/id/draft-uni-qsckeys-01.txt">
+                  <front>
+                    <title>Quantum Safe Cryptography Key Information</title>
+                    <author fullname="Christine van Vredendaal" surname="Christine van Vredendaal">
+                      <organization>NXP Semiconductors</organization>
+                    </author>
+                    <author fullname="Silvio Dragone" surname="Silvio Dragone">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Basil Hess" surname="Basil Hess">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Tamas Visegrady" surname="Tamas Visegrady">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Michael Osborne" surname="Michael Osborne">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Dieter Bong" surname="Dieter Bong">
+                      <organization>Utimaco IS GmbH</organization>
+                    </author>
+                    <author fullname="Joppe Bos" surname="Joppe Bos">
+                      <organization>NXP Semiconductors</organization>
+                    </author>
+                    <date day="12" month="May" year="2022"/>
+                    <abstract>
+                      <t>This proposal defines key management approaches for Quantum Safe Cryptographic (QSC) algorithms currently under evaluation in the NIST Post Quantum Cryptography (PQC) process. This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that the adoption of quantum safe algorithms is not hampered with the fragmented evolution of necessary key management standards. Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards.</t>
+                    </abstract>
+                  </front>
+                  <seriesInfo name="Internet-Draft" value="draft-uni-qsckeys-01"/>
+                </reference>
                 <!-- A reference written by by an organization not a person. -->
-
-
             </references>
         </references>
 

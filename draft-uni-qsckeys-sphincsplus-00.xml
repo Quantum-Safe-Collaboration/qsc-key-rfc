@@ -20,7 +20,7 @@ please see http://xml.resource.org/authoring/README.html. -->
         <!-- The abbreviated title is used in the page header - it is only necessary if the
         full title is longer than 39 characters -->
 
-        <title abbrev="QSC Keys for SPHINCS-PLUS"> QSC Keys for SPHINCS-PLUS</title>
+        <title abbrev="QSC Keys for SPHINCS-PLUS">Quantum Safe Cryptography Key Information for SPHINCS-PLUS</title>
         <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-sphincsplus-00" />
         <!-- add 'role="editor"' below for the editors if appropriate -->
 
@@ -35,7 +35,6 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <code>5656</code>
                     <country>NL</country>
                 </postal>
-                <phone>+44 7889 488 335</phone>
                 <email>cvvrede@gmail.com</email>
                 <!-- uri and facsimile elements may also be added -->
             </address>
@@ -139,12 +138,10 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <code>5656</code>
                     <country>NL</country>
                 </postal>
-                <phone>+44 7889 488 335</phone>
                 <email>joppe.bos@nxp.com</email>
                 <!-- uri and facsimile elements may also be added -->
             </address>
         </author>
-
 
         <date year="2022" />
         <!-- If the month and year are both specified and are the current ones, xml2rfc will fill
@@ -171,15 +168,15 @@ please see http://xml.resource.org/authoring/README.html. -->
 
         <abstract>
             <t>This proposal defines key management approaches for the Quantum Safe Cryptographic (QSC) algorithm SPHINCS+ (or SPHINCS-PLUS) which has been selected for standardization by the NIST Post Quantum Cryptography (PQC) process.
-            This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that 
-            the adoption of quantum-safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
+            This includes key identification and key serialization. The purpose is to provide guidance such that 
+            the adoption of quantum safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
             Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards. </t>
         </abstract>
     </front>
     <middle>
         <section numbered="true" toc="default">
             <name>Introduction</name>
-            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations.  Keys are neither easily identifiable nor compatible across rounds.  It is also expected that algorithms will evolve after final candidates have been selected.  The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material.  Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management.  Here it is important to define and standardize key serialization and encoding formats.  Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects.  This makes it important to define and standardize key compression formats.  This proposal addresses aspects of key identification, key serialization, and key compression for the selected NIST PQC standard SPHINCS-PLUS.</t>
+            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations.  Keys are neither easily identifiable nor compatible across rounds.  It is also expected that algorithms will evolve after final candidates have been selected.  The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material.  Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management.  Here it is important to define and standardize key serialization and encoding formats.  Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects. This makes it important to define and standardize key compression formats.  This proposal addresses aspects of key identification and key serialization for the future NIST PQC Digital Signature standard, SPHINCS-PLUS. For the other schemes, see draft-uni-qsckeys-dilithium, draft-uni-qsckeys-falcon, draft-uni-qsckeys-kyber and the previous Internet-Draft <xref target="draft-uni-qsckeys-01" format="default"></xref>. This proposal will be updated when the final NIST standard for SPHINCS-PLUS becomes available.</t>
             <section numbered="true" toc="default">
                 <name>Requirements Language</name>
                 <t>
@@ -202,8 +199,8 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <li>Identifying different key serialization strategies </li>
                     <li>Identifying compressed and uncompressed keys</li>
                 </ul>
-                <t>The current standardization of quantum-safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
-                This proposal defines in section 2 a long-term structured key representation format useful to address the goals outlined in 1.2.</t>
+                <t>The current standardization of quantum safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
+                This proposal defines in section 2 a long-term structured key representation format useful to address the goals outlined above.</t>
             </section>
 
             <section numbered="true" toc="default">
@@ -227,18 +224,18 @@ pqcAlgorithmParameterName ::= PrintableString
 	    
         </section>
 
-        <section numbered="true" toc="default">
-            <name>Overview of PQC algorithm and parameter OIDs</name>
-	    <t>SPHINCS-PLUS consists of six different parameter sets. This memo attributes a name and a placeholder for an OID to the different parameter sets of SPHINCS-PLUS. The following table gives an overview of the possible OIDs in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier type. Each name or OID represents a single parameter set of given security. Details can be found in the next section.</t>
+    <section numbered="true" toc="default">
+        <name>Overview of SPHINCS-PLUS and parameter OIDs</name>
+	    <t>SPHINCS-PLUS consists of 18 different parameter sets. This memo attributes a name and a placeholder for an OID to the different parameter sets of SPHINCS-PLUS. The following table gives an overview of the possible OIDs in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier type. Each name or OID represents a single parameter set of given security. Details can be found in the next section.</t>
 	    <figure anchor="PQCalgorithmOIDs">
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
 |=========+=====+======================================================|
 | SPHINCS-PLUS (PQC Digital Signature)                                 |
 |=========+=====+======================================================|
-| sphincsplus-sha-128s-r3                                              |
+| sphincsplus-sha2-128s-r3                                             |
 |---------+-----+------------------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-128s-r3}   |
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha2-128s-r3}  |
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
 | sphincsplus-shake-128s-r3                                            |
@@ -251,9 +248,9 @@ pqcAlgorithmParameterName ::= PrintableString
 |         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-128s-r3}|
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
-| sphincsplus-sha-128f-r3                                              |
+| sphincsplus-sha2-128f-r3                                             |
 |---------+-----+------------------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-128f-r3}   |
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha2-128f-r3}  |
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
 | sphincsplus-shake-128f-r3                                            |
@@ -266,9 +263,9 @@ pqcAlgorithmParameterName ::= PrintableString
 |         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-128f-r3}|
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
-| sphincsplus-sha-192s-r3                                              |
+| sphincsplus-sha2-192s-r3                                             |
 |---------+-----+------------------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-192s-r3}   |
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha2-192s-r3}  |
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
 | sphincsplus-shake-192s-r3                                            |
@@ -281,9 +278,9 @@ pqcAlgorithmParameterName ::= PrintableString
 |         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-192s-r3}|
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
-| sphincsplus-sha-192f-r3                                              |
+| sphincsplus-sha2-192f-r3                                             |
 |---------+-----+------------------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-192f-r3}   |
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha2-192f-r3}  |
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
 | sphincsplus-shake-192f-r3                                            |
@@ -296,9 +293,9 @@ pqcAlgorithmParameterName ::= PrintableString
 |         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-192f-r3}|
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
-| sphincsplus-sha-256s-r3                                              |
+| sphincsplus-sha2-256s-r3                                             |
 |---------+-----+------------------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-256s-r3}   |
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha2-256s-r3}  |
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
 | sphincsplus-shake-256s-r3                                            |
@@ -311,9 +308,9 @@ pqcAlgorithmParameterName ::= PrintableString
 |         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-haraka-256s-r3}|
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
-| sphincsplus-sha-256f-r3                                              |
+| sphincsplus-sha2-256f-r3                                             |
 |---------+-----+------------------------------------------------------|
-|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha-256f-r3}   |
+|         |ASN.1| {..*.. pqc-ds-sphincsplus sphincsplus-sha2-256f-r3}  |
 |         |dot. |                                                      |
 |---------+-----+------------------------------------------------------|
 | sphincsplus-shake-256f-r3                                            |
@@ -370,15 +367,14 @@ pqcAlgorithmParameterName ::= PrintableString
 		subjectPublicKeyInfo with a joined PQC algorithm and algorithm parameter OID in the algorithm field of AlgorithmIdentifier and a PQC algorithm specific public key object in the subjectPublicKey field of subjectPublicKeyInfo.  Both objects are defined in the specific algorithm sections of this document.  For an overview see tables above and below.</t>
 	    </section>
 	    <section numbered="true" toc="default">
-                <name>Overview of Memo Definitions - PQC Key Formats</name>
-                <t>
+            <name>Overview of Memo Definitions - PQC Key Formats</name>
+            <t>
 		  The privateKey field in the PrivateKeyInfo type
-                  <xref target="RFC5480" format="default"></xref>
+            <xref target="RFC5480" format="default"></xref>
 		    is an OCTET STRING whose contents are the value of the private key.  The interpretation of the content differs from PQC algorithm to algorithm.  The subjectPublicKey field in the subjectPublicKeyInfo type
-		    <xref target="RFC5480" format="default">RFC 5480</xref>
+		    <xref target="RFC5480" format="default"></xref>
 		    is a BIT STRING whose contents are the value of the public key.  Here also the interpretation of the content differs from PQC algorithm to algorithm.
 		</t>
-		<t>For an NTRU private key, for example, the content needs to be interpreted according to the NTRUPrivateKey type and for an NTRU public key the content needs to be interpreted according to the NTRUPublicKey type; both are defined in the NTRU chapter below.</t>
 	    </section>
 
 	</section>
@@ -387,13 +383,14 @@ pqcAlgorithmParameterName ::= PrintableString
 	<section numbered="true" toc="default">
             <name>SPHINCS-PLUS</name>
 
-            <t>SPHINCS-PLUS is a hash-based signature scheme. The algoritm is based on the hardness assumptions of its underlying hash functions, which can be chosen from the set Haraka, SHA-256 or SHAKE256.</t>
-	    
-	    <t>Project Website https://sphincs.org
-	    NIST Round 3 Submission https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/SPHINCS-Round3.zip</t>
+            <t>SPHINCS-PLUS is a hash-based signature scheme. The algoritm is based on the hardness assumptions of its underlying hash functions, which can be chosen from the set Haraka, SHA2 or SHAKE.</t>
+            <ul spacing="compact">
+                <li>Project Website: https://sphincs.org</li>
+                <li>NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/SPHINCS-Round3.zip</li>
+            </ul>
 
 	    <section numbered="true" toc="default">
-                <name>SPHINCS-PLUS Algorithm Parameter Identifiers</name>
+                <name>Algorithm Parameter Identifiers</name>
 
                 <t>Since the underlying hash function can be chosen, for each parameter set identified in the SPHINCS-PLUS specification in fact three parameter OIDs exist. The parameters are the same across the three parameter OIDs.</t>
                 <figure anchor="SPHINCSPLUSOIDs">
@@ -402,7 +399,7 @@ pqcAlgorithmParameterName ::= PrintableString
 |=========================+=====================================|
 | SPHINCS-PLUS-128s                                             |
 |=========================+=====================================|
-| Parameter OID           | {..*.. sphincsplus-sha-128s-r3}     | 
+| Parameter OID           | {..*.. sphincsplus-sha2-128s-r3}    | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
@@ -423,7 +420,7 @@ pqcAlgorithmParameterName ::= PrintableString
 |=========================+=====================================|
 | SPHINCS-PLUS-128f                                             |
 |=========================+=====================================|
-| Parameter OID           | {..*.. sphincsplus-sha-128f-r3}     | 
+| Parameter OID           | {..*.. sphincsplus-sha2-128f-r3}    | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 1                             |
 |-------------------------|-------------------------------------|
@@ -444,7 +441,7 @@ pqcAlgorithmParameterName ::= PrintableString
 |=========================+=====================================|
 | SPHINCS-PLUS-192s                                             |
 |=========================+=====================================|
-| Parameter OID           | {..*.. sphincsplus-sha-192s-r3}     | 
+| Parameter OID           | {..*.. sphincsplus-sha2-192s-r3}    | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
@@ -465,7 +462,7 @@ pqcAlgorithmParameterName ::= PrintableString
 |=========================+=====================================|
 | SPHINCS-PLUS-192f                                             |
 |=========================+=====================================|
-| Parameter OID           | {..*.. sphincsplus-sha-192f-r3}     | 
+| Parameter OID           | {..*.. sphincsplus-sha2-192f-r3}    | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 3                             |
 |-------------------------|-------------------------------------|
@@ -486,7 +483,7 @@ pqcAlgorithmParameterName ::= PrintableString
 |=========================+=====================================|
 | SPHINCS-PLUS-256s                                             |
 |=========================+=====================================|
-| Parameter OID           | {..*.. sphincsplus-sha-256s-r3}     | 
+| Parameter OID           | {..*.. sphincsplus-sha2-256s-r3}    | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
@@ -507,7 +504,7 @@ pqcAlgorithmParameterName ::= PrintableString
 |=========================+=====================================|
 | SPHINCS-PLUS-256f                                             |
 |=========================+=====================================|
-| Parameter OID           | {..*.. sphincsplus-sha-256f-r3}     | 
+| Parameter OID           | {..*.. sphincsplus-sha2-256f-r3}    | 
 |                         | <.>                                 |
 | NIST Level Security     | Level 5                             |
 |-------------------------|-------------------------------------|
@@ -532,7 +529,7 @@ pqcAlgorithmParameterName ::= PrintableString
 
             </section>
             <section numbered="true" toc="default">
-                <name>SPHINCS-PLUS Key Details</name>
+                <name>Key Details</name>
                 <t>The SPHINCS-PLUS secret key contains 4 n-byte components SK.seed, SK.prf, PK.seed and PK.root. The latter 2 components are equivalent to the SPHINCS-PLUS public key.</t>
 
 		<figure anchor="SPHINCSPLUSPrivatKeySizes">
@@ -543,22 +540,22 @@ pqcAlgorithmParameterName ::= PrintableString
 |                            |         |   Key    |
 |                            |         |   Length |
 |============================+=========+==========+
-| sphincsplus-sha-128s-r3    |  n=16   |    64    |
-| sphincsplus-sha-128f-r3    |         |          |
+| sphincsplus-sha2-128s-r3   |  n=16   |    64    |
+| sphincsplus-sha2-128f-r3   |         |          |
 | sphincsplus-shake-128s-r3  |         |          |
 | sphincsplus-shake-128f-r3  |         |          |
 | sphincsplus-haraka-128s-r3 |         |          |
 | sphincsplus-haraka-128f-r3 |         |          |
 |============================+=========+==========+
-| sphincsplus-sha-192s-r3    |  n=24   |    96    |
-| sphincsplus-sha-192f-r3    |         |          |
+| sphincsplus-sha2-192s-r3   |  n=24   |    96    |
+| sphincsplus-sha2-192f-r3   |         |          |
 | sphincsplus-shake-192s-r3  |         |          |
 | sphincsplus-shake-192f-r3  |         |          |
 | sphincsplus-haraka-192s-r3 |         |          |
 | sphincsplus-haraka-192f-r3 |         |          |
 |============================+=========+==========+
-| sphincsplus-sha-256s-r3    |  n=32   |    128   |
-| sphincsplus-sha-256f-r3    |         |          |
+| sphincsplus-sha2-256s-r3   |  n=32   |    128   |
+| sphincsplus-sha2-256f-r3   |         |          |
 | sphincsplus-shake-256s-r3  |         |          |
 | sphincsplus-shake-256f-r3  |         |          |
 | sphincsplus-haraka-256s-r3 |         |          |
@@ -604,22 +601,22 @@ pqcAlgorithmParameterName ::= PrintableString
 |                            |         |   Key    |
 |                            |         |   Length |
 |============================+=========+==========+
-| sphincsplus-sha-128s-r3    |  n=16   |    32    |
-| sphincsplus-sha-128f-r3    |         |          |
+| sphincsplus-sha2-128s-r3   |  n=16   |    32    |
+| sphincsplus-sha2-128f-r3   |         |          |
 | sphincsplus-shake-128s-r3  |         |          |
 | sphincsplus-shake-128f-r3  |         |          |
 | sphincsplus-haraka-128s-r3 |         |          |
 | sphincsplus-haraka-128f-r3 |         |          |
 |============================+=========+==========+
-| sphincsplus-sha-192s-r3    |  n=24   |    48    |
-| sphincsplus-sha-192f-r3    |         |          |
+| sphincsplus-sha2-192s-r3   |  n=24   |    48    |
+| sphincsplus-sha2-192f-r3   |         |          |
 | sphincsplus-shake-192s-r3  |         |          |
 | sphincsplus-shake-192f-r3  |         |          |
 | sphincsplus-haraka-192s-r3 |         |          |
 | sphincsplus-haraka-192f-r3 |         |          |
 |============================+=========+==========+
-| sphincsplus-sha-256s-r3    |  n=32   |    64    |
-| sphincsplus-sha-256f-r3    |         |          |
+| sphincsplus-sha2-256s-r3   |  n=32   |    64    |
+| sphincsplus-sha2-256f-r3   |         |          |
 | sphincsplus-shake-256s-r3  |         |          |
 | sphincsplus-shake-256f-r3  |         |          |
 | sphincsplus-haraka-256s-r3 |         |          |
@@ -807,6 +804,37 @@ pqcAlgorithmParameterName ::= PrintableString
 
                         </abstract>
                     </front>
+                </reference>
+                <reference anchor="draft-uni-qsckeys-01" target="https://www.ietf.org/archive/id/draft-uni-qsckeys-01.txt">
+                  <front>
+                    <title>Quantum Safe Cryptography Key Information</title>
+                    <author fullname="Christine van Vredendaal" surname="Christine van Vredendaal">
+                      <organization>NXP Semiconductors</organization>
+                    </author>
+                    <author fullname="Silvio Dragone" surname="Silvio Dragone">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Basil Hess" surname="Basil Hess">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Tamas Visegrady" surname="Tamas Visegrady">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Michael Osborne" surname="Michael Osborne">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Dieter Bong" surname="Dieter Bong">
+                      <organization>Utimaco IS GmbH</organization>
+                    </author>
+                    <author fullname="Joppe Bos" surname="Joppe Bos">
+                      <organization>NXP Semiconductors</organization>
+                    </author>
+                    <date day="12" month="May" year="2022"/>
+                    <abstract>
+                      <t>This proposal defines key management approaches for Quantum Safe Cryptographic (QSC) algorithms currently under evaluation in the NIST Post Quantum Cryptography (PQC) process. This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that the adoption of quantum safe algorithms is not hampered with the fragmented evolution of necessary key management standards. Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards.</t>
+                    </abstract>
+                  </front>
+                  <seriesInfo name="Internet-Draft" value="draft-uni-qsckeys-01"/>
                 </reference>
                 <!-- A reference written by by an organization not a person. -->
 

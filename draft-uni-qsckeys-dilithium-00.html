@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Quantum Safe Cryptography Key Information</title>
+<title>Quantum Safe Cryptography Key Information for CRYSTALS-Dilithium</title>
 <meta content="Christine van Vredendaal" name="author">
 <meta content="Silvio Dragone" name="author">
 <meta content="Basil Hess" name="author">
@@ -13,16 +13,34 @@
 <meta content="Dieter Bong" name="author">
 <meta content="Joppe Bos" name="author">
 <meta content="
-       This proposal defines key management approaches for Quantum Safe Cryptographic (QSC) algorithms 
-            currently under evaluation in the NIST Post Quantum Cryptography (PQC) process.   
+       This proposal defines key management approaches for the Quantum Safe Cryptographic (QSC) algorithm CRYSTALS-Dilithium
+            which has been selected for standardization by the NIST Post Quantum Cryptography (PQC) process.
             This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that 
-            the adoption of quantum-safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
-            Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards.  
+            the adoption of quantum safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
+            Early definition of key material standards will help expedite the adoption of new quantum safe algorithms and at the same time as improving interoperability between implementations and minimizing divergence across standards.  
     " name="description">
-<meta content="xml2rfc 2.40.0" name="generator">
+<meta content="xml2rfc 3.9.1" name="generator">
 <meta content="template" name="keyword">
-<meta content="draft-uni-qsckeys-01" name="ietf.draft">
-<link href="draft-uni-qsckeys-dilithium-01.xml" rel="alternate" type="application/rfc+xml">
+<meta content="draft-uni-qsckeys-dilithium-00" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.9.1
+    Python 3.9.13
+    appdirs 1.4.4
+    ConfigArgParse 1.5.2
+    google-i18n-address 2.5.0
+    html5lib 1.1
+    intervaltree 3.1.0
+    Jinja2 2.11.2
+    kitchen 1.2.6
+    lxml 4.6.3
+    pycountry 20.7.3
+    pyflakes 2.3.1
+    PyYAML 5.4
+    requests 2.26.0
+    setuptools 62.3.2
+    six 1.16.0
+-->
+<link href="draft-uni-qsckeys-dilithium-00.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
 
@@ -189,6 +207,9 @@ ul.empty, .ulEmpty {
 }
 ul.empty li, .ulEmpty li {
   margin-top: 0.5em;
+}
+ul.ulBare, li.ulBare {
+  margin-left: 0em !important;
 }
 ul.compact, .ulCompact,
 ol.compact, .olCompact {
@@ -923,12 +944,6 @@ caption a[href] {
   }
 
 }
-/* Avoid wrapping of URLs in references */
-@media screen {
-  .references a {
-    white-space: nowrap;
-  }
-}
 /* Tweak the bcp14 keyword presentation */
 .bcp14 {
   font-variant: small-caps;
@@ -999,7 +1014,7 @@ h1#rfcnum {
 }
 /* Make .olPercent look the same as <ol><li> */
 dl.olPercent > dd {
-  margin: 0 0 0.25em 0;
+  margin-bottom: 0.25em;
   min-height: initial;
 }
 /* Give aside some styling to set it apart */
@@ -1037,14 +1052,6 @@ aside > p {
     margin-bottom: 1em;
   }
 }
-/*
-  The margin-left: 0 on <dd> removes all distinction
-  between levels from nested <dl>s.  Undo that.
-*/
-dl.olPercent > dd,
-dd {
-  margin-left: revert;
-}
 /* Avoid narrow tables forcing too narrow table captions, which may render badly */
 table {
   min-width: 20em;
@@ -1054,20 +1061,139 @@ ol.type-a { list-style-type: lower-alpha; }
 ol.type-A { list-style-type: upper-alpha; }
 ol.type-i { list-style-type: lower-roman; }
 ol.type-I { list-style-type: lower-roman; }
+/* Apply the print table and row borders in general, on request from the RPC,
+and increase the contrast between border and odd row background sligthtly */
+table {
+  border: 1px solid #ddd;
+}
+td {
+  border-top: 1px solid #ddd;
+}
+tr:nth-child(2n+1) > td {
+  background-color: #f8f8f8;
+}
+/* Use style rules to govern display of the TOC. */
+@media screen and (max-width: 1023px) {
+  #toc nav { display: none; }
+  #toc.active nav { display: block; }
+}
+/* Add support for keepWithNext */
+.keepWithNext {
+  break-after: avoid-page;
+  break-after: avoid-page;
+}
+/* Add support for keepWithPrevious */
+.keepWithPrevious {
+  break-before: avoid-page;
+}
+/* Change the approach to avoiding breaks inside artwork etc. */
+figure, pre, table, .artwork, .sourcecode  {
+  break-before: avoid-page;
+  break-after: auto;
+}
+/* Avoid breaks between <dt> and <dd> */
+dl {
+  break-before: auto;
+  break-inside: auto;
+}
+dt {
+  break-before: auto;
+  break-after: avoid-page;
+}
+dd {
+  break-before: avoid-page;
+  break-after: auto;
+  orphans: 3;
+  widows: 3
+}
+span.break, dd.break {
+  margin-bottom: 0;
+  min-height: 0;
+  break-before: auto;
+  break-inside: auto;
+  break-after: auto;
+}
+/* Undo break-before ToC */
+@media print {
+  #toc {
+    break-before: auto;
+  }
+}
+/* Text in compact lists should not get extra bottim margin space,
+   since that would makes the list not compact */
+ul.compact p, .ulCompact p,
+ol.compact p, .olCompact p {
+ margin: 0;
+}
+/* But the list as a whole needs the extra space at the end */
+section ul.compact,
+section .ulCompact,
+section ol.compact,
+section .olCompact {
+  margin-bottom: 1em;                    /* same as p not within ul.compact etc. */
+}
+/* The tt and code background above interferes with for instance table cell
+   backgrounds.  Changed to something a bit more selective. */
+tt, code {
+  background-color: transparent;
+}
+p tt, p code, li tt, li code {
+  background-color: #f8f8f8;
+}
+/* Tweak the pre margin -- 0px doesn't come out well */
+pre {
+   margin-top: 0.5px;
+}
+/* Tweak the comact list text */
+ul.compact, .ulCompact,
+ol.compact, .olCompact,
+dl.compact, .dlCompact {
+  line-height: normal;
+}
+/* Don't add top margin for nested lists */
+li > ul, li > ol, li > dl,
+dd > ul, dd > ol, dd > dl,
+dl > dd > dl {
+  margin-top: initial;
+}
+/* Elements that should not be rendered on the same line as a <dt> */
+/* This should match the element list in writer.text.TextWriter.render_dl() */
+dd > div.artwork:first-child,
+dd > aside:first-child,
+dd > figure:first-child,
+dd > ol:first-child,
+dd > div:first-child > pre.sourcecode,
+dd > table:first-child,
+dd > ul:first-child {
+  clear: left;
+}
+/* fix for weird browser behaviour when <dd/> is empty */
+dt+dd:empty::before{
+  content: "\00a0";
+}
+/* Make paragraph spacing inside <li> smaller than in body text, to fit better within the list */
+li > p {
+  margin-bottom: 0.5em
+}
+/* Don't let p margin spill out from inside list items */
+li > p:last-of-type {
+  margin-bottom: 0;
+}
 </style>
 <link href="rfc-local.css" rel="stylesheet" type="text/css">
+<script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
 </head>
 <body>
 <script src="metadata.min.js"></script>
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">QSC Cryptography Key Information</td>
-<td class="right">August 2022</td>
+<td class="center">QSC Keys for CRYSTALS-Dilithium</td>
+<td class="right">October 2022</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Vredendaal, et al.</td>
-<td class="center">Expires 9 February 2023</td>
+<td class="center">Expires 23 April 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1077,63 +1203,56 @@ ol.type-I { list-style-type: lower-roman; }
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Internet Engineering Task Force</dd>
 <dt class="label-individual-draft">Individual-Draft:</dt>
-<dd class="individual-draft">draft-uni-qsckeys-01</dd>
+<dd class="individual-draft">draft-uni-qsckeys-dilithium-00</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-08-08" class="published">8 August 2022</time>
+<time datetime="2022-10-20" class="published">20 October 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2023-02-09">9 February 2023</time></dd>
+<dd class="expires"><time datetime="2023-04-23">23 April 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
-      <div class="author-name">C.v.V. Vredendaal, <span class="editor">Ed.</span>
-</div>
+      <div class="author-name">C. V. Vredendaal</div>
 <div class="org">NXP Semiconductors</div>
 </div>
 <div class="author">
-      <div class="author-name">S.D. Dragone, <span class="editor">Ed.</span>
-</div>
+      <div class="author-name">S. Dragone</div>
 <div class="org">IBM Research GmbH</div>
 </div>
 <div class="author">
-      <div class="author-name">B.H. Hess, <span class="editor">Ed.</span>
-</div>
+      <div class="author-name">B. Hess</div>
 <div class="org">IBM Research GmbH</div>
 </div>
 <div class="author">
-      <div class="author-name">T.V. Visegrady, <span class="editor">Ed.</span>
-</div>
+      <div class="author-name">T. Visegrady</div>
 <div class="org">IBM Research GmbH</div>
 </div>
 <div class="author">
-      <div class="author-name">M.O. Osborne, <span class="editor">Ed.</span>
-</div>
+      <div class="author-name">M. Osborne</div>
 <div class="org">IBM Research GmbH</div>
 </div>
 <div class="author">
-      <div class="author-name">D.B. Bong, <span class="editor">Ed.</span>
-</div>
+      <div class="author-name">D. Bong</div>
 <div class="org">Utimaco IS GmbH</div>
 </div>
 <div class="author">
-      <div class="author-name">J.B. Bos, <span class="editor">Ed.</span>
-</div>
+      <div class="author-name">J. Bos</div>
 <div class="org">NXP Semiconductors</div>
 </div>
 </dd>
 </dl>
 </div>
-<h1 id="title">Quantum Safe Cryptography Key Information</h1>
+<h1 id="title">Quantum Safe Cryptography Key Information for CRYSTALS-Dilithium</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This proposal defines key management approaches for Quantum Safe Cryptographic (QSC) algorithms 
-            currently under evaluation in the NIST Post Quantum Cryptography (PQC) process.   
+<p id="section-abstract-1">This proposal defines key management approaches for the Quantum Safe Cryptographic (QSC) algorithm CRYSTALS-Dilithium
+            which has been selected for standardization by the NIST Post Quantum Cryptography (PQC) process.
             This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that 
-            the adoption of quantum-safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
-            Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+            the adoption of quantum safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
+            Early definition of key material standards will help expedite the adoption of new quantum safe algorithms and at the same time as improving interoperability between implementations and minimizing divergence across standards.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -1154,7 +1273,7 @@ ol.type-I { list-style-type: lower-roman; }
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 February 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 April 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1182,86 +1301,86 @@ ol.type-I { list-style-type: lower-roman; }
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.1.2.1">
-                <p id="section-toc.1-1.1.2.1.1"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-requirements-language" class="xref">Requirements Language</a><a href="#section-toc.1-1.1.2.1.1" class="pilcrow">¶</a></p>
+<nav class="toc"><ul class="ulEmpty ulBare toc compact">
+<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
+<ul class="ulEmpty ulBare toc compact">
+<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-requirements-language" class="xref">Requirements Language</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.1.2.2">
-                <p id="section-toc.1-1.1.2.2.1"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-algorithm-identification" class="xref">Algorithm Identification</a><a href="#section-toc.1-1.1.2.2.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.1.2.2">
+                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-algorithm-identification" class="xref">Algorithm Identification</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.1.2.3">
-                <p id="section-toc.1-1.1.2.3.1"><a href="#section-1.3" class="xref">1.3</a>.  <a href="#name-algorithm-and-algorithm-par" class="xref">Algorithm and Algorithm Parameter Object Identifier</a><a href="#section-toc.1-1.1.2.3.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.1.2.3">
+                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="xref">1.3</a>.  <a href="#name-algorithm-and-algorithm-par" class="xref">Algorithm and Algorithm Parameter Object Identifier</a></p>
 </li>
-</ul>
+            </ul>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-overview-of-pqc-algorithm-a" class="xref">Overview of PQC algorithm and parameter OIDs</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.2.2.1">
-                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-key-formats" class="xref">Key Formats</a><a href="#section-toc.1-1.2.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-overview-of-crystals-dilith" class="xref">Overview of CRYSTALS-Dilithium and parameter OIDs</a></p>
+<ul class="ulEmpty ulBare toc compact">
+<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-key-formats" class="xref">Key Formats</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.2.2.2">
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.2.2.2">
                 <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-public-key-format-based-on" class="xref">Public Key Format based on
-                    RFC5280</a><a href="#section-toc.1-1.2.2.2.1" class="pilcrow">¶</a></p>
+                    RFC5280</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.2.2.3">
-                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-overview-of-memo-definition" class="xref">Overview of Memo Definitions - PQC Key Formats</a><a href="#section-toc.1-1.2.2.3.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-overview-of-memo-definition" class="xref">Overview of Memo Definitions - PQC Key Formats</a></p>
 </li>
-</ul>
+            </ul>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-crystals-dilithium" class="xref">CRYSTALS-DILITHIUM</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-algorithm-parameter-identif" class="xref">Algorithm Parameter Identifiers</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-crystals-dilithium" class="xref">CRYSTALS-Dilithium</a></p>
+<ul class="ulEmpty ulBare toc compact">
+<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-algorithm-parameter-identif" class="xref">Algorithm Parameter Identifiers</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-key-details" class="xref">Key Details</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-key-details" class="xref">Key Details</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-private-key-full-encoding" class="xref">Private Key Full Encoding</a><a href="#section-toc.1-1.3.2.3.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-private-key-full-encoding" class="xref">Private Key Full Encoding</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="xref">3.4</a>.  <a href="#name-private-key-partial-encodin" class="xref">Private key Partial Encoding Option 1</a><a href="#section-toc.1-1.3.2.4.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="xref">3.4</a>.  <a href="#name-private-key-partial-encodin" class="xref">Private Key Partial Encoding Option 1</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.3.2.5">
-                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="xref">3.5</a>.  <a href="#name-private-key-partial-encoding" class="xref">Private key Partial Encoding Option 2</a><a href="#section-toc.1-1.3.2.5.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="xref">3.5</a>.  <a href="#name-private-key-partial-encoding" class="xref">Private key Partial Encoding Option 2</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.3.2.6">
-                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="xref">3.6</a>.  <a href="#name-public-key-full-encoding" class="xref">Public Key Full Encoding</a><a href="#section-toc.1-1.3.2.6.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.6">
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="xref">3.6</a>.  <a href="#name-public-key-full-encoding" class="xref">Public Key Full Encoding</a></p>
 </li>
-</ul>
+            </ul>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-references" class="xref">References</a></p>
+<ul class="ulEmpty ulBare toc compact">
+<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
 </li>
-</ul>
+            </ul>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-additional-stuff" class="xref">Additional Stuff</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#appendix-A" class="xref">Appendix A</a>.  <a href="#name-additional-stuff" class="xref">Additional Stuff</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-B" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
-</ul>
+        </ul>
 </nav>
 </section>
 </div>
@@ -1269,7 +1388,7 @@ ol.type-I { list-style-type: lower-roman; }
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected.  The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects.  This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification, key serialization, and key compression for NIST PQC candidates.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected.  The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects.  This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification, key serialization, and key compression for the future primary NIST PQC Digital Signature standard, CRYSTALS-Dilithium. For the other schemes, see draft-uni-qsckeys-kyber, draft-uni-qsckeys-falcon, draft-uni-qsckeys-sphincsplus and the previous Internet-Draft <span>[<a href="#draft-uni-qsckeys-01" class="xref">draft-uni-qsckeys-01</a>]</span>. This proposal will be updated when the final NIST standard for CRYSTALS-Dilithium becomes available.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <section id="section-1.1">
         <h3 id="name-requirements-language">
 <a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-requirements-language" class="section-name selfRef">Requirements Language</a>
@@ -1286,20 +1405,18 @@ ol.type-I { list-style-type: lower-roman; }
 <a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-algorithm-identification" class="section-name selfRef">Algorithm Identification</a>
         </h3>
 <p id="section-1.2-1">Algorithm identification is important for several reasons:<a href="#section-1.2-1" class="pilcrow">¶</a></p>
-<ul>
-<li id="section-1.2-2.1">Managing a smooth transition from early adoption algorithm versions to production versions where there is no compatibility.<a href="#section-1.2-2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-1.2-2.1">Managing a smooth transition from early adoption algorithm versions to production versions where there is no compatibility.<a href="#section-1.2-2.1" class="pilcrow">¶</a>
 </li>
-<li id="section-1.2-2.2">Supporting different algorithm versions from different NIST rounds<a href="#section-1.2-2.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-1.2-2.2">Supporting different algorithm versions from different NIST rounds<a href="#section-1.2-2.2" class="pilcrow">¶</a>
 </li>
-<li id="section-1.2-2.3">Identifying different key serialization strategies<a href="#section-1.2-2.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-1.2-2.3">Identifying different key serialization strategies<a href="#section-1.2-2.3" class="pilcrow">¶</a>
 </li>
-<li id="section-1.2-2.4">Identifying compressed and uncompressed keys<a href="#section-1.2-2.4" class="pilcrow">¶</a>
+          <li class="compact" id="section-1.2-2.4">Identifying compressed and uncompressed keys<a href="#section-1.2-2.4" class="pilcrow">¶</a>
 </li>
-</ul>
-<p id="section-1.2-3">The current standardization of quantum-safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
-                    For the purpose of temporarily supporting ongoing experimentation with opaque blobs, for example in simple "classic key-emulating" test applications, such as TLS, this document specifies a temporary but suboptimal key format in section 2.1, mainly to establish a base of reference for as long as experimentation is ongoing. This is referenced as the 'raw key material' representation.
-                    At the same time, this proposal documents in section 2.2 below, a long-term key representation format useful to address the goals outlined in 1.1. 
-                    This proposal contains all information required to document and transition from one version of key material representation to another.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
+        </ul>
+<p id="section-1.2-3">The current standardization of quantum safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
+                This proposal defines in section 2 a long-term structured key representation format useful to address the goals outlined above.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
 </section>
 <section id="section-1.3">
         <h3 id="name-algorithm-and-algorithm-par">
@@ -1323,17 +1440,17 @@ pqcAlgorithmParameterName ::= PrintableString
 </section>
 </section>
 <section id="section-2">
-      <h2 id="name-overview-of-pqc-algorithm-a">
-<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-overview-of-pqc-algorithm-a" class="section-name selfRef">Overview of PQC algorithm and parameter OIDs</a>
+      <h2 id="name-overview-of-crystals-dilith">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-overview-of-crystals-dilith" class="section-name selfRef">Overview of CRYSTALS-Dilithium and parameter OIDs</a>
       </h2>
-<p id="section-2-1">Each PQC algorithm has its own specific parameters. Different parameter sets provide different levels of security within one algorithm. This memo attributes a name and an OID to the different security level NIST round 3 parameter sets.  The following table gives an overview of the possible OIDs  in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier  type. Each name or OID represents a single parameter set of given security. Details can be found in the individual PQC algorithm chapters.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-1">CRYSTALS-Dilithium consists of six parameter sets. This memo attributes a name and a placeholder for an OID to the different parameter sets of CRYSTALS-Dilithium. The following table gives an overview of the possible OIDs in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier type. Each name or OID represents a single parameter set of given security. Details can be found in the next section.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <div id="PQCalgorithmOIDs">
 <figure id="figure-1">
         <div class="artwork art-text alignLeft" id="section-2-2.1">
 <pre>
 
 |=========+=====+===============================================|
-| Crystals-Dilithium (PQC Digital Signature)                    |
+| CRYSTALS-Dilithium (PQC Digital Signature)                    |
 |=========+=====+===============================================|
 | dilithium-4x4-r3                                              |
 |---------+-----+-----------------------------------------------|
@@ -1396,7 +1513,7 @@ PrivateKeyInfo ::=  SEQUENCE {
 <section id="section-2.2">
         <h3 id="name-public-key-format-based-on">
 <a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-public-key-format-based-on" class="section-name selfRef">Public Key Format based on
-                    <em class="xref">RFC5280</em></a>
+                    <em class="xref">[RFC5280]</em></a>
         </h3>
 <p id="section-2.2-1">RFC5280 subjectPublicKeyInfo is defined in as:<a href="#section-2.2-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-2.2-2">
@@ -1422,24 +1539,26 @@ SubjectPublicKeyInfo := SEQUENCE {
                     The privateKey field in the PrivateKeyInfo type
                     <span>[<a href="#RFC5480" class="xref">RFC5480</a>]</span>
                     is an OCTET STRING whose contents are the value of the private key.  The interpretation of the content differs from PQC algorithm to algorithm. The subjectPublicKey field in the subjectPublicKeyInfo type
-                    <span><a href="#RFC5480" class="xref">RFC 5480</a> [<a href="#RFC5480" class="xref">RFC5480</a>]</span>
+                    <span>[<a href="#RFC5480" class="xref">RFC5480</a>]</span>
                     is a BIT STRING whose contents are the value of the public key.  Here also the interpretation of the content differs from PQC algorithm to algorithm.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
-<p id="section-2.3-2">For an NTRU private key, for example, the content needs to be interpreted according to the NTRUPrivateKey type and for an NTRU public key the content needs to be interpreted according to the NTRUPublicKey type; both are defined in the NTRU chapter below.<a href="#section-2.3-2" class="pilcrow">¶</a></p>
 </section>
 </section>
 <section id="section-3">
       <h2 id="name-crystals-dilithium">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-crystals-dilithium" class="section-name selfRef">CRYSTALS-DILITHIUM</a>
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-crystals-dilithium" class="section-name selfRef">CRYSTALS-Dilithium</a>
       </h2>
-<p id="section-3-1">Dilithium is a digital signature scheme that is based on the hardness of lattice problems over module lattices.
-                Project Website: https://pq-crystals.org/dilithium/index.shtml
-                NIST Round 3 Submission (version 3.1): https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Dilithium-Round3.zip
-                https://pq-crystals.org/dilithium/data/dilithium-specification-round3-20210208.pdf<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">CRYSTALS-Dilithium is a digital signature scheme that is based on the hardness of lattice problems over module lattices.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-3-2.1">Project Website: https://pq-crystals.org/dilithium/index.shtml<a href="#section-3-2.1" class="pilcrow">¶</a>
+</li>
+        <li class="compact" id="section-3-2.2">NIST Round 3 Submission (version 3.1): https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Dilithium-Round3.zip, https://pq-crystals.org/dilithium/data/dilithium-specification-round3-20210208.pdf<a href="#section-3-2.2" class="pilcrow">¶</a>
+</li>
+      </ul>
 <section id="section-3.1">
         <h3 id="name-algorithm-parameter-identif">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-algorithm-parameter-identif" class="section-name selfRef">Algorithm Parameter Identifiers</a>
         </h3>
-<p id="section-3.1-1">Dilithium uses OIDs to identify parameters sets for different security strengths.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">CRYSTALS-Dilithium uses OIDs to identify parameters sets.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 <div id="DILITHIUMOIDs">
 <figure id="figure-2">
           <div class="artwork art-text alignLeft" id="section-3.1-2.1">
@@ -1571,35 +1690,35 @@ SubjectPublicKeyInfo := SEQUENCE {
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a></figcaption></figure>
 </div>
-<p id="section-3.1-3">The aes variants listed above differ from the other variants in that they use AES, rather than SHAKE internally to expand the key parameters from an initial seed. While the parameters listed in the table are the same, the key-pairs will not be compatible with the 'aes' variants.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">The AES variants listed above differ from the other variants in that they use AES, rather than SHAKE internally to expand the key parameters from an initial seed. While the parameters listed in the table are the same, the key-pairs will not be compatible with the 'aes' variants.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 <section id="section-3.2">
         <h3 id="name-key-details">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-key-details" class="section-name selfRef">Key Details</a>
         </h3>
 <p id="section-3.2-1">Public key. The public-key consists of two parameters:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<ul>
-<li id="section-3.2-2.1">rho: nonce<a href="#section-3.2-2.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-3.2-2.1">rho: nonce<a href="#section-3.2-2.1" class="pilcrow">¶</a>
 </li>
-<li id="section-3.2-2.2">t1:  a vector encoded in 320*k bytes<a href="#section-3.2-2.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.2-2.2">t1:  a vector encoded in 320*k bytes<a href="#section-3.2-2.2" class="pilcrow">¶</a>
 </li>
-</ul>
+        </ul>
 <p id="section-3.2-3">The size necessary to hold all public key elements accounts to 32+320*k bytes.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 <p id="section-3.2-4">Private key. The private key consists of 6 parameters:<a href="#section-3.2-4" class="pilcrow">¶</a></p>
-<ul>
-<li id="section-3.2-5.1">rho: nonce<a href="#section-3.2-5.1" class="pilcrow">¶</a>
+<ul class="compact">
+<li class="compact" id="section-3.2-5.1">rho: nonce<a href="#section-3.2-5.1" class="pilcrow">¶</a>
 </li>
-<li id="section-3.2-5.2">K: a key/seed/D<a href="#section-3.2-5.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.2-5.2">K: a key/seed/D<a href="#section-3.2-5.2" class="pilcrow">¶</a>
 </li>
-<li id="section-3.2-5.3">tr: PRF bytes<a href="#section-3.2-5.3" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.2-5.3">tr: PRF bytes<a href="#section-3.2-5.3" class="pilcrow">¶</a>
 </li>
-<li id="section-3.2-5.4">s1: vector (L)<a href="#section-3.2-5.4" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.2-5.4">s1: vector (L)<a href="#section-3.2-5.4" class="pilcrow">¶</a>
 </li>
-<li id="section-3.2-5.5">s2: vector (K)<a href="#section-3.2-5.5" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.2-5.5">s2: vector (K)<a href="#section-3.2-5.5" class="pilcrow">¶</a>
 </li>
-<li id="section-3.2-5.6">t0: k polynomials<a href="#section-3.2-5.6" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.2-5.6">t0: k polynomials<a href="#section-3.2-5.6" class="pilcrow">¶</a>
 </li>
-</ul>
+        </ul>
 <p id="section-3.2-6">If the private key is fully populated, it consists of 6 parameters. The size necessary to hold all private key elements accounts to 32+32+32+32*[(k+l)*ceiling(log(2*eta+1))+13*k] bytes.
                     The resulting public key and private key sizes can be found in the table below.<a href="#section-3.2-6" class="pilcrow">¶</a></p>
 <div id="DilithiumKeySizes">
@@ -1629,15 +1748,15 @@ SubjectPublicKeyInfo := SEQUENCE {
         <h3 id="name-private-key-full-encoding">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-private-key-full-encoding" class="section-name selfRef">Private Key Full Encoding</a>
         </h3>
-<p id="section-3.3-1">A Dilithium private key encoded according with PKCS#8 MUST include the following two fields:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<ul>
-<li id="section-3.3-2.1">dilithium-(kxl)-r3 in the algorithm field of AlgorithmIdentifier<a href="#section-3.3-2.1" class="pilcrow">¶</a>
+<p id="section-3.3-1">Encoding a CRYSTALS-Dilithium private key with PKCS#8 must include the following two fields:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-3.3-2.1">dilithium-(kxl)-r3 in the algorithm field of AlgorithmIdentifier<a href="#section-3.3-2.1" class="pilcrow">¶</a>
 </li>
-<li id="section-3.3-2.2">DilithiumPrivateKey in the privateKey field, which is an OCTET STRING.<a href="#section-3.3-2.2" class="pilcrow">¶</a>
+          <li class="compact" id="section-3.3-2.2">DilithiumPrivateKey in the privateKey field, which is an OCTET STRING.<a href="#section-3.3-2.2" class="pilcrow">¶</a>
 </li>
-</ul>
-<p id="section-3.3-3">Dilithium public key are optionally distributed in the PublicKey field of the PrivateKeyInfo structure.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
-<p id="section-3.3-4">ASN.1 Encoding for a Dilithium private key for fully populated:<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+        </ul>
+<p id="section-3.3-3">CRYSTALS-Dilithium public keys are optionally distributed in the PublicKey field of the PrivateKeyInfo structure.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-4">ASN.1 Encoding for a CRYSTALS-Dilithium private key when fully populated:<a href="#section-3.3-4" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-3.3-5">
 <pre>
 
@@ -1658,9 +1777,9 @@ DilithiumPrivateKey ::= SEQUENCE {
 </section>
 <section id="section-3.4">
         <h3 id="name-private-key-partial-encodin">
-<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-private-key-partial-encodin" class="section-name selfRef">Private key Partial Encoding Option 1</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-private-key-partial-encodin" class="section-name selfRef">Private Key Partial Encoding Option 1</a>
         </h3>
-<p id="section-3.4-1">In option 1 of Dilithium partial encoding the rho (nonce) and the seed (key) are used to regenerate the full key.
+<p id="section-3.4-1">In option 1 ofCRYSTALS-Dilithium partial encoding the rho (nonce) and the seed (key) are used to regenerate the full key.
                     Note: There are a number of alternative ways to encode a partially filled structure that include defining fields as optional and defining fields as 'EMPTY'. As an example partial RSA keys are encoded using EMPTY fields. It can be argued that defining fields as EMPTY significantly simplifies the implementation of parsing ASN.1 frames.
                     The ASN.1 format for the partially populated versions is the same as for the fully populated version.
                     The ASN.1 encoding for the first variant (rho and seed) is defined as follows:<a href="#section-3.4-1" class="pilcrow">¶</a></p>
@@ -1686,7 +1805,7 @@ DilithiumPrivateKey ::= SEQUENCE {
         <h3 id="name-private-key-partial-encoding">
 <a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-private-key-partial-encoding" class="section-name selfRef">Private key Partial Encoding Option 2</a>
         </h3>
-<p id="section-3.5-1">In option 2 of Dilithium partial encoding only zeta (nonce) is used to regenerate the full key.
+<p id="section-3.5-1">In option 2 of CRYSTALS-Dilithium partial encoding only zeta (nonce) is used to regenerate the full key.
                     The ASN.1 encoding for this is defined as follows:<a href="#section-3.5-1" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-3.5-2">
 <pre>
@@ -1760,17 +1879,21 @@ DilithiumPublicKey ::= SEQUENCE {
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-<dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC5208">[RFC5208]</dt>
-<dd>
-<span class="refAuthor">Kaliski, B.</span>, <span class="refTitle">"Public-Key Cryptography Standards (PKCS) #8: Private-Key Information Syntax Specification Version 1.2"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 5208</span>, <span class="seriesInfo">DOI 10.17487/RFC5208</span>, <time datetime="2008-05">May 2008</time>, <span>&lt;<a href="hhttps://www.rfc-editor.org/info/rfc5208">hhttps://www.rfc-editor.org/info/rfc5208</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Kaliski, B.</span>, <span class="refTitle">"Public-Key Cryptography Standards (PKCS) #8: Private-Key Information Syntax Specification Version 1.2"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 5208</span>, <span class="seriesInfo">DOI 10.17487/RFC5208</span>, <time datetime="2008-05" class="refDate">May 2008</time>, <span>&lt;<a href="hhttps://www.rfc-editor.org/info/rfc5208">hhttps://www.rfc-editor.org/info/rfc5208</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC5280">[RFC5280]</dt>
-<dd>
-<span class="refAuthor">Cooper, D.</span>, <span class="refTitle">"Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC RFC5280</span>, <span class="seriesInfo">DOI 10.17487/RFC5280</span>, <time datetime="2008-05">May 2008</time>, <span>&lt;<a href="hhttps://www.rfc-editor.org/info/rfcRFC5280">hhttps://www.rfc-editor.org/info/rfcRFC5280</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Cooper, D.</span>, <span class="refTitle">"Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC RFC5280</span>, <span class="seriesInfo">DOI 10.17487/RFC5280</span>, <time datetime="2008-05" class="refDate">May 2008</time>, <span>&lt;<a href="hhttps://www.rfc-editor.org/info/rfcRFC5280">hhttps://www.rfc-editor.org/info/rfcRFC5280</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC5480">[RFC5480]</dt>
-<dd>
-<span class="refAuthor">Turner, S.</span>, <span class="refTitle">"Elliptic Curve Cryptography Subject Public Key Information"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC RFC5480</span>, <span class="seriesInfo">DOI 10.17487/RFC5480</span>, <time datetime="2009-05">May 2009</time>, <span>&lt;<a href="hhttps://www.rfc-editor.org/info/rfc5480">hhttps://www.rfc-editor.org/info/rfc5480</a>&gt;</span>. </dd>
+      <dd>
+<span class="refAuthor">Turner, S.</span>, <span class="refTitle">"Elliptic Curve Cryptography Subject Public Key Information"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC RFC5480</span>, <span class="seriesInfo">DOI 10.17487/RFC5480</span>, <time datetime="2009-05" class="refDate">May 2009</time>, <span>&lt;<a href="hhttps://www.rfc-editor.org/info/rfc5480">hhttps://www.rfc-editor.org/info/rfc5480</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 </dl>
 </section>
 <section id="section-7.2">
@@ -1778,54 +1901,56 @@ DilithiumPublicKey ::= SEQUENCE {
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="draft-uni-qsckeys-01">[draft-uni-qsckeys-01]</dt>
+        <dd>
+<span class="refAuthor">Vredendaal, C. V.</span>, <span class="refAuthor">Dragone, S.</span>, <span class="refAuthor">Hess, B.</span>, <span class="refAuthor">Visegrady, T.</span>, <span class="refAuthor">Osborne, M.</span>, <span class="refAuthor">Bong, D.</span>, and <span class="refAuthor">J. Bos</span>, <span class="refTitle">"Quantum Safe Cryptography Key Information"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-uni-qsckeys-01</span>, <time datetime="2022-05-12" class="refDate">12 May 2022</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-uni-qsckeys-01.txt">https://www.ietf.org/archive/id/draft-uni-qsckeys-01.txt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2629">[RFC2629]</dt>
-<dd>
-<span class="refAuthor">Rose, M.</span>, <span class="refTitle">"Writing I-Ds and RFCs using XML"</span>, <span class="seriesInfo">RFC 2629</span>, <span class="seriesInfo">DOI 10.17487/RFC2629</span>, <time datetime="1999-06">June 1999</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2629">https://www.rfc-editor.org/info/rfc2629</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Rose, M.</span>, <span class="refTitle">"Writing I-Ds and RFCs using XML"</span>, <span class="seriesInfo">RFC 2629</span>, <span class="seriesInfo">DOI 10.17487/RFC2629</span>, <time datetime="1999-06" class="refDate">June 1999</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2629">https://www.rfc-editor.org/info/rfc2629</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC3552">[RFC3552]</dt>
-<dd>
-<span class="refAuthor">Rescorla, E.</span><span class="refAuthor"> and B. Korver</span>, <span class="refTitle">"Guidelines for Writing RFC Text on Security Considerations"</span>, <span class="seriesInfo">BCP 72</span>, <span class="seriesInfo">RFC 3552</span>, <span class="seriesInfo">DOI 10.17487/RFC3552</span>, <time datetime="2003-07">July 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3552">https://www.rfc-editor.org/info/rfc3552</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Rescorla, E.</span> and <span class="refAuthor">B. Korver</span>, <span class="refTitle">"Guidelines for Writing RFC Text on Security Considerations"</span>, <span class="seriesInfo">BCP 72</span>, <span class="seriesInfo">RFC 3552</span>, <span class="seriesInfo">DOI 10.17487/RFC3552</span>, <time datetime="2003-07" class="refDate">July 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3552">https://www.rfc-editor.org/info/rfc3552</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC5226">[RFC5226]</dt>
-<dd>
-<span class="refAuthor">Narten, T.</span><span class="refAuthor"> and H. Alvestrand</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">RFC 5226</span>, <span class="seriesInfo">DOI 10.17487/RFC5226</span>, <time datetime="2008-05">May 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5226">https://www.rfc-editor.org/info/rfc5226</a>&gt;</span>. </dd>
+      <dd>
+<span class="refAuthor">Narten, T.</span> and <span class="refAuthor">H. Alvestrand</span>, <span class="refTitle">"Guidelines for Writing an IANA Considerations Section in RFCs"</span>, <span class="seriesInfo">RFC 5226</span>, <span class="seriesInfo">DOI 10.17487/RFC5226</span>, <time datetime="2008-05" class="refDate">May 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5226">https://www.rfc-editor.org/info/rfc5226</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 </dl>
 </section>
 </section>
 <div id="app-additional">
-<section id="section-appendix.a">
+<section id="appendix-A">
       <h2 id="name-additional-stuff">
-<a href="#section-appendix.a" class="section-number selfRef">Appendix A. </a><a href="#name-additional-stuff" class="section-name selfRef">Additional Stuff</a>
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-additional-stuff" class="section-name selfRef">Additional Stuff</a>
       </h2>
-<p id="section-appendix.a-1">This becomes an Appendix.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">This becomes an Appendix.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="section-appendix.b">
+<section id="appendix-B">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Christine van Vredendaal (<span class="role">editor</span>)</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Christine van Vredendaal</span></div>
 <div dir="auto" class="left"><span class="org">NXP Semiconductors</span></div>
 <div dir="auto" class="left"><span class="street-address">High Tech Campus 60</span></div>
 <div dir="auto" class="left">
 <span class="postal-code">5656</span> <span class="locality">AE Eindhoven</span>
 </div>
 <div dir="auto" class="left"><span class="country-name">Netherlands</span></div>
-<div class="tel">
-<span>Phone:</span>
-<a href="tel:+44%207889%20488%20335" class="tel">+44 7889 488 335</a>
-</div>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:cvvrede@gmail.com" class="email">cvvrede@gmail.com</a>
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Silvio Dragone (<span class="role">editor</span>)</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Silvio Dragone</span></div>
 <div dir="auto" class="left"><span class="org">IBM Research GmbH</span></div>
 <div dir="auto" class="left"><span class="street-address">Saeumerstrasse 4</span></div>
-<div dir="auto" class="left">
-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
+<div dir="auto" class="left">CH-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
 </div>
 <div dir="auto" class="left"><span class="country-name">Switzerland</span></div>
 <div class="email">
@@ -1834,11 +1959,10 @@ DilithiumPublicKey ::= SEQUENCE {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Basil Hess (<span class="role">editor</span>)</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Basil Hess</span></div>
 <div dir="auto" class="left"><span class="org">IBM Research GmbH</span></div>
 <div dir="auto" class="left"><span class="street-address">Saeumerstrasse 4</span></div>
-<div dir="auto" class="left">
-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
+<div dir="auto" class="left">CH-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
 </div>
 <div dir="auto" class="left"><span class="country-name">Switzerland</span></div>
 <div class="email">
@@ -1847,11 +1971,10 @@ DilithiumPublicKey ::= SEQUENCE {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Tamas Visegrady (<span class="role">editor</span>)</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Tamas Visegrady</span></div>
 <div dir="auto" class="left"><span class="org">IBM Research GmbH</span></div>
 <div dir="auto" class="left"><span class="street-address">Saeumerstrasse 4</span></div>
-<div dir="auto" class="left">
-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
+<div dir="auto" class="left">CH-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
 </div>
 <div dir="auto" class="left"><span class="country-name">Switzerland</span></div>
 <div class="email">
@@ -1860,11 +1983,10 @@ DilithiumPublicKey ::= SEQUENCE {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Michael Osborne (<span class="role">editor</span>)</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Michael Osborne</span></div>
 <div dir="auto" class="left"><span class="org">IBM Research GmbH</span></div>
 <div dir="auto" class="left"><span class="street-address">Saeumerstrasse 4</span></div>
-<div dir="auto" class="left">
-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
+<div dir="auto" class="left">CH-<span class="postal-code">8803</span> <span class="locality">Rueschlikon</span>
 </div>
 <div dir="auto" class="left"><span class="country-name">Switzerland</span></div>
 <div class="email">
@@ -1873,7 +1995,7 @@ DilithiumPublicKey ::= SEQUENCE {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Dieter Bong (<span class="role">editor</span>)</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Dieter Bong</span></div>
 <div dir="auto" class="left"><span class="org">Utimaco IS GmbH</span></div>
 <div dir="auto" class="left"><span class="street-address">Germanusstrasse 4</span></div>
 <div dir="auto" class="left">
@@ -1886,17 +2008,13 @@ DilithiumPublicKey ::= SEQUENCE {
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Joppe Bos (<span class="role">editor</span>)</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">Joppe Bos</span></div>
 <div dir="auto" class="left"><span class="org">NXP Semiconductors</span></div>
 <div dir="auto" class="left"><span class="street-address">High Tech Campus 60</span></div>
 <div dir="auto" class="left">
 <span class="postal-code">5656</span> <span class="locality">AE Eindhoven</span>
 </div>
 <div dir="auto" class="left"><span class="country-name">Netherlands</span></div>
-<div class="tel">
-<span>Phone:</span>
-<a href="tel:+44%207889%20488%20335" class="tel">+44 7889 488 335</a>
-</div>
 <div class="email">
 <span>Email:</span>
 <a href="mailto:joppe.bos@nxp.com" class="email">joppe.bos@nxp.com</a>
@@ -1904,45 +2022,13 @@ DilithiumPublicKey ::= SEQUENCE {
 </address>
 </section>
 </div>
-<script>var toc = document.getElementById("toc");
-var tocToggle = toc.querySelector("h2");
-var tocNav = toc.querySelector("nav");
-
-// mobile menu toggle
-tocToggle.onclick = function(event) {
-    if (window.innerWidth < 1024) {
- var tocNavDisplay = tocNav.currentStyle ? tocNav.currentStyle.display : getComputedStyle(tocNav, null).display;
- if (tocNavDisplay == "none") {
-     tocNav.style.display = "block";
- } else {
-     tocNav.style.display = "none";
- }
-    }
-}
-
-// toc anchor scroll to anchor
-tocNav.addEventListener("click", function (event) {
-    event.preventDefault();
-    if (event.target.nodeName == 'A') {
- if (window.innerWidth < 1024) {
-     tocNav.style.display = "none";
- }
- var href = event.target.getAttribute("href");
- var anchorId = href.substr(1);
- var anchor =  document.getElementById(anchorId);
- anchor.scrollIntoView(true);
- window.history.pushState("","",href);
-    }
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
 });
-
-// switch toc mode when window resized
-window.onresize = function () {
-    if (window.innerWidth < 1024) {
- tocNav.style.display = "none";
-    } else {
- tocNav.style.display = "block";
-    }
-}
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
 </script>
 </body>
 </html>

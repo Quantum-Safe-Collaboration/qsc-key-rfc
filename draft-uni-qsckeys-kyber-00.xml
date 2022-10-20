@@ -20,7 +20,7 @@ please see http://xml.resource.org/authoring/README.html. -->
         <!-- The abbreviated title is used in the page header - it is only necessary if the
         full title is longer than 39 characters -->
 
-        <title abbrev="QSC Cryptography Key Information">QSC Keys for CRYSTALS-Kyber</title>
+        <title abbrev="QSC Keys for CRYSTALS-Kyber">Quantum Safe Cryptography Key Information for CRYSTALS-Kyber</title>
         <seriesInfo name="Individual-Draft" value="draft-uni-qsckeys-kyber-00" />
         <!-- add 'role="editor"' below for the editors if appropriate -->
 
@@ -178,7 +178,7 @@ please see http://xml.resource.org/authoring/README.html. -->
     <middle>
         <section numbered="true" toc="default">
             <name>Introduction</name>
-            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected. The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects. This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification, key serialization, and key compression for the future NIST PQC KEM standard, CRYSTALS-Kyber. For the other schemes, see draft-uni-qsckeys-dilithium, draft-uni-qsckeys-falcon, draft-uni-qsckeys-sphincsplus and the previous Internet-Draft <xref target="draft-uni-qsckeys-01" format="default"></xref>. This proposal will be updated when the final NIST standard for CRYSTALS-Kyber becomes available.</t>
+            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected. The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects. This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification, key serialization, and key compression for the future primary NIST PQC KEM standard, CRYSTALS-Kyber. For the other schemes, see draft-uni-qsckeys-dilithium, draft-uni-qsckeys-falcon, draft-uni-qsckeys-sphincsplus and the previous Internet-Draft <xref target="draft-uni-qsckeys-01" format="default"></xref>. This proposal will be updated when the final NIST standard for CRYSTALS-Kyber becomes available.</t>
             <section numbered="true" toc="default">
                 <name>Requirements Language</name>
                 <t>
@@ -202,7 +202,7 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <li>Identifying compressed and uncompressed keys</li>
                 </ul>
                 <t>The current standardization of quantum safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
-                This proposal defines in section 2 a long-term structured key representation format useful to address the goals outlined in 1.2.</t>
+                This proposal defines in section 2 a long-term structured key representation format useful to address the goals outlined above.</t>
             </section>
 
             <section numbered="true" toc="default">
@@ -227,7 +227,7 @@ pqcAlgorithmParameterName ::= PrintableString
 
         <section numbered="true" toc="default">
             <name>Overview of CRYSTALS-Kyber and parameter OIDs</name>
-            <t>CRYSTALS-Kyber consists of six different parameter sets. This memo attributes a name and a placeholder for an OID to the different parameter sets of CRYSTALS-Kyber. The following table gives an overview of the possible OIDs in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier type. Each name or OID represents a single parameter set of given security. Details can be found in the next section.</t>
+            <t>CRYSTALS-Kyber consists of six parameter sets. This memo attributes a name and a placeholder for an OID to the different parameter sets of CRYSTALS-Kyber. The following table gives an overview of the possible OIDs in the algorithm field and possible parameters set names in the parameters field of the AlgorithmIdentifier type. Each name or OID represents a single parameter set of given security. Details can be found in the next section.</t>
 
             <figure anchor="PQCalgorithmOIDs">
                 <artwork align="left" name="" type="" alt="">
@@ -334,7 +334,7 @@ SubjectPublicKeyInfo := SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Algorithm Parameter Identifiers</name>
 
-                <t>Kyber uses OIDs to identify parameters sets for different security strengths.</t>
+                <t>CRYSTALS-Kyber uses OIDs to identify parameters sets.</t>
                 <figure anchor="KyberOIDs">
                     <artwork align="left" name="" type="" alt="">
                         <![CDATA[
@@ -473,7 +473,7 @@ SubjectPublicKeyInfo := SEQUENCE {
             <section numbered="true" toc="default">
                 <name>Private Key Full Encoding</name>
 
-                <t>Distributing a CRYSTALS-Kyber private key with PKCS#8 requires:</t>
+                <t>Encoding a CRYSTALS-Kyber private key with PKCS#8 must include the following two fields:</t>
                 <ul spacing="compact">
                     <li>kyber-(n*k)-r3 in the algorithm field of  AlgorithmIdentifier</li>
                     <li>KyberPrivateKey in the privateKey field, which is an OCTET STRING.</li>
@@ -495,7 +495,7 @@ KyberPrivateKey ::= SEQUENCE {
             </section>
 
             <section numbered="true" toc="default">
-                <name>Private key Partial Encoding</name>
+                <name>Private Key Partial Encoding</name>
 
                 <t>The partially populated parameter set uses of the fact that some parameters can be regenerated. In this case, only the initial seed 'd' (nonce) is stored and used to regenerate the full key. 
                     Partially encoded keys use the same ASN.1 structure as the fully populated keys, simply with the regenerated fields set to EMPTY. 

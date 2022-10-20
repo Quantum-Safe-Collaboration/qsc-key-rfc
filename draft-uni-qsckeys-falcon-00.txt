@@ -2,35 +2,35 @@
 
 
 
-Internet Engineering Task Force                   C.v.V. Vredendaal, Ed.
+Internet Engineering Task Force                         C. V. Vredendaal
 Internet-Draft                                        NXP Semiconductors
-Intended status: Informational                         S.D. Dragone, Ed.
-Expires: 9 February 2023                                  B.H. Hess, Ed.
-                                                     T.V. Visegrady, Ed.
-                                                       M.O. Osborne, Ed.
+Intended status: Informational                                S. Dragone
+Expires: 23 April 2023                                           B. Hess
+                                                            T. Visegrady
+                                                              M. Osborne
                                                        IBM Research GmbH
-                                                          D.B. Bong, Ed.
+                                                                 D. Bong
                                                          Utimaco IS GmbH
-                                                           J.B. Bos, Ed.
+                                                                  J. Bos
                                                       NXP Semiconductors
-                                                           8 August 2022
+                                                         20 October 2022
 
 
-                      Quantum Safe keys for FALCON
-                          draft-uni-qsckeys-01
+          Quantum Safe Cryptography Key Information for FALCON
+                      draft-uni-qsckeys-falcon-00
 
 Abstract
 
-   This proposal defines key management approaches for Quantum Safe
-   Cryptographic (QSC) algorithms currently under evaluation in the NIST
-   Post Quantum Cryptography (PQC) process.  This includes key
-   identification, key serialization, and key compression.  The purpose
-   is to provide guidance such that the adoption of quantum-safe
+   This proposal defines key management approaches for the Quantum Safe
+   Cryptographic (QSC) algorithm FALCON which has been selected for
+   standardization by the NIST Post Quantum Cryptography (PQC) process.
+   This includes key identification and key serialization.  The purpose
+   is to provide guidance such that the adoption of quantum safe
    algorithms is not hampered with the fragmented evolution of necessary
    key management standards.  Early definition of key material standards
-   will help expedite the adoption of new quantum safe algorithms at the
-   same time as improving interoperability between implementations and
-   minimizing divergence across standards.
+   will help expedite the adoption of new quantum safe algorithms and at
+   the same time as improving interoperability between implementations
+   and minimizing divergence across standards.
 
 Status of This Memo
 
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 February 2023.
+   This Internet-Draft will expire on 23 April 2023.
 
 
 
 
 
-Vredendaal, et al.       Expires 9 February 2023                [Page 1]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 1]
 
-Internet-Draft             QSC Keys for FALCON               August 2022
+Internet-Draft             QSC Keys for FALCON              October 2022
 
 
 Copyright Notice
@@ -77,20 +77,20 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   3
      1.2.  Algorithm Identification  . . . . . . . . . . . . . . . .   3
-     1.3.  Algorithm and Algorithm Parameter Object Identifier . . .   4
-   2.  Overview of PQC algorithm and parameter OIDs  . . . . . . . .   4
+     1.3.  Algorithm and Algorithm Parameter Object Identifier . . .   3
+   2.  Overview of FALCON and parameter OIDs . . . . . . . . . . . .   4
      2.1.  Key Formats . . . . . . . . . . . . . . . . . . . . . . .   4
      2.2.  Public Key Format based on RFC5280  . . . . . . . . . . .   5
      2.3.  Overview of Memo Definitions - PQC Key Formats  . . . . .   5
-   3.  FALCON  . . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+   3.  FALCON  . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
      3.1.  Algorithm Parameter Identifiers . . . . . . . . . . . . .   6
-     3.2.  Key Details . . . . . . . . . . . . . . . . . . . . . . .   7
+     3.2.  Key Details . . . . . . . . . . . . . . . . . . . . . . .   6
      3.3.  Private Key Full Encoding . . . . . . . . . . . . . . . .   7
      3.4.  Public Key Full Encoding  . . . . . . . . . . . . . . . .   8
    4.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   8
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   9
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .   9
      7.2.  Informative References  . . . . . . . . . . . . . . . . .   9
    Appendix A.  Additional Stuff . . . . . . . . . . . . . . . . . .  10
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Vredendaal, et al.       Expires 9 February 2023                [Page 2]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 2]
 
-Internet-Draft             QSC Keys for FALCON               August 2022
+Internet-Draft             QSC Keys for FALCON              October 2022
 
 
    management.  Here it is important to define and standardize key
@@ -119,8 +119,12 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    platforms and protocols are very constrained when it comes to the
    amount of memory or space available for key objects.  This makes it
    important to define and standardize key compression formats.  This
-   proposal addresses aspects of key identification, key serialization,
-   and key compression for NIST PQC candidates.
+   proposal addresses aspects of key identification and key
+   serialization for the future NIST Digital Signature standard, FALCON.
+   For the other schemes, see draft-uni-qsckeys-kyber, draft-uni-
+   qsckeys-falcon, draft-uni-qsckeys-dilithium and the previous
+   Internet-Draft [draft-uni-qsckeys-01].  This proposal will be updated
+   when the final NIST standard for CRYSTALS-Kyber becomes available.
 
 1.1.  Requirements Language
 
@@ -138,7 +142,7 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    *  Identifying different key serialization strategies
    *  Identifying compressed and uncompressed keys
 
-   The current standardization of quantum-safe algorithms does not
+   The current standardization of quantum safe algorithms does not
    address the definition of serialization structures for keys.  As a
    result, it has become commonplace for the cryptographic community
    working on and with these algorithms to define their own approaches.
@@ -146,35 +150,24 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    material.  This has certain advantages in terms of ease of
    experimentation while focusing on finding the best-performing QSC
    algorithms.  In terms of longer-term support where algorithm versions
-   change this is a problem.  For the purpose of temporarily supporting
-   ongoing experimentation with opaque blobs, for example in simple
-   "classic key-emulating" test applications, such as TLS, this document
-   specifies a temporary but suboptimal key format in section 2.1,
-   mainly to establish a base of reference for as long as
-   experimentation is ongoing.  This is referenced as the 'raw key
-   material' representation.  At the same time, this proposal documents
-   in section 2.2 below, a long-term key representation format useful to
-   address the goals outlined in 1.1.  This proposal contains all
-   information required to document and transition from one version of
-   key material representation to another.
-
-
-
-
-
-
-
-
-Vredendaal, et al.       Expires 9 February 2023                [Page 3]
-
-Internet-Draft             QSC Keys for FALCON               August 2022
-
+   change this is a problem.  This proposal defines in section 2 a long-
+   term structured key representation format useful to address the goals
+   outlined above.
 
 1.3.  Algorithm and Algorithm Parameter Object Identifier
 
    Algorithm and algorithm parameter information shall have ASN.1 type
    AlgorithmIdentifier as given in [RFC5280] and shall be extended by an
    pqcAlgorithmParameterName type in the optional parameters field:
+
+
+
+
+
+
+Vredendaal, et al.        Expires 23 April 2023                 [Page 3]
+
+Internet-Draft             QSC Keys for FALCON              October 2022
 
 
    AlgorithmIdentifier ::=  SEQUENCE {
@@ -184,17 +177,15 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    pqcAlgorithmParameterName ::= PrintableString
 
 
-2.  Overview of PQC algorithm and parameter OIDs
+2.  Overview of FALCON and parameter OIDs
 
-   Each PQC algorithm has its own specific parameters.  Different
-   parameter sets provide different levels of security within one
-   algorithm.  This memo attributes a name and an OID to the different
-   security level NIST round 3 parameter sets.  The following table
-   gives an overview of the possible OIDs in the algorithm field and
-   possible parameters set names in the parameters field of the
-   AlgorithmIdentifier type.  Each name or OID represents a single
-   parameter set of given security.  Details can be found in the
-   individual PQC algorithm chapters.
+   FALCON consists of two different parameter sets.  This memo
+   attributes a name and a placeholder for an OID to the different
+   parameter sets of FALCON.  The following table gives an overview of
+   the possible OIDs in the algorithm field and possible parameters set
+   names in the parameters field of the AlgorithmIdentifier type.  Each
+   name or OID represents a single parameter set of given security.
+   Details can be found in the next section.
 
 
    |=========+=====+===============================================|
@@ -220,18 +211,19 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    PrivateKeyInfo is defined as:
 
 
-
-Vredendaal, et al.       Expires 9 February 2023                [Page 4]
-
-Internet-Draft             QSC Keys for FALCON               August 2022
-
-
    PrivateKeyInfo ::=  SEQUENCE {
        version               INTEGER             -- PKCS#8 syntax ver
        privateKeyAlgorithm   AlgorithmIdentifier -- see chapter above
        privateKey            OCTET STRING,       -- see chapter below
        attributes            [0]  IMPLICIT Attributes OPTIONAL
    }
+
+
+
+
+Vredendaal, et al.        Expires 23 April 2023                 [Page 4]
+
+Internet-Draft             QSC Keys for FALCON              October 2022
 
 
    Distributing a PQC private key requires a PKCS#8 PrivateKeyInfo with
@@ -266,31 +258,33 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    STRING whose contents are the value of the private key.  The
    interpretation of the content differs from PQC algorithm to
    algorithm.  The subjectPublicKey field in the subjectPublicKeyInfo
-   type RFC 5480 [RFC5480] is a BIT STRING whose contents are the value
-   of the public key.  Here also the interpretation of the content
-   differs from PQC algorithm to algorithm.
-
-   For an NTRU private key, for example, the content needs to be
-   interpreted according to the NTRUPrivateKey type and for an NTRU
-   public key the content needs to be interpreted according to the
-   NTRUPublicKey type; both are defined in the NTRU chapter below.
-
-
-
-Vredendaal, et al.       Expires 9 February 2023                [Page 5]
-
-Internet-Draft             QSC Keys for FALCON               August 2022
-
+   type [RFC5480] is a BIT STRING whose contents are the value of the
+   public key.  Here also the interpretation of the content differs from
+   PQC algorithm to algorithm.
 
 3.  FALCON
 
    FALCON is a lattice-based signature scheme that uses the short
    integer solution problem (SIS) over NTRU lattices as its underlying
-   hard problem.  Project Website https://falcon-sign.info/ NIST Round 3
-   Submission https://csrc.nist.gov/CSRC/media/Projects/post-quantum-
-   cryptography/documents/round-3/submissions/Falcon-Round3.zip
+   hard problem.
+
+   *  Project Website: https://falcon-sign.info/
+   *  NIST Round 3 Submission:
+      https://csrc.nist.gov/CSRC/media/Projects/post-quantum-
+      cryptography/documents/round-3/submissions/Falcon-Round3.zip
+
+
+
+
+
+Vredendaal, et al.        Expires 23 April 2023                 [Page 5]
+
+Internet-Draft             QSC Keys for FALCON              October 2022
+
 
 3.1.  Algorithm Parameter Identifiers
+
+   FALCON uses OIDs to identify parameters sets.
 
 
    |=========================+=====================================|
@@ -328,16 +322,6 @@ Internet-Draft             QSC Keys for FALCON               August 2022
 
                                   Figure 2
 
-
-
-
-
-
-Vredendaal, et al.       Expires 9 February 2023                [Page 6]
-
-Internet-Draft             QSC Keys for FALCON               August 2022
-
-
 3.2.  Key Details
 
    The FALCON private key contains the key components f, g and F.  Each
@@ -346,6 +330,14 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    (parameter name = falcon512-r3) and 5 bits each for degree 1024
    (parameter name = falcon1024-r3).  Coefficients of F use 8 bits each,
    regardless of its degree.  Each coefficient uses signed encoding,
+
+
+
+Vredendaal, et al.        Expires 23 April 2023                 [Page 6]
+
+Internet-Draft             QSC Keys for FALCON              October 2022
+
+
    with two's complement for negative values.  Moreover, the minimal
    value is forbidden, e.g. when using degree 512, the valid range for a
    coefficient of f or g is -31 to +31; -32 is not allowed.
@@ -383,17 +375,6 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    private key:
 
 
-
-
-
-
-
-
-Vredendaal, et al.       Expires 9 February 2023                [Page 7]
-
-Internet-Draft             QSC Keys for FALCON               August 2022
-
-
    FALCONPrivateKey ::= SEQUENCE {
        version     INTEGER {v2(1)}    -- syntax version 2 (round 3)
        f           OCTET STRING,      -- short integer polynomial f
@@ -402,6 +383,15 @@ Internet-Draft             QSC Keys for FALCON               August 2022
        publicKey   [0] IMPLICIT FALCONPublicKey  OPTIONAL
                                       -- see next section
    }
+
+
+
+
+
+
+Vredendaal, et al.        Expires 23 April 2023                 [Page 7]
+
+Internet-Draft             QSC Keys for FALCON              October 2022
 
 
 3.4.  Public Key Full Encoding
@@ -441,15 +431,6 @@ Internet-Draft             QSC Keys for FALCON               August 2022
 
    This memo includes no request to IANA.
 
-
-
-
-
-Vredendaal, et al.       Expires 9 February 2023                [Page 8]
-
-Internet-Draft             QSC Keys for FALCON               August 2022
-
-
 6.  Security Considerations
 
    Any processing of the ASN.1 private key structures, such as base64
@@ -461,6 +442,13 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    shall be performed with these fixed lengths.
 
 7.  References
+
+
+
+Vredendaal, et al.        Expires 23 April 2023                 [Page 8]
+
+Internet-Draft             QSC Keys for FALCON              October 2022
+
 
 7.1.  Normative References
 
@@ -486,6 +474,14 @@ Internet-Draft             QSC Keys for FALCON               August 2022
 
 7.2.  Informative References
 
+   [draft-uni-qsckeys-01]
+              Vredendaal, C. V., Dragone, S., Hess, B., Visegrady, T.,
+              Osborne, M., Bong, D., and J. Bos, "Quantum Safe
+              Cryptography Key Information", Work in Progress, Internet-
+              Draft, draft-uni-qsckeys-01, 12 May 2022,
+              <https://www.ietf.org/archive/id/draft-uni-qsckeys-
+              01.txt>.
+
    [RFC2629]  Rose, M., "Writing I-Ds and RFCs using XML", RFC 2629,
               DOI 10.17487/RFC2629, June 1999,
               <https://www.rfc-editor.org/info/rfc2629>.
@@ -497,17 +493,18 @@ Internet-Draft             QSC Keys for FALCON               August 2022
 
    [RFC5226]  Narten, T. and H. Alvestrand, "Guidelines for Writing an
               IANA Considerations Section in RFCs", RFC 5226,
-
-
-
-
-Vredendaal, et al.       Expires 9 February 2023                [Page 9]
-
-Internet-Draft             QSC Keys for FALCON               August 2022
-
-
               DOI 10.17487/RFC5226, May 2008,
               <https://www.rfc-editor.org/info/rfc5226>.
+
+
+
+
+
+
+Vredendaal, et al.        Expires 23 April 2023                 [Page 9]
+
+Internet-Draft             QSC Keys for FALCON              October 2022
+
 
 Appendix A.  Additional Stuff
 
@@ -515,17 +512,16 @@ Appendix A.  Additional Stuff
 
 Authors' Addresses
 
-   Christine van Vredendaal (editor)
+   Christine van Vredendaal
    NXP Semiconductors
    High Tech Campus 60
    5656 AE Eindhoven
    Netherlands
 
-   Phone: +44 7889 488 335
    Email: cvvrede@gmail.com
 
 
-   Silvio Dragone (editor)
+   Silvio Dragone
    IBM Research GmbH
    Saeumerstrasse 4
    CH-8803 Rueschlikon
@@ -534,7 +530,7 @@ Authors' Addresses
    Email: sid@zurich.ibm.com
 
 
-   Basil Hess (editor)
+   Basil Hess
    IBM Research GmbH
    Saeumerstrasse 4
    CH-8803 Rueschlikon
@@ -543,7 +539,7 @@ Authors' Addresses
    Email: bhe@zurich.ibm.com
 
 
-   Tamas Visegrady (editor)
+   Tamas Visegrady
    IBM Research GmbH
    Saeumerstrasse 4
    CH-8803 Rueschlikon
@@ -552,24 +548,24 @@ Authors' Addresses
    Email: tvi@zurich.ibm.com
 
 
-   Michael Osborne (editor)
+   Michael Osborne
    IBM Research GmbH
-
-
-
-Vredendaal, et al.       Expires 9 February 2023               [Page 10]
-
-Internet-Draft             QSC Keys for FALCON               August 2022
-
-
    Saeumerstrasse 4
    CH-8803 Rueschlikon
    Switzerland
 
+
+
+
+Vredendaal, et al.        Expires 23 April 2023                [Page 10]
+
+Internet-Draft             QSC Keys for FALCON              October 2022
+
+
    Email: osb@zurich.ibm.com
 
 
-   Dieter Bong (editor)
+   Dieter Bong
    Utimaco IS GmbH
    Germanusstrasse 4
    52080 Aachen
@@ -578,13 +574,12 @@ Internet-Draft             QSC Keys for FALCON               August 2022
    Email: dieter.bong@utimaco.com
 
 
-   Joppe Bos (editor)
+   Joppe Bos
    NXP Semiconductors
    High Tech Campus 60
    5656 AE Eindhoven
    Netherlands
 
-   Phone: +44 7889 488 335
    Email: joppe.bos@nxp.com
 
 
@@ -613,4 +608,9 @@ Internet-Draft             QSC Keys for FALCON               August 2022
 
 
 
-Vredendaal, et al.       Expires 9 February 2023               [Page 11]
+
+
+
+
+
+Vredendaal, et al.        Expires 23 April 2023                [Page 11]
