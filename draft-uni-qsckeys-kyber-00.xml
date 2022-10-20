@@ -35,7 +35,6 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <code>5656</code>
                     <country>NL</country>
                 </postal>
-                <phone>+44 7889 488 335</phone>
                 <email>cvvrede@gmail.com</email>
                 <!-- uri and facsimile elements may also be added -->
             </address>
@@ -139,7 +138,6 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <code>5656</code>
                     <country>NL</country>
                 </postal>
-                <phone>+44 7889 488 335</phone>
                 <email>joppe.bos@nxp.com</email>
                 <!-- uri and facsimile elements may also be added -->
             </address>
@@ -173,14 +171,14 @@ please see http://xml.resource.org/authoring/README.html. -->
             <t>This proposal defines key management approaches for the Quantum Safe Cryptographic (QSC) algorithm CRYSTALS-Kyber 
             which has been selected for standardization by the NIST Post Quantum Cryptography (PQC) process.
             This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that 
-            the adoption of quantum-safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
-            Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards. </t>
+            the adoption of quantum safe algorithms is not hampered with the fragmented evolution of necessary key management standards. 
+            Early definition of key material standards will help expedite the adoption of new quantum safe algorithms and at the same time as improving interoperability between implementations and minimizing divergence across standards. </t>
         </abstract>
     </front>
     <middle>
         <section numbered="true" toc="default">
             <name>Introduction</name>
-            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected. The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects. This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification, key serialization, and key compression for the selected NIST PQC standard CRYSTALS-Kyber.</t>
+            <t>QSC algorithms being standardized in the NIST PQC Process have evolved through several rounds and iterations. Keys are neither easily identifiable nor compatible across rounds. It is also expected that algorithms will evolve after final candidates have been selected. The lack of binary compatibility between algorithm versions and variants means that it is important to clearly identify key material. Parallel to the NIST process, industry is evaluating the impact of adopting new PQC algorithms, in particular key management. Here it is important to define and standardize key serialization and encoding formats. Finally, we have seen that many platforms and protocols are very constrained when it comes to the amount of memory or space available for key objects. This makes it important to define and standardize key compression formats. This proposal addresses aspects of key identification, key serialization, and key compression for the to-be-standardized algorithms of the NIST PQC Process. This proposal addresses aspects of key identification, key serialization, and key compression for future NIST PQC KEM standard, CRYSTALS-Kyber. For the other schemes, see draft-uni-qsckeys-dilithium, draft-uni-qsckeys-falcon, draft-uni-qsckeys-sphincsplus and the previous Internet-Draft <xref target="draft-uni-qsckeys-01" format="default"></xref>. This proposal will be updated when the final standard NIST for CRYSTALS-Kyber becomes available.</t>
             <section numbered="true" toc="default">
                 <name>Requirements Language</name>
                 <t>
@@ -203,7 +201,7 @@ please see http://xml.resource.org/authoring/README.html. -->
                     <li>Identifying different key serialization strategies </li>
                     <li>Identifying compressed and uncompressed keys</li>
                 </ul>
-                <t>The current standardization of quantum-safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
+                <t>The current standardization of quantum safe algorithms does not address the definition of serialization structures for keys. As a result, it has become commonplace for the cryptographic community working on and with these algorithms to define their own approaches. This leads to proprietary and internal representations for key material. This has certain advantages in terms of ease of experimentation while focusing on finding the best-performing QSC algorithms. In terms of longer-term support where algorithm versions change this is a problem.
                 This proposal defines in section 2 a long-term structured key representation format useful to address the goals outlined in 1.2.</t>
             </section>
 
@@ -282,7 +280,7 @@ pqcAlgorithmParameterName ::= PrintableString
                 <artwork align="left" name="" type="" alt="">
                     <![CDATA[
 PrivateKeyInfo ::=  SEQUENCE {
-    version               INTEGER             -- PKCS#8 syntax ver
+    version               INTEGER             -- PKCS#8 syntax version
     privateKeyAlgorithm   AlgorithmIdentifier -- see chapter above
     privateKey            OCTET STRING,       -- see chapter below
     attributes            [0]  IMPLICIT Attributes OPTIONAL
@@ -319,22 +317,19 @@ SubjectPublicKeyInfo := SEQUENCE {
                     The privateKey field in the PrivateKeyInfo type
                     <xref target="RFC5480" format="default"></xref>
                     is an OCTET STRING whose contents are the value of the private key. The interpretation of the content differs from PQC algorithm to algorithm. The subjectPublicKey field in the subjectPublicKeyInfo type
-                    <xref target="RFC5480" format="default">RFC 5480</xref>
+                    <xref target="RFC5480" format="default"></xref>
                     is a BIT STRING whose contents are the value of the public key. Here also the interpretation of the content differs from PQC algorithm to algorithm.
                 </t>
-                <t>For an NTRU private key, for example, the content needs to be interpreted according to the NTRUPrivateKey type and for an NTRU public key the content needs to be interpreted according to the NTRUPublicKey type; both are defined in the NTRU chapter below.</t>
             </section>
-
         </section>
-
-
-
 
         <section numbered="true" toc="default">
             <name>CRYSTALS-Kyber</name>
-            <t>Kyber is an IND-CCA2-secure key encapsulation mechanism (KEM), whose security is based on the hardness of solving the learning-with-errors (LWE) problem over module lattices.
-                Project Website: https://pq-crystals.org/kyber/index.shtml
-                NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Kyber-Round3.zip</t>
+            <t>CRYSTALS-Kyber is an IND-CCA2-secure key encapsulation mechanism (KEM), whose security is based on the hardness of solving the learning-with-errors (LWE) problem over module lattices.</t>
+                <ul spacing="compact">
+                    <li>Project Website: https://pq-crystals.org/kyber/index.shtml</li>
+                    <li>NIST Round 3 Submission: https://csrc.nist.gov/CSRC/media/Projects/post-quantum-cryptography/documents/round-3/submissions/Kyber-Round3.zip</li>
+                </ul>
 
             <section numbered="true" toc="default">
                 <name>Algorithm Parameter Identifiers</name>
@@ -432,7 +427,7 @@ SubjectPublicKeyInfo := SEQUENCE {
                     </artwork>
                 </figure>
                 <t>The '90s' variants listed above differ in the symmetric primitives that are used internally. By default, CRYSTALS-Kyber uses SHAKE-128 as XOF, SHA3 for hashing and SHAKE-256 for PRF and KDF. The '90s' variants use AES256CTR to construct a XOF and a PRF, SHA2 for hashing and SHAKE-256 as KDF. The main advantage of the '90s' variants is that they benefit from the ready availability of hardware AES and SHA2 co-processors.
-                    While the parameters listed in the table are the same, the key-pairs will not be compatible with the '90s' variants.</t>
+                    While the parameters listed in the table are the same, the key-pairs will not be compatible with the non-'90s' variants.</t>
             </section>
 
             <section numbered="true" toc="default">
@@ -442,9 +437,9 @@ SubjectPublicKeyInfo := SEQUENCE {
                     <li>t: encoded vector A*s+e, where A is a public matrix over a constant-sized polynomial ring, s and e are vectors over the same ring.</li>
                     <li>rho: public seed (32 bytes)</li>
                 </ul>
-                <t>The size necessary to hold all public key elements is 12*k*n/8+32 bytes.
+                <t>The size necessary to hold all public key elements is 12*k*n/8+32 bytes.</t>
                     
-                    Private key. The private key consists of 3 parameters:</t>
+                <t>Private key. The private key consists of 3 parameters:</t>
                 <ul spacing="compact">
                     <li>s: encoded sample from a centered binomial distribution B_{eta_1} (12*k*n/8 bytes)</li>
                     <li>H(pk): hashed public key (32 bytes). CRYSTALS-Kyber uses SHA3-256 as H by default. The '90s' variants use SHA256 instead.</li>
@@ -503,8 +498,8 @@ KyberPrivateKey ::= SEQUENCE {
                 <name>Private key Partial Encoding</name>
 
                 <t>The partially populated parameter set uses of the fact that some parameters can be regenerated. In this case, only the initial seed 'd' (nonce) is stored and used to regenerate the full key. 
-                    Partially encoded keys use the same ASN.1 structure as the fully polulated keys, simply with the regenerated fields set to EMPTY. 
-                    Compared to the approach of a single definition and setting the regenratable fields as OPTIONAL, this approach significantly simplifies the processing os ASN.1 frames and validation of the partial encoding.
+                    Partially encoded keys use the same ASN.1 structure as the fully populated keys, simply with the regenerated fields set to EMPTY. 
+                    Compared to the approach of a single definition and setting the regenerable fields as OPTIONAL, this approach significantly simplifies the processing of ASN.1 frames and validation of the partial encoding.
                     The ASN.1 format for the partially populated versions is the same as for the fully populated version.
                     The ASN.1 encoding for this variant (z replaced by d) is defined as follows:</t>
                 <artwork name="" type="" align="left" alt="">
@@ -704,12 +699,40 @@ KyberPublicKey ::= SEQUENCE {
                         </abstract>
                     </front>
                 </reference>
+                <reference anchor="draft-uni-qsckeys-01" target="https://www.ietf.org/archive/id/draft-uni-qsckeys-01.txt">
+                  <front>
+                    <title>Quantum Safe Cryptography Key Information</title>
+                    <author fullname="Christine van Vredendaal" surname="Christine van Vredendaal">
+                      <organization>NXP Semiconductors</organization>
+                    </author>
+                    <author fullname="Silvio Dragone" surname="Silvio Dragone">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Basil Hess" surname="Basil Hess">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Tamas Visegrady" surname="Tamas Visegrady">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Michael Osborne" surname="Michael Osborne">
+                      <organization>IBM Research GmbH</organization>
+                    </author>
+                    <author fullname="Dieter Bong" surname="Dieter Bong">
+                      <organization>Utimaco IS GmbH</organization>
+                    </author>
+                    <author fullname="Joppe Bos" surname="Joppe Bos">
+                      <organization>NXP Semiconductors</organization>
+                    </author>
+                    <date day="12" month="May" year="2022"/>
+                    <abstract>
+                      <t>This proposal defines key management approaches for Quantum Safe Cryptographic (QSC) algorithms currently under evaluation in the NIST Post Quantum Cryptography (PQC) process. This includes key identification, key serialization, and key compression. The purpose is to provide guidance such that the adoption of quantum safe algorithms is not hampered with the fragmented evolution of necessary key management standards. Early definition of key material standards will help expedite the adoption of new quantum safe algorithms at the same time as improving interoperability between implementations and minimizing divergence across standards.</t>
+                    </abstract>
+                  </front>
+                  <seriesInfo name="Internet-Draft" value="draft-uni-qsckeys-01"/>
+                </reference>
                 <!-- A reference written by by an organization not a person. -->
-
-
             </references>
         </references>
-
 
         <section anchor="app-additional" numbered="true" toc="default">
             <name>Additional Stuff</name>
