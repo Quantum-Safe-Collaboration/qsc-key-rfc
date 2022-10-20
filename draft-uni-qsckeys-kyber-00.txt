@@ -5,7 +5,7 @@
 Internet Engineering Task Force                         C. V. Vredendaal
 Internet-Draft                                        NXP Semiconductors
 Intended status: Informational                                S. Dragone
-Expires: 9 March 2023                                            B. Hess
+Expires: 23 April 2023                                           B. Hess
                                                             T. Visegrady
                                                               M. Osborne
                                                        IBM Research GmbH
@@ -13,10 +13,10 @@ Expires: 9 March 2023                                            B. Hess
                                                          Utimaco IS GmbH
                                                                   J. Bos
                                                       NXP Semiconductors
-                                                        5 September 2022
+                                                         20 October 2022
 
 
-               Quantum Safe Cryptography Key Information
+                      QSC Keys for CRYSTALS-Kyber
                        draft-uni-qsckeys-kyber-00
 
 Abstract
@@ -48,14 +48,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 March 2023.
+   This Internet-Draft will expire on 23 April 2023.
 
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                  [Page 1]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 1]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                  [Page 2]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 2]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
    the impact of adopting new PQC algorithms, in particular key
@@ -121,7 +121,8 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
    amount of memory or space available for key objects.  This makes it
    important to define and standardize key compression formats.  This
    proposal addresses aspects of key identification, key serialization,
-   and key compression for NIST PQC candidates.
+   and key compression for the selected NIST PQC standard CRYSTALS-
+   Kyber.
 
 1.1.  Requirements Language
 
@@ -164,10 +165,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-
-Vredendaal, et al.        Expires 9 March 2023                  [Page 3]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 3]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
    AlgorithmIdentifier ::=  SEQUENCE {
@@ -221,9 +221,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                  [Page 4]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 4]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
    |=========+=====+===============================================|
@@ -277,9 +277,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                  [Page 5]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 5]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
    PrivateKeyInfo ::=  SEQUENCE {
@@ -333,9 +333,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                  [Page 6]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 6]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
 3.  CRYSTALS-Kyber
@@ -389,9 +389,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                  [Page 7]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 7]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
    | NIST Level Security     | Level 3                             |
@@ -445,9 +445,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                  [Page 8]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 8]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
    |                         | eta_2=2                             |
@@ -501,9 +501,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                  [Page 9]
+Vredendaal, et al.        Expires 23 April 2023                 [Page 9]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
    |==========================+=========+==========+===========|
@@ -557,9 +557,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                 [Page 10]
+Vredendaal, et al.        Expires 23 April 2023                [Page 10]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
 3.4.  Private key Partial Encoding
@@ -613,9 +613,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                 [Page 11]
+Vredendaal, et al.        Expires 23 April 2023                [Page 11]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
 5.  IANA Considerations
@@ -669,9 +669,9 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                 [Page 12]
+Vredendaal, et al.        Expires 23 April 2023                [Page 12]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
    [RFC5226]  Narten, T. and H. Alvestrand, "Guidelines for Writing an
@@ -725,9 +725,9 @@ Authors' Addresses
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                 [Page 13]
+Vredendaal, et al.        Expires 23 April 2023                [Page 13]
 
-Internet-Draft      QSC Cryptography Key Information      September 2022
+Internet-Draft      QSC Cryptography Key Information        October 2022
 
 
    Michael Osborne
@@ -781,4 +781,4 @@ Internet-Draft      QSC Cryptography Key Information      September 2022
 
 
 
-Vredendaal, et al.        Expires 9 March 2023                 [Page 14]
+Vredendaal, et al.        Expires 23 April 2023                [Page 14]

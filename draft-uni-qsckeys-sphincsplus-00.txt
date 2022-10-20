@@ -795,7 +795,7 @@ Internet-Draft          QSC Keys for SPHINCS-PLUS           October 2022
    Email: bhe@zurich.ibm.com
 
 
-   Tamas Visegrady
+   Tamas Visegrady	
    IBM Research GmbH
    Saeumerstrasse 4
    CH-8803 Rueschlikon
