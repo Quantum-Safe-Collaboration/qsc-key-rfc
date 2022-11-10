@@ -2,33 +2,6 @@
 collborative environment for developing a QS key serialization document / RFC
 
 Use the Makfefile to build the documents
-
 Pre-requisites:  xml2rfc
 
-
-draft-uni-qsckeys-kyber-01.txt: draft-uni-qsckeys-kyber-01.xml
-	xml2rfc --text draft-uni-qsckeys-kyber-01.xml
-
-draft-uni-qsckeys-kyber-01.html: draft-uni-qsckeys-kyber-01.xml
-	xml2rfc --html draft-uni-qsckeys-kyber-01.xml
-
-
-draft-uni-qsckeys-dilithium-01.txt: draft-uni-qsckeys-dilithium-01.xml
-	xml2rfc --text draft-uni-qsckeys-dilithium-01.xml
-
-draft-uni-qsckeys-dilithium-01.html: draft-uni-qsckeys-dilithium-01.xml
-	xml2rfc --html draft-uni-qsckeys-dilithium-01.xml
-
-
-draft-uni-qsckeys-falcon-01.txt: draft-uni-qsckeys-falcon-01.xml
-	xml2rfc --text draft-uni-qsckeys-falcon-01.xml
-
-draft-uni-qsckeys-falcon-01.html: draft-uni-qsckeys-falcon-01.xml
-	xml2rfc --html draft-uni-qsckeys-falcon-01.xml
-
-
-draft-uni-qsckeys-sphincsplus-01.txt: draft-uni-qsckeys-sphincsplus-01.xml
-	xml2rfc --text draft-uni-qsckeys-sphincsplus-01.xml
-
-draft-uni-qsckeys-sphincsplus-01.html: draft-uni-qsckeys-sphincsplus-01.xml
-	xml2rfc --html draft-uni-qsckeys-sphincsplus-01.xml
+The subfolder qsc-key-encoder contains a C library for encoding raw QSC keys according to this specification. See the [REAME.md](qsc-key-encoder.md) for details.
