@@ -46,9 +46,9 @@
 //       t1          OCTET STRING
 //   }
 #define DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) \
-  ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_PUBLICKEYBYTES) + \
-  ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
-  ASN_TLLEN(DILITHIUM_##NAME##_T1) + DILITHIUM_##NAME##_T1
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_PUBLICKEYBYTES) + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_T1) + DILITHIUM_##NAME##_T1
 
 
 /**
@@ -59,11 +59,11 @@
  * }
  */
 #define DILITHIUMXXX_CRYPTO_ASN1_SUBJECTPUBLICKEYINFOBYTES(NAME) \
-  ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)) + \
-  ASN_TLLEN(ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID)) + \
-  ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID) + \
-  ASN_TLLEN(0) + \
-  ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)) + DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)
+  QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)) + \
+  QSC_ASN_TLLEN(QSC_ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID)) + \
+  QSC_ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID) + \
+  QSC_ASN_TLLEN(0) + \
+  QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)) + DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)
 
 
 //   DilithiumPrivateKey ::= SEQUENCE {
@@ -78,25 +78,25 @@
 //                                       -- see next section
 //   }
 #define DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME) \
-  ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_SECRETKEYBYTES) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
-  ASN_TLLEN(DILITHIUM_##NAME##_KEY) + DILITHIUM_##NAME##_KEY + \
-  ASN_TLLEN(DILITHIUM_##NAME##_TR) + DILITHIUM_##NAME##_TR + \
-  ASN_TLLEN(DILITHIUM_##NAME##_S1) + DILITHIUM_##NAME##_S1 + \
-  ASN_TLLEN(DILITHIUM_##NAME##_S2) + DILITHIUM_##NAME##_S2 + \
-  ASN_TLLEN(DILITHIUM_##NAME##_T0) + DILITHIUM_##NAME##_T0 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_SECRETKEYBYTES) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_KEY) + DILITHIUM_##NAME##_KEY + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_TR) + DILITHIUM_##NAME##_TR + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_S1) + DILITHIUM_##NAME##_S1 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_S2) + DILITHIUM_##NAME##_S2 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_T0) + DILITHIUM_##NAME##_T0 + \
   DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)
 
 #define DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME) \
-  ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_SECRETKEYBYTES) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
-  ASN_TLLEN(DILITHIUM_##NAME##_KEY) + DILITHIUM_##NAME##_KEY + \
-  ASN_TLLEN(DILITHIUM_##NAME##_TR) + DILITHIUM_##NAME##_TR + \
-  ASN_TLLEN(DILITHIUM_##NAME##_S1) + DILITHIUM_##NAME##_S1 + \
-  ASN_TLLEN(DILITHIUM_##NAME##_S2) + DILITHIUM_##NAME##_S2 + \
-  ASN_TLLEN(DILITHIUM_##NAME##_T0) + DILITHIUM_##NAME##_T0
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_SECRETKEYBYTES) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_KEY) + DILITHIUM_##NAME##_KEY + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_TR) + DILITHIUM_##NAME##_TR + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_S1) + DILITHIUM_##NAME##_S1 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_S2) + DILITHIUM_##NAME##_S2 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_T0) + DILITHIUM_##NAME##_T0
 
 //   DilithiumPrivateKey ::= SEQUENCE {
 //       version     INTEGER {v0(0)}     -- version (round 3)
@@ -110,14 +110,14 @@
 //                                       -- see next section
 //   }
 #define DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL1(NAME) \
-  ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_SECRETKEYBYTES) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
-  ASN_TLLEN(DILITHIUM_##NAME##_KEY) + DILITHIUM_##NAME##_KEY + \
-  ASN_TLLEN(0) + 0 + \
-  ASN_TLLEN(0) + 0 + \
-  ASN_TLLEN(0) + 0 + \
-  ASN_TLLEN(0) + 0 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_SECRETKEYBYTES) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_KEY) + DILITHIUM_##NAME##_KEY + \
+  QSC_ASN_TLLEN(0) + 0 + \
+  QSC_ASN_TLLEN(0) + 0 + \
+  QSC_ASN_TLLEN(0) + 0 + \
+  QSC_ASN_TLLEN(0) + 0 + \
   DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)
 
 //   DilithiumPrivateKey ::= SEQUENCE {
@@ -132,14 +132,14 @@
 //                                      -- see next section
 //   }
 #define DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL2(NAME) \
-  ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_SECRETKEYBYTES) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
-  ASN_TLLEN(0) + 0 + \
-  ASN_TLLEN(0) + 0 + \
-  ASN_TLLEN(0) + 0 + \
-  ASN_TLLEN(0) + 0 + \
-  ASN_TLLEN(0) + 0 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_CRYPTO_SECRETKEYBYTES) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(DILITHIUM_##NAME##_RHO) + DILITHIUM_##NAME##_RHO + \
+  QSC_ASN_TLLEN(0) + 0 + \
+  QSC_ASN_TLLEN(0) + 0 + \
+  QSC_ASN_TLLEN(0) + 0 + \
+  QSC_ASN_TLLEN(0) + 0 + \
+  QSC_ASN_TLLEN(0) + 0 + \
   DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)
 
   /**
@@ -152,38 +152,38 @@
  * }
  */
 #define DILITHIUMXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES(NAME) \
-  ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID)) + \
-  ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID) + \
-  ASN_TLLEN(0) + \
-  ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) + DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)
+  QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(QSC_ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID)) + \
+  QSC_ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID) + \
+  QSC_ASN_TLLEN(0) + \
+  QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) + DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)
 
 #define DILITHIUMXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES_NOOPTIONAL(NAME) \
-  ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID)) + \
-  ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID) + \
-  ASN_TLLEN(0) + \
-  ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)) + DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)
+  QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(QSC_ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID)) + \
+  QSC_ASN_OIDLEN(QSC_ALGORITHM_SIG_DILITHIUM_##NAME##_OID) + \
+  QSC_ASN_TLLEN(0) + \
+  QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)) + DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)
 
 #define DilithiumXXX_asntlp_pk_len 3
 
 #define DILITHIUM_ASNTLP_PK(NAME) \
   static const qsc_asntl_t Dilithium_##NAME##_asntlp_pk[] = { \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
           .asnenc_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = DILITHIUM_##NAME##_RHO, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = DILITHIUM_##NAME##_T1, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
@@ -210,66 +210,66 @@ DILITHIUM_ASNTLP_PK(R3_8x7);
 #define DILITHIUM_ASNTLP_SK(NAME) \
   static const qsc_asntl_t Dilithium_##NAME##_asntlp_sk[] = { \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME) - ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)), \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME) - QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)), \
           .asnenc_flag = 1, \
       }, \
       { \
-          .asntag = ASN1_INT, \
+          .asntag = QSC_ASN1_INT, \
           .asnlen = 1, \
           .asnvalue = 1, \
           .asnenc_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = DILITHIUM_##NAME##_RHO, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = DILITHIUM_##NAME##_KEY, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = DILITHIUM_##NAME##_TR, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = DILITHIUM_##NAME##_S1, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = DILITHIUM_##NAME##_S2, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = DILITHIUM_##NAME##_T0, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
           .asnenc_flag = 2, \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = DILITHIUM_##NAME##_RHO, \
           .asnenc_flag = 2, \
           .asndec_flag = 2, \
           .encpub = 1, \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = DILITHIUM_##NAME##_T1, \
           .asnenc_flag = 2, \
           .asndec_flag = 2, \
@@ -285,49 +285,49 @@ DILITHIUM_ASNTLP_SK(R3_8x7);
 #define DILITHIUM_ASNTLP_SK_PARTIAL1(NAME) \
   static const qsc_asntl_t Dilithium_##NAME##_asntlp_sk_partial1[] = { \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL1(NAME) -  ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL1(NAME)) \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL1(NAME) -  QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL1(NAME)) \
       }, \
       { \
-          .asntag = ASN1_INT, \
+          .asntag = QSC_ASN1_INT, \
           .asnlen = 1, \
           .asnvalue = 1, \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = DILITHIUM_##NAME##_RHO \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = DILITHIUM_##NAME##_KEY \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = DILITHIUM_##NAME##_RHO, \
           .encpub = 1 \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = DILITHIUM_##NAME##_T1, \
           .encpub = 1 \
       } \
@@ -340,48 +340,48 @@ DILITHIUM_ASNTLP_SK_PARTIAL1(R3_8x7);
 #define DILITHIUM_ASNTLP_SK_PARTIAL2(NAME) \
   static const qsc_asntl_t Dilithium_##NAME##_asntlp_sk_partial2[] = { \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL2(NAME) - ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL2(NAME)) \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL2(NAME) - QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_PARTIAL2(NAME)) \
       }, \
       { \
-          .asntag = ASN1_INT, \
+          .asntag = QSC_ASN1_INT, \
           .asnlen = 1, \
           .asnvalue = 1, \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = DILITHIUM_##NAME##_RHO \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_BITSTRING, \
+          .asntag = QSC_ASN1_BITSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - QSC_ASN_TLLEN(DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = DILITHIUM_##NAME##_RHO, \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = DILITHIUM_##NAME##_T1, \
       } \
   };

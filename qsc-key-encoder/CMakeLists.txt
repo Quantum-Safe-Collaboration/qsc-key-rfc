@@ -22,6 +22,9 @@ include_directories(include)
 
 add_library(qsc_key_encoder STATIC ${LIBRARY_ENCODING_FILES})
 
+install(TARGETS qsc_key_encoder DESTINATION lib)
+install(FILES include/qsc_encoding.h DESTINATION include)
+
 include (CTest)
 
 enable_testing()

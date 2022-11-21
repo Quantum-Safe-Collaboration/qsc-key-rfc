@@ -124,8 +124,7 @@ QSC_RC qsc_encoding_by_name(const qsc_encoding_t** ctx_enc, const qsc_encoding_i
     return QSC_ENC_ERR;
 }
 
-QSC_RC qsc_encode(const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_out, unsigned char* pk, unsigned char** pkenc, unsigned char* sk, unsigned char** skenc, int withoptional) {
-    // TODO: deny encoding the public key from private key
+QSC_RC qsc_encode(const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_out, const unsigned char* pk, unsigned char** pkenc, const unsigned char* sk, unsigned char** skenc, int withoptional) {
     // Handle error cases
     if (!skenc && !pkenc)
         return QSC_ENC_ILLEGAL_INP;
@@ -152,8 +151,7 @@ QSC_RC qsc_encode(const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_out,
     return ctx_out->encode(ctx, ctx_out, pk, pkenc, sk, skenc, withoptional);
 }
 
-QSC_RC qsc_decode(const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_in, unsigned char* pk, unsigned char** pkdec, unsigned char* sk, unsigned char** skdec, int withoptional) {
-    // TODO: deny decoding the public key from private key
+QSC_RC qsc_decode(const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_in, const unsigned char* pk, unsigned char** pkdec, const unsigned char* sk, unsigned char** skdec, int withoptional) {
     // Handle error cases
     if (!skdec && !pkdec)
         return QSC_ENC_ILLEGAL_INP;

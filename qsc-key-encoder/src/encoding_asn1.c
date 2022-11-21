@@ -83,28 +83,28 @@ size_t qsc_asn_bitstr(unsigned char *wire, size_t wbytes,
                                                   size_t bstring_net_bytes)
 {
     return qsc_asn_something(wire, wbytes, bstring_net_bytes, 
-                             ASN1_BITSTRING);
+                             QSC_ASN1_BITSTRING);
 }
 
 size_t qsc_asn_sequence(unsigned char *wire, size_t wbytes,
                                       size_t seq_net_bytes)
 {
 	return qsc_asn_something(wire, wbytes, seq_net_bytes,
-	                         ASN1_SEQUENCE);
+	                         QSC_ASN1_SEQUENCE);
 }
 
 size_t qsc_asn_octetstr(unsigned char *wire, size_t wbytes,
                                       size_t seq_net_bytes)
 {
 	return qsc_asn_something(wire, wbytes, seq_net_bytes,
-	                         ASN1_OCTETSTRING);
+	                         QSC_ASN1_OCTETSTRING);
 }
 
 size_t qsc_asn_int(unsigned char *wire, size_t wbytes,
                           unsigned char i)
 {
 	if (wire && (wbytes >= 3)) {
-		*(wire - 3) = ASN1_INT;
+		*(wire - 3) = QSC_ASN1_INT;
 		*(wire - 2) = 1;
 		*(wire - 1) = i;
 	}
@@ -115,7 +115,7 @@ size_t qsc_asn_int(unsigned char *wire, size_t wbytes,
 static size_t qsc_asn_null(unsigned char *wire, size_t wbytes)
 {
 	if (wire && (wbytes >= 2)) {
-		*(wire - 2) = ASN1_NULL;
+		*(wire - 2) = QSC_ASN1_NULL;
 		*(wire - 1) = 0x00;
 	}
 
@@ -143,10 +143,11 @@ static size_t qsc_gn_oid2wire(unsigned char *wire, size_t wbytes,
 }
 
 
-static int validate_decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes, unsigned char* k, unsigned char* k2, unsigned char* kdec, unsigned char asnenc_mask, unsigned char asndec_mask) {
+static int validate_decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes, const unsigned char* k, const unsigned char* k2, unsigned char* kdec, unsigned char asnenc_mask, unsigned char asndec_mask) {
     int wr = 0;
-    unsigned char* kout = kdec, *kin = k, *k2in = k2;
-    unsigned char **xin = NULL;
+    unsigned char* kout = kdec;
+    const unsigned char* kin = k, *k2in = k2;
+    const unsigned char **xin = NULL;
 
     int koutbytes = (int) obytes;
 
@@ -167,7 +168,7 @@ static int validate_decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size
         if (!asnenc && !asndec) // wasn't encoded, doesn't need to be decoded -> skip
             continue;
         else if (asnenc && !asndec) { // was encoded but doesn't need to be decoded -> move the pointer in the input
-            if (asntag != ASN1_SEQUENCE) 
+            if (asntag != QSC_ASN1_SEQUENCE) 
                 kin -= asnlen;
             int asntaglen = qsc_asn_something_validate(0, koutbytes, asnlen, asntag);
             if (asntaglen <= 0) return QSC_ENC_ERR;
@@ -182,7 +183,7 @@ static int validate_decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size
         }
 
         if (xin) { // something needs to be decoded
-            if (asntag != ASN1_SEQUENCE) {
+            if (asntag != QSC_ASN1_SEQUENCE) {
                 kout -= asnlen;
                 koutbytes -= asnlen;
                 wr += asnlen;
@@ -198,10 +199,11 @@ static int validate_decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size
     return koutbytes >= 0;
 }
 
-static int decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes, unsigned char* k, unsigned char* k2, unsigned char* kdec, unsigned char asnenc_mask, unsigned char asndec_mask) {
+static int decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes, const unsigned char* k, const unsigned char* k2, unsigned char* kdec, unsigned char asnenc_mask, unsigned char asndec_mask) {
     int wr = 0;
-    unsigned char* kout = kdec, *kin = k, *k2in = k2;
-    unsigned char **xin = NULL;
+    unsigned char* kout = kdec;
+    const unsigned char* kin = k, *k2in = k2;
+    const unsigned char **xin = NULL;
 
     if (!validate_decode_asntl(asntlstr, asntllen, obytes, k, k2, kdec, asnenc_mask, asndec_mask)) {
         return QSC_ENC_ERR;
@@ -226,7 +228,7 @@ static int decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes
         if (!asnenc && !asndec) // wasn't encoded, doesn't need to be decoded -> skip
             continue;
         else if (asnenc && !asndec) { // was encoded but doesn't need to be decoded -> move the pointer in the input
-            if (asntag != ASN1_SEQUENCE) 
+            if (asntag != QSC_ASN1_SEQUENCE) 
                 kin -= asnlen;
             int asntaglen = qsc_asn_something(0, koutbytes, asnlen, asntag);
             if (asntaglen <= 0) return QSC_ENC_ERR;
@@ -241,8 +243,8 @@ static int decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes
         }
 
         if (xin) { // something needs to be decoded
-            if (asntag != ASN1_SEQUENCE) {
-                if (asntag == ASN1_INT)
+            if (asntag != QSC_ASN1_SEQUENCE) {
+                if (asntag == QSC_ASN1_INT)
                     *(kout - asnlen) = *(*xin - asnlen);
                 else
                     memmove(kout - asnlen, *xin - asnlen, asnlen);
@@ -261,10 +263,10 @@ static int decode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes
     return wr;
 }
 
-static int encode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes, unsigned char* k, unsigned char* k2, unsigned char* kenc, int asnenc_mask) {
+static int encode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes, const unsigned char* k, const unsigned char* k2, unsigned char* kenc, int asnenc_mask) {
     int wr = 0;
-    unsigned char* kout = kenc, *kin = k, *k2in = k2;
-    unsigned char* kinnow;
+    unsigned char* kout = kenc;
+    const unsigned char* kin = k, *k2in = k2;
     size_t koutbytes = obytes;
 
     for (int i = asntllen - 1; i >= 0; --i) {
@@ -275,15 +277,15 @@ static int encode_asntl(const qsc_asntl_t* asntlstr, int asntllen, size_t obytes
         int asnenc_flag = asntlstr[i].asnenc_flag; // 0 means, never encoded, !0 means -> encoding depends on asnenc_mask.
 
         if (!(asnenc_mask & asnenc_flag)) { // Don't encode
-            if (!asnpub && asnenc_flag != 0 && asntag != ASN1_SEQUENCE) // -> element IS in raw input and is SOMETIMES encoded
+            if (!asnpub && asnenc_flag != 0 && asntag != QSC_ASN1_SEQUENCE) // -> element IS in raw input and is SOMETIMES encoded
                 kin -= asnlen;
         } else { // encode
-            if (asntag == ASN1_INT) { // special treatment for INT since value is fixed
+            if (asntag == QSC_ASN1_INT) { // special treatment for INT since value is fixed
                 *(kout - asnlen) = asnval;
                 kout -= asnlen;
                 koutbytes -= asnlen;
                 wr += asnlen;
-            } else if (asntag != ASN1_SEQUENCE) {
+            } else if (asntag != QSC_ASN1_SEQUENCE) {
                 if (asnpub) { // MUST be taken from k2
                     memmove(kout - asnlen, k2in - asnlen, asnlen);
                     k2in -= asnlen;
@@ -327,7 +329,7 @@ static size_t encode_SubjectPublicKeyInfo_part(const qsc_encoding_impl_t* ctx, u
 	size_t seqBytes, algBytes, algtlbytes, spkbitBytes, algnullBytes, algseqBytes;
 	size_t wr;
 
-	spkbitBytes = qsc_asn_something(wire, wbytes, spkbytes, ASN1_BITSTRING);
+	spkbitBytes = qsc_asn_something(wire, wbytes, spkbytes, QSC_ASN1_BITSTRING);
 	if (spkbitBytes <= 0) return QSC_ENC_ERR;
 
 	wr = spkbitBytes;
@@ -397,9 +399,10 @@ static int encode_spki_PublicKey(const qsc_encoding_impl_t* ctx_out, unsigned ch
     else return wr;
 }
 
-static int encode_SubjectPublicKeyInfo(const qsc_encoding_impl_t* ctx_out, unsigned char* sk, unsigned char* pk, unsigned char* pkenc, int withoptional) {
+static int encode_SubjectPublicKeyInfo(const qsc_encoding_impl_t* ctx_out, const unsigned char* sk, const unsigned char* pk, unsigned char* pkenc, int withoptional) {
     int wr = 0;
-    unsigned char* pkout = pkenc, *pkin = pk, *skin = sk;
+    unsigned char* pkout = pkenc;
+    const unsigned char* pkin = pk, *skin = sk;
     size_t expextedoutbytes = (withoptional ? ctx_out->crypto_publickeybytes : ctx_out->crypto_publickeybytes_nooptional);
     size_t pkoutbytes = expextedoutbytes;
 
@@ -458,7 +461,7 @@ static size_t encode_PrivateKeyInfo_part(const qsc_encoding_impl_t* ctx, unsigne
 	size_t seqBytes, algBytes, algtlBytes, pkbitBytes, versionBytes, algseqBytes, algnullBytes;
 	size_t wr;
 
-	pkbitBytes = qsc_asn_something(wire, wbytes, pkbytes, ASN1_OCTETSTRING);
+	pkbitBytes = qsc_asn_something(wire, wbytes, pkbytes, QSC_ASN1_OCTETSTRING);
 	if (pkbitBytes <= 0) return QSC_ENC_ERR;
 
 	wr = pkbitBytes;
@@ -492,7 +495,7 @@ static size_t encode_PrivateKeyInfo_part(const qsc_encoding_impl_t* ctx, unsigne
 	wire -= 1;
 	wbytes -= 1;
 
-	versionBytes = qsc_asn_something(wire, wbytes, 1, ASN1_INT);
+	versionBytes = qsc_asn_something(wire, wbytes, 1, QSC_ASN1_INT);
 	if (versionBytes <= 0) return QSC_ENC_ERR;
 
 	wr += versionBytes;
@@ -509,9 +512,10 @@ static size_t encode_PrivateKeyInfo_part(const qsc_encoding_impl_t* ctx, unsigne
 	return wr;
 }
 
-static int encode_PrivateKeyInfo(const qsc_encoding_impl_t* ctx_out, unsigned char* sk, unsigned char* pk, unsigned char* skenc, int withoptional) {
+static int encode_PrivateKeyInfo(const qsc_encoding_impl_t* ctx_out, const unsigned char* sk, const unsigned char* pk, unsigned char* skenc, int withoptional) {
     int wr = 0;
-    unsigned char* skout = skenc, *pkin = pk, *skin = sk;
+    unsigned char* skout = skenc;
+    const unsigned char* pkin = pk, *skin = sk;
     size_t expextedoutbytes = (withoptional ? ctx_out->crypto_secretkeybytes : ctx_out->crypto_secretkeybytes_nooptional);
     size_t skoutbytes = expextedoutbytes;
 
@@ -565,9 +569,10 @@ static int encode_p8_PrivateKey(const qsc_encoding_t* ctx, const qsc_encoding_im
     else return wr;
 }
 
-static int decode_SubjectPublicKeyInfo(const qsc_encoding_t* ctx_out, const qsc_encoding_impl_t* ctx_in, unsigned char* sk, unsigned char* pk, unsigned char* pkdec, int withoptional) {
+static int decode_SubjectPublicKeyInfo(const qsc_encoding_t* ctx_out, const qsc_encoding_impl_t* ctx_in, const unsigned char* sk, const unsigned char* pk, unsigned char* pkdec, int withoptional) {
     int wr = 0;
-    unsigned char* pkout = pkdec, *pkin = pk, *skin = sk;
+    unsigned char* pkout = pkdec;
+    const unsigned char* pkin = pk, *skin = sk;
     size_t pkoutbytes = ctx_out->raw_crypto_publickeybytes;
 
     const qsc_asntl_t* asntlstr_pk = ctx_in->pk_asntl;
@@ -596,9 +601,10 @@ static int decode_SubjectPublicKeyInfo(const qsc_encoding_t* ctx_out, const qsc_
     else return wr;
 }
 
-static int decode_PrivateKeyInfo(const qsc_encoding_t* ctx_out, const qsc_encoding_impl_t* ctx_in, unsigned char* sk, unsigned char* pk, unsigned char* pkdec, unsigned char* skdec, int withoptional) {
+static int decode_PrivateKeyInfo(const qsc_encoding_t* ctx_out, const qsc_encoding_impl_t* ctx_in, const unsigned char* sk, const unsigned char* pk, unsigned char* pkdec, unsigned char* skdec, int withoptional) {
     int wr = 0;
-    unsigned char* skout = skdec, *pkout = pkdec, *skin = sk, *pkin = pk;
+    unsigned char* skout = skdec, *pkout = pkdec;
+    const unsigned char* skin = sk, *pkin = pk;
     size_t skoutbytes = ctx_out->raw_crypto_secretkeybytes;
     size_t pkoutbytes = ctx_out->raw_crypto_publickeybytes;
 
@@ -670,10 +676,12 @@ QSC_RC qsc_encode_draft_uni_qsckeys_01_skpk(const qsc_encoding_t* ctx, const qsc
     return QSC_ENC_OK;
 }
 
-QSC_RC qsc_encode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_out, unsigned char* pk, unsigned char** pkenc, unsigned char* sk, unsigned char** skenc, int withoptional) {
+QSC_RC qsc_encode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_out, const unsigned char* pk, unsigned char** pkenc, const unsigned char* sk, unsigned char** skenc, int withoptional) {
     size_t wrpk = 0, wrsk = 0;
-    unsigned char* pkout, *pkin;
-    unsigned char* skout, *skin;
+    unsigned char* pkout;
+    const unsigned char* pkin;
+    unsigned char* skout;
+    const unsigned char* skin;
     size_t crypto_publickeybytes = (withoptional ? ctx_out->crypto_publickeybytes : ctx_out->crypto_publickeybytes_nooptional);
     size_t crypto_secretkeybytes = (withoptional ? ctx_out->crypto_secretkeybytes : ctx_out->crypto_secretkeybytes_nooptional);
     size_t pkoutbytes = crypto_publickeybytes;
@@ -722,12 +730,15 @@ QSC_RC qsc_encode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx, const qsc_enco
     return QSC_ENC_OK;
 }
 
-QSC_RC qsc_decode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx, const qsc_encoding_impl_t* encoding, unsigned char* pk, unsigned char** pkdec, unsigned char* sk, unsigned char** skdec, int withoptional) {
+QSC_RC qsc_decode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx, const qsc_encoding_impl_t* encoding, const unsigned char* pk, unsigned char** pkdec, const unsigned char* sk, unsigned char** skdec, int withoptional) {
 
     size_t wrpk = 0, wrsk = 0;
 
-    unsigned char *pkout = 0, *pkin = 0;
-    unsigned char *skout = 0, *skin = 0;
+    const unsigned char *pkin = 0;
+    const unsigned char *skin = 0;
+
+    unsigned char *pkout = 0;
+    unsigned char *skout = 0;
 
     size_t pkoutbytes = ctx->raw_crypto_publickeybytes;
     size_t skoutbytes = ctx->raw_crypto_secretkeybytes;

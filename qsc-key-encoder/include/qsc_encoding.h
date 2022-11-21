@@ -71,16 +71,16 @@
 /**
  * ASN.1 tags
  */
-#define ASN1_SEQUENCE     0x30
-#define ASN1_BITSTRING    0x03
-#define ASN1_OCTETSTRING  0x04
-#define ASN1_NULL         0x05
-#define ASN1_INT          0x02
-#define ASN1_OID          0x06
-#define ASN_NULL_BYTES    2
+#define QSC_ASN1_SEQUENCE     0x30
+#define QSC_ASN1_BITSTRING    0x03
+#define QSC_ASN1_OCTETSTRING  0x04
+#define QSC_ASN1_NULL         0x05
+#define QSC_ASN1_INT          0x02
+#define QSC_ASN1_OID          0x06
+#define QSC_ASN_NULL_BYTES    2
 
-#define ASN_TLLEN(len) (len < 0x80 ? 2 : (len < 0x10000 ? 4 : 5)) // max 3 bytes lengths.
-#define ASN_OIDLEN(oid) (sizeof(oid)-1)
+#define QSC_ASN_TLLEN(len) (len < 0x80 ? 2 : (len < 0x10000 ? 4 : 5)) // max 3 bytes lengths.
+#define QSC_ASN_OIDLEN(oid) (sizeof(oid)-1)
 
 typedef struct qsc_asntl_t qsc_asntl_t;
 typedef struct qsc_encoding_t qsc_encoding_t;
@@ -182,10 +182,10 @@ struct qsc_encoding_impl_t {
     const qsc_asntl_t* sk_asntl;
 
     // Encode function pointer
-    int (*encode) (const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_in, unsigned char* pk, unsigned char** pkenc, unsigned char* sk, unsigned char** skenc, int withoptional);
+    int (*encode) (const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_in, const unsigned char* pk, unsigned char** pkenc, const unsigned char* sk, unsigned char** skenc, int withoptional);
 
     // Decode function pointer
-    int (*decode) (const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_in, unsigned char* pk, unsigned char** pkdec, unsigned char* sk, unsigned char** skdec, int withoptional);
+    int (*decode) (const qsc_encoding_t* ctx, const qsc_encoding_impl_t* ctx_in, const unsigned char* pk, unsigned char** pkdec, const unsigned char* sk, unsigned char** skdec, int withoptional);
 
 };
 
@@ -211,7 +211,7 @@ QSC_RC qsc_encoding_by_name(const qsc_encoding_t** ctx_alg, const qsc_encoding_i
  * @param[out] skenc Encoded private key
  * @return QSC_RC return code
  */
-QSC_RC qsc_encode(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, unsigned char* pk, unsigned char** pkenc, unsigned char* sk, unsigned char** skenc, int withoptional);
+QSC_RC qsc_encode(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, const unsigned char* pk, unsigned char** pkenc, const unsigned char* sk, unsigned char** skenc, int withoptional);
 
 /**
  * Decoding function
@@ -224,6 +224,6 @@ QSC_RC qsc_encode(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_
  * @param[out] skdec Raw private key
  * @return QSC_RC return code
  */
-QSC_RC qsc_decode(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, unsigned char* pk, unsigned char** pkdec, unsigned char* sk, unsigned char** skdec, int withoptional);
+QSC_RC qsc_decode(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, const unsigned char* pk, unsigned char** pkdec, const unsigned char* sk, unsigned char** skdec, int withoptional);
 
 #endif // QSC_ENCODING_H

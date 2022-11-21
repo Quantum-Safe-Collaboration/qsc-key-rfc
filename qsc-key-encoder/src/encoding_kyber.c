@@ -38,9 +38,9 @@
 //   rho         OCTET STRING
 // }
 #define KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) \
-  ASN_TLLEN(KYBER##NAME##_CRYPTO_PUBLICKEYBYTES) + \
-  ASN_TLLEN(KYBER##NAME##_T) + KYBER##NAME##_T + \
-  ASN_TLLEN(KYBER##NAME##_RHO) + KYBER##NAME##_RHO
+  QSC_ASN_TLLEN(KYBER##NAME##_CRYPTO_PUBLICKEYBYTES) + \
+  QSC_ASN_TLLEN(KYBER##NAME##_T) + KYBER##NAME##_T + \
+  QSC_ASN_TLLEN(KYBER##NAME##_RHO) + KYBER##NAME##_RHO
 
 
 /**
@@ -51,11 +51,11 @@
  * }
  */
 #define KYBERXXX_CRYPTO_ASN1_SUBJECTPUBLICKEYINFOBYTES(NAME) \
-  ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)) + \
-  ASN_TLLEN(ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID)) + \
-  ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID) + \
-  ASN_TLLEN(0) + \
-  ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)) + KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)
+  QSC_ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)) + \
+  QSC_ASN_TLLEN(QSC_ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID)) + \
+  QSC_ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID) + \
+  QSC_ASN_TLLEN(0) + \
+  QSC_ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)) + KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)
 
 // KyberPrivateKey ::= SEQUENCE {
 //   Version     INTEGER {v0(0)}   -- version (round 3)
@@ -66,19 +66,19 @@
 //   nonce       OCTET STRING,     -- z
 // }
 #define KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME) \
-  ASN_TLLEN(KYBER##NAME##_CRYPTO_SECRETKEYBYTES) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(KYBER##NAME##_S) + KYBER##NAME##_S + \
+  QSC_ASN_TLLEN(KYBER##NAME##_CRYPTO_SECRETKEYBYTES) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(KYBER##NAME##_S) + KYBER##NAME##_S + \
   KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) + \
-  ASN_TLLEN(KYBER##NAME##_HPK) + KYBER##NAME##_HPK + \
-  ASN_TLLEN(KYBER##NAME##_Z) + KYBER##NAME##_Z
+  QSC_ASN_TLLEN(KYBER##NAME##_HPK) + KYBER##NAME##_HPK + \
+  QSC_ASN_TLLEN(KYBER##NAME##_Z) + KYBER##NAME##_Z
 
 #define KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME) \
-  ASN_TLLEN(KYBER##NAME##_CRYPTO_SECRETKEYBYTES) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(KYBER##NAME##_S) + KYBER##NAME##_S + \
-  ASN_TLLEN(KYBER##NAME##_HPK) + KYBER##NAME##_HPK + \
-  ASN_TLLEN(KYBER##NAME##_Z) + KYBER##NAME##_Z
+  QSC_ASN_TLLEN(KYBER##NAME##_CRYPTO_SECRETKEYBYTES) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(KYBER##NAME##_S) + KYBER##NAME##_S + \
+  QSC_ASN_TLLEN(KYBER##NAME##_HPK) + KYBER##NAME##_HPK + \
+  QSC_ASN_TLLEN(KYBER##NAME##_Z) + KYBER##NAME##_Z
 
   /**
  * @brief 
@@ -90,38 +90,38 @@
  * }
  */
 #define KYBERXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES(NAME) \
-  ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID)) + \
-  ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID) + \
-  ASN_TLLEN(0) + \
-  ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) + KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)
+  QSC_ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(QSC_ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID)) + \
+  QSC_ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID) + \
+  QSC_ASN_TLLEN(0) + \
+  QSC_ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) + KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)
 
 #define KYBERXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES_NOOPTIONAL(NAME) \
-  ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)) + \
-  ASN_TLLEN(1) + 1 + \
-  ASN_TLLEN(ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID)) + \
-  ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID) + \
-  ASN_TLLEN(0) + \
-  ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)) + KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)
+  QSC_ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)) + \
+  QSC_ASN_TLLEN(1) + 1 + \
+  QSC_ASN_TLLEN(QSC_ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID)) + \
+  QSC_ASN_OIDLEN(QSC_ALGORITHM_KEM_KYBER_##NAME##_R3_OID) + \
+  QSC_ASN_TLLEN(0) + \
+  QSC_ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)) + KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(NAME)
 
 #define KyberXXX_asntlp_pk_len 3
 
 #define KYBER_ASNTLP_PK(NAME) \
   static const qsc_asntl_t Kyber##NAME##_asntlp_pk[] = { \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - ASN_TLLEN(KYBER##NAME##_CRYPTO_PUBLICKEYBYTES), \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - QSC_ASN_TLLEN(KYBER##NAME##_CRYPTO_PUBLICKEYBYTES), \
           .asnenc_flag = 1, \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = KYBER##NAME##_T, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = KYBER##NAME##_RHO, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
@@ -145,47 +145,47 @@ KYBER_ASNTLP_PK(1024);
 #define KYBER_ASNTLP_SK(NAME) \
   static const qsc_asntl_t Kyber##NAME##_asntlp_sk[] = { \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME) - ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)), \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME) - QSC_ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)), \
           .asnenc_flag = 1, \
       }, \
       { \
-          .asntag = ASN1_INT, \
+          .asntag = QSC_ASN1_INT, \
           .asnlen = 1, \
           .asnvalue = 1, \
           .asnenc_flag = 1, \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = KYBER##NAME##_S, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME) - QSC_ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_PUBLICKEYBYTES(NAME)), \
           .asnenc_flag = 2, \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = KYBER##NAME##_T, \
           .asnenc_flag = 2, \
           .asndec_flag = 3, \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = KYBER##NAME##_RHO, \
           .asnenc_flag = 2, \
           .asndec_flag = 3, \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = KYBER##NAME##_HPK, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = KYBER##NAME##_Z, \
           .asnenc_flag = 1, \
           .asndec_flag = 1 \
@@ -199,36 +199,36 @@ KYBER_ASNTLP_SK(1024);
 #define KYBER_ASNTLP_SK_PARTIAL(NAME) \
   static const qsc_asntl_t Kyber##NAME##_asntlp_sk_partial[] = { \
       { \
-          .asntag = ASN1_SEQUENCE, \
-          .asnlen = KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME) - ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) \
+          .asntag = QSC_ASN1_SEQUENCE, \
+          .asnlen = KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME) - QSC_ASN_TLLEN(KYBERXXX_CRYPTO_ASN1_SECRETKEYBYTES(NAME)) \
       }, \
       { \
-          .asntag = ASN1_INT, \
+          .asntag = QSC_ASN1_INT, \
           .asnlen = 1, \
           .asnvalue = 1, \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = KYBER##NAME##_D \
       }, \
       { \
-          .asntag = ASN1_SEQUENCE, \
+          .asntag = QSC_ASN1_SEQUENCE, \
           .asnlen = 4 \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = 0 \
       }, \
       { \
-          .asntag = ASN1_OCTETSTRING, \
+          .asntag = QSC_ASN1_OCTETSTRING, \
           .asnlen = 0 \
       }, \
   };

@@ -66,7 +66,7 @@ The `withoptional` parameter specifies if optional parts should be encoded (i.e.
 To decode to the raw public/private key format, use the `qsc_decode` API:
 
 ```
-int ret = qsc_encode(ctx, encoding, pkEnc, &pk, skEnc, &sk, withoptional);
+int ret = qsc_decode(ctx, encoding, pkEnc, &pk, skEnc, &sk, withoptional);
 assert(ret == QSC_ENC_OK);
 ```
 Again, the `withoptional` parameter specifies if the input was encoding with or without OPTIONAL components.

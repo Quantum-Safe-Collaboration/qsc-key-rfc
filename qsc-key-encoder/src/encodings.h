@@ -24,7 +24,7 @@
  * @param[out] skenc Output encoded private key. Must be pre-allocated. Output pointer may be assigned to the same address as the input pointer.
  * @return Status code.
  */
-QSC_RC qsc_encode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, unsigned char* pk, unsigned char** pkenc, unsigned char* sk, unsigned char** skenc, int withoptional);
+QSC_RC qsc_encode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, const unsigned char* pk, unsigned char** pkenc, const unsigned char* sk, unsigned char** skenc, int withoptional);
 
 /**
  * Decode from draft-uni-qsckeys-01 format.
@@ -37,7 +37,7 @@ QSC_RC qsc_encode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx_alg, const qsc_
  * @param[out] skdec Output encoded private key. Must be pre-allocated. Output pointer may be assigned to the same address as the input pointer.
  * @return Status code.
  */
-QSC_RC qsc_decode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, unsigned char* pk, unsigned char** pkdec, unsigned char* sk, unsigned char** skdec, int withoptional);
+QSC_RC qsc_decode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, const unsigned char* pk, unsigned char** pkdec, const unsigned char* sk, unsigned char** skdec, int withoptional);
 
 /**
  * Encode to draft-uni-qsckeys-01 format.
@@ -52,6 +52,6 @@ QSC_RC qsc_decode_draft_uni_qsckeys_01(const qsc_encoding_t* ctx_alg, const qsc_
  * @param[out] skenc Output encoded private key. Must be pre-allocated. Output pointer may be assigned to the same address as the input pointer.
  * @return Status code.
  */
-QSC_RC qsc_encode_draft_uni_qsckeys_01_skpk(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, unsigned char* pk, unsigned char** pkenc, unsigned char* sk, unsigned char** skenc, int withoptional);
+QSC_RC qsc_encode_draft_uni_qsckeys_01_skpk(const qsc_encoding_t* ctx_alg, const qsc_encoding_impl_t* ctx_enc, const unsigned char* pk, unsigned char** pkenc, const unsigned char* sk, unsigned char** skenc, int withoptional);
 
 #endif
