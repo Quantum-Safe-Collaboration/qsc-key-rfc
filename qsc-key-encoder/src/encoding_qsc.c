@@ -7,6 +7,10 @@ extern const qsc_encoding_t Dilithium_R3_4x4_encodings;
 extern const qsc_encoding_t Dilithium_R3_6x5_encodings;
 extern const qsc_encoding_t Dilithium_R3_8x7_encodings;
 
+extern const qsc_encoding_t Dilithium_R3_4x4_AES_encodings;
+extern const qsc_encoding_t Dilithium_R3_6x5_AES_encodings;
+extern const qsc_encoding_t Dilithium_R3_8x7_AES_encodings;
+
 extern const qsc_encoding_t Kyber512_encoding;
 extern const qsc_encoding_t Kyber768_encoding;
 extern const qsc_encoding_t Kyber1024_encoding;
@@ -58,6 +62,9 @@ static const qsc_encoding_t* qsc_encodings[] = {
     &Dilithium_R3_4x4_encodings,
     &Dilithium_R3_6x5_encodings,
     &Dilithium_R3_8x7_encodings,
+    &Dilithium_R3_4x4_AES_encodings,
+    &Dilithium_R3_6x5_AES_encodings,
+    &Dilithium_R3_8x7_AES_encodings,
     &Kyber512_encoding,
     &Kyber768_encoding,
     &Kyber1024_encoding,
@@ -106,7 +113,7 @@ static const qsc_encoding_t* qsc_encodings[] = {
 
 static int qsc_encoding_length = sizeof(qsc_encodings) / sizeof(qsc_encodings[0]);
 
-QSC_RC qsc_encoding_by_name(const qsc_encoding_t** ctx_enc, const qsc_encoding_impl_t** ctx_impl, const char* algorithm_name, const char* encoding_name) {
+QSC_RC qsc_encoding_by_name_oid(const qsc_encoding_t** ctx_enc, const qsc_encoding_impl_t** ctx_impl, const char* algorithm_name, const char* encoding_name) {
     const qsc_encoding_impl_t* res = 0;
     for (int i = 0; i < qsc_encoding_length; ++i) {
         const qsc_encoding_t* e = qsc_encodings[i];

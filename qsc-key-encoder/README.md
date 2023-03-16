@@ -45,11 +45,25 @@ Example: retrieve an encoding context for `Dilithium2` according to `draft-uni-q
 const qsc_encoding_t* ctx = 0;
 const qsc_encoding_impl_t* encoding = 0;
 
-int ret = qsc_encoding_by_name(&ctx, &encoding, "Dilithium2", "draft-uni-qsckeys-dilithium-00/p8-spki");
+int ret = qsc_encoding_by_name_oid(&ctx, &encoding, "Dilithium2", "draft-uni-qsckeys-dilithium-00/p8-spki");
+// alternatively by OID: qsc_encoding_by_name_oid(&ctx, &encoding, "1.3.6.1.4.1.2.267.7.4.4", "draft-uni-qsckeys-dilithium-00/p8-spki");
 assert(ret == QSC_ENC_OK);
 ```
 
-Alternatively, an encoder that encodes only the `privateKey` and `subjectPublicKey` part can be obtained with `draft-uni-qsckeys-dilithium-00/pk-sk`.
+Alternatively, an encoder that encodes only the `privateKey` and `subjectPublicKey` part can be obtained with `draft-uni-qsckeys-dilithium-00/sk-pk`.
+
+The available encoding strings are:
+
+```
+draft-uni-qsckeys-dilithium-00/p8-spki
+draft-uni-qsckeys-dilithium-00/sk-pk
+draft-uni-qsckeys-falcon-00/p8-spki
+draft-uni-qsckeys-falcon-00/sk-pk
+draft-uni-qsckeys-kyber-00/p8-spki
+draft-uni-qsckeys-kyber-00/sk-pk
+draft-uni-qsckeys-sphincsplus-00/p8-spki
+draft-uni-qsckeys-sphincsplus-00/sk-pk
+```
 
 The input for the encoding API are the raw public/private keys as provided by the NIST PQC reference implementations. Use the `qsc_encode` API to output the encoding:
 

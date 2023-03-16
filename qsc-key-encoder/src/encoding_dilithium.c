@@ -490,6 +490,106 @@ static const qsc_encoding_impl_t Dilithium_R3_8x7_encodings_arr[] = {
         },
 };
 
+static const qsc_encoding_impl_t Dilithium_R3_4x4_aes_encodings_arr[] = {
+        {
+            .encoding_name = "draft-uni-qsckeys-dilithium-00/p8-spki", // ASN.1 P8 / SPKI
+            .algorithm_oid = QSC_ALGORITHM_SIG_DILITHIUM_R3_4x4_AES_OID,
+            .crypto_publickeybytes = DILITHIUMXXX_CRYPTO_ASN1_SUBJECTPUBLICKEYINFOBYTES(R3_4x4),
+            .crypto_secretkeybytes = DILITHIUMXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES(R3_4x4),
+            .crypto_publickeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_SUBJECTPUBLICKEYINFOBYTES(R3_4x4),
+            .crypto_secretkeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES_NOOPTIONAL(R3_4x4),
+            .crypto_bytes = DILITHIUM_R3_4x4_CRYPTO_BYTES,
+            .pk_asntl_len = DilithiumXXX_asntlp_pk_len,
+            .pk_asntl = Dilithium_R3_4x4_asntlp_pk,
+            .sk_asntl_len = DilithiumXXX_asntlp_sk_len,
+            .sk_asntl = Dilithium_R3_4x4_asntlp_sk,
+            .encode = qsc_encode_draft_uni_qsckeys_01,
+            .decode = qsc_decode_draft_uni_qsckeys_01
+        },
+        {
+            .encoding_name = "draft-uni-qsckeys-dilithium-00/sk-pk", // ASN.1 PrivateKey / PublicKey without P8/SPKI envelope
+            .algorithm_oid = QSC_ALGORITHM_SIG_DILITHIUM_R3_4x4_AES_OID,
+            .crypto_publickeybytes = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(R3_4x4),
+            .crypto_secretkeybytes = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(R3_4x4),
+            .crypto_publickeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(R3_4x4),
+            .crypto_secretkeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(R3_4x4),
+            .crypto_bytes = DILITHIUM_R3_4x4_CRYPTO_BYTES,
+            .pk_asntl_len = DilithiumXXX_asntlp_pk_len,
+            .pk_asntl = Dilithium_R3_4x4_asntlp_pk,
+            .sk_asntl_len = DilithiumXXX_asntlp_sk_len,
+            .sk_asntl = Dilithium_R3_4x4_asntlp_sk,
+            .encode = qsc_encode_draft_uni_qsckeys_01_skpk,
+            .decode = qsc_decode_draft_uni_qsckeys_01
+        },
+};
+
+
+static const qsc_encoding_impl_t Dilithium_R3_6x5_aes_encodings_arr[] = {
+        {
+            .encoding_name = "draft-uni-qsckeys-dilithium-00/p8-spki", // ASN.1
+            .algorithm_oid = QSC_ALGORITHM_SIG_DILITHIUM_R3_6x5_AES_OID,
+            .crypto_publickeybytes = DILITHIUMXXX_CRYPTO_ASN1_SUBJECTPUBLICKEYINFOBYTES(R3_6x5),
+            .crypto_secretkeybytes = DILITHIUMXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES(R3_6x5),
+            .crypto_publickeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_SUBJECTPUBLICKEYINFOBYTES(R3_6x5),
+            .crypto_secretkeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES_NOOPTIONAL(R3_6x5),
+            .crypto_bytes = DILITHIUM_R3_6x5_CRYPTO_BYTES,
+            .pk_asntl_len = DilithiumXXX_asntlp_pk_len,
+            .pk_asntl = Dilithium_R3_6x5_asntlp_pk,
+            .sk_asntl_len = DilithiumXXX_asntlp_sk_len,
+            .sk_asntl = Dilithium_R3_6x5_asntlp_sk,
+            .encode = qsc_encode_draft_uni_qsckeys_01,
+            .decode = qsc_decode_draft_uni_qsckeys_01
+        },
+        {
+            .encoding_name = "draft-uni-qsckeys-dilithium-00/sk-pk", // ASN.1 without P8 / SPKI envelope
+            .algorithm_oid = QSC_ALGORITHM_SIG_DILITHIUM_R3_6x5_AES_OID,
+            .crypto_publickeybytes = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(R3_6x5),
+            .crypto_secretkeybytes = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(R3_6x5),
+            .crypto_publickeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(R3_6x5),
+            .crypto_secretkeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(R3_6x5),
+            .crypto_bytes = DILITHIUM_R3_6x5_CRYPTO_BYTES,
+            .pk_asntl_len = DilithiumXXX_asntlp_pk_len,
+            .pk_asntl = Dilithium_R3_6x5_asntlp_pk,
+            .sk_asntl_len = DilithiumXXX_asntlp_sk_len,
+            .sk_asntl = Dilithium_R3_6x5_asntlp_sk,
+            .encode = qsc_encode_draft_uni_qsckeys_01_skpk,
+            .decode = qsc_decode_draft_uni_qsckeys_01
+        },
+};
+
+static const qsc_encoding_impl_t Dilithium_R3_8x7_aes_encodings_arr[] = {
+        {
+            .encoding_name = "draft-uni-qsckeys-dilithium-00/p8-spki", // ASN.1
+            .algorithm_oid = QSC_ALGORITHM_SIG_DILITHIUM_R3_8x7_AES_OID,
+            .crypto_publickeybytes = DILITHIUMXXX_CRYPTO_ASN1_SUBJECTPUBLICKEYINFOBYTES(R3_8x7),
+            .crypto_secretkeybytes = DILITHIUMXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES(R3_8x7),
+            .crypto_publickeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_SUBJECTPUBLICKEYINFOBYTES(R3_8x7),
+            .crypto_secretkeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_PRIVATEKEYINFOBYTES_NOOPTIONAL(R3_8x7),
+            .crypto_bytes = DILITHIUM_R3_8x7_CRYPTO_BYTES,
+            .pk_asntl_len = DilithiumXXX_asntlp_pk_len,
+            .pk_asntl = Dilithium_R3_8x7_asntlp_pk,
+            .sk_asntl_len = DilithiumXXX_asntlp_sk_len,
+            .sk_asntl = Dilithium_R3_8x7_asntlp_sk,
+            .encode = qsc_encode_draft_uni_qsckeys_01,
+            .decode = qsc_decode_draft_uni_qsckeys_01
+        },
+        {
+            .encoding_name = "draft-uni-qsckeys-dilithium-00/sk-pk", // ASN.1 without P8 / SPKI envelope
+            .algorithm_oid = QSC_ALGORITHM_SIG_DILITHIUM_R3_8x7_AES_OID,
+            .crypto_publickeybytes = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(R3_8x7),
+            .crypto_secretkeybytes = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES(R3_8x7),
+            .crypto_publickeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_PUBLICKEYBYTES(R3_8x7),
+            .crypto_secretkeybytes_nooptional = DILITHIUMXXX_CRYPTO_ASN1_SECRETKEYBYTES_NOOPTIONAL(R3_8x7),
+            .crypto_bytes = DILITHIUM_R3_8x7_CRYPTO_BYTES,
+            .pk_asntl_len = DilithiumXXX_asntlp_pk_len,
+            .pk_asntl = Dilithium_R3_8x7_asntlp_pk,
+            .sk_asntl_len = DilithiumXXX_asntlp_sk_len,
+            .sk_asntl = Dilithium_R3_8x7_asntlp_sk,
+            .encode = qsc_encode_draft_uni_qsckeys_01_skpk,
+            .decode = qsc_decode_draft_uni_qsckeys_01
+        },
+};
+
 const qsc_encoding_t Dilithium_R3_4x4_encodings = {
     .algorithm_name = "Dilithium2",
     .algorithm_oid_str = QSC_ALGORITHM_SIG_DILITHIUM_R3_4x4_OID_STR,
@@ -515,6 +615,36 @@ const qsc_encoding_t Dilithium_R3_8x7_encodings = {
     .algorithm_oid_str = QSC_ALGORITHM_SIG_DILITHIUM_R3_8x7_OID_STR,
     .encodings_len = sizeof(Dilithium_R3_8x7_encodings_arr) / sizeof(Dilithium_R3_8x7_encodings_arr[0]),
     .encoding = Dilithium_R3_8x7_encodings_arr,
+    .raw_crypto_publickeybytes = DILITHIUM_R3_8x7_CRYPTO_PUBLICKEYBYTES,
+    .raw_crypto_secretkeybytes = DILITHIUM_R3_8x7_CRYPTO_SECRETKEYBYTES,
+    .raw_private_key_encodes_public_key = 0
+};
+
+const qsc_encoding_t Dilithium_R3_4x4_AES_encodings = {
+    .algorithm_name = "Dilithium2_AES",
+    .algorithm_oid_str = QSC_ALGORITHM_SIG_DILITHIUM_R3_4x4_AES_OID_STR,
+    .encodings_len = sizeof(Dilithium_R3_4x4_aes_encodings_arr) / sizeof(Dilithium_R3_4x4_aes_encodings_arr[0]),
+    .encoding = Dilithium_R3_4x4_aes_encodings_arr,
+    .raw_crypto_publickeybytes = DILITHIUM_R3_4x4_CRYPTO_PUBLICKEYBYTES,
+    .raw_crypto_secretkeybytes = DILITHIUM_R3_4x4_CRYPTO_SECRETKEYBYTES,
+    .raw_private_key_encodes_public_key = 0
+};
+
+const qsc_encoding_t Dilithium_R3_6x5_AES_encodings = {
+    .algorithm_name = "Dilithium3_AES",
+    .algorithm_oid_str = QSC_ALGORITHM_SIG_DILITHIUM_R3_6x5_AES_OID_STR,
+    .encodings_len = sizeof(Dilithium_R3_6x5_aes_encodings_arr) / sizeof(Dilithium_R3_6x5_aes_encodings_arr[0]),
+    .encoding = Dilithium_R3_6x5_aes_encodings_arr,
+    .raw_crypto_publickeybytes = DILITHIUM_R3_6x5_CRYPTO_PUBLICKEYBYTES,
+    .raw_crypto_secretkeybytes = DILITHIUM_R3_6x5_CRYPTO_SECRETKEYBYTES,
+    .raw_private_key_encodes_public_key = 0
+};
+
+const qsc_encoding_t Dilithium_R3_8x7_AES_encodings = {
+    .algorithm_name = "Dilithium5_AES",
+    .algorithm_oid_str = QSC_ALGORITHM_SIG_DILITHIUM_R3_8x7_AES_OID_STR,
+    .encodings_len = sizeof(Dilithium_R3_8x7_aes_encodings_arr) / sizeof(Dilithium_R3_8x7_aes_encodings_arr[0]),
+    .encoding = Dilithium_R3_8x7_aes_encodings_arr,
     .raw_crypto_publickeybytes = DILITHIUM_R3_8x7_CRYPTO_PUBLICKEYBYTES,
     .raw_crypto_secretkeybytes = DILITHIUM_R3_8x7_CRYPTO_SECRETKEYBYTES,
     .raw_private_key_encodes_public_key = 0

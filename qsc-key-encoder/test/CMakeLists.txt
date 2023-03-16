@@ -7,6 +7,10 @@ add_test(Dilithium2_draft-uni-qsckeys-dilithium-00 qsc_key_encoder_test Dilithiu
 add_test(Dilithium3_draft-uni-qsckeys-dilithium-00 qsc_key_encoder_test Dilithium3 draft-uni-qsckeys-dilithium-00/p8-spki)
 add_test(Dilithium5_draft-uni-qsckeys-dilithium-00 qsc_key_encoder_test Dilithium5 draft-uni-qsckeys-dilithium-00/p8-spki)
 
+add_test(Dilithium2_aes_draft-uni-qsckeys-dilithium-00 qsc_key_encoder_test Dilithium2_AES draft-uni-qsckeys-dilithium-00/p8-spki)
+add_test(Dilithium3_aes_draft-uni-qsckeys-dilithium-00 qsc_key_encoder_test Dilithium3_AES draft-uni-qsckeys-dilithium-00/p8-spki)
+add_test(Dilithium5_aes_draft-uni-qsckeys-dilithium-00 qsc_key_encoder_test Dilithium5_AES draft-uni-qsckeys-dilithium-00/p8-spki)
+
 add_test(Kyber512_draft-uni-qsckeys-kyber-00 qsc_key_encoder_test kyber512 draft-uni-qsckeys-kyber-00/p8-spki)
 add_test(Kyber768_draft-uni-qsckeys-kyber-00 qsc_key_encoder_test kyber768 draft-uni-qsckeys-kyber-00/p8-spki)
 add_test(Kyber1024_draft-uni-qsckeys-kyber-00 qsc_key_encoder_test kyber1024 draft-uni-qsckeys-kyber-00/p8-spki)
@@ -57,6 +61,10 @@ add_test(sphincsplus-haraka-256s-simple_draft-uni-qsckeys-sphincs-00 qsc_key_enc
 add_test(Dilithium2_draft-uni-qsckeys-dilithium-00/sk-pk qsc_key_encoder_test Dilithium2 draft-uni-qsckeys-dilithium-00/sk-pk)
 add_test(Dilithium3_draft-uni-qsckeys-dilithium-00/sk-pk qsc_key_encoder_test Dilithium3 draft-uni-qsckeys-dilithium-00/sk-pk)
 add_test(Dilithium5_draft-uni-qsckeys-dilithium-00/sk-pk qsc_key_encoder_test Dilithium5 draft-uni-qsckeys-dilithium-00/sk-pk)
+
+add_test(Dilithium2_aes_draft-uni-qsckeys-dilithium-00/sk-pk qsc_key_encoder_test Dilithium2_AES draft-uni-qsckeys-dilithium-00/sk-pk)
+add_test(Dilithium3_aes_draft-uni-qsckeys-dilithium-00/sk-pk qsc_key_encoder_test Dilithium3_AES draft-uni-qsckeys-dilithium-00/sk-pk)
+add_test(Dilithium5_aes_draft-uni-qsckeys-dilithium-00/sk-pk qsc_key_encoder_test Dilithium5_AES draft-uni-qsckeys-dilithium-00/sk-pk)
 
 add_test(Kyber512_draft-uni-qsckeys-kyber-00/sk-pk qsc_key_encoder_test kyber512 draft-uni-qsckeys-kyber-00/sk-pk)
 add_test(Kyber768_draft-uni-qsckeys-kyber-00/sk-pk qsc_key_encoder_test kyber768 draft-uni-qsckeys-kyber-00/sk-pk)

@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (qsc_encoding_by_name(&ctx, &ctx_impl, argv[1], argv[2]) != QSC_ENC_OK) {
+    if (qsc_encoding_by_name_oid(&ctx, &ctx_impl, argv[1], argv[2]) != QSC_ENC_OK) {
         printf("Not a valid algorithm or encoding: %s - %s\n", argv[1], argv[2]);
         return QSC_ENC_ERR;
     }
