@@ -209,7 +209,8 @@ SPHINCSPLUS_ASNTLP_SK(R3_256);
             }, \
     }; \
     const qsc_encoding_t SPHINCSPLUS_##NAME##_encodings = { \
-        .algorithm_oid_name = FULLNAME, \
+        .algorithm_name = FULLNAME, \
+        .algorithm_oid_str = QSC_ALGORITHM_SIG_SPHINCSPLUS_##NAME##_OID, \
         .encodings_len = 2, \
         .encoding = Sphincsplus_##NAME##_encodings_arr, \
         .raw_crypto_publickeybytes = SPHINCSPLUS_##BASE##_CRYPTO_PUBLICKEYBYTES, \

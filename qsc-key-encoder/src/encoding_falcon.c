@@ -239,7 +239,8 @@ static const unsigned char FALCON_R3_1024_publickey_header = 0x00 + 10;
 static const unsigned char FALCON_R3_1024_secretkey_header = 0x50 + 10;
 
 const qsc_encoding_t FALCON_R3_512_encodings = {
-    .algorithm_oid_name = "Falcon512",
+    .algorithm_name = "Falcon512",
+    .algorithm_oid_str = QSC_ALGORITHM_SIG_FALCON_R3_512_OID_STR,
     .encodings_len = 2,
     .encoding = Falcon_R3_512_encodings_arr,
     .raw_crypto_publickeybytes = FALCON_R3_512_CRYPTO_PUBLICKEYBYTES,
@@ -252,7 +253,8 @@ const qsc_encoding_t FALCON_R3_512_encodings = {
 };
 
 const qsc_encoding_t FALCON_R3_1024_encodings = {
-    .algorithm_oid_name = "Falcon1024",
+    .algorithm_name = "Falcon1024",
+    .algorithm_oid_str = QSC_ALGORITHM_SIG_FALCON_R3_1024_OID_STR,
     .encodings_len = 2,
     .encoding = Falcon_R3_1024_encodings_arr,
     .raw_crypto_publickeybytes = FALCON_R3_1024_CRYPTO_PUBLICKEYBYTES,

@@ -68,7 +68,7 @@ test_nist_kat(const qsc_encoding_t * params, const qsc_encoding_impl_t * encodin
     pkEncDec = calloc(params->raw_crypto_publickeybytes, 1);
     skEncDec = calloc(params->raw_crypto_secretkeybytes, 1);
 
-    const char* algname = params->algorithm_oid_name;
+    const char* algname = params->algorithm_name;
     if (!algname) return KAT_DATA_ERROR;
 
     sprintf(fn_rsp, "../../KAT/%s/PQCsignKAT_%zu.rsp", algname, params->raw_crypto_secretkeybytes);
