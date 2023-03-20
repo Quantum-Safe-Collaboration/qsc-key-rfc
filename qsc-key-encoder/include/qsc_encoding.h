@@ -13,6 +13,8 @@
 
 #include <stddef.h>
 
+#define QSC_ENCODING_VERSION_STRING "draft-00-dev"
+
 /**
  * Algorithm OIDs
  */
