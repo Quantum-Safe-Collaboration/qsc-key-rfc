@@ -117,7 +117,7 @@ QSC_RC qsc_encoding_by_name_oid(const qsc_encoding_t** ctx_enc, const qsc_encodi
     const qsc_encoding_impl_t* res = 0;
     for (int i = 0; i < qsc_encoding_length; ++i) {
         const qsc_encoding_t* e = qsc_encodings[i];
-        if (!strcmp(algorithm_name, e->algorithm_name) || !strcmp(algorithm_name, e->algorithm_oid_str)) {
+        if (!strcmp(algorithm_name, e->algorithm_name) || !strncmp(algorithm_name, e->algorithm_oid_str, strlen(e->algorithm_oid_str))) {
             for (int j = 0; j < e->encodings_len; ++j) {
                 const qsc_encoding_impl_t* impl = &e->encoding[j];
                 if (!strcmp(encoding_name, impl->encoding_name)) {
